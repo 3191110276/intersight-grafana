@@ -1,2 +1,1 @@
-# intersight-grafana
-Grafana Dashboards for Cisco Intersight
+# Grafana Dashboards for Cisco Intersight
