@@ -2,6 +2,9 @@
 
 This is a collection of dashboards for Cisco Intersight that can be imported into your own Grafana instance. The dashboards should help with various operational and troubleshooting tasks in Intersight. The process of getting the dashboards into your account is fairly simple. First, [import the dashboards](#Import-and-Export-of-Grafana-Elements), then [add a datasource](#Adding-a-Datasource). Both steps are described below in detail. If you have any feedback, [please raise an issue in this GitHub repository](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/creating-an-issue).
 
+> [!CAUTION]
+> The dashboards are in early development. Please apply new versions periodically to fix issues as they are being discovered.
+
 ## Import and Export of Grafana Elements
 
 ### Preparation
@@ -31,8 +34,6 @@ Step 2: Run the following command to sync the files with Grafana
 ```
 grr apply ./path/to/files
 ```
-> [!CAUTION]
-> The dashboards are still early in development. Please apply new versions periodically to fix issues as they are being discovered.
 
 ### Exporting
 If you make changes to the dashboards that you want to share with the community, you can export your dashboards and create a pull request on this repository. To export elements from your Grafana instance, you can use the following commands:
