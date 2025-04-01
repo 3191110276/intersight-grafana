@@ -28,6 +28,6 @@ Step 2: Run the following command to sync the files with Grafana
 grr apply ./path/to/files
 ```
 > [!CAUTION]
-> The dashboards are still early in development. Please check back again from time to time and apply new versions to receive all fixes for the dashboards.
+> The dashboards are still early in development. Please apply new versions periodically to fix issues as they are being discovered.
 
 ## Exporting
