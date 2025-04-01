@@ -31,3 +31,9 @@ grr apply ./path/to/files
 > The dashboards are still early in development. Please apply new versions periodically to fix issues as they are being discovered.
 
 ## Exporting
+If you make changes to the dashboards that you want to share with the community, you can export your dashboards and create a pull request on this repository. To export elements from your Grafana instance, you can use the following commands:
+```
+grr config set-targets Dashboard,DashboardFolder
+grr pull ./path/to/files
+```
+If your Grafana instance contains other dashboards, these would be exported as well. Please only create pull requests for those files that are related to this repository. To propose a pull request, please follow the [official guide](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
