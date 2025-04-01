@@ -12,10 +12,11 @@ Step 2: Create a Service Account in Grafana using the [official guide](https://g
 
 Step 3: Add a token to your Grafana Service Account using the [official guide](https://grafana.com/docs/grafana/latest/administration/service-accounts/#add-a-token-to-a-service-account-in-grafana)
 
-Step 4: Add your Service Token to the Grizzly configuration
+Step 4: Add your Service Account token to the Grizzly configuration
 ```
 grr config set grafana.token YOUR_GRAFANA_TOKEN
 ```
+Now you should be ready to import and export content from your Grafana instance.
 
 ## Importing
 
