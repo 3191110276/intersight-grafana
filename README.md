@@ -1,6 +1,6 @@
 # Grafana Dashboards for Cisco Intersight
 
-This is a collection of dashboards for Cisco Intersight that can be imported into your own Grafana instance. The dashboards should help with various operational and troubleshooting tasks in Intersight. The process of getting the dashboards into your account is fairly simple. First, [import the dashboards](#Import-and-Export-of-Grafana-Elements), then [add a datasource](#Adding-a-Datasource). Both steps are described below in detail. If you have any feedback, [please raise an issue in this GitHub repository](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/creating-an-issue).
+This is a collection of dashboards for Cisco Intersight that can be imported into your own Grafana instance. The dashboards should help with various operational and troubleshooting tasks in Intersight. The process of getting the dashboards into your account is fairly simple. First, [import the dashboards](#Import-and-Export-of-Grafana-Elements), then [add a datasource](#Adding-a-Data-Source). Both steps are described below in detail. If you have any feedback, [please raise an issue in this GitHub repository](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/creating-an-issue).
 
 > [!CAUTION]
 > The dashboards are in early development. Please apply new versions periodically to fix known issues.
@@ -43,4 +43,16 @@ grr pull ./path/to/files
 ```
 If your Grafana instance contains other dashboards, these would be exported as well. Please only create pull requests for those files that are related to this repository. To propose a pull request, please follow the [official guide](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
 
-## Adding a Datasource
+## Adding a Data Source
+Data can be queried directly from your Intersight instance by setting up the Data Source correctly. Follow the steps below to create one Data Source per Intersight account/appliance you want to monitor from Grafana:
+
+* Step 1: Add a new "Infinity" Data Source. If your Grafana instance does not have this Data Source available, you first have to add it using the [installation instructions](https://grafana.com/grafana/plugins/yesoreyeram-infinity-datasource/?tab=installation).
+
+* Step 2: Create an OAuth2 Token in Intersight. You should use a read-only account when creating this token to limit the permissions granted to the OAuth2 Token.
+
+* Step 3: Select OAuth2 as the authentication mechanism for the "Infinity" Data Source. Then add your Client ID and Client Secret from Intersight.
+
+* Step 4: Add the Token URL based on your environment.
+US SaaS: https://intersight.com/iam/token
+EU SaaS: https://eu-central-1.intersight.com/iam/token
+
