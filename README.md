@@ -19,6 +19,15 @@ grr config set grafana.token YOUR_GRAFANA_TOKEN
 Now you should be ready to import and export content from your Grafana instance.
 
 ## Importing
+If you want to import the Grafana elements into your instance, you can follow the steps below.
 
+Step 1: Download or clone this repository to your local machine running Grizzly
+
+Step 2: Run the following command to sync the files with Grafana
+```
+grr apply ./path/to/files
+```
+> [!CAUTION]
+> The dashboards are still early in development. Please check back again from time to time and apply new versions to receive all fixes for the dashboards.
 
 ## Exporting
