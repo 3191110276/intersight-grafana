@@ -1,0 +1,4744 @@
+apiVersion: grizzly.grafana.com/v1alpha1
+kind: Dashboard
+metadata:
+    folder: is_dnet_domain
+    name: is_dnet_domain_traffic_overview
+spec:
+    annotations:
+        list:
+            - builtIn: 1
+              datasource:
+                type: grafana
+                uid: -- Grafana --
+              enable: true
+              hide: true
+              iconColor: rgba(0, 211, 255, 1)
+              name: Annotations & Alerts
+              type: dashboard
+    editable: true
+    fiscalYearStartMonth: 0
+    graphTooltip: 0
+    links: []
+    panels:
+        - datasource:
+            type: datasource
+            uid: grafana
+          fieldConfig:
+            defaults:
+                color:
+                    mode: thresholds
+                mappings: []
+                thresholds:
+                    mode: absolute
+                    steps:
+                        - color: green
+            overrides: []
+          gridPos:
+            h: 2
+            w: 24
+            x: 0
+            "y": 0
+          id: 35
+          options:
+            infinitePan: false
+            inlineEditing: false
+            panZoom: false
+            root:
+                background:
+                    color:
+                        fixed: transparent
+                border:
+                    color:
+                        fixed: dark-green
+                constraint:
+                    horizontal: left
+                    vertical: top
+                elements:
+                    - background:
+                        color:
+                            fixed: dark-purple
+                      border:
+                        color:
+                            fixed: text
+                        radius: 15
+                        width: 2
+                      config:
+                        align: center
+                        color:
+                            fixed: rgb(204, 204, 220)
+                        size: 18
+                        text:
+                            fixed: Overview
+                        valign: middle
+                      constraint:
+                        horizontal: scale
+                        vertical: top
+                      links:
+                        - oneClick: true
+                          title: Overview
+                          url: ./d/domain-traffic-overview/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
+                      name: Overview
+                      placement:
+                        height: 50
+                        left: 1.6823354774863928
+                        right: 84.11677387431963
+                        rotation: 0
+                        top: 9
+                      type: text
+                    - background:
+                        color:
+                            fixed: dark-blue
+                      border:
+                        color:
+                            fixed: text
+                        radius: 15
+                        width: 2
+                      config:
+                        align: center
+                        color:
+                            fixed: rgb(204, 204, 220)
+                        size: 18
+                        text:
+                            fixed: Utilization (%)
+                        valign: middle
+                      constraint:
+                        horizontal: scale
+                        vertical: top
+                      links:
+                        - oneClick: true
+                          title: Utilization Percentage
+                          url: ./d/domain-traffic-utilization-percentage/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
+                      name: Utilization %
+                      placement:
+                        height: 50
+                        left: 22.56308758040574
+                        right: 63.236021771400296
+                        rotation: 0
+                        top: 9
+                      type: text
+                    - background:
+                        color:
+                            fixed: dark-blue
+                      border:
+                        color:
+                            fixed: text
+                        radius: 15
+                        width: 2
+                      config:
+                        align: center
+                        color:
+                            fixed: rgb(204, 204, 220)
+                        size: 18
+                        text:
+                            fixed: Utilization (bps)
+                        valign: middle
+                      constraint:
+                        horizontal: scale
+                        vertical: top
+                      links:
+                        - oneClick: true
+                          title: Utilization bps
+                          url: ./d/domain-traffic-utilization-bps/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
+                      name: Utilization bps
+                      placement:
+                        height: 50
+                        left: 43.44193817878028
+                        right: 43.27485380116959
+                        top: 9
+                      type: text
+                    - background:
+                        color:
+                            fixed: dark-blue
+                      border:
+                        color:
+                            fixed: text
+                        radius: 15
+                        width: 2
+                      config:
+                        align: center
+                        color:
+                            fixed: rgb(204, 204, 220)
+                        size: 18
+                        text:
+                            fixed: Congestion
+                        valign: middle
+                      constraint:
+                        horizontal: scale
+                        vertical: top
+                      links:
+                        - oneClick: true
+                          title: Congestion
+                          url: ./d/domain-traffic-congestion/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
+                      name: Congestion
+                      placement:
+                        height: 50
+                        left: 63.40852130325815
+                        right: 22.389306599832913
+                        top: 9
+                      type: text
+                    - background:
+                        color:
+                            fixed: dark-blue
+                      border:
+                        color:
+                            fixed: text
+                        radius: 15
+                        width: 2
+                      config:
+                        align: center
+                        color:
+                            fixed: rgb(204, 204, 220)
+                        size: 18
+                        text:
+                            fixed: Errors
+                        valign: middle
+                      constraint:
+                        horizontal: scale
+                        vertical: top
+                      links:
+                        - oneClick: true
+                          title: Errors
+                          url: ./d/domain-traffic-errors/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
+                      name: Errors
+                      placement:
+                        height: 50
+                        left: 84.29406850459482
+                        right: 1.5037593984962405
+                        top: 9
+                      type: text
+                name: Element 1741337892291
+                placement:
+                    height: 100
+                    left: 0
+                    rotation: 0
+                    top: 0
+                    width: 100
+                type: frame
+            showAdvancedTypes: true
+          pluginVersion: 12.0.0-85518.patch2-85619
+          targets:
+            - datasource:
+                type: datasource
+                uid: grafana
+              queryType: randomWalk
+              refId: A
+          title: ""
+          type: canvas
+        - collapsed: false
+          gridPos:
+            h: 1
+            w: 24
+            x: 0
+            "y": 2
+          id: 39
+          panels: []
+          title: 'Traffic Distribution: Ethernet Uplinks'
+          type: row
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          description: Sum over all domains in the selected time period
+          fieldConfig:
+            defaults:
+                color:
+                    mode: thresholds
+                mappings: []
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: purple
+                unit: decbytes
+            overrides: []
+          gridPos:
+            h: 4
+            w: 4
+            x: 0
+            "y": 3
+          id: 65
+          options:
+            colorMode: none
+            graphMode: area
+            justifyMode: auto
+            orientation: auto
+            percentChangeColorMode: standard
+            reduceOptions:
+                calcs:
+                    - sum
+                fields: ""
+                values: false
+            showPercentChange: false
+            textMode: auto
+            wideLayout: true
+          pluginVersion: 12.0.0-85518.patch2-85619
+          targets:
+            - columns:
+                - selector: timestamp
+                  text: Time
+                  type: timestamp
+                - selector: event.domain_name
+                  text: Domain Name
+                  type: string
+                - selector: event.sum
+                  text: Utilization
+                  type: number
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: |4-
+                      {
+                        "queryType": "groupBy",
+                        "dataSource": "NetworkInterfaces",
+                        "granularity": {
+                           "type": "duration",
+                           "duration": $__interval_ms,
+                           "timeZone": "$__timezone"
+                        },
+                        "intervals": ["${__from:date}/${__to:date}"],
+                        "dimensions": [],
+                        "filter": {
+                          "type": "and",
+                          "fields": [
+                            {
+                              "type": "in",
+                              "dimension": "intersight.domain.name",
+                              "values": [${Domain:doublequote}]
+                            },
+                            {
+                              "type": "search",
+                              "dimension": "host.name",
+                              "query": {
+                                "type": "insensitive_contains",
+                                "value": " FI-A"
+                              }
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "hw.network.port.type",
+                              "value": "ethernet"
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "hw.network.port.role",
+                              "value": "eth_uplink"
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "instrument.name",
+                              "value": "hw.network"
+                            }
+                          ]
+                        },
+                        "aggregations": [
+                          {
+                            "type": "doubleSum",
+                            "name": "sum",
+                            "fieldName": "hw.network.io_transmit"
+                          }
+                        ]
+                      }
+                method: POST
+          title: 'A: Eth transmit traffic (Sum)'
+          transformations:
+            - id: groupingToMatrix
+              options:
+                columnField: Domain Name
+                rowField: Time
+                valueField: Utilization
+          type: stat
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          fieldConfig:
+            defaults:
+                color:
+                    mode: palette-classic
+                custom:
+                    axisBorderShow: false
+                    axisCenteredZero: false
+                    axisColorMode: text
+                    axisLabel: ""
+                    axisPlacement: auto
+                    barAlignment: 0
+                    barWidthFactor: 0.6
+                    drawStyle: line
+                    fillOpacity: 0
+                    gradientMode: none
+                    hideFrom:
+                        legend: false
+                        tooltip: false
+                        viz: false
+                    insertNulls: false
+                    lineInterpolation: linear
+                    lineStyle:
+                        fill: solid
+                    lineWidth: 1
+                    pointSize: 5
+                    scaleDistribution:
+                        type: linear
+                    showPoints: auto
+                    spanNulls: false
+                    stacking:
+                        group: A
+                        mode: none
+                    thresholdsStyle:
+                        mode: "off"
+                mappings: []
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: green
+                unit: decbytes
+            overrides: []
+          gridPos:
+            h: 8
+            w: 10
+            x: 4
+            "y": 3
+          id: 67
+          options:
+            legend:
+                calcs: []
+                displayMode: list
+                placement: bottom
+                showLegend: true
+            tooltip:
+                hideZeros: false
+                mode: multi
+                sort: desc
+          pluginVersion: 12.0.0-85518.patch2-85619
+          targets:
+            - columns:
+                - selector: timestamp
+                  text: Time
+                  type: timestamp
+                - selector: event.domain_name
+                  text: Domain Name
+                  type: string
+                - selector: event.sum
+                  text: Utilization
+                  type: number
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: |4-
+                      {
+                        "queryType": "groupBy",
+                        "dataSource": "NetworkInterfaces",
+                        "granularity": {
+                           "type": "duration",
+                           "duration": $__interval_ms,
+                           "timeZone": "$__timezone"
+                        },
+                        "intervals": ["${__from:date}/${__to:date}"],
+                        "dimensions": [
+                          "domain_name"
+                        ],
+                        "virtualColumns": [{
+                          "type": "nested-field",
+                          "columnName": "intersight.domain.name",
+                          "outputName": "domain_name",
+                          "expectedType": "STRING",
+                          "path": "$"
+                        }],
+                        "filter": {
+                          "type": "and",
+                          "fields": [
+                            {
+                              "type": "in",
+                              "dimension": "intersight.domain.name",
+                              "values": [${Domain:doublequote}]
+                            },
+                            {
+                              "type": "search",
+                              "dimension": "host.name",
+                              "query": {
+                                "type": "insensitive_contains",
+                                "value": " FI-A"
+                              }
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "hw.network.port.type",
+                              "value": "ethernet"
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "hw.network.port.role",
+                              "value": "eth_uplink"
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "instrument.name",
+                              "value": "hw.network"
+                            }
+                          ]
+                        },
+                        "aggregations": [
+                          {
+                            "type": "doubleSum",
+                            "name": "sum",
+                            "fieldName": "hw.network.io_transmit"
+                          }
+                        ]
+                      }
+                method: POST
+          title: 'A: Eth transmit utilization per domain (Sum)'
+          transformations:
+            - id: groupingToMatrix
+              options:
+                columnField: Domain Name
+                rowField: Time
+                valueField: Utilization
+          type: timeseries
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          fieldConfig:
+            defaults:
+                color:
+                    mode: palette-classic
+                custom:
+                    axisBorderShow: false
+                    axisCenteredZero: false
+                    axisColorMode: text
+                    axisLabel: ""
+                    axisPlacement: auto
+                    barAlignment: 0
+                    barWidthFactor: 0.6
+                    drawStyle: line
+                    fillOpacity: 0
+                    gradientMode: none
+                    hideFrom:
+                        legend: false
+                        tooltip: false
+                        viz: false
+                    insertNulls: false
+                    lineInterpolation: linear
+                    lineStyle:
+                        fill: solid
+                    lineWidth: 1
+                    pointSize: 5
+                    scaleDistribution:
+                        type: linear
+                    showPoints: auto
+                    spanNulls: false
+                    stacking:
+                        group: A
+                        mode: none
+                    thresholdsStyle:
+                        mode: "off"
+                mappings: []
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: green
+                unit: decbytes
+            overrides: []
+          gridPos:
+            h: 8
+            w: 10
+            x: 14
+            "y": 3
+          id: 68
+          options:
+            legend:
+                calcs: []
+                displayMode: list
+                placement: bottom
+                showLegend: true
+            tooltip:
+                hideZeros: false
+                mode: multi
+                sort: desc
+          pluginVersion: 12.0.0-85518.patch2-85619
+          targets:
+            - columns:
+                - selector: timestamp
+                  text: Time
+                  type: timestamp
+                - selector: event.domain_name
+                  text: Domain Name
+                  type: string
+                - selector: event.sum
+                  text: Utilization
+                  type: number
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: |4-
+                      {
+                        "queryType": "groupBy",
+                        "dataSource": "NetworkInterfaces",
+                        "granularity": {
+                           "type": "duration",
+                           "duration": $__interval_ms,
+                           "timeZone": "$__timezone"
+                        },
+                        "intervals": ["${__from:date}/${__to:date}"],
+                        "dimensions": [
+                          "domain_name"
+                        ],
+                        "virtualColumns": [{
+                          "type": "nested-field",
+                          "columnName": "intersight.domain.name",
+                          "outputName": "domain_name",
+                          "expectedType": "STRING",
+                          "path": "$"
+                        }],
+                        "filter": {
+                          "type": "and",
+                          "fields": [
+                            {
+                              "type": "in",
+                              "dimension": "intersight.domain.name",
+                              "values": [${Domain:doublequote}]
+                            },
+                            {
+                              "type": "search",
+                              "dimension": "host.name",
+                              "query": {
+                                "type": "insensitive_contains",
+                                "value": " FI-B"
+                              }
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "hw.network.port.type",
+                              "value": "ethernet"
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "hw.network.port.role",
+                              "value": "eth_uplink"
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "instrument.name",
+                              "value": "hw.network"
+                            }
+                          ]
+                        },
+                        "aggregations": [
+                          {
+                            "type": "doubleSum",
+                            "name": "sum",
+                            "fieldName": "hw.network.io_transmit"
+                          }
+                        ]
+                      }
+                method: POST
+          title: 'B: Eth transmit utilization per domain (Sum)'
+          transformations:
+            - id: groupingToMatrix
+              options:
+                columnField: Domain Name
+                rowField: Time
+                valueField: Utilization
+          type: timeseries
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          description: Sum over all domains in the selected time period
+          fieldConfig:
+            defaults:
+                color:
+                    mode: thresholds
+                mappings: []
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: purple
+                unit: decbytes
+            overrides: []
+          gridPos:
+            h: 4
+            w: 4
+            x: 0
+            "y": 7
+          id: 66
+          options:
+            colorMode: none
+            graphMode: area
+            justifyMode: auto
+            orientation: auto
+            percentChangeColorMode: standard
+            reduceOptions:
+                calcs:
+                    - sum
+                fields: ""
+                values: false
+            showPercentChange: false
+            textMode: auto
+            wideLayout: true
+          pluginVersion: 12.0.0-85518.patch2-85619
+          targets:
+            - columns:
+                - selector: timestamp
+                  text: Time
+                  type: timestamp
+                - selector: event.domain_name
+                  text: Domain Name
+                  type: string
+                - selector: event.sum
+                  text: Utilization
+                  type: number
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: |4-
+                      {
+                        "queryType": "groupBy",
+                        "dataSource": "NetworkInterfaces",
+                        "granularity": {
+                           "type": "duration",
+                           "duration": $__interval_ms,
+                           "timeZone": "$__timezone"
+                        },
+                        "intervals": ["${__from:date}/${__to:date}"],
+                        "dimensions": [],
+                        "filter": {
+                          "type": "and",
+                          "fields": [
+                            {
+                              "type": "in",
+                              "dimension": "intersight.domain.name",
+                              "values": [${Domain:doublequote}]
+                            },
+                            {
+                              "type": "search",
+                              "dimension": "host.name",
+                              "query": {
+                                "type": "insensitive_contains",
+                                "value": " FI-B"
+                              }
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "hw.network.port.type",
+                              "value": "ethernet"
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "hw.network.port.role",
+                              "value": "eth_uplink"
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "instrument.name",
+                              "value": "hw.network"
+                            }
+                          ]
+                        },
+                        "aggregations": [
+                          {
+                            "type": "doubleSum",
+                            "name": "sum",
+                            "fieldName": "hw.network.io_transmit"
+                          }
+                        ]
+                      }
+                method: POST
+          title: 'B: Eth transmit traffic (Sum)'
+          transformations:
+            - id: groupingToMatrix
+              options:
+                columnField: Domain Name
+                rowField: Time
+                valueField: Utilization
+          type: stat
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          description: Sum over all domains in the selected time period
+          fieldConfig:
+            defaults:
+                color:
+                    mode: thresholds
+                fieldMinMax: false
+                mappings: []
+                min: 0
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: blue
+                unit: decbytes
+            overrides: []
+          gridPos:
+            h: 4
+            w: 4
+            x: 0
+            "y": 11
+          id: 62
+          options:
+            colorMode: none
+            graphMode: area
+            justifyMode: auto
+            orientation: auto
+            percentChangeColorMode: standard
+            reduceOptions:
+                calcs:
+                    - sum
+                fields: ""
+                values: false
+            showPercentChange: false
+            textMode: value
+            wideLayout: true
+          pluginVersion: 12.0.0-85518.patch2-85619
+          targets:
+            - columns:
+                - selector: timestamp
+                  text: Time
+                  type: timestamp
+                - selector: event.domain_name
+                  text: Domain Name
+                  type: string
+                - selector: event.sum
+                  text: Utilization
+                  type: number
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: |4-
+                      {
+                        "queryType": "groupBy",
+                        "dataSource": "NetworkInterfaces",
+                        "granularity": {
+                           "type": "duration",
+                           "duration": $__interval_ms,
+                           "timeZone": "$__timezone"
+                        },
+                        "intervals": ["${__from:date}/${__to:date}"],
+                        "dimensions": [],
+                        "filter": {
+                          "type": "and",
+                          "fields": [
+                            {
+                              "type": "in",
+                              "dimension": "intersight.domain.name",
+                              "values": [${Domain:doublequote}]
+                            },
+                            {
+                              "type": "search",
+                              "dimension": "host.name",
+                              "query": {
+                                "type": "insensitive_contains",
+                                "value": " FI-A"
+                              }
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "hw.network.port.type",
+                              "value": "ethernet"
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "hw.network.port.role",
+                              "value": "eth_uplink"
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "instrument.name",
+                              "value": "hw.network"
+                            }
+                          ]
+                        },
+                        "aggregations": [
+                          {
+                            "type": "doubleSum",
+                            "name": "sum",
+                            "fieldName": "hw.network.io_receive"
+                          }
+                        ]
+                      }
+                method: POST
+          title: 'A: Eth receive traffic (Sum)'
+          transformations:
+            - id: groupingToMatrix
+              options:
+                columnField: Domain Name
+                rowField: Time
+                valueField: Utilization
+          type: stat
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          fieldConfig:
+            defaults:
+                color:
+                    fixedColor: blue
+                    mode: palette-classic
+                    seriesBy: max
+                custom:
+                    axisBorderShow: false
+                    axisCenteredZero: false
+                    axisColorMode: text
+                    axisLabel: ""
+                    axisPlacement: auto
+                    barAlignment: 0
+                    barWidthFactor: 0.6
+                    drawStyle: line
+                    fillOpacity: 0
+                    gradientMode: none
+                    hideFrom:
+                        legend: false
+                        tooltip: false
+                        viz: false
+                    insertNulls: false
+                    lineInterpolation: linear
+                    lineStyle:
+                        fill: solid
+                    lineWidth: 1
+                    pointSize: 5
+                    scaleDistribution:
+                        type: linear
+                    showPoints: auto
+                    spanNulls: false
+                    stacking:
+                        group: A
+                        mode: none
+                    thresholdsStyle:
+                        mode: "off"
+                mappings: []
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: blue
+                unit: decbytes
+            overrides: []
+          gridPos:
+            h: 8
+            w: 10
+            x: 4
+            "y": 11
+          id: 60
+          options:
+            legend:
+                calcs: []
+                displayMode: list
+                placement: bottom
+                showLegend: true
+            tooltip:
+                hideZeros: false
+                mode: multi
+                sort: desc
+          pluginVersion: 12.0.0-85518.patch2-85619
+          targets:
+            - columns:
+                - selector: timestamp
+                  text: Time
+                  type: timestamp
+                - selector: event.domain_name
+                  text: Domain Name
+                  type: string
+                - selector: event.sum
+                  text: Utilization
+                  type: number
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: |4-
+                      {
+                        "queryType": "groupBy",
+                        "dataSource": "NetworkInterfaces",
+                        "granularity": {
+                           "type": "duration",
+                           "duration": $__interval_ms,
+                           "timeZone": "$__timezone"
+                        },
+                        "intervals": ["${__from:date}/${__to:date}"],
+                        "dimensions": [
+                          "domain_name"
+                        ],
+                        "virtualColumns": [{
+                          "type": "nested-field",
+                          "columnName": "intersight.domain.name",
+                          "outputName": "domain_name",
+                          "expectedType": "STRING",
+                          "path": "$"
+                        }],
+                        "filter": {
+                          "type": "and",
+                          "fields": [
+                            {
+                              "type": "in",
+                              "dimension": "intersight.domain.name",
+                              "values": [${Domain:doublequote}]
+                            },
+                            {
+                              "type": "search",
+                              "dimension": "host.name",
+                              "query": {
+                                "type": "insensitive_contains",
+                                "value": " FI-A"
+                              }
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "hw.network.port.type",
+                              "value": "ethernet"
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "hw.network.port.role",
+                              "value": "eth_uplink"
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "instrument.name",
+                              "value": "hw.network"
+                            }
+                          ]
+                        },
+                        "aggregations": [
+                          {
+                            "type": "doubleSum",
+                            "name": "sum",
+                            "fieldName": "hw.network.io_receive"
+                          }
+                        ]
+                      }
+                method: POST
+          title: 'A: Eth receive utilization per domain (Sum)'
+          transformations:
+            - id: groupingToMatrix
+              options:
+                columnField: Domain Name
+                rowField: Time
+                valueField: Utilization
+          type: timeseries
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          fieldConfig:
+            defaults:
+                color:
+                    mode: palette-classic
+                custom:
+                    axisBorderShow: false
+                    axisCenteredZero: false
+                    axisColorMode: text
+                    axisLabel: ""
+                    axisPlacement: auto
+                    barAlignment: 0
+                    barWidthFactor: 0.6
+                    drawStyle: line
+                    fillOpacity: 0
+                    gradientMode: none
+                    hideFrom:
+                        legend: false
+                        tooltip: false
+                        viz: false
+                    insertNulls: false
+                    lineInterpolation: linear
+                    lineStyle:
+                        fill: solid
+                    lineWidth: 1
+                    pointSize: 5
+                    scaleDistribution:
+                        type: linear
+                    showPoints: auto
+                    spanNulls: false
+                    stacking:
+                        group: A
+                        mode: none
+                    thresholdsStyle:
+                        mode: "off"
+                mappings: []
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: green
+                unit: decbytes
+            overrides: []
+          gridPos:
+            h: 8
+            w: 10
+            x: 14
+            "y": 11
+          id: 61
+          options:
+            legend:
+                calcs: []
+                displayMode: list
+                placement: bottom
+                showLegend: true
+            tooltip:
+                hideZeros: false
+                mode: multi
+                sort: desc
+          pluginVersion: 12.0.0-85518.patch2-85619
+          targets:
+            - columns:
+                - selector: timestamp
+                  text: Time
+                  type: timestamp
+                - selector: event.domain_name
+                  text: Domain Name
+                  type: string
+                - selector: event.sum
+                  text: Utilization
+                  type: number
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: |4-
+                      {
+                        "queryType": "groupBy",
+                        "dataSource": "NetworkInterfaces",
+                        "granularity": {
+                           "type": "duration",
+                           "duration": $__interval_ms,
+                           "timeZone": "$__timezone"
+                        },
+                        "intervals": ["${__from:date}/${__to:date}"],
+                        "dimensions": [
+                          "domain_name"
+                        ],
+                        "virtualColumns": [{
+                          "type": "nested-field",
+                          "columnName": "intersight.domain.name",
+                          "outputName": "domain_name",
+                          "expectedType": "STRING",
+                          "path": "$"
+                        }],
+                        "filter": {
+                          "type": "and",
+                          "fields": [
+                            {
+                              "type": "in",
+                              "dimension": "intersight.domain.name",
+                              "values": [${Domain:doublequote}]
+                            },
+                            {
+                              "type": "search",
+                              "dimension": "host.name",
+                              "query": {
+                                "type": "insensitive_contains",
+                                "value": " FI-B"
+                              }
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "hw.network.port.type",
+                              "value": "ethernet"
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "hw.network.port.role",
+                              "value": "eth_uplink"
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "instrument.name",
+                              "value": "hw.network"
+                            }
+                          ]
+                        },
+                        "aggregations": [
+                          {
+                            "type": "doubleSum",
+                            "name": "sum",
+                            "fieldName": "hw.network.io_receive"
+                          }
+                        ]
+                      }
+                method: POST
+          title: 'B: Eth transmit utilization per domain (Sum)'
+          transformations:
+            - id: groupingToMatrix
+              options:
+                columnField: Domain Name
+                rowField: Time
+                valueField: Utilization
+          type: timeseries
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          description: Sum over all domains in the selected time period
+          fieldConfig:
+            defaults:
+                color:
+                    mode: thresholds
+                mappings: []
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: blue
+                unit: decbytes
+            overrides: []
+          gridPos:
+            h: 4
+            w: 4
+            x: 0
+            "y": 15
+          id: 63
+          options:
+            colorMode: none
+            graphMode: area
+            justifyMode: auto
+            orientation: auto
+            percentChangeColorMode: standard
+            reduceOptions:
+                calcs:
+                    - sum
+                fields: ""
+                values: false
+            showPercentChange: false
+            textMode: auto
+            wideLayout: true
+          pluginVersion: 12.0.0-85518.patch2-85619
+          targets:
+            - columns:
+                - selector: timestamp
+                  text: Time
+                  type: timestamp
+                - selector: event.domain_name
+                  text: Domain Name
+                  type: string
+                - selector: event.sum
+                  text: Utilization
+                  type: number
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: |4-
+                      {
+                        "queryType": "groupBy",
+                        "dataSource": "NetworkInterfaces",
+                        "granularity": {
+                           "type": "duration",
+                           "duration": $__interval_ms,
+                           "timeZone": "$__timezone"
+                        },
+                        "intervals": ["${__from:date}/${__to:date}"],
+                        "dimensions": [],
+                        "filter": {
+                          "type": "and",
+                          "fields": [
+                            {
+                              "type": "in",
+                              "dimension": "intersight.domain.name",
+                              "values": [${Domain:doublequote}]
+                            },
+                            {
+                              "type": "search",
+                              "dimension": "host.name",
+                              "query": {
+                                "type": "insensitive_contains",
+                                "value": " FI-B"
+                              }
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "hw.network.port.type",
+                              "value": "ethernet"
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "hw.network.port.role",
+                              "value": "eth_uplink"
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "instrument.name",
+                              "value": "hw.network"
+                            }
+                          ]
+                        },
+                        "aggregations": [
+                          {
+                            "type": "doubleSum",
+                            "name": "sum",
+                            "fieldName": "hw.network.io_receive"
+                          }
+                        ]
+                      }
+                method: POST
+          title: 'B: Eth receive traffic (Sum)'
+          transformations:
+            - id: groupingToMatrix
+              options:
+                columnField: Domain Name
+                rowField: Time
+                valueField: Utilization
+          type: stat
+        - collapsed: false
+          gridPos:
+            h: 1
+            w: 24
+            x: 0
+            "y": 19
+          id: 37
+          panels: []
+          title: 'Traffic Distribution: Fibre Channel Uplinks'
+          type: row
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          description: Sum over all domains in the selected time period
+          fieldConfig:
+            defaults:
+                color:
+                    mode: thresholds
+                fieldMinMax: false
+                mappings:
+                    - options:
+                        match: "null"
+                        result:
+                            index: 0
+                            text: No FC Ports
+                      type: special
+                min: 0
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: purple
+                unit: decbytes
+            overrides: []
+          gridPos:
+            h: 4
+            w: 4
+            x: 0
+            "y": 20
+          id: 71
+          options:
+            colorMode: none
+            graphMode: area
+            justifyMode: auto
+            orientation: auto
+            percentChangeColorMode: standard
+            reduceOptions:
+                calcs:
+                    - sum
+                fields: ""
+                values: false
+            showPercentChange: false
+            textMode: value
+            wideLayout: true
+          pluginVersion: 12.0.0-85518.patch2-85619
+          targets:
+            - columns:
+                - selector: timestamp
+                  text: Time
+                  type: timestamp
+                - selector: event.domain_name
+                  text: Domain Name
+                  type: string
+                - selector: event.sum
+                  text: Utilization
+                  type: number
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: |4-
+                      {
+                        "queryType": "groupBy",
+                        "dataSource": "NetworkInterfaces",
+                        "granularity": {
+                           "type": "duration",
+                           "duration": $__interval_ms,
+                           "timeZone": "$__timezone"
+                        },
+                        "intervals": ["${__from:date}/${__to:date}"],
+                        "dimensions": [],
+                        "filter": {
+                          "type": "and",
+                          "fields": [
+                            {
+                              "type": "in",
+                              "dimension": "intersight.domain.name",
+                              "values": [${Domain:doublequote}]
+                            },
+                            {
+                              "type": "search",
+                              "dimension": "host.name",
+                              "query": {
+                                "type": "insensitive_contains",
+                                "value": " FI-A"
+                              }
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "hw.network.port.type",
+                              "value": "fibre_channel"
+                            },
+                            {
+                              "type": "in",
+                              "dimension": "hw.network.port.role",
+                              "values": [
+                                "fc_uplink",
+                                "fc_storage",
+                                "fcoe_uplink",
+                                "fcoe_storage",
+                                "appliance"
+                              ]
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "instrument.name",
+                              "value": "hw.network"
+                            }
+                          ]
+                        },
+                        "aggregations": [
+                          {
+                            "type": "doubleSum",
+                            "name": "sum",
+                            "fieldName": "hw.network.io_transmit"
+                          }
+                        ]
+                      }
+                method: POST
+          title: 'A: Storage transmit traffic (Sum)'
+          transformations:
+            - id: groupingToMatrix
+              options:
+                columnField: Domain Name
+                rowField: Time
+                valueField: Utilization
+          type: stat
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          fieldConfig:
+            defaults:
+                color:
+                    fixedColor: blue
+                    mode: palette-classic
+                    seriesBy: max
+                custom:
+                    axisBorderShow: false
+                    axisCenteredZero: false
+                    axisColorMode: text
+                    axisLabel: ""
+                    axisPlacement: auto
+                    barAlignment: 0
+                    barWidthFactor: 0.6
+                    drawStyle: line
+                    fillOpacity: 0
+                    gradientMode: none
+                    hideFrom:
+                        legend: false
+                        tooltip: false
+                        viz: false
+                    insertNulls: false
+                    lineInterpolation: linear
+                    lineStyle:
+                        fill: solid
+                    lineWidth: 1
+                    pointSize: 5
+                    scaleDistribution:
+                        type: linear
+                    showPoints: auto
+                    spanNulls: false
+                    stacking:
+                        group: A
+                        mode: none
+                    thresholdsStyle:
+                        mode: "off"
+                mappings: []
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: blue
+                unit: decbytes
+            overrides: []
+          gridPos:
+            h: 8
+            w: 10
+            x: 4
+            "y": 20
+          id: 75
+          options:
+            legend:
+                calcs: []
+                displayMode: list
+                placement: bottom
+                showLegend: true
+            tooltip:
+                hideZeros: false
+                mode: multi
+                sort: desc
+          pluginVersion: 12.0.0-85518.patch2-85619
+          targets:
+            - columns:
+                - selector: timestamp
+                  text: Time
+                  type: timestamp
+                - selector: event.domain_name
+                  text: Domain Name
+                  type: string
+                - selector: event.sum
+                  text: Utilization
+                  type: number
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: |4-
+                      {
+                        "queryType": "groupBy",
+                        "dataSource": "NetworkInterfaces",
+                        "granularity": {
+                           "type": "duration",
+                           "duration": $__interval_ms,
+                           "timeZone": "$__timezone"
+                        },
+                        "intervals": ["${__from:date}/${__to:date}"],
+                        "dimensions": [
+                          "domain_name"
+                        ],
+                        "virtualColumns": [{
+                          "type": "nested-field",
+                          "columnName": "intersight.domain.name",
+                          "outputName": "domain_name",
+                          "expectedType": "STRING",
+                          "path": "$"
+                        }],
+                        "filter": {
+                          "type": "and",
+                          "fields": [
+                            {
+                              "type": "in",
+                              "dimension": "intersight.domain.name",
+                              "values": [${Domain:doublequote}]
+                            },
+                            {
+                              "type": "search",
+                              "dimension": "host.name",
+                              "query": {
+                                "type": "insensitive_contains",
+                                "value": " FI-A"
+                              }
+                            },
+                            {
+                              "type": "in",
+                              "dimension": "hw.network.port.role",
+                              "values": [
+                                "fc_uplink",
+                                "fc_storage",
+                                "fcoe_uplink",
+                                "fcoe_storage",
+                                "appliance"
+                              ]
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "instrument.name",
+                              "value": "hw.network"
+                            }
+                          ]
+                        },
+                        "aggregations": [
+                          {
+                            "type": "doubleSum",
+                            "name": "sum",
+                            "fieldName": "hw.network.io_transmit"
+                          }
+                        ]
+                      }
+                method: POST
+          title: 'A: Storage transmit utilization per domain (Sum)'
+          transformations:
+            - id: groupingToMatrix
+              options:
+                columnField: Domain Name
+                rowField: Time
+                valueField: Utilization
+          type: timeseries
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          fieldConfig:
+            defaults:
+                color:
+                    fixedColor: blue
+                    mode: palette-classic
+                    seriesBy: max
+                custom:
+                    axisBorderShow: false
+                    axisCenteredZero: false
+                    axisColorMode: text
+                    axisLabel: ""
+                    axisPlacement: auto
+                    barAlignment: 0
+                    barWidthFactor: 0.6
+                    drawStyle: line
+                    fillOpacity: 0
+                    gradientMode: none
+                    hideFrom:
+                        legend: false
+                        tooltip: false
+                        viz: false
+                    insertNulls: false
+                    lineInterpolation: linear
+                    lineStyle:
+                        fill: solid
+                    lineWidth: 1
+                    pointSize: 5
+                    scaleDistribution:
+                        type: linear
+                    showPoints: auto
+                    spanNulls: false
+                    stacking:
+                        group: A
+                        mode: none
+                    thresholdsStyle:
+                        mode: "off"
+                mappings: []
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: blue
+                unit: decbytes
+            overrides: []
+          gridPos:
+            h: 8
+            w: 10
+            x: 14
+            "y": 20
+          id: 76
+          options:
+            legend:
+                calcs: []
+                displayMode: list
+                placement: bottom
+                showLegend: true
+            tooltip:
+                hideZeros: false
+                mode: multi
+                sort: desc
+          pluginVersion: 12.0.0-85518.patch2-85619
+          targets:
+            - columns:
+                - selector: timestamp
+                  text: Time
+                  type: timestamp
+                - selector: event.domain_name
+                  text: Domain Name
+                  type: string
+                - selector: event.sum
+                  text: Utilization
+                  type: number
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: |4-
+                      {
+                        "queryType": "groupBy",
+                        "dataSource": "NetworkInterfaces",
+                        "granularity": {
+                           "type": "duration",
+                           "duration": $__interval_ms,
+                           "timeZone": "$__timezone"
+                        },
+                        "intervals": ["${__from:date}/${__to:date}"],
+                        "dimensions": [
+                          "domain_name"
+                        ],
+                        "virtualColumns": [{
+                          "type": "nested-field",
+                          "columnName": "intersight.domain.name",
+                          "outputName": "domain_name",
+                          "expectedType": "STRING",
+                          "path": "$"
+                        }],
+                        "filter": {
+                          "type": "and",
+                          "fields": [
+                            {
+                              "type": "in",
+                              "dimension": "intersight.domain.name",
+                              "values": [${Domain:doublequote}]
+                            },
+                            {
+                              "type": "search",
+                              "dimension": "host.name",
+                              "query": {
+                                "type": "insensitive_contains",
+                                "value": " FI-B"
+                              }
+                            },
+                            {
+                              "type": "in",
+                              "dimension": "hw.network.port.role",
+                              "values": [
+                                "fc_uplink",
+                                "fc_storage",
+                                "fcoe_uplink",
+                                "fcoe_storage",
+                                "appliance"
+                              ]
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "instrument.name",
+                              "value": "hw.network"
+                            }
+                          ]
+                        },
+                        "aggregations": [
+                          {
+                            "type": "doubleSum",
+                            "name": "sum",
+                            "fieldName": "hw.network.io_transmit"
+                          }
+                        ]
+                      }
+                method: POST
+          title: 'B: Storage transmit utilization per domain (Sum)'
+          transformations:
+            - id: groupingToMatrix
+              options:
+                columnField: Domain Name
+                rowField: Time
+                valueField: Utilization
+          type: timeseries
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          description: Sum over all domains in the selected time period
+          fieldConfig:
+            defaults:
+                color:
+                    mode: thresholds
+                fieldMinMax: false
+                mappings:
+                    - options:
+                        match: "null"
+                        result:
+                            index: 0
+                            text: No FC Ports
+                      type: special
+                min: 0
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: purple
+                unit: decbytes
+            overrides: []
+          gridPos:
+            h: 4
+            w: 4
+            x: 0
+            "y": 24
+          id: 72
+          options:
+            colorMode: none
+            graphMode: area
+            justifyMode: auto
+            orientation: auto
+            percentChangeColorMode: standard
+            reduceOptions:
+                calcs:
+                    - sum
+                fields: ""
+                values: false
+            showPercentChange: false
+            textMode: value
+            wideLayout: true
+          pluginVersion: 12.0.0-85518.patch2-85619
+          targets:
+            - columns:
+                - selector: timestamp
+                  text: Time
+                  type: timestamp
+                - selector: event.domain_name
+                  text: Domain Name
+                  type: string
+                - selector: event.sum
+                  text: Utilization
+                  type: number
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: |4-
+                      {
+                        "queryType": "groupBy",
+                        "dataSource": "NetworkInterfaces",
+                        "granularity": {
+                           "type": "duration",
+                           "duration": $__interval_ms,
+                           "timeZone": "$__timezone"
+                        },
+                        "intervals": ["${__from:date}/${__to:date}"],
+                        "dimensions": [],
+                        "filter": {
+                          "type": "and",
+                          "fields": [
+                            {
+                              "type": "in",
+                              "dimension": "intersight.domain.name",
+                              "values": [${Domain:doublequote}]
+                            },
+                            {
+                              "type": "search",
+                              "dimension": "host.name",
+                              "query": {
+                                "type": "insensitive_contains",
+                                "value": " FI-B"
+                              }
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "hw.network.port.type",
+                              "value": "fibre_channel"
+                            },
+                            {
+                              "type": "in",
+                              "dimension": "hw.network.port.role",
+                              "values": [
+                                "fc_uplink",
+                                "fc_storage",
+                                "fcoe_uplink",
+                                "fcoe_storage",
+                                "appliance"
+                              ]
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "instrument.name",
+                              "value": "hw.network"
+                            }
+                          ]
+                        },
+                        "aggregations": [
+                          {
+                            "type": "doubleSum",
+                            "name": "sum",
+                            "fieldName": "hw.network.io_transmit"
+                          }
+                        ]
+                      }
+                method: POST
+          title: 'B: Storage transmit traffic (Sum)'
+          transformations:
+            - id: groupingToMatrix
+              options:
+                columnField: Domain Name
+                rowField: Time
+                valueField: Utilization
+          type: stat
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          description: Sum over all domains in the selected time period
+          fieldConfig:
+            defaults:
+                color:
+                    mode: thresholds
+                fieldMinMax: false
+                mappings:
+                    - options:
+                        match: "null"
+                        result:
+                            index: 0
+                            text: No FC Ports
+                      type: special
+                min: 0
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: blue
+                unit: decbytes
+            overrides: []
+          gridPos:
+            h: 4
+            w: 4
+            x: 0
+            "y": 28
+          id: 69
+          options:
+            colorMode: none
+            graphMode: area
+            justifyMode: auto
+            orientation: auto
+            percentChangeColorMode: standard
+            reduceOptions:
+                calcs:
+                    - sum
+                fields: ""
+                values: false
+            showPercentChange: false
+            textMode: value
+            wideLayout: true
+          pluginVersion: 12.0.0-85518.patch2-85619
+          targets:
+            - columns:
+                - selector: timestamp
+                  text: Time
+                  type: timestamp
+                - selector: event.domain_name
+                  text: Domain Name
+                  type: string
+                - selector: event.sum
+                  text: Utilization
+                  type: number
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: |4-
+                      {
+                        "queryType": "groupBy",
+                        "dataSource": "NetworkInterfaces",
+                        "granularity": {
+                           "type": "duration",
+                           "duration": $__interval_ms,
+                           "timeZone": "$__timezone"
+                        },
+                        "intervals": ["${__from:date}/${__to:date}"],
+                        "dimensions": [],
+                        "filter": {
+                          "type": "and",
+                          "fields": [
+                            {
+                              "type": "in",
+                              "dimension": "intersight.domain.name",
+                              "values": [${Domain:doublequote}]
+                            },
+                            {
+                              "type": "search",
+                              "dimension": "host.name",
+                              "query": {
+                                "type": "insensitive_contains",
+                                "value": " FI-A"
+                              }
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "hw.network.port.type",
+                              "value": "fibre_channel"
+                            },
+                            {
+                              "type": "in",
+                              "dimension": "hw.network.port.role",
+                              "values": [
+                                "fc_uplink",
+                                "fc_storage",
+                                "fcoe_uplink",
+                                "fcoe_storage",
+                                "appliance"
+                              ]
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "instrument.name",
+                              "value": "hw.network"
+                            }
+                          ]
+                        },
+                        "aggregations": [
+                          {
+                            "type": "doubleSum",
+                            "name": "sum",
+                            "fieldName": "hw.network.io_receive"
+                          }
+                        ]
+                      }
+                method: POST
+          title: 'A: Storage receive traffic (Sum)'
+          transformations:
+            - id: groupingToMatrix
+              options:
+                columnField: Domain Name
+                rowField: Time
+                valueField: Utilization
+          type: stat
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          fieldConfig:
+            defaults:
+                color:
+                    fixedColor: blue
+                    mode: palette-classic
+                    seriesBy: max
+                custom:
+                    axisBorderShow: false
+                    axisCenteredZero: false
+                    axisColorMode: text
+                    axisLabel: ""
+                    axisPlacement: auto
+                    barAlignment: 0
+                    barWidthFactor: 0.6
+                    drawStyle: line
+                    fillOpacity: 0
+                    gradientMode: none
+                    hideFrom:
+                        legend: false
+                        tooltip: false
+                        viz: false
+                    insertNulls: false
+                    lineInterpolation: linear
+                    lineStyle:
+                        fill: solid
+                    lineWidth: 1
+                    pointSize: 5
+                    scaleDistribution:
+                        type: linear
+                    showPoints: auto
+                    spanNulls: false
+                    stacking:
+                        group: A
+                        mode: none
+                    thresholdsStyle:
+                        mode: "off"
+                mappings: []
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: blue
+                unit: decbytes
+            overrides: []
+          gridPos:
+            h: 8
+            w: 10
+            x: 4
+            "y": 28
+          id: 73
+          options:
+            legend:
+                calcs: []
+                displayMode: list
+                placement: bottom
+                showLegend: true
+            tooltip:
+                hideZeros: false
+                mode: multi
+                sort: desc
+          pluginVersion: 12.0.0-85518.patch2-85619
+          targets:
+            - columns:
+                - selector: timestamp
+                  text: Time
+                  type: timestamp
+                - selector: event.domain_name
+                  text: Domain Name
+                  type: string
+                - selector: event.sum
+                  text: Utilization
+                  type: number
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: |4-
+                      {
+                        "queryType": "groupBy",
+                        "dataSource": "NetworkInterfaces",
+                        "granularity": {
+                           "type": "duration",
+                           "duration": $__interval_ms,
+                           "timeZone": "$__timezone"
+                        },
+                        "intervals": ["${__from:date}/${__to:date}"],
+                        "dimensions": [
+                          "domain_name"
+                        ],
+                        "virtualColumns": [{
+                          "type": "nested-field",
+                          "columnName": "intersight.domain.name",
+                          "outputName": "domain_name",
+                          "expectedType": "STRING",
+                          "path": "$"
+                        }],
+                        "filter": {
+                          "type": "and",
+                          "fields": [
+                            {
+                              "type": "in",
+                              "dimension": "intersight.domain.name",
+                              "values": [${Domain:doublequote}]
+                            },
+                            {
+                              "type": "search",
+                              "dimension": "host.name",
+                              "query": {
+                                "type": "insensitive_contains",
+                                "value": " FI-A"
+                              }
+                            },
+                            {
+                              "type": "in",
+                              "dimension": "hw.network.port.role",
+                              "values": [
+                                "fc_uplink",
+                                "fc_storage",
+                                "fcoe_uplink",
+                                "fcoe_storage",
+                                "appliance"
+                              ]
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "instrument.name",
+                              "value": "hw.network"
+                            }
+                          ]
+                        },
+                        "aggregations": [
+                          {
+                            "type": "doubleSum",
+                            "name": "sum",
+                            "fieldName": "hw.network.io_receive"
+                          }
+                        ]
+                      }
+                method: POST
+          title: 'A: Storage receive utilization per domain (Sum)'
+          transformations:
+            - id: groupingToMatrix
+              options:
+                columnField: Domain Name
+                rowField: Time
+                valueField: Utilization
+          type: timeseries
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          fieldConfig:
+            defaults:
+                color:
+                    fixedColor: blue
+                    mode: palette-classic
+                    seriesBy: max
+                custom:
+                    axisBorderShow: false
+                    axisCenteredZero: false
+                    axisColorMode: text
+                    axisLabel: ""
+                    axisPlacement: auto
+                    barAlignment: 0
+                    barWidthFactor: 0.6
+                    drawStyle: line
+                    fillOpacity: 0
+                    gradientMode: none
+                    hideFrom:
+                        legend: false
+                        tooltip: false
+                        viz: false
+                    insertNulls: false
+                    lineInterpolation: linear
+                    lineStyle:
+                        fill: solid
+                    lineWidth: 1
+                    pointSize: 5
+                    scaleDistribution:
+                        type: linear
+                    showPoints: auto
+                    spanNulls: false
+                    stacking:
+                        group: A
+                        mode: none
+                    thresholdsStyle:
+                        mode: "off"
+                mappings: []
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: blue
+                unit: decbytes
+            overrides: []
+          gridPos:
+            h: 8
+            w: 10
+            x: 14
+            "y": 28
+          id: 74
+          options:
+            legend:
+                calcs: []
+                displayMode: list
+                placement: bottom
+                showLegend: true
+            tooltip:
+                hideZeros: false
+                mode: multi
+                sort: desc
+          pluginVersion: 12.0.0-85518.patch2-85619
+          targets:
+            - columns:
+                - selector: timestamp
+                  text: Time
+                  type: timestamp
+                - selector: event.domain_name
+                  text: Domain Name
+                  type: string
+                - selector: event.sum
+                  text: Utilization
+                  type: number
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: |4-
+                      {
+                        "queryType": "groupBy",
+                        "dataSource": "NetworkInterfaces",
+                        "granularity": {
+                           "type": "duration",
+                           "duration": $__interval_ms,
+                           "timeZone": "$__timezone"
+                        },
+                        "intervals": ["${__from:date}/${__to:date}"],
+                        "dimensions": [
+                          "domain_name"
+                        ],
+                        "virtualColumns": [{
+                          "type": "nested-field",
+                          "columnName": "intersight.domain.name",
+                          "outputName": "domain_name",
+                          "expectedType": "STRING",
+                          "path": "$"
+                        }],
+                        "filter": {
+                          "type": "and",
+                          "fields": [
+                            {
+                              "type": "in",
+                              "dimension": "intersight.domain.name",
+                              "values": [${Domain:doublequote}]
+                            },
+                            {
+                              "type": "search",
+                              "dimension": "host.name",
+                              "query": {
+                                "type": "insensitive_contains",
+                                "value": " FI-B"
+                              }
+                            },
+                            {
+                              "type": "in",
+                              "dimension": "hw.network.port.role",
+                              "values": [
+                                "fc_uplink",
+                                "fc_storage",
+                                "fcoe_uplink",
+                                "fcoe_storage",
+                                "appliance"
+                              ]
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "instrument.name",
+                              "value": "hw.network"
+                            }
+                          ]
+                        },
+                        "aggregations": [
+                          {
+                            "type": "doubleSum",
+                            "name": "sum",
+                            "fieldName": "hw.network.io_receive"
+                          }
+                        ]
+                      }
+                method: POST
+          title: 'B: Storage receive utilization per domain (Sum)'
+          transformations:
+            - id: groupingToMatrix
+              options:
+                columnField: Domain Name
+                rowField: Time
+                valueField: Utilization
+          type: timeseries
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          description: Sum over all domains in the selected time period
+          fieldConfig:
+            defaults:
+                color:
+                    mode: thresholds
+                fieldMinMax: false
+                mappings:
+                    - options:
+                        match: "null"
+                        result:
+                            index: 0
+                            text: No FC Ports
+                      type: special
+                min: 0
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: blue
+                unit: decbytes
+            overrides: []
+          gridPos:
+            h: 4
+            w: 4
+            x: 0
+            "y": 32
+          id: 70
+          options:
+            colorMode: none
+            graphMode: area
+            justifyMode: auto
+            orientation: auto
+            percentChangeColorMode: standard
+            reduceOptions:
+                calcs:
+                    - sum
+                fields: ""
+                values: false
+            showPercentChange: false
+            textMode: value
+            wideLayout: true
+          pluginVersion: 12.0.0-85518.patch2-85619
+          targets:
+            - columns:
+                - selector: timestamp
+                  text: Time
+                  type: timestamp
+                - selector: event.domain_name
+                  text: Domain Name
+                  type: string
+                - selector: event.sum
+                  text: Utilization
+                  type: number
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: |4-
+                      {
+                        "queryType": "groupBy",
+                        "dataSource": "NetworkInterfaces",
+                        "granularity": {
+                           "type": "duration",
+                           "duration": $__interval_ms,
+                           "timeZone": "$__timezone"
+                        },
+                        "intervals": ["${__from:date}/${__to:date}"],
+                        "dimensions": [],
+                        "filter": {
+                          "type": "and",
+                          "fields": [
+                            {
+                              "type": "in",
+                              "dimension": "intersight.domain.name",
+                              "values": [${Domain:doublequote}]
+                            },
+                            {
+                              "type": "search",
+                              "dimension": "host.name",
+                              "query": {
+                                "type": "insensitive_contains",
+                                "value": " FI-B"
+                              }
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "hw.network.port.type",
+                              "value": "fibre_channel"
+                            },
+                            {
+                              "type": "in",
+                              "dimension": "hw.network.port.role",
+                              "values": [
+                                "fc_uplink",
+                                "fc_storage",
+                                "fcoe_uplink",
+                                "fcoe_storage",
+                                "appliance"
+                              ]
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "instrument.name",
+                              "value": "hw.network"
+                            }
+                          ]
+                        },
+                        "aggregations": [
+                          {
+                            "type": "doubleSum",
+                            "name": "sum",
+                            "fieldName": "hw.network.io_receive"
+                          }
+                        ]
+                      }
+                method: POST
+          title: 'B: Storage receive traffic (Sum)'
+          transformations:
+            - id: groupingToMatrix
+              options:
+                columnField: Domain Name
+                rowField: Time
+                valueField: Utilization
+          type: stat
+        - collapsed: false
+          gridPos:
+            h: 1
+            w: 24
+            x: 0
+            "y": 36
+          id: 41
+          panels: []
+          title: Utilization (%)
+          type: row
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          fieldConfig:
+            defaults:
+                color:
+                    mode: thresholds
+                custom:
+                    align: auto
+                    cellOptions:
+                        type: auto
+                        wrapText: false
+                    filterable: true
+                    inspect: false
+                fieldMinMax: false
+                mappings:
+                    - options:
+                        pattern: ^.*FI-([A-B]).*$
+                        result:
+                            index: 0
+                            text: $1
+                      type: regex
+                max: 100
+                min: 0
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: green
+                        - color: dark-yellow
+                          value: 70
+                        - color: dark-red
+                          value: 90
+                unit: percent
+            overrides:
+                - matcher:
+                    id: byName
+                    options: Avg Utilization
+                  properties:
+                    - id: custom.cellOptions
+                      value:
+                        mode: gradient
+                        type: gauge
+                        valueDisplayMode: text
+                - matcher:
+                    id: byName
+                    options: Fabric
+                  properties:
+                    - id: custom.width
+                      value: 75
+                    - id: custom.align
+                      value: center
+                - matcher:
+                    id: byName
+                    options: Port
+                  properties:
+                    - id: custom.width
+                      value: 80
+                    - id: custom.align
+                      value: center
+                    - id: mappings
+                      value:
+                        - options:
+                            pattern: ^.*Ethernet([0-9]+/[0-9]+/[0-9]+).*$
+                            result:
+                                index: 0
+                                text: $1
+                          type: regex
+                        - options:
+                            pattern: ^.*Ethernet([0-9]+/[0-9]+).*$
+                            result:
+                                index: 1
+                                text: $1
+                          type: regex
+                        - options:
+                            pattern: ^.*Nif([0-9]+/[0-9]+/[0-9]+).*$
+                            result:
+                                index: 2
+                                text: $1
+                          type: regex
+                        - options:
+                            pattern: ^.*port-channel([0-9]*).*$
+                            result:
+                                index: 3
+                                text: PC$1
+                          type: regex
+                - matcher:
+                    id: byName
+                    options: Chassis
+                  properties:
+                    - id: unit
+                      value: string
+                    - id: custom.width
+                      value: 90
+                    - id: custom.align
+                      value: center
+                - matcher:
+                    id: byName
+                    options: Max Utilization
+                  properties:
+                    - id: custom.cellOptions
+                      value:
+                        type: gauge
+                    - id: fieldMinMax
+                      value: false
+          gridPos:
+            h: 9
+            w: 12
+            x: 0
+            "y": 37
+          id: 79
+          options:
+            cellHeight: sm
+            footer:
+                countRows: false
+                enablePagination: true
+                fields: ""
+                reducer:
+                    - sum
+                show: false
+            showHeader: true
+            sortBy:
+                - desc: true
+                  displayName: Avg Utilization
+          pluginVersion: 12.0.0-85518.patch2-85619
+          targets:
+            - columns:
+                - selector: event.domain_name
+                  text: Domain
+                  type: string
+                - selector: event.host_name
+                  text: Fabric
+                  type: string
+                - selector: event.chassis_number
+                  text: G
+                  type: string
+                - selector: event.name
+                  text: H
+                  type: string
+                - selector: event.port_role
+                  text: I
+                  type: string
+                - selector: event.avg_utilization
+                  text: J
+                  type: number
+                - selector: event.max_utilization
+                  text: K
+                  type: number
+                - selector: event.link_speed
+                  text: Link Speed
+                  type: number
+              computed_columns: []
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${Domain:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\",\n            \"vethernet\",\n            \"vfc\",\n            \"vnic\",\n            \"vhba\",\n            \"eth_uplink_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"doubleMax\",\n        \"name\": \"base_max_utilization\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_transmit_max\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"count\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_transmit_count\"\n      },\n      {\n        \"type\": \"doubleSum\",\n        \"name\": \"hw.network.bandwidth.utilization_transmit-Sum\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_transmit\"\n      }\n    ],\n    \"postAggregations\": [\n      {\n        \"type\": \"expression\",\n        \"name\": \"avg_utilization\",\n        \"expression\": \"(\\\"hw.network.bandwidth.utilization_transmit-Sum\\\" / \\\"count\\\")*100\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"max_utilization\",\n        \"expression\": \"\\\"base_max_utilization\\\"*100\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 100,\n      \"columns\": [{\n        \"dimension\" : \"avg_utilization\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
+                method: POST
+          title: Transmit utilization in % per port
+          transformations:
+            - id: filterByValue
+              options:
+                filters:
+                    - config:
+                        id: isNull
+                        options: {}
+                      fieldName: J
+                    - config:
+                        id: isNull
+                        options: {}
+                      fieldName: K
+                match: any
+                type: exclude
+            - id: organize
+              options:
+                excludeByName:
+                    Link Speed: true
+                includeByName: {}
+                indexByName: {}
+                renameByName:
+                    G: Chassis
+                    H: Port
+                    I: Role
+                    J: Avg Utilization
+                    K: Max Utilization
+          type: table
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          fieldConfig:
+            defaults:
+                color:
+                    mode: thresholds
+                custom:
+                    align: auto
+                    cellOptions:
+                        type: auto
+                        wrapText: false
+                    filterable: true
+                    inspect: false
+                fieldMinMax: false
+                mappings:
+                    - options:
+                        pattern: ^.*FI-([A-B]).*$
+                        result:
+                            index: 0
+                            text: $1
+                      type: regex
+                max: 100
+                min: 0
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: green
+                        - color: dark-yellow
+                          value: 70
+                        - color: dark-red
+                          value: 90
+                unit: percent
+            overrides:
+                - matcher:
+                    id: byName
+                    options: Avg Utilization
+                  properties:
+                    - id: custom.cellOptions
+                      value:
+                        mode: gradient
+                        type: gauge
+                        valueDisplayMode: text
+                - matcher:
+                    id: byName
+                    options: Fabric
+                  properties:
+                    - id: custom.width
+                      value: 75
+                    - id: custom.align
+                      value: center
+                - matcher:
+                    id: byName
+                    options: Port
+                  properties:
+                    - id: custom.width
+                      value: 80
+                    - id: custom.align
+                      value: center
+                    - id: mappings
+                      value:
+                        - options:
+                            pattern: ^.*Ethernet([0-9]+/[0-9]+/[0-9]+).*$
+                            result:
+                                index: 0
+                                text: $1
+                          type: regex
+                        - options:
+                            pattern: ^.*Ethernet([0-9]+/[0-9]+).*$
+                            result:
+                                index: 1
+                                text: $1
+                          type: regex
+                        - options:
+                            pattern: ^.*Nif([0-9]+/[0-9]+/[0-9]+).*$
+                            result:
+                                index: 2
+                                text: $1
+                          type: regex
+                        - options:
+                            pattern: ^.*port-channel([0-9]*).*$
+                            result:
+                                index: 3
+                                text: PC$1
+                          type: regex
+                - matcher:
+                    id: byName
+                    options: Chassis
+                  properties:
+                    - id: unit
+                      value: string
+                    - id: custom.width
+                      value: 90
+                    - id: custom.align
+                      value: center
+                - matcher:
+                    id: byName
+                    options: Max Utilization
+                  properties:
+                    - id: custom.cellOptions
+                      value:
+                        type: gauge
+                    - id: fieldMinMax
+                      value: false
+          gridPos:
+            h: 9
+            w: 12
+            x: 12
+            "y": 37
+          id: 80
+          options:
+            cellHeight: sm
+            footer:
+                countRows: false
+                enablePagination: true
+                fields: ""
+                reducer:
+                    - sum
+                show: false
+            showHeader: true
+            sortBy:
+                - desc: true
+                  displayName: Avg Utilization
+          pluginVersion: 12.0.0-85518.patch2-85619
+          targets:
+            - columns:
+                - selector: event.domain_name
+                  text: Domain
+                  type: string
+                - selector: event.host_name
+                  text: Fabric
+                  type: string
+                - selector: event.chassis_number
+                  text: G
+                  type: string
+                - selector: event.name
+                  text: H
+                  type: string
+                - selector: event.port_role
+                  text: I
+                  type: string
+                - selector: event.avg_utilization
+                  text: J
+                  type: number
+                - selector: event.max_utilization
+                  text: K
+                  type: number
+                - selector: event.link_speed
+                  text: Link Speed
+                  type: number
+              computed_columns: []
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${Domain:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\",\n            \"vethernet\",\n            \"vfc\",\n            \"vnic\",\n            \"vhba\",\n            \"eth_uplink_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"doubleMax\",\n        \"name\": \"base_max_utilization\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_receive_max\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"count\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_receive_count\"\n      },\n      {\n        \"type\": \"doubleSum\",\n        \"name\": \"hw.network.bandwidth.utilization_receive-Sum\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_receive\"\n      }\n    ],\n    \"postAggregations\": [\n      {\n        \"type\": \"expression\",\n        \"name\": \"avg_utilization\",\n        \"expression\": \"(\\\"hw.network.bandwidth.utilization_receive-Sum\\\" / \\\"count\\\")*100\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"max_utilization\",\n        \"expression\": \"\\\"base_max_utilization\\\"*100\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 100,\n      \"columns\": [{\n        \"dimension\" : \"avg_utilization\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
+                method: POST
+          title: Receive utilization in % per port
+          transformations:
+            - id: filterByValue
+              options:
+                filters:
+                    - config:
+                        id: isNull
+                        options: {}
+                      fieldName: J
+                    - config:
+                        id: isNull
+                        options: {}
+                      fieldName: K
+                match: any
+                type: exclude
+            - id: organize
+              options:
+                excludeByName:
+                    Link Speed: true
+                includeByName: {}
+                indexByName: {}
+                renameByName:
+                    G: Chassis
+                    H: Port
+                    I: Role
+                    J: Avg Utilization
+                    K: Max Utilization
+          type: table
+        - collapsed: false
+          gridPos:
+            h: 1
+            w: 24
+            x: 0
+            "y": 46
+          id: 43
+          panels: []
+          title: Utilization (bps)
+          type: row
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          fieldConfig:
+            defaults:
+                color:
+                    mode: thresholds
+                custom:
+                    align: auto
+                    cellOptions:
+                        type: auto
+                        wrapText: false
+                    filterable: true
+                    inspect: false
+                fieldMinMax: false
+                mappings:
+                    - options:
+                        pattern: ^.*FI-([A-B]).*$
+                        result:
+                            index: 0
+                            text: $1
+                      type: regex
+                min: 0
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: blue
+                unit: bps
+            overrides:
+                - matcher:
+                    id: byName
+                    options: Avg Utilization
+                  properties:
+                    - id: custom.cellOptions
+                      value:
+                        mode: gradient
+                        type: gauge
+                        valueDisplayMode: text
+                    - id: unit
+                      value: bps
+                - matcher:
+                    id: byName
+                    options: Fabric
+                  properties:
+                    - id: custom.width
+                      value: 75
+                    - id: custom.align
+                      value: center
+                - matcher:
+                    id: byName
+                    options: Port
+                  properties:
+                    - id: custom.width
+                      value: 80
+                    - id: custom.align
+                      value: center
+                    - id: mappings
+                      value:
+                        - options:
+                            pattern: ^.*Ethernet([0-9]+/[0-9]+/[0-9]+).*$
+                            result:
+                                index: 0
+                                text: $1
+                          type: regex
+                        - options:
+                            pattern: ^.*Ethernet([0-9]+/[0-9]+).*$
+                            result:
+                                index: 1
+                                text: $1
+                          type: regex
+                        - options:
+                            pattern: ^.*Nif([0-9]+/[0-9]+/[0-9]+).*$
+                            result:
+                                index: 2
+                                text: $1
+                          type: regex
+                        - options:
+                            pattern: ^.*port-channel([0-9]*).*$
+                            result:
+                                index: 3
+                                text: PC$1
+                          type: regex
+                - matcher:
+                    id: byName
+                    options: Chassis
+                  properties:
+                    - id: unit
+                      value: string
+                    - id: custom.width
+                      value: 90
+                    - id: custom.align
+                      value: center
+                - matcher:
+                    id: byName
+                    options: Max Utilization
+                  properties:
+                    - id: custom.cellOptions
+                      value:
+                        type: gauge
+                    - id: unit
+                      value: bps
+                    - id: fieldMinMax
+                      value: false
+          gridPos:
+            h: 9
+            w: 12
+            x: 0
+            "y": 47
+          id: 77
+          options:
+            cellHeight: sm
+            footer:
+                countRows: false
+                enablePagination: true
+                fields: ""
+                reducer:
+                    - sum
+                show: false
+            showHeader: true
+            sortBy:
+                - desc: true
+                  displayName: Avg Utilization
+          pluginVersion: 12.0.0-85518.patch2-85619
+          targets:
+            - columns:
+                - selector: event.domain_name
+                  text: Domain
+                  type: string
+                - selector: event.host_name
+                  text: Fabric
+                  type: string
+                - selector: event.chassis_number
+                  text: G
+                  type: string
+                - selector: event.name
+                  text: H
+                  type: string
+                - selector: event.port_role
+                  text: I
+                  type: string
+                - selector: event.avg_utilization
+                  text: J
+                  type: number
+                - selector: event.max_utilization
+                  text: K
+                  type: number
+                - selector: event.link_speed
+                  text: Link Speed
+                  type: number
+              computed_columns: []
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${Domain:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\",\n            \"vethernet\",\n            \"vfc\",\n            \"vnic\",\n            \"vhba\",\n            \"eth_uplink_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"doubleMax\",\n        \"name\": \"base_utilization_max\",\n        \"fieldName\": \"hw.network.io_transmit_max\"\n      },\n      {\n        \"type\": \"doubleSum\",\n        \"name\": \"duration\",\n        \"fieldName\": \"hw.network.io_transmit_duration\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"sum\",\n        \"fieldName\": \"hw.network.io_transmit\"\n      },\n      {\n        \"type\": \"longLast\",\n        \"name\": \"base_link_speed\",\n        \"fieldName\": \"hw.network.bandwidth.limit\"\n      }\n    ],\n    \"postAggregations\": [\n      {\n        \"type\": \"expression\",\n        \"name\": \"max_utilization\",\n        \"expression\": \"(base_utilization_max*8)\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"avg_utilization\",\n        \"expression\": \"(\\\"sum\\\" / \\\"duration\\\")*8\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"link_speed\",\n        \"expression\": \"base_link_speed*8\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 100,\n      \"columns\": [{\n        \"dimension\" : \"avg_utilization\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
+                method: POST
+          title: Transmit utilization in bps per port
+          transformations:
+            - id: filterByValue
+              options:
+                filters:
+                    - config:
+                        id: isNull
+                        options: {}
+                      fieldName: J
+                    - config:
+                        id: isNull
+                        options: {}
+                      fieldName: K
+                match: any
+                type: exclude
+            - id: organize
+              options:
+                excludeByName:
+                    Link Speed: true
+                includeByName: {}
+                indexByName: {}
+                renameByName:
+                    G: Chassis
+                    H: Port
+                    I: Role
+                    J: Avg Utilization
+                    K: Max Utilization
+          type: table
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          fieldConfig:
+            defaults:
+                color:
+                    mode: thresholds
+                custom:
+                    align: auto
+                    cellOptions:
+                        type: auto
+                        wrapText: false
+                    filterable: true
+                    inspect: false
+                fieldMinMax: false
+                mappings:
+                    - options:
+                        pattern: ^.*FI-([A-B]).*$
+                        result:
+                            index: 0
+                            text: $1
+                      type: regex
+                min: 0
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: blue
+                unit: bps
+            overrides:
+                - matcher:
+                    id: byName
+                    options: Avg Utilization
+                  properties:
+                    - id: custom.cellOptions
+                      value:
+                        mode: gradient
+                        type: gauge
+                        valueDisplayMode: text
+                    - id: unit
+                      value: bps
+                - matcher:
+                    id: byName
+                    options: Fabric
+                  properties:
+                    - id: custom.width
+                      value: 75
+                    - id: custom.align
+                      value: center
+                - matcher:
+                    id: byName
+                    options: Port
+                  properties:
+                    - id: custom.width
+                      value: 80
+                    - id: custom.align
+                      value: center
+                    - id: mappings
+                      value:
+                        - options:
+                            pattern: ^.*Ethernet([0-9]+/[0-9]+/[0-9]+).*$
+                            result:
+                                index: 0
+                                text: $1
+                          type: regex
+                        - options:
+                            pattern: ^.*Ethernet([0-9]+/[0-9]+).*$
+                            result:
+                                index: 1
+                                text: $1
+                          type: regex
+                        - options:
+                            pattern: ^.*Nif([0-9]+/[0-9]+/[0-9]+).*$
+                            result:
+                                index: 2
+                                text: $1
+                          type: regex
+                        - options:
+                            pattern: ^.*port-channel([0-9]*).*$
+                            result:
+                                index: 3
+                                text: PC$1
+                          type: regex
+                - matcher:
+                    id: byName
+                    options: Chassis
+                  properties:
+                    - id: unit
+                      value: string
+                    - id: custom.width
+                      value: 90
+                    - id: custom.align
+                      value: center
+                - matcher:
+                    id: byName
+                    options: Max Utilization
+                  properties:
+                    - id: custom.cellOptions
+                      value:
+                        type: gauge
+                    - id: unit
+                      value: bps
+                    - id: fieldMinMax
+                      value: false
+          gridPos:
+            h: 9
+            w: 12
+            x: 12
+            "y": 47
+          id: 78
+          options:
+            cellHeight: sm
+            footer:
+                countRows: false
+                enablePagination: true
+                fields: ""
+                reducer:
+                    - sum
+                show: false
+            showHeader: true
+            sortBy:
+                - desc: true
+                  displayName: Avg Utilization
+          pluginVersion: 12.0.0-85518.patch2-85619
+          targets:
+            - columns:
+                - selector: event.domain_name
+                  text: Domain
+                  type: string
+                - selector: event.host_name
+                  text: Fabric
+                  type: string
+                - selector: event.chassis_number
+                  text: G
+                  type: string
+                - selector: event.name
+                  text: H
+                  type: string
+                - selector: event.port_role
+                  text: I
+                  type: string
+                - selector: event.avg_utilization
+                  text: J
+                  type: number
+                - selector: event.max_utilization
+                  text: K
+                  type: number
+                - selector: event.link_speed
+                  text: Link Speed
+                  type: number
+              computed_columns: []
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${Domain:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\",\n            \"vethernet\",\n            \"vfc\",\n            \"vnic\",\n            \"vhba\",\n            \"eth_uplink_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"doubleMax\",\n        \"name\": \"base_utilization_max\",\n        \"fieldName\": \"hw.network.io_receive_max\"\n      },\n      {\n        \"type\": \"doubleSum\",\n        \"name\": \"duration\",\n        \"fieldName\": \"hw.network.io_receive_duration\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"sum\",\n        \"fieldName\": \"hw.network.io_receive\"\n      },\n      {\n        \"type\": \"longLast\",\n        \"name\": \"base_link_speed\",\n        \"fieldName\": \"hw.network.bandwidth.limit\"\n      }\n    ],\n    \"postAggregations\": [\n      {\n        \"type\": \"expression\",\n        \"name\": \"max_utilization\",\n        \"expression\": \"(base_utilization_max*8)\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"avg_utilization\",\n        \"expression\": \"(\\\"sum\\\" / \\\"duration\\\")*8\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"link_speed\",\n        \"expression\": \"base_link_speed*8\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 100,\n      \"columns\": [{\n        \"dimension\" : \"avg_utilization\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
+                method: POST
+          title: Receive utilization in bps per port
+          transformations:
+            - id: filterByValue
+              options:
+                filters:
+                    - config:
+                        id: isNull
+                        options: {}
+                      fieldName: Avg Utilization
+                    - config:
+                        id: isNull
+                        options: {}
+                      fieldName: Max Utilization
+                match: any
+                type: exclude
+            - id: organize
+              options:
+                excludeByName:
+                    Link Speed: true
+                includeByName: {}
+                indexByName: {}
+                renameByName:
+                    G: Chassis
+                    H: Port
+                    I: Role
+                    J: Avg Utilization
+                    K: Max Utilization
+          type: table
+        - collapsed: false
+          gridPos:
+            h: 1
+            w: 24
+            x: 0
+            "y": 56
+          id: 42
+          panels: []
+          title: Congestion
+          type: row
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          fieldConfig:
+            defaults:
+                color:
+                    mode: thresholds
+                custom:
+                    align: auto
+                    cellOptions:
+                        type: auto
+                        wrapText: false
+                    filterable: true
+                    inspect: false
+                fieldMinMax: true
+                mappings:
+                    - options:
+                        pattern: ^.*FI-([A-B]).*$
+                        result:
+                            index: 0
+                            text: $1
+                      type: regex
+                min: 0
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: blue
+                unit: none
+            overrides:
+                - matcher:
+                    id: byName
+                    options: Pause Frames
+                  properties:
+                    - id: custom.cellOptions
+                      value:
+                        mode: gradient
+                        type: gauge
+                        valueDisplayMode: text
+                - matcher:
+                    id: byName
+                    options: Fabric
+                  properties:
+                    - id: custom.width
+                      value: 75
+                    - id: custom.align
+                      value: center
+                - matcher:
+                    id: byName
+                    options: Port
+                  properties:
+                    - id: custom.width
+                      value: 80
+                    - id: custom.align
+                      value: center
+                    - id: mappings
+                      value:
+                        - options:
+                            pattern: ^.*Ethernet([0-9]+/[0-9]+/[0-9]+).*$
+                            result:
+                                index: 0
+                                text: $1
+                          type: regex
+                        - options:
+                            pattern: ^.*Ethernet([0-9]+/[0-9]+).*$
+                            result:
+                                index: 1
+                                text: $1
+                          type: regex
+                        - options:
+                            pattern: ^.*Nif([0-9]+/[0-9]+/[0-9]+).*$
+                            result:
+                                index: 2
+                                text: $1
+                          type: regex
+                        - options:
+                            pattern: ^.*port-channel([0-9]*).*$
+                            result:
+                                index: 3
+                                text: PC$1
+                          type: regex
+                - matcher:
+                    id: byName
+                    options: Chassis
+                  properties:
+                    - id: unit
+                      value: string
+                    - id: custom.width
+                      value: 90
+                    - id: custom.align
+                      value: center
+                - matcher:
+                    id: byName
+                    options: Role
+                  properties:
+                    - id: custom.width
+                      value: 90
+          gridPos:
+            h: 9
+            w: 12
+            x: 0
+            "y": 57
+          id: 50
+          options:
+            cellHeight: sm
+            footer:
+                countRows: false
+                enablePagination: true
+                fields: ""
+                reducer:
+                    - sum
+                show: false
+            showHeader: true
+            sortBy:
+                - desc: true
+                  displayName: Pause Frames
+          pluginVersion: 12.0.0-85518.patch2-85619
+          targets:
+            - columns:
+                - selector: event.domain_name
+                  text: Domain
+                  type: string
+                - selector: event.host_name
+                  text: Fabric
+                  type: string
+                - selector: event.chassis_number
+                  text: G
+                  type: string
+                - selector: event.name
+                  text: H
+                  type: string
+                - selector: event.pause
+                  text: Pause Frames
+                  type: number
+                - selector: event.port_role
+                  text: I
+                  type: string
+              computed_columns: []
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${Domain:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"longSum\",\n        \"name\": \"pause\",\n        \"fieldName\": \"hw.errors_network_transmit_pause\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 100,\n      \"columns\": [{\n        \"dimension\" : \"pause\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
+                method: POST
+          title: Transmit pause frames per port (Sum)
+          transformations:
+            - id: filterByValue
+              options:
+                filters:
+                    - config:
+                        id: isNull
+                        options: {}
+                      fieldName: Pause Frames
+                match: all
+                type: exclude
+            - id: organize
+              options:
+                excludeByName: {}
+                includeByName: {}
+                indexByName: {}
+                renameByName:
+                    G: Chassis
+                    H: Port
+                    I: Role
+          type: table
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          fieldConfig:
+            defaults:
+                color:
+                    mode: thresholds
+                custom:
+                    align: auto
+                    cellOptions:
+                        type: auto
+                        wrapText: false
+                    filterable: true
+                    inspect: false
+                fieldMinMax: true
+                mappings:
+                    - options:
+                        pattern: ^.*FI-([A-B]).*$
+                        result:
+                            index: 0
+                            text: $1
+                      type: regex
+                min: 0
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: blue
+                unit: none
+            overrides:
+                - matcher:
+                    id: byName
+                    options: Pause Frames
+                  properties:
+                    - id: custom.cellOptions
+                      value:
+                        mode: gradient
+                        type: gauge
+                        valueDisplayMode: text
+                - matcher:
+                    id: byName
+                    options: Fabric
+                  properties:
+                    - id: custom.width
+                      value: 75
+                    - id: custom.align
+                      value: center
+                - matcher:
+                    id: byName
+                    options: Port
+                  properties:
+                    - id: custom.width
+                      value: 80
+                    - id: custom.align
+                      value: center
+                    - id: mappings
+                      value:
+                        - options:
+                            pattern: ^.*Ethernet([0-9]+/[0-9]+/[0-9]+).*$
+                            result:
+                                index: 0
+                                text: $1
+                          type: regex
+                        - options:
+                            pattern: ^.*Ethernet([0-9]+/[0-9]+).*$
+                            result:
+                                index: 1
+                                text: $1
+                          type: regex
+                        - options:
+                            pattern: ^.*Nif([0-9]+/[0-9]+/[0-9]+).*$
+                            result:
+                                index: 2
+                                text: $1
+                          type: regex
+                        - options:
+                            pattern: ^.*port-channel([0-9]*).*$
+                            result:
+                                index: 3
+                                text: PC$1
+                          type: regex
+                - matcher:
+                    id: byName
+                    options: Chassis
+                  properties:
+                    - id: unit
+                      value: string
+                    - id: custom.width
+                      value: 90
+                    - id: custom.align
+                      value: center
+                - matcher:
+                    id: byName
+                    options: Role
+                  properties:
+                    - id: custom.width
+                      value: 90
+          gridPos:
+            h: 9
+            w: 12
+            x: 12
+            "y": 57
+          id: 51
+          options:
+            cellHeight: sm
+            footer:
+                countRows: false
+                enablePagination: true
+                fields: ""
+                reducer:
+                    - sum
+                show: false
+            showHeader: true
+            sortBy:
+                - desc: true
+                  displayName: Pause Frames
+          pluginVersion: 12.0.0-85518.patch2-85619
+          targets:
+            - columns:
+                - selector: event.domain_name
+                  text: Domain
+                  type: string
+                - selector: event.host_name
+                  text: Fabric
+                  type: string
+                - selector: event.chassis_number
+                  text: G
+                  type: string
+                - selector: event.name
+                  text: H
+                  type: string
+                - selector: event.pause
+                  text: Pause Frames
+                  type: number
+                - selector: event.port_role
+                  text: I
+                  type: string
+              computed_columns: []
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${Domain:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"longSum\",\n        \"name\": \"pause\",\n        \"fieldName\": \"hw.errors_network_receive_pause\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 100,\n      \"columns\": [{\n        \"dimension\" : \"pause\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
+                method: POST
+          title: Receive pause frames per port (Sum)
+          transformations:
+            - id: filterByValue
+              options:
+                filters:
+                    - config:
+                        id: isNull
+                        options: {}
+                      fieldName: Pause Frames
+                match: all
+                type: exclude
+            - id: organize
+              options:
+                excludeByName: {}
+                includeByName: {}
+                indexByName: {}
+                renameByName:
+                    G: Chassis
+                    H: Port
+                    I: Role
+          type: table
+        - collapsed: false
+          gridPos:
+            h: 1
+            w: 24
+            x: 0
+            "y": 66
+          id: 40
+          panels: []
+          title: Errors
+          type: row
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          fieldConfig:
+            defaults:
+                color:
+                    mode: thresholds
+                custom:
+                    align: auto
+                    cellOptions:
+                        type: auto
+                        wrapText: false
+                    filterable: true
+                    inspect: false
+                fieldMinMax: true
+                mappings: []
+                min: 0
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: transparent
+                        - color: '#EAB839'
+                          value: 10
+                        - color: dark-red
+                          value: 80
+                unit: none
+            overrides:
+                - matcher:
+                    id: byType
+                    options: number
+                  properties:
+                    - id: custom.cellOptions
+                      value:
+                        applyToRow: false
+                        mode: basic
+                        type: color-background
+                        wrapText: false
+                    - id: custom.width
+                      value: 120
+                - matcher:
+                    id: byName
+                    options: Role
+                  properties:
+                    - id: custom.width
+                      value: 90
+                    - id: custom.align
+                      value: center
+                - matcher:
+                    id: byName
+                    options: Port
+                  properties:
+                    - id: mappings
+                      value:
+                        - options:
+                            pattern: ^.*Ethernet([0-9]+/[0-9]+/[0-9]+).*$
+                            result:
+                                index: 0
+                                text: $1
+                          type: regex
+                        - options:
+                            pattern: ^.*Ethernet([0-9]+/[0-9]+).*$
+                            result:
+                                index: 1
+                                text: $1
+                          type: regex
+                        - options:
+                            pattern: ^.*Nif([0-9]+/[0-9]+/[0-9]+).*$
+                            result:
+                                index: 2
+                                text: $1
+                          type: regex
+                        - options:
+                            pattern: ^.*port-channel([0-9]*).*$
+                            result:
+                                index: 3
+                                text: PC$1
+                          type: regex
+                    - id: custom.width
+                      value: 100
+                    - id: custom.align
+                      value: center
+          gridPos:
+            h: 8
+            w: 24
+            x: 0
+            "y": 67
+          id: 49
+          options:
+            cellHeight: sm
+            footer:
+                countRows: false
+                enablePagination: true
+                fields: ""
+                reducer:
+                    - sum
+                show: false
+            showHeader: true
+            sortBy:
+                - desc: true
+                  displayName: Total
+          pluginVersion: 12.0.0-85518.patch2-85619
+          targets:
+            - columns:
+                - selector: event.domain_name
+                  text: A1
+                  type: string
+                - selector: event.host_name
+                  text: A2
+                  type: string
+                - selector: event.name
+                  text: A3
+                  type: string
+                - selector: event.total
+                  text: H
+                  type: number
+                - selector: event.rx_sum
+                  text: I
+                  type: number
+                - selector: event.runt
+                  text: J
+                  type: number
+                - selector: event.too_long
+                  text: K
+                  type: number
+                - selector: event.crc
+                  text: L
+                  type: number
+                - selector: event.no_buffer
+                  text: M
+                  type: number
+                - selector: event.too_short
+                  text: "N"
+                  type: number
+                - selector: event.rx_discard
+                  text: O
+                  type: number
+                - selector: event.tx_sum
+                  text: P
+                  type: number
+                - selector: event.deferred
+                  text: Q
+                  type: number
+                - selector: event.late_collisions
+                  text: R
+                  type: number
+                - selector: event.carrier_sense
+                  text: S
+                  type: number
+                - selector: event.tx_discard
+                  text: T
+                  type: number
+                - selector: event.jabber
+                  text: U
+                  type: number
+                - selector: event.port_role
+                  text: A4
+                  type: string
+              computed_columns: []
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"port_role\",\n      \"name\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${Domain:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"vethernet\",\n            \"host_pc\",\n            \"fabric_pc\",\n            \"server_pc\",\n            \"unconfigured\",\n            \"eth_uplink_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"longSum\",\n        \"name\": \"runt\",\n        \"fieldName\": \"hw.errors_network_receive_runt\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"too_long\",\n        \"fieldName\": \"hw.errors_network_receive_too_long\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"crc\",\n        \"fieldName\": \"hw.errors_network_receive_crc\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"no_buffer\",\n        \"fieldName\": \"hw.errors_network_receive_no_buffer\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"too_short\",\n        \"fieldName\": \"hw.errors_network_receive_too_short\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"rx_discard\",\n        \"fieldName\": \"hw.errors_network_receive_discard\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"deferred\",\n        \"fieldName\": \"hw.errors_network_transmit_deferred\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"late_collisions\",\n        \"fieldName\": \"hw.errors_network_late_collisions\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"carrier_sense\",\n        \"fieldName\": \"hw.errors_network_carrier_sense\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"tx_discard\",\n        \"fieldName\": \"hw.errors_network_transmit_discard\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"jabber\",\n        \"fieldName\": \"hw.errors_network_transmit_jabber\"\n      }\n    ],\n    \"postAggregations\": [\n      {\n        \"type\": \"expression\",\n        \"name\": \"rx_sum\",\n        \"expression\": \"\\\"rx_discard\\\" + \\\"too_short\\\" + \\\"no_buffer\\\" + \\\"crc\\\" + \\\"too_long\\\" + \\\"runt\\\"\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"tx_sum\",\n        \"expression\": \"\\\"jabber\\\" + \\\"tx_discard\\\" + \\\"carrier_sense\\\" + \\\"late_collisions\\\" + \\\"deferred\\\"\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"total\",\n        \"expression\": \"\\\"tx_sum\\\" + \\\"rx_sum\\\"\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 100,\n      \"columns\": [{\n        \"dimension\" : \"total\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
+                method: POST
+          title: ""
+          transformations:
+            - id: organize
+              options:
+                excludeByName: {}
+                includeByName: {}
+                indexByName: {}
+                renameByName:
+                    A1: Domain
+                    A2: Device
+                    A3: Port
+                    A4: Role
+                    CRC (RX): ""
+                    H: Total
+                    I: Total RX
+                    J: Runt
+                    K: Too Long
+                    L: CRC
+                    M: No Buffer
+                    "N": Too Short
+                    O: RX Discard
+                    P: Total TX
+                    Q: Deferred
+                    R: Late Collisions
+                    S: Carrier Sense
+                    T: TX Discard
+                    U: Jabber
+            - id: filterByValue
+              options:
+                filters:
+                    - config:
+                        id: isNull
+                        options: {}
+                      fieldName: Total
+                match: all
+                type: exclude
+          type: table
+        - collapsed: false
+          gridPos:
+            h: 1
+            w: 24
+            x: 0
+            "y": 75
+          id: 38
+          panels: []
+          title: Server Utilization
+          type: row
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          description: Sum of traffic over all vNICs for the selected time period
+          fieldConfig:
+            defaults:
+                color:
+                    mode: thresholds
+                custom:
+                    align: auto
+                    cellOptions:
+                        type: auto
+                        wrapText: false
+                    filterable: true
+                    inspect: false
+                fieldMinMax: false
+                mappings: []
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: blue
+            overrides:
+                - matcher:
+                    id: byName
+                    options: Utilization
+                  properties:
+                    - id: custom.cellOptions
+                      value:
+                        mode: gradient
+                        type: gauge
+                        valueDisplayMode: text
+                    - id: unit
+                      value: decbytes
+          gridPos:
+            h: 9
+            w: 12
+            x: 0
+            "y": 76
+          id: 47
+          options:
+            cellHeight: sm
+            footer:
+                countRows: false
+                enablePagination: true
+                fields: ""
+                reducer:
+                    - sum
+                show: false
+            showHeader: true
+            sortBy:
+                - desc: true
+                  displayName: Utilization
+          pluginVersion: 12.0.0-85518.patch2-85619
+          targets:
+            - columns:
+                - selector: event.domain_name
+                  text: A1
+                  type: string
+                - selector: event.chassis_number
+                  text: A2
+                  type: string
+                - selector: event.host_name
+                  text: A3
+                  type: string
+                - selector: event.sum
+                  text: Utilization
+                  type: number
+              computed_columns: []
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: |4-
+                      {
+                        "queryType": "groupBy",
+                        "dataSource": "NetworkInterfaces",
+                        "granularity": "all",
+                        "intervals": ["${__from:date}/${__to:date}"],
+                        "dimensions": [
+                          "domain_name",
+                          "chassis_number",
+                          "host_name"
+                        ],
+                        "virtualColumns": [{
+                          "type": "nested-field",
+                          "columnName": "intersight.domain.name",
+                          "outputName": "domain_name",
+                          "expectedType": "STRING",
+                          "path": "$"
+                        },{
+                          "type": "nested-field",
+                          "columnName": "hw.chassis.number",
+                          "outputName": "chassis_number",
+                          "expectedType": "STRING",
+                          "path": "$"
+                        },{
+                          "type": "nested-field",
+                          "columnName": "host.name",
+                          "outputName": "host_name",
+                          "expectedType": "STRING",
+                          "path": "$"
+                        }],
+                        "filter": {
+                          "type": "and",
+                          "fields": [
+                            {
+                              "type": "in",
+                              "dimension": "intersight.domain.name",
+                              "values": [${Domain:doublequote}]
+                            },
+                            {
+                              "type": "in",
+                              "dimension": "hw.network.port.role",
+                              "values": [
+                                "vnic"
+                              ]
+                            }
+                          ]
+                        },
+                        "aggregations": [
+                          {
+                            "type": "doubleSum",
+                            "name": "sum",
+                            "fieldName": "hw.network.io_transmit"
+                          }
+                        ]
+                      }
+                method: POST
+          title: Ethernet Transmit utilization per Server (Sum)
+          transformations:
+            - id: filterByValue
+              options:
+                filters:
+                    - config:
+                        id: isNull
+                        options: {}
+                      fieldName: Utilization
+                match: all
+                type: exclude
+            - id: organize
+              options:
+                excludeByName:
+                    Link Speed: true
+                includeByName: {}
+                indexByName: {}
+                renameByName:
+                    A1: Domain
+                    A2: Chassis
+                    A3: Server
+                    Chassis: ""
+                    Domain: ""
+          type: table
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          description: Sum of traffic over all vNICs for the selected time period
+          fieldConfig:
+            defaults:
+                color:
+                    mode: thresholds
+                custom:
+                    align: auto
+                    cellOptions:
+                        type: auto
+                        wrapText: false
+                    filterable: true
+                    inspect: false
+                fieldMinMax: false
+                mappings: []
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: blue
+            overrides:
+                - matcher:
+                    id: byName
+                    options: Utilization
+                  properties:
+                    - id: custom.cellOptions
+                      value:
+                        mode: gradient
+                        type: gauge
+                        valueDisplayMode: text
+                    - id: unit
+                      value: decbytes
+          gridPos:
+            h: 9
+            w: 12
+            x: 12
+            "y": 76
+          id: 48
+          options:
+            cellHeight: sm
+            footer:
+                countRows: false
+                enablePagination: true
+                fields: ""
+                reducer:
+                    - sum
+                show: false
+            showHeader: true
+            sortBy:
+                - desc: true
+                  displayName: Utilization
+          pluginVersion: 12.0.0-85518.patch2-85619
+          targets:
+            - columns:
+                - selector: event.domain_name
+                  text: A1
+                  type: string
+                - selector: event.chassis_number
+                  text: A2
+                  type: string
+                - selector: event.host_name
+                  text: A3
+                  type: string
+                - selector: event.sum
+                  text: Utilization
+                  type: number
+              computed_columns: []
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: |4-
+                      {
+                        "queryType": "groupBy",
+                        "dataSource": "NetworkInterfaces",
+                        "granularity": "all",
+                        "intervals": ["${__from:date}/${__to:date}"],
+                        "dimensions": [
+                          "domain_name",
+                          "chassis_number",
+                          "host_name"
+                        ],
+                        "virtualColumns": [{
+                          "type": "nested-field",
+                          "columnName": "intersight.domain.name",
+                          "outputName": "domain_name",
+                          "expectedType": "STRING",
+                          "path": "$"
+                        },{
+                          "type": "nested-field",
+                          "columnName": "hw.chassis.number",
+                          "outputName": "chassis_number",
+                          "expectedType": "STRING",
+                          "path": "$"
+                        },{
+                          "type": "nested-field",
+                          "columnName": "host.name",
+                          "outputName": "host_name",
+                          "expectedType": "STRING",
+                          "path": "$"
+                        }],
+                        "filter": {
+                          "type": "and",
+                          "fields": [
+                            {
+                              "type": "in",
+                              "dimension": "intersight.domain.name",
+                              "values": [${Domain:doublequote}]
+                            },
+                            {
+                              "type": "in",
+                              "dimension": "hw.network.port.role",
+                              "values": [
+                                "vnic"
+                              ]
+                            }
+                          ]
+                        },
+                        "aggregations": [
+                          {
+                            "type": "doubleSum",
+                            "name": "sum",
+                            "fieldName": "hw.network.io_receive"
+                          }
+                        ]
+                      }
+                method: POST
+          title: Ethernet Receive utilization per Server (Sum)
+          transformations:
+            - id: filterByValue
+              options:
+                filters:
+                    - config:
+                        id: isNull
+                        options: {}
+                      fieldName: Utilization
+                match: all
+                type: exclude
+            - id: organize
+              options:
+                excludeByName:
+                    Link Speed: true
+                includeByName: {}
+                indexByName: {}
+                renameByName:
+                    A1: Domain
+                    A2: Chassis
+                    A3: Server
+                    Chassis: ""
+                    Domain: ""
+          type: table
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          description: Sum of traffic over all vHBAs for the selected time period
+          fieldConfig:
+            defaults:
+                color:
+                    mode: thresholds
+                custom:
+                    align: auto
+                    cellOptions:
+                        type: auto
+                        wrapText: false
+                    filterable: true
+                    inspect: false
+                fieldMinMax: false
+                mappings: []
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: blue
+            overrides:
+                - matcher:
+                    id: byName
+                    options: Utilization
+                  properties:
+                    - id: custom.cellOptions
+                      value:
+                        mode: gradient
+                        type: gauge
+                        valueDisplayMode: text
+                    - id: unit
+                      value: decbytes
+          gridPos:
+            h: 9
+            w: 12
+            x: 0
+            "y": 85
+          id: 81
+          options:
+            cellHeight: sm
+            footer:
+                countRows: false
+                enablePagination: true
+                fields: ""
+                reducer:
+                    - sum
+                show: false
+            showHeader: true
+            sortBy:
+                - desc: true
+                  displayName: Utilization
+          pluginVersion: 12.0.0-85518.patch2-85619
+          targets:
+            - columns:
+                - selector: event.domain_name
+                  text: A1
+                  type: string
+                - selector: event.chassis_number
+                  text: A2
+                  type: string
+                - selector: event.host_name
+                  text: A3
+                  type: string
+                - selector: event.sum
+                  text: Utilization
+                  type: number
+              computed_columns: []
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: |4-
+                      {
+                        "queryType": "groupBy",
+                        "dataSource": "NetworkInterfaces",
+                        "granularity": "all",
+                        "intervals": ["${__from:date}/${__to:date}"],
+                        "dimensions": [
+                          "domain_name",
+                          "chassis_number",
+                          "host_name"
+                        ],
+                        "virtualColumns": [{
+                          "type": "nested-field",
+                          "columnName": "intersight.domain.name",
+                          "outputName": "domain_name",
+                          "expectedType": "STRING",
+                          "path": "$"
+                        },{
+                          "type": "nested-field",
+                          "columnName": "hw.chassis.number",
+                          "outputName": "chassis_number",
+                          "expectedType": "STRING",
+                          "path": "$"
+                        },{
+                          "type": "nested-field",
+                          "columnName": "host.name",
+                          "outputName": "host_name",
+                          "expectedType": "STRING",
+                          "path": "$"
+                        }],
+                        "filter": {
+                          "type": "and",
+                          "fields": [
+                            {
+                              "type": "in",
+                              "dimension": "intersight.domain.name",
+                              "values": [${Domain:doublequote}]
+                            },
+                            {
+                              "type": "in",
+                              "dimension": "hw.network.port.role",
+                              "values": [
+                                "vhba"
+                              ]
+                            }
+                          ]
+                        },
+                        "aggregations": [
+                          {
+                            "type": "doubleSum",
+                            "name": "sum",
+                            "fieldName": "hw.network.io_transmit"
+                          }
+                        ]
+                      }
+                method: POST
+          title: FC Transmit utilization per Server (Sum)
+          transformations:
+            - id: filterByValue
+              options:
+                filters:
+                    - config:
+                        id: isNull
+                        options: {}
+                      fieldName: Utilization
+                match: all
+                type: exclude
+            - id: organize
+              options:
+                excludeByName:
+                    Link Speed: true
+                includeByName: {}
+                indexByName: {}
+                renameByName:
+                    A1: Domain
+                    A2: Chassis
+                    A3: Server
+                    Chassis: ""
+                    Domain: ""
+          type: table
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          description: Sum of traffic over all vNICs for the selected time period
+          fieldConfig:
+            defaults:
+                color:
+                    mode: thresholds
+                custom:
+                    align: auto
+                    cellOptions:
+                        type: auto
+                        wrapText: false
+                    filterable: true
+                    inspect: false
+                fieldMinMax: false
+                mappings: []
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: blue
+            overrides:
+                - matcher:
+                    id: byName
+                    options: Utilization
+                  properties:
+                    - id: custom.cellOptions
+                      value:
+                        mode: gradient
+                        type: gauge
+                        valueDisplayMode: text
+                    - id: unit
+                      value: decbytes
+          gridPos:
+            h: 9
+            w: 12
+            x: 12
+            "y": 85
+          id: 82
+          options:
+            cellHeight: sm
+            footer:
+                countRows: false
+                enablePagination: true
+                fields: ""
+                reducer:
+                    - sum
+                show: false
+            showHeader: true
+            sortBy:
+                - desc: true
+                  displayName: Utilization
+          pluginVersion: 12.0.0-85518.patch2-85619
+          targets:
+            - columns:
+                - selector: event.domain_name
+                  text: A1
+                  type: string
+                - selector: event.chassis_number
+                  text: A2
+                  type: string
+                - selector: event.host_name
+                  text: A3
+                  type: string
+                - selector: event.sum
+                  text: Utilization
+                  type: number
+              computed_columns: []
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: |4-
+                      {
+                        "queryType": "groupBy",
+                        "dataSource": "NetworkInterfaces",
+                        "granularity": "all",
+                        "intervals": ["${__from:date}/${__to:date}"],
+                        "dimensions": [
+                          "domain_name",
+                          "chassis_number",
+                          "host_name"
+                        ],
+                        "virtualColumns": [{
+                          "type": "nested-field",
+                          "columnName": "intersight.domain.name",
+                          "outputName": "domain_name",
+                          "expectedType": "STRING",
+                          "path": "$"
+                        },{
+                          "type": "nested-field",
+                          "columnName": "hw.chassis.number",
+                          "outputName": "chassis_number",
+                          "expectedType": "STRING",
+                          "path": "$"
+                        },{
+                          "type": "nested-field",
+                          "columnName": "host.name",
+                          "outputName": "host_name",
+                          "expectedType": "STRING",
+                          "path": "$"
+                        }],
+                        "filter": {
+                          "type": "and",
+                          "fields": [
+                            {
+                              "type": "in",
+                              "dimension": "intersight.domain.name",
+                              "values": [${Domain:doublequote}]
+                            },
+                            {
+                              "type": "in",
+                              "dimension": "hw.network.port.role",
+                              "values": [
+                                "vhba"
+                              ]
+                            }
+                          ]
+                        },
+                        "aggregations": [
+                          {
+                            "type": "doubleSum",
+                            "name": "sum",
+                            "fieldName": "hw.network.io_receive"
+                          }
+                        ]
+                      }
+                method: POST
+          title: FC Receive utilization per Server (Sum)
+          transformations:
+            - id: filterByValue
+              options:
+                filters:
+                    - config:
+                        id: isNull
+                        options: {}
+                      fieldName: Utilization
+                match: all
+                type: exclude
+            - id: organize
+              options:
+                excludeByName:
+                    Link Speed: true
+                includeByName: {}
+                indexByName: {}
+                renameByName:
+                    A1: Domain
+                    A2: Chassis
+                    A3: Server
+                    Chassis: ""
+                    Domain: ""
+          type: table
+    preload: false
+    refresh: ""
+    schemaVersion: 41
+    tags: []
+    templating:
+        list:
+            - current:
+                text: tme-dev
+                value: eeca0h99fql1cd
+              label: Data Source
+              name: DataSource
+              options: []
+              query: yesoreyeram-infinity-datasource
+              refresh: 1
+              regex: ""
+              type: datasource
+            - current:
+                text:
+                    - sgaree-sj2-151-b18-6536-1
+                value:
+                    - sgaree-sj2-151-b18-6536-1
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              definition: ""
+              label: Domain
+              multi: true
+              name: Domain
+              options: []
+              query:
+                infinityQuery:
+                    columns: []
+                    filters: []
+                    format: table
+                    parser: uql
+                    refId: variable
+                    root_selector: ""
+                    source: url
+                    type: json
+                    uql: |-
+                        parse-json
+                        | scope "Results"
+                        | project "Name"
+                    url: /api/v1/network/ElementSummaries?$filter=ManagementMode eq 'Intersight'
+                    url_options:
+                        data: ""
+                        method: GET
+                query: ""
+                queryType: infinity
+              refresh: 1
+              regex: (.*) FI-A
+              type: query
+    time:
+        from: now-7d
+        to: now
+    timepicker: {}
+    timezone: browser
+    title: 'Domain Traffic Verification: Overview'
+    uid: is_dnet_domain_traffic_overview
