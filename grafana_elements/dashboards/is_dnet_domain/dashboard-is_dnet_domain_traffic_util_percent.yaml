@@ -38,7 +38,7 @@ spec:
             w: 24
             x: 0
             "y": 0
-          id: 35
+          id: 70
           options:
             infinitePan: false
             inlineEditing: false
@@ -76,7 +76,7 @@ spec:
                       links:
                         - oneClick: true
                           title: Overview
-                          url: ./d/domain-traffic-overview/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
+                          url: ./d/is_dnet_domain_traffic_overview/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
                       name: Overview
                       placement:
                         height: 50
@@ -107,7 +107,7 @@ spec:
                       links:
                         - oneClick: true
                           title: Utilization Percentage
-                          url: ./d/domain-traffic-utilization-percentage/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
+                          url: ./d/is_dnet_domain_traffic_util_percent/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
                       name: Utilization %
                       placement:
                         height: 50
@@ -138,7 +138,7 @@ spec:
                       links:
                         - oneClick: true
                           title: Utilization bps
-                          url: ./d/domain-traffic-utilization-bps/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
+                          url: ./d/is_dnet_domain_traffic_util_bps/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
                       name: Utilization bps
                       placement:
                         height: 50
@@ -168,7 +168,7 @@ spec:
                       links:
                         - oneClick: true
                           title: Congestion
-                          url: ./d/domain-traffic-congestion/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
+                          url: ./d/is_dnet_domain_traffic_util_congestion/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
                       name: Congestion
                       placement:
                         height: 50
@@ -198,7 +198,7 @@ spec:
                       links:
                         - oneClick: true
                           title: Errors
-                          url: ./d/domain-traffic-errors/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
+                          url: ./d/is_dnet_domain_traffic_errors/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
                       name: Errors
                       placement:
                         height: 50
@@ -215,7 +215,7 @@ spec:
                     width: 100
                 type: frame
             showAdvancedTypes: true
-          pluginVersion: 11.6.0-84846
+          pluginVersion: 12.0.0-85518.patch2-85619
           targets:
             - datasource:
                 type: datasource
@@ -1079,7 +1079,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 11.6.0-84846
+          pluginVersion: 12.0.0-85518.patch2-85619
           targets:
             - columns:
                 - selector: timestamp
@@ -1270,7 +1270,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 11.6.0-84846
+          pluginVersion: 12.0.0-85518.patch2-85619
           targets:
             - columns:
                 - selector: timestamp
@@ -1461,7 +1461,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 11.6.0-84846
+          pluginVersion: 12.0.0-85518.patch2-85619
           targets:
             - columns:
                 - selector: timestamp
@@ -1652,7 +1652,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 11.6.0-84846
+          pluginVersion: 12.0.0-85518.patch2-85619
           targets:
             - columns:
                 - selector: timestamp
@@ -2624,7 +2624,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 11.6.0-84846
+          pluginVersion: 12.0.0-85518.patch2-85619
           targets:
             - columns:
                 - selector: timestamp
@@ -2814,7 +2814,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 11.6.0-84846
+          pluginVersion: 12.0.0-85518.patch2-85619
           targets:
             - columns:
                 - selector: timestamp
@@ -3004,7 +3004,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 11.6.0-84846
+          pluginVersion: 12.0.0-85518.patch2-85619
           targets:
             - columns:
                 - selector: timestamp
@@ -3194,7 +3194,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 11.6.0-84846
+          pluginVersion: 12.0.0-85518.patch2-85619
           targets:
             - columns:
                 - selector: timestamp

@@ -76,7 +76,7 @@ spec:
                       links:
                         - oneClick: true
                           title: Overview
-                          url: ./d/domain-traffic-overview/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
+                          url: ./d/is_dnet_domain_traffic_overview/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
                       name: Overview
                       placement:
                         height: 50
@@ -107,7 +107,7 @@ spec:
                       links:
                         - oneClick: true
                           title: Utilization Percentage
-                          url: ./d/domain-traffic-utilization-percentage/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
+                          url: ./d/is_dnet_domain_traffic_util_percent/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
                       name: Utilization %
                       placement:
                         height: 50
@@ -138,7 +138,7 @@ spec:
                       links:
                         - oneClick: true
                           title: Utilization bps
-                          url: ./d/domain-traffic-utilization-bps/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
+                          url: ./d/is_dnet_domain_traffic_util_bps/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
                       name: Utilization bps
                       placement:
                         height: 50
@@ -168,7 +168,7 @@ spec:
                       links:
                         - oneClick: true
                           title: Congestion
-                          url: ./d/domain-traffic-congestion/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
+                          url: ./d/is_dnet_domain_traffic_util_congestion/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
                       name: Congestion
                       placement:
                         height: 50
@@ -198,7 +198,7 @@ spec:
                       links:
                         - oneClick: true
                           title: Errors
-                          url: ./d/domain-traffic-errors/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
+                          url: ./d/is_dnet_domain_traffic_errors/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
                       name: Errors
                       placement:
                         height: 50
