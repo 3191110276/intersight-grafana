@@ -57,10 +57,12 @@ Step 4: Add your Client ID and Client Secret that you got from Intersight.
 Step 5: Add the Token URL based on your environment.
 * US SaaS: https://intersight.com/iam/token
 * EU SaaS: https://eu-central-1.intersight.com/iam/token
+* Appliance: https://<appliance-fqdn>/iam/token
 
 Step 6: Fill in the Intersight URL in the "Allowed Hosts" field:
 * US SaaS: https://intersight.com
 * EU SaaS: https://eu-central-1.intersight.com
+* Appliance: https://<appliance-fqdn>
 
 Step 7: Switch to the "URL, Headers & Params" section. Populate the "Base URL" field. The value should be identical to the one you provided in Step 6.
 
