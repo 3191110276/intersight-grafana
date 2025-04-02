@@ -1,0 +1,7 @@
+apiVersion: grizzly.grafana.com/v1alpha1
+kind: DashboardFolder
+metadata:
+  name: is_dnet_server
+spec:
+  parentUid: is_domainnetwork
+  title: Server

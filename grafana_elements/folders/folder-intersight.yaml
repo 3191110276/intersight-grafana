@@ -1,0 +1,6 @@
+apiVersion: grizzly.grafana.com/v1alpha1
+kind: DashboardFolder
+metadata:
+  name: intersight
+spec:
+  title: Intersight
