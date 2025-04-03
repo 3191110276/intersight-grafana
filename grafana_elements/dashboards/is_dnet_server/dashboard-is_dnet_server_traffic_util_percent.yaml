@@ -199,14 +199,62 @@ spec:
                 uid: ${DataSource}
               enable: true
               hide: false
-              iconColor: red
+              iconColor: dark-yellow
+              mappings:
+                id:
+                    source: field
+                    value: AffectedObject
+                tags:
+                    source: field
+                    value: Flapping
+                text:
+                    source: field
+                    value: AffectedMoDisplayName
+                time:
+                    source: field
+                    value: CreateTime
+                title:
+                    source: field
+                    value: Description
               name: 'Alarms: Warning'
+              target:
+                columns:
+                    - selector: AffectedMoDisplayName
+                      text: AffectedMoDisplayName
+                      type: string
+                    - selector: AffectedObject
+                      text: AffectedObject
+                      type: string
+                    - selector: Code
+                      text: Code
+                      type: string
+                    - selector: CreateTime
+                      text: CreateTime
+                      type: timestamp
+                    - selector: Description
+                      text: Description
+                      type: string
+                    - selector: Flapping
+                      text: Flapping
+                      type: string
+                filters: []
+                format: table
+                global_query_id: ""
+                parser: backend
+                refId: Anno
+                root_selector: $.Results
+                source: url
+                type: json
+                url: /api/v1/cond/Alarms?$filter=Severity eq 'Warning' and Acknowledge eq 'None' and Suppressed eq false and AncestorMoType eq 'compute.Blade' and AncestorMoId eq '${ServerMoid}'
+                url_options:
+                    data: ""
+                    method: GET
             - datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
               enable: true
               hide: false
-              iconColor: red
+              iconColor: dark-red
               mappings:
                 id:
                     source: field
@@ -252,7 +300,7 @@ spec:
                 root_selector: $.Results
                 source: url
                 type: json
-                url: /api/v1/cond/Alarms?$filter=Severity eq 'Critical' and Acknowledge eq 'None' and Suppressed eq false and AncestorMoType eq 'compute.Blade'
+                url: /api/v1/cond/Alarms?$filter=Severity eq 'Critical' and Acknowledge eq 'None' and Suppressed eq false and AncestorMoType eq 'compute.Blade' and AncestorMoId eq '${ServerMoid}'
                 url_options:
                     data: ""
                     method: GET

@@ -142,6 +142,25 @@ spec:
               enable: true
               hide: false
               iconColor: '#016f83'
+              mappings:
+                id:
+                    source: field
+                    value: Moid
+                tags:
+                    source: field
+                    value: Status
+                text:
+                    source: field
+                    value: Email
+                time:
+                    source: field
+                    value: CreateTime
+                timeEnd:
+                    source: field
+                    value: EndTime
+                title:
+                    source: field
+                    value: Name
               name: FI Actions
               target:
                 columns:
@@ -180,10 +199,44 @@ spec:
                 uid: ${DataSource}
               enable: true
               hide: false
-              iconColor: red
+              iconColor: dark-yellow
+              mappings:
+                id:
+                    source: field
+                    value: AffectedObject
+                tags:
+                    source: field
+                    value: Flapping
+                text:
+                    source: field
+                    value: AffectedMoDisplayName
+                time:
+                    source: field
+                    value: CreateTime
+                title:
+                    source: field
+                    value: Description
               name: 'Alarms: Warning'
               target:
-                columns: []
+                columns:
+                    - selector: AffectedMoDisplayName
+                      text: AffectedMoDisplayName
+                      type: string
+                    - selector: AffectedObject
+                      text: AffectedObject
+                      type: string
+                    - selector: Code
+                      text: Code
+                      type: string
+                    - selector: CreateTime
+                      text: CreateTime
+                      type: timestamp
+                    - selector: Description
+                      text: Description
+                      type: string
+                    - selector: Flapping
+                      text: Flapping
+                      type: string
                 filters: []
                 format: table
                 global_query_id: ""
@@ -192,7 +245,7 @@ spec:
                 root_selector: $.Results
                 source: url
                 type: json
-                url: /api/v1/cond/Alarms?$filter=Severity eq 'Critical' and Acknowledge eq 'None' and Suppressed eq false and AncestorMoType eq 'compute.Blade'
+                url: /api/v1/cond/Alarms?$filter=Severity eq 'Warning' and Acknowledge eq 'None' and Suppressed eq false and AncestorMoType eq 'compute.Blade' and AncestorMoId eq '${ServerMoid}'
                 url_options:
                     data: ""
                     method: GET
@@ -201,19 +254,53 @@ spec:
                 uid: ${DataSource}
               enable: true
               hide: false
-              iconColor: red
+              iconColor: dark-red
+              mappings:
+                id:
+                    source: field
+                    value: AffectedObject
+                tags:
+                    source: field
+                    value: Flapping
+                text:
+                    source: field
+                    value: AffectedMoDisplayName
+                time:
+                    source: field
+                    value: CreateTime
+                title:
+                    source: field
+                    value: Description
               name: 'Alarms: Critical'
               target:
-                columns: []
+                columns:
+                    - selector: AffectedMoDisplayName
+                      text: AffectedMoDisplayName
+                      type: string
+                    - selector: AffectedObject
+                      text: AffectedObject
+                      type: string
+                    - selector: Code
+                      text: Code
+                      type: string
+                    - selector: CreateTime
+                      text: CreateTime
+                      type: timestamp
+                    - selector: Description
+                      text: Description
+                      type: string
+                    - selector: Flapping
+                      text: Flapping
+                      type: string
                 filters: []
                 format: table
                 global_query_id: ""
                 parser: backend
                 refId: Anno
-                root_selector: ""
+                root_selector: $.Results
                 source: url
                 type: json
-                url: ""
+                url: /api/v1/cond/Alarms?$filter=Severity eq 'Critical' and Acknowledge eq 'None' and Suppressed eq false and AncestorMoType eq 'compute.Blade' and AncestorMoId eq '${ServerMoid}'
                 url_options:
                     data: ""
                     method: GET
@@ -3560,7 +3647,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 44
+            "y": 59
           id: 51
           panels:
             - datasource:
@@ -4012,7 +4099,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 45
+            "y": 60
           id: 9
           panels: []
           title: IFM Downlink Ports
@@ -4079,7 +4166,7 @@ spec:
             h: 7
             w: 12
             x: 0
-            "y": 46
+            "y": 61
           id: 54
           options:
             legend:
@@ -4296,7 +4383,7 @@ spec:
             h: 7
             w: 12
             x: 12
-            "y": 46
+            "y": 61
           id: 94
           options:
             legend:
@@ -4456,7 +4543,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 53
+            "y": 68
           id: 93
           panels: []
           title: vNIC Ports
@@ -4523,7 +4610,7 @@ spec:
             h: 7
             w: 24
             x: 0
-            "y": 54
+            "y": 69
           id: 95
           options:
             legend:
@@ -4651,7 +4738,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 61
+            "y": 76
           id: 97
           panels: []
           title: vHBA Ports
@@ -4718,7 +4805,7 @@ spec:
             h: 7
             w: 24
             x: 0
-            "y": 62
+            "y": 77
           id: 98
           options:
             legend:
