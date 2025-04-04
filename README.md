@@ -14,6 +14,7 @@ Before you can import the dashboards into your environment, there are a few prep
 Your Grafana needs to have the following two plugins installed:
 * [Infinity Data Source Plugin](https://grafana.com/grafana/plugins/yesoreyeram-infinity-datasource/?tab=installation)
 * [Business Text Plugin](https://grafana.com/grafana/plugins/marcusolsson-dynamictext-panel/?tab=installation)
+
 Pleae follow the official guides to install them in your environment.
 
 ### Adding a Data Source
