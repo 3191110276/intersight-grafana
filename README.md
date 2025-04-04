@@ -6,7 +6,15 @@ This is a collection of dashboards for Cisco Intersight that can be imported int
 > The dashboards are in early development. Please apply new versions periodically to fix known issues.
 
 ## Preparing your Grafana environment
-Befo
+Before you can import the dashboards into your environment, there are a few preparation steps that you need to take. You will need a current Grafana instance with the two following actions done:
+* [Install the required plugins](#Adding-Plugins)
+* [Add a Data Source pointing to your Intersight account](#Adding-a-Data-Source)
+
+### Adding Plugins
+Your Grafana needs to have the following two plugins installed:
+* [Infinity Data Source Plugin](https://grafana.com/grafana/plugins/yesoreyeram-infinity-datasource/?tab=installation)
+* [Business Text Plugin](https://grafana.com/grafana/plugins/marcusolsson-dynamictext-panel/?tab=installation)
+Pleae follow the official guides to install them in your environment.
 
 ### Adding a Data Source
 Data can be queried directly from your Intersight instance by setting up the Data Source correctly. Follow the steps below to create one Data Source per Intersight account/appliance you want to monitor from Grafana:
