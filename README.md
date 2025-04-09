@@ -7,6 +7,7 @@ This is a collection of dashboards for Cisco Intersight that can be imported int
 
 ## Preparing your Grafana environment
 Before you can import the dashboards into your environment, there are a few preparation steps that you need to take. You will need a current Grafana instance with the two following actions done:
+* Ensure that your Grafana environment is on version 11.6 or later
 * [Install the required plugins](#Adding-Plugins)
 * [Add a Data Source pointing to your Intersight account](#Adding-a-Data-Source)
 
