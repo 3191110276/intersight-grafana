@@ -1,7 +1,9 @@
 apiVersion: grizzly.grafana.com/v1alpha1
 kind: DashboardFolder
 metadata:
-  name: is_dnet_chassis
+    name: is_dnet_chassis
 spec:
-  parentUid: is_domainnetwork
-  title: Chassis
+    orgId: 1
+    parentUid: is_domainnetwork
+    title: Chassis
+    uid: is_dnet_chassis

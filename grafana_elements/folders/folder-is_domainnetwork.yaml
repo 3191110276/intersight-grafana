@@ -1,7 +1,9 @@
 apiVersion: grizzly.grafana.com/v1alpha1
 kind: DashboardFolder
 metadata:
-  name: is_domainnetwork
+    name: is_domainnetwork
 spec:
-  parentUid: intersight
-  title: IMM Domain Network
+    orgId: 1
+    parentUid: intersight
+    title: IMM Domain Network
+    uid: is_domainnetwork

@@ -20,12 +20,225 @@ spec:
     graphTooltip: 2
     links: []
     panels:
+        - datasource:
+            type: datasource
+            uid: grafana
+          fieldConfig:
+            defaults:
+                thresholds:
+                    mode: absolute
+                    steps:
+                        - color: transparent
+            overrides: []
+          gridPos:
+            h: 3
+            w: 24
+            x: 0
+            "y": 0
+          id: 80
+          options:
+            afterRender: |-
+                function row_iteration(structure, current) {
+                  const row = add_row();
+                  structure.forEach(function (item) {
+                    selected = false;
+                    if (item['name'] == current[0]) {
+                      selected = true;
+                    }
+                    new_button = add_button(item["name"], item["link"], selected, item["children"])
+                    row.append(new_button)
+                    if (selected) {
+                      if (item['children'].length > 0) {
+                        row_iteration(item['children'], current.slice(1))
+                      }
+                    }
+                  });
+                }
+
+                function add_row() {
+                  const container = document.getElementById("container");
+                  const newDiv = document.createElement('div');
+                  newDiv.classList.add('row');
+                  container.appendChild(newDiv);
+
+                  return newDiv
+                }
+
+                function add_button(name, link, selected, children) {
+                  const newDiv = document.createElement('div');
+                  newDiv.classList.add('button');
+                  if (selected) { newDiv.classList.add('button-active'); }
+                  newDiv.textContent = name;
+                  newDiv.onclick = function () {
+                    const url = new URL(window.location.href);
+                    const params = new URLSearchParams(url.search);
+                    if (link == "") {
+                      children.forEach(function (item) {
+                        if (item["name"] == current_item[current_item.length - 1]) {
+                          link = item["link"]
+                        }
+                      });
+                    }
+
+                    if (link == "") {
+                      if (children[0]["link"] == "") {
+                        link = children[0]["children"][0]["link"]
+                      } else {
+                        link = children[0]["link"]
+                      }
+                    }
+                    window.location.href = '/d/' + link + '?' + params.toString();
+                  };
+
+                  return newDiv
+                }
+
+                const platform_type_selector = document.getElementById('platform_type_selector');
+
+                platform_type_selector.onchange = function () {
+                  const selectedValue = platform_type_selector.value;
+                  alert('You selected: ' + selectedValue);
+                };
+
+                container = document.getElementById("container");
+                if (container) {
+                  container.innerHTML = '';
+                } else {
+                  const newDiv = document.createElement('div');
+                  newDiv.id = 'container'
+                  document.body.append(newDiv)
+                }
+
+                structure = nav[current_item[0]]
+                row_iteration(structure, current_item.slice(1))
+            content: |-
+                <div id="container"></div>
+                <div id="platform_type">
+                  Platform Type:
+                  <select name="platform_type_selector" id="platform_type_selector">
+                        <option value="overview">Overview</option>
+                        <option value="domain" selected>Domain</option>
+                        <option value="standalone">Standalone</option>
+                        <option value="edge">Unified Edge</option>
+                      </select>
+                </div>
+            contentPartials: []
+            defaultContent: The query didn't return any results.
+            editor:
+                format: auto
+                language: html
+            editors:
+                - styles
+                - helpers
+                - afterRender
+            externalStyles: []
+            helpers: |-
+                current_item = ["domain", "Environmental", "Chassis"]
+
+                nav = {
+                  "overview": [
+                    { "name": "Overview", "link": "is_overview", "children": [] },
+                    { "name": "Network", "link": "", "children": [] },
+                    {
+                      "name": "Environmental", "link": "", "children": []
+                    }
+                  ],
+                  "domain": [
+                    { "name": "Overview", "link": "is_overview", "children": [] },
+                    {
+                      "name": "Network", "link": "", "children": [
+                        {
+                          "name": "Domain", "link": "", "children": [
+                            { "name": "Overview", "link": "is_dnet_domain_traffic_overview", "children": [] },
+                            { "name": "Utilization %", "link": "is_dnet_domain_traffic_util_percent", "children": [] },
+                            { "name": "Utilization bps", "link": "is_dnet_domain_traffic_util_bps", "children": [] },
+                            { "name": "Congestion", "link": "is_dnet_domain_traffic_congestion", "children": [] },
+                            { "name": "Errors", "link": "is_dnet_domain_traffic_errors", "children": [] }
+                          ]
+                        },
+                        {
+                          "name": "Chassis", "link": "", "children": [
+                            { "name": "Overview", "link": "is_dnet_chassis_traffic_overview", "children": [] },
+                            { "name": "Utilization %", "link": "is_dnet_chassis_traffic_util_percent", "children": [] },
+                            { "name": "Utilization bps", "link": "is_dnet_chassis_traffic_util_bps", "children": [] },
+                            { "name": "Congestion", "link": "is_dnet_chassis_traffic_congestion", "children": [] },
+                            { "name": "Errors", "link": "is_dnet_chassis_traffic_errors", "children": [] }
+                          ]
+                        },
+                        {
+                          "name": "Server", "link": "", "children": [
+                            { "name": "Overview", "link": "is_dnet_server_traffic_overview", "children": [] },
+                            { "name": "Utilization %", "link": "is_dnet_server_traffic_util_percent", "children": [] },
+                            { "name": "Utilization bps", "link": "is_dnet_server_traffic_util_bps", "children": [] },
+                            { "name": "Congestion", "link": "is_dnet_server_traffic_congestion", "children": [] },
+                            { "name": "Errors", "link": "is_dnet_server_traffic_errors", "children": [] }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Environmental", "link": "", "children": [
+                        { "name": "Domain", "link": "is_environmental_domain", "children": [] },
+                        { "name": "Chassis", "link": "is_environmental_chassis", "children": [] }
+                      ]
+                    }
+                  ],
+                  "standalone": [],
+                  "edge": []
+                }
+            renderMode: data
+            styles: |
+                .row {
+                  display: flex;
+                  gap: max(4vw, 10px);
+                  border-bottom: 1px solid white;
+                  margin: 0 0 5px 8px;
+                  padding: 0 0 5px 0;
+                }
+
+                #platform_type {
+                  position: absolute;
+                  right: 8px;
+                  top: 8px;
+                }
+
+                #platform_type select {
+                  height: 28px;
+                  width: 120px;
+                  border: 1px solid white;
+                }
+
+                .button {
+                  padding: 4px 10px;
+                  background-color: #1e60c4;
+                  width: 128px;
+                  height: 29px;
+                  border-radius: 10px;
+                  text-align: center;
+                  vertical-align: middle;
+                  cursor: pointer;
+                }
+
+                .button-active {
+                  background-color: #8f3bb8;
+                }
+            wrap: false
+          pluginVersion: 5.7.0
+          targets:
+            - datasource:
+                type: datasource
+                uid: grafana
+              queryType: randomWalk
+              refId: A
+          title: ""
+          transparent: true
+          type: marcusolsson-dynamictext-panel
         - collapsed: true
           gridPos:
             h: 1
             w: 24
             x: 0
-            "y": 0
+            "y": 3
           id: 23
           panels:
             - datasource:
@@ -172,7 +385,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 1
+            "y": 4
           id: 50
           panels:
             - datasource:
@@ -737,7 +950,7 @@ spec:
                 h: 3
                 w: 4
                 x: 0
-                "y": 5
+                "y": 49
               id: 68
               options:
                 colorMode: value
@@ -867,7 +1080,7 @@ spec:
                 h: 3
                 w: 4
                 x: 4
-                "y": 5
+                "y": 49
               id: 69
               options:
                 colorMode: value
@@ -997,7 +1210,7 @@ spec:
                 h: 3
                 w: 4
                 x: 8
-                "y": 5
+                "y": 49
               id: 70
               options:
                 colorMode: value
@@ -1127,7 +1340,7 @@ spec:
                 h: 3
                 w: 4
                 x: 12
-                "y": 5
+                "y": 49
               id: 71
               options:
                 colorMode: value
@@ -1257,7 +1470,7 @@ spec:
                 h: 3
                 w: 4
                 x: 16
-                "y": 5
+                "y": 49
               id: 72
               options:
                 colorMode: value
@@ -1387,7 +1600,7 @@ spec:
                 h: 3
                 w: 4
                 x: 20
-                "y": 5
+                "y": 49
               id: 73
               options:
                 colorMode: value
@@ -1482,7 +1695,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 2
+            "y": 5
           id: 10
           panels:
             - datasource:
@@ -1532,7 +1745,7 @@ spec:
                 h: 7
                 w: 24
                 x: 0
-                "y": 9
+                "y": 3
               id: 35
               options:
                 legend:
@@ -1544,7 +1757,7 @@ spec:
                     hideZeros: false
                     mode: multi
                     sort: none
-              pluginVersion: 11.6.0-84846
+              pluginVersion: 12.0.0-85820.patch2-86140
               targets:
                 - columns:
                     - selector: timestamp
@@ -1676,7 +1889,7 @@ spec:
                 h: 7
                 w: 24
                 x: 0
-                "y": 32
+                "y": 10
               id: 36
               options:
                 legend:
@@ -1688,7 +1901,7 @@ spec:
                     hideZeros: false
                     mode: multi
                     sort: none
-              pluginVersion: 11.6.0-84846
+              pluginVersion: 12.0.0-85820.patch2-86140
               targets:
                 - columns:
                     - selector: timestamp
@@ -1770,7 +1983,7 @@ spec:
                             ]
                           }
                     method: POST
-              title: Power consumption per FI PSU (Max)
+              title: Input Power consumption per FI PSU (Max)
               transformations:
                 - id: groupingToMatrix
                   options:
@@ -1785,7 +1998,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 3
+            "y": 6
           id: 9
           panels:
             - datasource:
@@ -1835,7 +2048,7 @@ spec:
                 h: 7
                 w: 24
                 x: 0
-                "y": 40
+                "y": 4
               id: 34
               options:
                 legend:
@@ -1847,7 +2060,7 @@ spec:
                     hideZeros: false
                     mode: single
                     sort: none
-              pluginVersion: 11.6.0-84846
+              pluginVersion: 12.0.0-85820.patch2-86140
               targets:
                 - columns:
                     - selector: timestamp
@@ -2002,7 +2215,7 @@ spec:
                 h: 7
                 w: 24
                 x: 0
-                "y": 47
+                "y": 11
               id: 33
               options:
                 legend:
@@ -2014,7 +2227,7 @@ spec:
                     hideZeros: false
                     mode: multi
                     sort: none
-              pluginVersion: 11.6.0-84846
+              pluginVersion: 12.0.0-85820.patch2-86140
               targets:
                 - columns:
                     - selector: timestamp
@@ -2101,7 +2314,7 @@ spec:
                             ]
                           }
                     method: POST
-              title: Power consumption per Chassis PSU (Avg)
+              title: Input Power consumption per Chassis PSU (Avg)
               transformations:
                 - id: groupingToMatrix
                   options:
@@ -2116,7 +2329,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 4
+            "y": 7
           id: 17
           panels:
             - datasource:
@@ -2166,7 +2379,7 @@ spec:
                 h: 7
                 w: 24
                 x: 0
-                "y": 55
+                "y": 99
               id: 32
               options:
                 legend:
@@ -2270,7 +2483,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 5
+            "y": 8
           id: 22
           panels:
             - datasource:
@@ -2289,7 +2502,7 @@ spec:
                 h: 2
                 w: 24
                 x: 0
-                "y": 63
+                "y": 107
               id: 66
               options:
                 afterRender: ""
@@ -2335,7 +2548,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 6
+            "y": 9
           id: 61
           panels:
             - datasource:
@@ -2373,7 +2586,7 @@ spec:
                 h: 3
                 w: 24
                 x: 0
-                "y": 64
+                "y": 108
               id: 63
               maxPerRow: 8
               options:
@@ -2448,7 +2661,7 @@ spec:
                 h: 3
                 w: 24
                 x: 0
-                "y": 67
+                "y": 111
               id: 78
               maxPerRow: 8
               options:
@@ -2523,7 +2736,7 @@ spec:
                 h: 3
                 w: 24
                 x: 0
-                "y": 70
+                "y": 114
               id: 62
               maxPerRow: 8
               options:
@@ -2570,7 +2783,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 7
+            "y": 10
           id: 18
           panels:
             - datasource:
@@ -2620,7 +2833,7 @@ spec:
                 h: 8
                 w: 12
                 x: 0
-                "y": 14
+                "y": 58
               id: 40
               maxDataPoints: 500
               options:
@@ -2766,7 +2979,7 @@ spec:
                 h: 8
                 w: 12
                 x: 12
-                "y": 14
+                "y": 58
               id: 41
               maxDataPoints: 500
               options:
@@ -2872,7 +3085,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 8
+            "y": 11
           id: 19
           panels:
             - datasource:
@@ -2923,7 +3136,7 @@ spec:
                 h: 7
                 w: 24
                 x: 0
-                "y": 23
+                "y": 67
               id: 31
               options:
                 legend:
@@ -3020,7 +3233,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 9
+            "y": 12
           id: 20
           panels:
             - datasource:
@@ -3081,7 +3294,7 @@ spec:
                 h: 7
                 w: 12
                 x: 0
-                "y": 16
+                "y": 60
               id: 38
               maxDataPoints: 500
               options:
@@ -3208,7 +3421,7 @@ spec:
                 h: 7
                 w: 12
                 x: 12
-                "y": 16
+                "y": 60
               id: 79
               maxDataPoints: 500
               options:
@@ -3284,7 +3497,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 10
+            "y": 13
           id: 44
           panels:
             - datasource:
@@ -3364,7 +3577,7 @@ spec:
                 h: 7
                 w: 12
                 x: 0
-                "y": 32
+                "y": 76
               id: 45
               maxDataPoints: 500
               options:
@@ -3567,7 +3780,7 @@ spec:
                 h: 7
                 w: 12
                 x: 12
-                "y": 32
+                "y": 76
               id: 46
               maxDataPoints: 500
               options:
@@ -3704,7 +3917,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 11
+            "y": 14
           id: 21
           panels:
             - datasource:
@@ -3759,7 +3972,7 @@ spec:
                 h: 12
                 w: 8
                 x: 0
-                "y": 98
+                "y": 142
               id: 47
               maxDataPoints: 500
               options:
@@ -3935,7 +4148,7 @@ spec:
                 h: 6
                 w: 8
                 x: 8
-                "y": 98
+                "y": 142
               id: 48
               maxDataPoints: 500
               options:
@@ -4115,7 +4328,7 @@ spec:
                 h: 12
                 w: 8
                 x: 16
-                "y": 98
+                "y": 142
               id: 49
               maxDataPoints: 500
               options:
@@ -4295,7 +4508,7 @@ spec:
                 h: 6
                 w: 8
                 x: 8
-                "y": 104
+                "y": 148
               id: 67
               maxDataPoints: 500
               options:
@@ -4747,6 +4960,6 @@ spec:
             - 1h
             - 2h
             - 1d
-    timezone: Europe/Vienna
+    timezone: browser
     title: Chassis Power, Cooling, Temperature
     uid: is_environmental_chassis

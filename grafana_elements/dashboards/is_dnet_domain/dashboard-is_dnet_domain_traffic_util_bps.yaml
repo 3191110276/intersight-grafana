@@ -25,197 +25,205 @@ spec:
             uid: grafana
           fieldConfig:
             defaults:
-                color:
-                    mode: thresholds
-                mappings: []
                 thresholds:
                     mode: absolute
                     steps:
-                        - color: green
+                        - color: transparent
             overrides: []
           gridPos:
-            h: 2
+            h: 4
             w: 24
             x: 0
             "y": 0
-          id: 75
+          id: 77
           options:
-            infinitePan: false
-            inlineEditing: false
-            panZoom: false
-            root:
-                background:
-                    color:
-                        fixed: transparent
-                border:
-                    color:
-                        fixed: dark-green
-                constraint:
-                    horizontal: left
-                    vertical: top
-                elements:
-                    - background:
-                        color:
-                            fixed: dark-blue
-                      border:
-                        color:
-                            fixed: text
-                        radius: 15
-                        width: 2
-                      config:
-                        align: center
-                        color:
-                            fixed: rgb(204, 204, 220)
-                        size: 18
-                        text:
-                            fixed: Overview
-                        valign: middle
-                      constraint:
-                        horizontal: scale
-                        vertical: top
-                      links:
-                        - oneClick: true
-                          title: Overview
-                          url: ./d/is_dnet_domain_traffic_overview/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
-                      name: Overview
-                      placement:
-                        height: 50
-                        left: 1.6823354774863928
-                        right: 84.11677387431963
-                        rotation: 0
-                        top: 9
-                      type: text
-                    - background:
-                        color:
-                            fixed: dark-blue
-                      border:
-                        color:
-                            fixed: text
-                        radius: 15
-                        width: 2
-                      config:
-                        align: center
-                        color:
-                            fixed: rgb(204, 204, 220)
-                        size: 18
-                        text:
-                            fixed: Utilization (%)
-                        valign: middle
-                      constraint:
-                        horizontal: scale
-                        vertical: top
-                      links:
-                        - oneClick: true
-                          title: Utilization Percentage
-                          url: ./d/is_dnet_domain_traffic_util_percent/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
-                      name: Utilization %
-                      placement:
-                        height: 50
-                        left: 22.56308758040574
-                        right: 63.236021771400296
-                        rotation: 0
-                        top: 9
-                      type: text
-                    - background:
-                        color:
-                            fixed: dark-purple
-                      border:
-                        color:
-                            fixed: text
-                        radius: 15
-                        width: 2
-                      config:
-                        align: center
-                        color:
-                            fixed: rgb(204, 204, 220)
-                        size: 18
-                        text:
-                            fixed: Utilization (bps)
-                        valign: middle
-                      constraint:
-                        horizontal: scale
-                        vertical: top
-                      links:
-                        - oneClick: true
-                          title: Utilization bps
-                          url: ./d/is_dnet_domain_traffic_util_bps/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
-                      name: Utilization bps
-                      placement:
-                        height: 50
-                        left: 43.44193817878028
-                        right: 43.27485380116959
-                        top: 9
-                      type: text
-                    - background:
-                        color:
-                            fixed: dark-blue
-                      border:
-                        color:
-                            fixed: text
-                        radius: 15
-                        width: 2
-                      config:
-                        align: center
-                        color:
-                            fixed: rgb(204, 204, 220)
-                        size: 18
-                        text:
-                            fixed: Congestion
-                        valign: middle
-                      constraint:
-                        horizontal: scale
-                        vertical: top
-                      links:
-                        - oneClick: true
-                          title: Congestion
-                          url: ./d/is_dnet_domain_traffic_util_congestion/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
-                      name: Congestion
-                      placement:
-                        height: 50
-                        left: 63.40852130325815
-                        right: 22.389306599832913
-                        top: 9
-                      type: text
-                    - background:
-                        color:
-                            fixed: dark-blue
-                      border:
-                        color:
-                            fixed: text
-                        radius: 15
-                        width: 2
-                      config:
-                        align: center
-                        color:
-                            fixed: rgb(204, 204, 220)
-                        size: 18
-                        text:
-                            fixed: Errors
-                        valign: middle
-                      constraint:
-                        horizontal: scale
-                        vertical: top
-                      links:
-                        - oneClick: true
-                          title: Errors
-                          url: ./d/is_dnet_domain_traffic_errors/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
-                      name: Errors
-                      placement:
-                        height: 50
-                        left: 84.29406850459482
-                        right: 1.5037593984962405
-                        top: 9
-                      type: text
-                name: Element 1741337892291
-                placement:
-                    height: 100
-                    left: 0
-                    rotation: 0
-                    top: 0
-                    width: 100
-                type: frame
-            showAdvancedTypes: true
-          pluginVersion: 12.0.0-85518.patch2-85619
+            afterRender: |-
+                function row_iteration(structure, current) {
+                  const row = add_row();
+                  structure.forEach(function (item) {
+                    selected = false;
+                    if (item['name'] == current[0]) {
+                      selected = true;
+                    }
+                    new_button = add_button(item["name"], item["link"], selected, item["children"])
+                    row.append(new_button)
+                    if (selected) {
+                      if (item['children'].length > 0) {
+                        row_iteration(item['children'], current.slice(1))
+                      }
+                    }
+                  });
+                }
+
+                function add_row() {
+                  const container = document.getElementById("container");
+                  const newDiv = document.createElement('div');
+                  newDiv.classList.add('row');
+                  container.appendChild(newDiv);
+
+                  return newDiv
+                }
+
+                function add_button(name, link, selected, children) {
+                  const newDiv = document.createElement('div');
+                  newDiv.classList.add('button');
+                  if (selected) { newDiv.classList.add('button-active'); }
+                  newDiv.textContent = name;
+                  newDiv.onclick = function () {
+                    const url = new URL(window.location.href);
+                    const params = new URLSearchParams(url.search);
+                    if (link == "") {
+                      children.forEach(function (item) {
+                        if (item["name"] == current_item[current_item.length - 1]) {
+                          link = item["link"]
+                        }
+                      });
+                    }
+
+                    if (link == "") {
+                      if (children[0]["link"] == "") {
+                        link = children[0]["children"][0]["link"]
+                      } else {
+                        link = children[0]["link"]
+                      }
+                    }
+                    window.location.href = '/d/' + link + '?' + params.toString();
+                  };
+
+                  return newDiv
+                }
+
+                const platform_type_selector = document.getElementById('platform_type_selector');
+
+                platform_type_selector.onchange = function () {
+                  const selectedValue = platform_type_selector.value;
+                  alert('You selected: ' + selectedValue);
+                };
+
+                container = document.getElementById("container");
+                if (container) {
+                  container.innerHTML = '';
+                } else {
+                  const newDiv = document.createElement('div');
+                  newDiv.id = 'container'
+                  document.body.append(newDiv)
+                }
+
+                structure = nav[current_item[0]]
+                row_iteration(structure, current_item.slice(1))
+            content: |-
+                <div id="container"></div>
+                <div id="platform_type">
+                  Platform Type:
+                  <select name="platform_type_selector" id="platform_type_selector">
+                        <option value="overview">Overview</option>
+                        <option value="domain" selected>Domain</option>
+                        <option value="standalone">Standalone</option>
+                        <option value="edge">Unified Edge</option>
+                      </select>
+                </div>
+            contentPartials: []
+            defaultContent: The query didn't return any results.
+            editor:
+                format: auto
+                language: html
+            editors:
+                - styles
+                - helpers
+                - afterRender
+            externalStyles: []
+            helpers: |-
+                current_item = ["domain", "Network", "Domain", "Utilization bps"]
+
+                nav = {
+                  "overview": [
+                    { "name": "Overview", "link": "is_overview", "children": [] },
+                    { "name": "Network", "link": "", "children": [] },
+                    {
+                      "name": "Environmental", "link": "", "children": []
+                    }
+                  ],
+                  "domain": [
+                    { "name": "Overview", "link": "is_overview", "children": [] },
+                    {
+                      "name": "Network", "link": "", "children": [
+                        {
+                          "name": "Domain", "link": "", "children": [
+                            { "name": "Overview", "link": "is_dnet_domain_traffic_overview", "children": [] },
+                            { "name": "Utilization %", "link": "is_dnet_domain_traffic_util_percent", "children": [] },
+                            { "name": "Utilization bps", "link": "is_dnet_domain_traffic_util_bps", "children": [] },
+                            { "name": "Congestion", "link": "is_dnet_domain_traffic_congestion", "children": [] },
+                            { "name": "Errors", "link": "is_dnet_domain_traffic_errors", "children": [] }
+                          ]
+                        },
+                        {
+                          "name": "Chassis", "link": "", "children": [
+                            { "name": "Overview", "link": "is_dnet_chassis_traffic_overview", "children": [] },
+                            { "name": "Utilization %", "link": "is_dnet_chassis_traffic_util_percent", "children": [] },
+                            { "name": "Utilization bps", "link": "is_dnet_chassis_traffic_util_bps", "children": [] },
+                            { "name": "Congestion", "link": "is_dnet_chassis_traffic_congestion", "children": [] },
+                            { "name": "Errors", "link": "is_dnet_chassis_traffic_errors", "children": [] }
+                          ]
+                        },
+                        {
+                          "name": "Server", "link": "", "children": [
+                            { "name": "Overview", "link": "is_dnet_server_traffic_overview", "children": [] },
+                            { "name": "Utilization %", "link": "is_dnet_server_traffic_util_percent", "children": [] },
+                            { "name": "Utilization bps", "link": "is_dnet_server_traffic_util_bps", "children": [] },
+                            { "name": "Congestion", "link": "is_dnet_server_traffic_congestion", "children": [] },
+                            { "name": "Errors", "link": "is_dnet_server_traffic_errors", "children": [] }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Environmental", "link": "", "children": [
+                        { "name": "Domain", "link": "is_environmental_domain", "children": [] },
+                        { "name": "Chassis", "link": "is_environmental_chassis", "children": [] }
+                      ]
+                    }
+                  ],
+                  "standalone": [],
+                  "edge": []
+                }
+            renderMode: data
+            styles: |
+                .row {
+                  display: flex;
+                  gap: max(4vw, 10px);
+                  border-bottom: 1px solid white;
+                  margin: 0 0 5px 8px;
+                  padding: 0 0 5px 0;
+                }
+
+                #platform_type {
+                  position: absolute;
+                  right: 8px;
+                  top: 8px;
+                }
+
+                #platform_type select {
+                  height: 28px;
+                  width: 120px;
+                  border: 1px solid white;
+                }
+
+                .button {
+                  padding: 4px 10px;
+                  background-color: #1e60c4;
+                  width: 128px;
+                  height: 29px;
+                  border-radius: 10px;
+                  text-align: center;
+                  vertical-align: middle;
+                  cursor: pointer;
+                }
+
+                .button-active {
+                  background-color: #8f3bb8;
+                }
+            wrap: false
+          pluginVersion: 5.7.0
           targets:
             - datasource:
                 type: datasource
@@ -223,13 +231,14 @@ spec:
               queryType: randomWalk
               refId: A
           title: ""
-          type: canvas
+          transparent: true
+          type: marcusolsson-dynamictext-panel
         - collapsed: true
           gridPos:
             h: 1
             w: 24
             x: 0
-            "y": 2
+            "y": 4
           id: 65
           panels:
             - datasource:
@@ -353,7 +362,7 @@ spec:
                                 {
                                   "type": "in",
                                   "dimension": "intersight.domain.name",
-                                  "values": [${Domain:doublequote}]
+                                  "values": [${DomainName:doublequote}]
                                 },
                                 {
                                   "type": "search",
@@ -530,7 +539,7 @@ spec:
                                 {
                                   "type": "in",
                                   "dimension": "intersight.domain.name",
-                                  "values": [${Domain:doublequote}]
+                                  "values": [${DomainName:doublequote}]
                                 },
                                 {
                                   "type": "search",
@@ -707,7 +716,7 @@ spec:
                                 {
                                   "type": "in",
                                   "dimension": "intersight.domain.name",
-                                  "values": [${Domain:doublequote}]
+                                  "values": [${DomainName:doublequote}]
                                 },
                                 {
                                   "type": "search",
@@ -884,7 +893,7 @@ spec:
                                 {
                                   "type": "in",
                                   "dimension": "intersight.domain.name",
-                                  "values": [${Domain:doublequote}]
+                                  "values": [${DomainName:doublequote}]
                                 },
                                 {
                                   "type": "search",
@@ -947,7 +956,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 3
+            "y": 5
           id: 66
           panels: []
           title: Fabric Interconnect Storage Uplink Ports
@@ -1000,7 +1009,7 @@ spec:
             h: 6
             w: 12
             x: 0
-            "y": 4
+            "y": 6
           id: 71
           options:
             legend:
@@ -1012,7 +1021,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-85518.patch2-85619
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: timestamp
@@ -1073,7 +1082,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "search",
@@ -1177,7 +1186,7 @@ spec:
             h: 6
             w: 12
             x: 12
-            "y": 4
+            "y": 6
           id: 72
           options:
             legend:
@@ -1189,7 +1198,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-85518.patch2-85619
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: timestamp
@@ -1250,7 +1259,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "search",
@@ -1354,7 +1363,7 @@ spec:
             h: 6
             w: 12
             x: 0
-            "y": 10
+            "y": 12
           id: 73
           options:
             legend:
@@ -1366,7 +1375,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-85518.patch2-85619
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: timestamp
@@ -1427,7 +1436,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "search",
@@ -1531,7 +1540,7 @@ spec:
             h: 6
             w: 12
             x: 12
-            "y": 10
+            "y": 12
           id: 74
           options:
             legend:
@@ -1543,7 +1552,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-85518.patch2-85619
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: timestamp
@@ -1604,7 +1613,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "search",
@@ -1665,7 +1674,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 16
+            "y": 18
           id: 36
           panels:
             - datasource:
@@ -1789,7 +1798,7 @@ spec:
                                 {
                                   "type": "in",
                                   "dimension": "intersight.domain.name",
-                                  "values": [${Domain:doublequote}]
+                                  "values": [${DomainName:doublequote}]
                                 },
                                 {
                                   "type": "search",
@@ -1965,7 +1974,7 @@ spec:
                                 {
                                   "type": "in",
                                   "dimension": "intersight.domain.name",
-                                  "values": [${Domain:doublequote}]
+                                  "values": [${DomainName:doublequote}]
                                 },
                                 {
                                   "type": "search",
@@ -2141,7 +2150,7 @@ spec:
                                 {
                                   "type": "in",
                                   "dimension": "intersight.domain.name",
-                                  "values": [${Domain:doublequote}]
+                                  "values": [${DomainName:doublequote}]
                                 },
                                 {
                                   "type": "search",
@@ -2317,7 +2326,7 @@ spec:
                                 {
                                   "type": "in",
                                   "dimension": "intersight.domain.name",
-                                  "values": [${Domain:doublequote}]
+                                  "values": [${DomainName:doublequote}]
                                 },
                                 {
                                   "type": "search",
@@ -2379,7 +2388,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 17
+            "y": 19
           id: 2
           panels: []
           title: Fabric Interconnect Ethernet Uplink Ports
@@ -2432,7 +2441,7 @@ spec:
             h: 6
             w: 12
             x: 0
-            "y": 18
+            "y": 20
           id: 44
           options:
             legend:
@@ -2444,7 +2453,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-85518.patch2-85619
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: timestamp
@@ -2505,7 +2514,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "search",
@@ -2608,7 +2617,7 @@ spec:
             h: 6
             w: 12
             x: 12
-            "y": 18
+            "y": 20
           id: 45
           options:
             legend:
@@ -2620,7 +2629,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-85518.patch2-85619
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: timestamp
@@ -2681,7 +2690,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "search",
@@ -2784,7 +2793,7 @@ spec:
             h: 6
             w: 12
             x: 0
-            "y": 24
+            "y": 26
           id: 46
           options:
             legend:
@@ -2796,7 +2805,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-85518.patch2-85619
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: timestamp
@@ -2857,7 +2866,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "search",
@@ -2960,7 +2969,7 @@ spec:
             h: 6
             w: 12
             x: 12
-            "y": 24
+            "y": 26
           id: 47
           options:
             legend:
@@ -2972,7 +2981,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-85518.patch2-85619
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: timestamp
@@ -3033,7 +3042,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "search",
@@ -3093,7 +3102,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 30
+            "y": 32
           id: 7
           panels: []
           title: Top Fabric Interconnect Downlink Ports
@@ -3175,7 +3184,7 @@ spec:
             h: 14
             w: 12
             x: 0
-            "y": 31
+            "y": 33
           id: 48
           options:
             cellHeight: sm
@@ -3190,7 +3199,7 @@ spec:
             sortBy:
                 - desc: true
                   displayName: Utilization (Avg)
-          pluginVersion: 11.6.0-84846
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: event.max_utilization
@@ -3260,7 +3269,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "selector",
@@ -3433,7 +3442,7 @@ spec:
             h: 14
             w: 12
             x: 12
-            "y": 31
+            "y": 33
           id: 56
           options:
             cellHeight: sm
@@ -3448,7 +3457,7 @@ spec:
             sortBy:
                 - desc: true
                   displayName: Utilization (Avg)
-          pluginVersion: 11.6.0-84846
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: event.max_utilization
@@ -3518,7 +3527,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "selector",
@@ -3620,7 +3629,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 45
+            "y": 47
           id: 51
           panels: []
           title: Top IFM Uplink Ports
@@ -3722,7 +3731,7 @@ spec:
             h: 14
             w: 12
             x: 0
-            "y": 46
+            "y": 48
           id: 52
           options:
             cellHeight: sm
@@ -3737,7 +3746,7 @@ spec:
             sortBy:
                 - desc: true
                   displayName: Utilization (Avg)
-          pluginVersion: 11.6.0-84846
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: event.max_utilization
@@ -3810,7 +3819,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                            {
                               "type": "selector",
@@ -4008,7 +4017,7 @@ spec:
             h: 14
             w: 12
             x: 12
-            "y": 46
+            "y": 48
           id: 57
           options:
             cellHeight: sm
@@ -4023,7 +4032,7 @@ spec:
             sortBy:
                 - desc: true
                   displayName: Utilization (Avg)
-          pluginVersion: 11.6.0-84846
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: event.max_utilization
@@ -4096,7 +4105,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                            {
                               "type": "selector",
@@ -4202,7 +4211,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 60
+            "y": 62
           id: 9
           panels: []
           title: Top IFM Downlink Ports
@@ -4297,7 +4306,7 @@ spec:
             h: 14
             w: 12
             x: 0
-            "y": 61
+            "y": 63
           id: 53
           options:
             cellHeight: sm
@@ -4312,7 +4321,7 @@ spec:
             sortBy:
                 - desc: true
                   displayName: Utilization (Avg)
-          pluginVersion: 11.6.0-84846
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: event.max_utilization
@@ -4392,7 +4401,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "selector",
@@ -4583,7 +4592,7 @@ spec:
             h: 14
             w: 12
             x: 12
-            "y": 61
+            "y": 63
           id: 58
           options:
             cellHeight: sm
@@ -4598,7 +4607,7 @@ spec:
             sortBy:
                 - desc: true
                   displayName: Utilization (Avg)
-          pluginVersion: 11.6.0-84846
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: event.max_utilization
@@ -4678,7 +4687,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "selector",
@@ -4784,7 +4793,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 75
+            "y": 77
           id: 60
           panels: []
           title: Top vNIC/vHBA Ports
@@ -4865,7 +4874,7 @@ spec:
             h: 14
             w: 12
             x: 0
-            "y": 76
+            "y": 78
           id: 61
           options:
             cellHeight: sm
@@ -4880,7 +4889,7 @@ spec:
             sortBy:
                 - desc: true
                   displayName: Utilization (Avg)
-          pluginVersion: 11.6.0-84846
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: event.max_utilization
@@ -4960,7 +4969,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "in",
@@ -5136,7 +5145,7 @@ spec:
             h: 14
             w: 12
             x: 12
-            "y": 76
+            "y": 78
           id: 63
           options:
             cellHeight: sm
@@ -5151,7 +5160,7 @@ spec:
             sortBy:
                 - desc: true
                   displayName: Utilization (Avg)
-          pluginVersion: 11.6.0-84846
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: event.max_utilization
@@ -5231,7 +5240,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "in",
@@ -5349,13 +5358,9 @@ spec:
               type: datasource
             - current:
                 text:
-                    - int-ucs-1
-                    - int-tme-ucs-10
                     - sgaree-sj2-151-b18-6536-1
                     - B26-6454-Matt
                 value:
-                    - int-ucs-1
-                    - int-tme-ucs-10
                     - sgaree-sj2-151-b18-6536-1
                     - B26-6454-Matt
               datasource:
@@ -5364,7 +5369,7 @@ spec:
               definition: ""
               label: Domain
               multi: true
-              name: Domain
+              name: DomainName
               options: []
               query:
                 infinityQuery:
@@ -5390,7 +5395,7 @@ spec:
               regex: (.*) FI-A
               type: query
     time:
-        from: now-30d
+        from: now-7d
         to: now
     timepicker: {}
     timezone: browser

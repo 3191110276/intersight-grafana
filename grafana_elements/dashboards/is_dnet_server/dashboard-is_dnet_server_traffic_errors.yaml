@@ -1,8 +1,8 @@
 apiVersion: grizzly.grafana.com/v1alpha1
 kind: Dashboard
 metadata:
-    folder: is_dnet_domain
-    name: is_dnet_domain_traffic_congestion
+    folder: is_dnet_server
+    name: is_dnet_server_traffic_errors
 spec:
     annotations:
         list:
@@ -133,7 +133,7 @@ spec:
                 - afterRender
             externalStyles: []
             helpers: |-
-                current_item = ["domain", "Network", "Domain", "Congestion"]
+                current_item = ["domain", "Network", "Server", "Errors"]
 
                 nav = {
                   "overview": [
@@ -144,7 +144,7 @@ spec:
                     }
                   ],
                   "domain": [
-                    { "name": "Overview", "link": "is_overview", "children": [] },
+                    { "name": "Overview", "link": "is_overview" },
                     {
                       "name": "Network", "link": "", "children": [
                         {
@@ -156,15 +156,7 @@ spec:
                             { "name": "Errors", "link": "is_dnet_domain_traffic_errors", "children": [] }
                           ]
                         },
-                        {
-                          "name": "Chassis", "link": "", "children": [
-                            { "name": "Overview", "link": "is_dnet_chassis_traffic_overview", "children": [] },
-                            { "name": "Utilization %", "link": "is_dnet_chassis_traffic_util_percent", "children": [] },
-                            { "name": "Utilization bps", "link": "is_dnet_chassis_traffic_util_bps", "children": [] },
-                            { "name": "Congestion", "link": "is_dnet_chassis_traffic_congestion", "children": [] },
-                            { "name": "Errors", "link": "is_dnet_chassis_traffic_errors", "children": [] }
-                          ]
-                        },
+                        { "name": "Chassis", "link": "", "children": [] },
                         {
                           "name": "Server", "link": "", "children": [
                             { "name": "Overview", "link": "is_dnet_server_traffic_overview", "children": [] },
@@ -262,5 +254,5 @@ spec:
         to: now
     timepicker: {}
     timezone: browser
-    title: 'Domain Traffic Verification: Congestion'
-    uid: is_dnet_domain_traffic_congestion
+    title: 'Server Traffic Verification: Errors'
+    uid: is_dnet_server_traffic_errors

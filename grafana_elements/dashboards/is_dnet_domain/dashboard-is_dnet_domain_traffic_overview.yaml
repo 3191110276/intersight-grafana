@@ -25,197 +25,205 @@ spec:
             uid: grafana
           fieldConfig:
             defaults:
-                color:
-                    mode: thresholds
-                mappings: []
                 thresholds:
                     mode: absolute
                     steps:
-                        - color: green
+                        - color: transparent
             overrides: []
           gridPos:
-            h: 2
+            h: 4
             w: 24
             x: 0
             "y": 0
-          id: 35
+          id: 83
           options:
-            infinitePan: false
-            inlineEditing: false
-            panZoom: false
-            root:
-                background:
-                    color:
-                        fixed: transparent
-                border:
-                    color:
-                        fixed: dark-green
-                constraint:
-                    horizontal: left
-                    vertical: top
-                elements:
-                    - background:
-                        color:
-                            fixed: dark-purple
-                      border:
-                        color:
-                            fixed: text
-                        radius: 15
-                        width: 2
-                      config:
-                        align: center
-                        color:
-                            fixed: rgb(204, 204, 220)
-                        size: 18
-                        text:
-                            fixed: Overview
-                        valign: middle
-                      constraint:
-                        horizontal: scale
-                        vertical: top
-                      links:
-                        - oneClick: true
-                          title: Overview
-                          url: ./d/is_dnet_domain_traffic_overview/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
-                      name: Overview
-                      placement:
-                        height: 50
-                        left: 1.6823354774863928
-                        right: 84.11677387431963
-                        rotation: 0
-                        top: 9
-                      type: text
-                    - background:
-                        color:
-                            fixed: dark-blue
-                      border:
-                        color:
-                            fixed: text
-                        radius: 15
-                        width: 2
-                      config:
-                        align: center
-                        color:
-                            fixed: rgb(204, 204, 220)
-                        size: 18
-                        text:
-                            fixed: Utilization (%)
-                        valign: middle
-                      constraint:
-                        horizontal: scale
-                        vertical: top
-                      links:
-                        - oneClick: true
-                          title: Utilization Percentage
-                          url: ./d/is_dnet_domain_traffic_util_percent/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
-                      name: Utilization %
-                      placement:
-                        height: 50
-                        left: 22.56308758040574
-                        right: 63.236021771400296
-                        rotation: 0
-                        top: 9
-                      type: text
-                    - background:
-                        color:
-                            fixed: dark-blue
-                      border:
-                        color:
-                            fixed: text
-                        radius: 15
-                        width: 2
-                      config:
-                        align: center
-                        color:
-                            fixed: rgb(204, 204, 220)
-                        size: 18
-                        text:
-                            fixed: Utilization (bps)
-                        valign: middle
-                      constraint:
-                        horizontal: scale
-                        vertical: top
-                      links:
-                        - oneClick: true
-                          title: Utilization bps
-                          url: ./d/is_dnet_domain_traffic_util_bps/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
-                      name: Utilization bps
-                      placement:
-                        height: 50
-                        left: 43.44193817878028
-                        right: 43.27485380116959
-                        top: 9
-                      type: text
-                    - background:
-                        color:
-                            fixed: dark-blue
-                      border:
-                        color:
-                            fixed: text
-                        radius: 15
-                        width: 2
-                      config:
-                        align: center
-                        color:
-                            fixed: rgb(204, 204, 220)
-                        size: 18
-                        text:
-                            fixed: Congestion
-                        valign: middle
-                      constraint:
-                        horizontal: scale
-                        vertical: top
-                      links:
-                        - oneClick: true
-                          title: Congestion
-                          url: ./d/is_dnet_domain_traffic_util_congestion/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
-                      name: Congestion
-                      placement:
-                        height: 50
-                        left: 63.40852130325815
-                        right: 22.389306599832913
-                        top: 9
-                      type: text
-                    - background:
-                        color:
-                            fixed: dark-blue
-                      border:
-                        color:
-                            fixed: text
-                        radius: 15
-                        width: 2
-                      config:
-                        align: center
-                        color:
-                            fixed: rgb(204, 204, 220)
-                        size: 18
-                        text:
-                            fixed: Errors
-                        valign: middle
-                      constraint:
-                        horizontal: scale
-                        vertical: top
-                      links:
-                        - oneClick: true
-                          title: Errors
-                          url: ./d/is_dnet_domain_traffic_errors/?orgId=${__org}&var-DataSource=${DataSource}&${Domain:queryparam}
-                      name: Errors
-                      placement:
-                        height: 50
-                        left: 84.29406850459482
-                        right: 1.5037593984962405
-                        top: 9
-                      type: text
-                name: Element 1741337892291
-                placement:
-                    height: 100
-                    left: 0
-                    rotation: 0
-                    top: 0
-                    width: 100
-                type: frame
-            showAdvancedTypes: true
-          pluginVersion: 12.0.0-85518.patch2-85619
+            afterRender: |-
+                function row_iteration(structure, current) {
+                  const row = add_row();
+                  structure.forEach(function (item) {
+                    selected = false;
+                    if (item['name'] == current[0]) {
+                      selected = true;
+                    }
+                    new_button = add_button(item["name"], item["link"], selected, item["children"])
+                    row.append(new_button)
+                    if (selected) {
+                      if (item['children'].length > 0) {
+                        row_iteration(item['children'], current.slice(1))
+                      }
+                    }
+                  });
+                }
+
+                function add_row() {
+                  const container = document.getElementById("container");
+                  const newDiv = document.createElement('div');
+                  newDiv.classList.add('row');
+                  container.appendChild(newDiv);
+
+                  return newDiv
+                }
+
+                function add_button(name, link, selected, children) {
+                  const newDiv = document.createElement('div');
+                  newDiv.classList.add('button');
+                  if (selected) { newDiv.classList.add('button-active'); }
+                  newDiv.textContent = name;
+                  newDiv.onclick = function () {
+                    const url = new URL(window.location.href);
+                    const params = new URLSearchParams(url.search);
+                    if (link == "") {
+                      children.forEach(function (item) {
+                        if (item["name"] == current_item[current_item.length - 1]) {
+                          link = item["link"]
+                        }
+                      });
+                    }
+
+                    if (link == "") {
+                      if (children[0]["link"] == "") {
+                        link = children[0]["children"][0]["link"]
+                      } else {
+                        link = children[0]["link"]
+                      }
+                    }
+                    window.location.href = '/d/' + link + '?' + params.toString();
+                  };
+
+                  return newDiv
+                }
+
+                const platform_type_selector = document.getElementById('platform_type_selector');
+
+                platform_type_selector.onchange = function () {
+                  const selectedValue = platform_type_selector.value;
+                  alert('You selected: ' + selectedValue);
+                };
+
+                container = document.getElementById("container");
+                if (container) {
+                  container.innerHTML = '';
+                } else {
+                  const newDiv = document.createElement('div');
+                  newDiv.id = 'container'
+                  document.body.append(newDiv)
+                }
+
+                structure = nav[current_item[0]]
+                row_iteration(structure, current_item.slice(1))
+            content: |-
+                <div id="container"></div>
+                <div id="platform_type">
+                  Platform Type:
+                  <select name="platform_type_selector" id="platform_type_selector">
+                        <option value="overview">Overview</option>
+                        <option value="domain" selected>Domain</option>
+                        <option value="standalone">Standalone</option>
+                        <option value="edge">Unified Edge</option>
+                      </select>
+                </div>
+            contentPartials: []
+            defaultContent: The query didn't return any results.
+            editor:
+                format: auto
+                language: html
+            editors:
+                - styles
+                - helpers
+                - afterRender
+            externalStyles: []
+            helpers: |-
+                current_item = ["domain", "Network", "Domain", "Overview"]
+
+                nav = {
+                  "overview": [
+                    { "name": "Overview", "link": "is_overview", "children": [] },
+                    { "name": "Network", "link": "", "children": [] },
+                    {
+                      "name": "Environmental", "link": "", "children": []
+                    }
+                  ],
+                  "domain": [
+                    { "name": "Overview", "link": "is_overview", "children": [] },
+                    {
+                      "name": "Network", "link": "", "children": [
+                        {
+                          "name": "Domain", "link": "", "children": [
+                            { "name": "Overview", "link": "is_dnet_domain_traffic_overview", "children": [] },
+                            { "name": "Utilization %", "link": "is_dnet_domain_traffic_util_percent", "children": [] },
+                            { "name": "Utilization bps", "link": "is_dnet_domain_traffic_util_bps", "children": [] },
+                            { "name": "Congestion", "link": "is_dnet_domain_traffic_congestion", "children": [] },
+                            { "name": "Errors", "link": "is_dnet_domain_traffic_errors", "children": [] }
+                          ]
+                        },
+                        {
+                          "name": "Chassis", "link": "", "children": [
+                            { "name": "Overview", "link": "is_dnet_chassis_traffic_overview", "children": [] },
+                            { "name": "Utilization %", "link": "is_dnet_chassis_traffic_util_percent", "children": [] },
+                            { "name": "Utilization bps", "link": "is_dnet_chassis_traffic_util_bps", "children": [] },
+                            { "name": "Congestion", "link": "is_dnet_chassis_traffic_congestion", "children": [] },
+                            { "name": "Errors", "link": "is_dnet_chassis_traffic_errors", "children": [] }
+                          ]
+                        },
+                        {
+                          "name": "Server", "link": "", "children": [
+                            { "name": "Overview", "link": "is_dnet_server_traffic_overview", "children": [] },
+                            { "name": "Utilization %", "link": "is_dnet_server_traffic_util_percent", "children": [] },
+                            { "name": "Utilization bps", "link": "is_dnet_server_traffic_util_bps", "children": [] },
+                            { "name": "Congestion", "link": "is_dnet_server_traffic_congestion", "children": [] },
+                            { "name": "Errors", "link": "is_dnet_server_traffic_errors", "children": [] }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Environmental", "link": "", "children": [
+                        { "name": "Domain", "link": "is_environmental_domain", "children": [] },
+                        { "name": "Chassis", "link": "is_environmental_chassis", "children": [] }
+                      ]
+                    }
+                  ],
+                  "standalone": [],
+                  "edge": []
+                }
+            renderMode: data
+            styles: |
+                .row {
+                  display: flex;
+                  gap: max(4vw, 10px);
+                  border-bottom: 1px solid white;
+                  margin: 0 0 5px 8px;
+                  padding: 0 0 5px 0;
+                }
+
+                #platform_type {
+                  position: absolute;
+                  right: 8px;
+                  top: 8px;
+                }
+
+                #platform_type select {
+                  height: 28px;
+                  width: 120px;
+                  border: 1px solid white;
+                }
+
+                .button {
+                  padding: 4px 10px;
+                  background-color: #1e60c4;
+                  width: 128px;
+                  height: 29px;
+                  border-radius: 10px;
+                  text-align: center;
+                  vertical-align: middle;
+                  cursor: pointer;
+                }
+
+                .button-active {
+                  background-color: #8f3bb8;
+                }
+            wrap: false
+          pluginVersion: 5.7.0
           targets:
             - datasource:
                 type: datasource
@@ -223,13 +231,14 @@ spec:
               queryType: randomWalk
               refId: A
           title: ""
-          type: canvas
+          transparent: true
+          type: marcusolsson-dynamictext-panel
         - collapsed: false
           gridPos:
             h: 1
             w: 24
             x: 0
-            "y": 2
+            "y": 4
           id: 39
           panels: []
           title: 'Traffic Distribution: Ethernet Uplinks'
@@ -253,7 +262,7 @@ spec:
             h: 4
             w: 4
             x: 0
-            "y": 3
+            "y": 5
           id: 65
           options:
             colorMode: none
@@ -269,7 +278,7 @@ spec:
             showPercentChange: false
             textMode: auto
             wideLayout: true
-          pluginVersion: 12.0.0-85518.patch2-85619
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: timestamp
@@ -316,7 +325,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "search",
@@ -408,7 +417,7 @@ spec:
             h: 8
             w: 10
             x: 4
-            "y": 3
+            "y": 5
           id: 67
           options:
             legend:
@@ -420,7 +429,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-85518.patch2-85619
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: timestamp
@@ -476,7 +485,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "search",
@@ -568,7 +577,7 @@ spec:
             h: 8
             w: 10
             x: 14
-            "y": 3
+            "y": 5
           id: 68
           options:
             legend:
@@ -580,7 +589,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-85518.patch2-85619
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: timestamp
@@ -636,7 +645,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "search",
@@ -699,7 +708,7 @@ spec:
             h: 4
             w: 4
             x: 0
-            "y": 7
+            "y": 9
           id: 66
           options:
             colorMode: none
@@ -715,7 +724,7 @@ spec:
             showPercentChange: false
             textMode: auto
             wideLayout: true
-          pluginVersion: 12.0.0-85518.patch2-85619
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: timestamp
@@ -762,7 +771,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "search",
@@ -827,7 +836,7 @@ spec:
             h: 4
             w: 4
             x: 0
-            "y": 11
+            "y": 13
           id: 62
           options:
             colorMode: none
@@ -843,7 +852,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85518.patch2-85619
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: timestamp
@@ -890,7 +899,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "search",
@@ -984,7 +993,7 @@ spec:
             h: 8
             w: 10
             x: 4
-            "y": 11
+            "y": 13
           id: 60
           options:
             legend:
@@ -996,7 +1005,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-85518.patch2-85619
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: timestamp
@@ -1052,7 +1061,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "search",
@@ -1144,7 +1153,7 @@ spec:
             h: 8
             w: 10
             x: 14
-            "y": 11
+            "y": 13
           id: 61
           options:
             legend:
@@ -1156,7 +1165,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-85518.patch2-85619
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: timestamp
@@ -1212,7 +1221,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "search",
@@ -1275,7 +1284,7 @@ spec:
             h: 4
             w: 4
             x: 0
-            "y": 15
+            "y": 17
           id: 63
           options:
             colorMode: none
@@ -1291,7 +1300,7 @@ spec:
             showPercentChange: false
             textMode: auto
             wideLayout: true
-          pluginVersion: 12.0.0-85518.patch2-85619
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: timestamp
@@ -1338,7 +1347,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "search",
@@ -1387,7 +1396,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 19
+            "y": 21
           id: 37
           panels: []
           title: 'Traffic Distribution: Fibre Channel Uplinks'
@@ -1419,7 +1428,7 @@ spec:
             h: 4
             w: 4
             x: 0
-            "y": 20
+            "y": 22
           id: 71
           options:
             colorMode: none
@@ -1435,7 +1444,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85518.patch2-85619
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: timestamp
@@ -1482,7 +1491,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "search",
@@ -1582,7 +1591,7 @@ spec:
             h: 8
             w: 10
             x: 4
-            "y": 20
+            "y": 22
           id: 75
           options:
             legend:
@@ -1594,7 +1603,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-85518.patch2-85619
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: timestamp
@@ -1650,7 +1659,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "search",
@@ -1745,7 +1754,7 @@ spec:
             h: 8
             w: 10
             x: 14
-            "y": 20
+            "y": 22
           id: 76
           options:
             legend:
@@ -1757,7 +1766,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-85518.patch2-85619
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: timestamp
@@ -1813,7 +1822,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "search",
@@ -1885,7 +1894,7 @@ spec:
             h: 4
             w: 4
             x: 0
-            "y": 24
+            "y": 26
           id: 72
           options:
             colorMode: none
@@ -1901,7 +1910,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85518.patch2-85619
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: timestamp
@@ -1948,7 +1957,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "search",
@@ -2025,7 +2034,7 @@ spec:
             h: 4
             w: 4
             x: 0
-            "y": 28
+            "y": 30
           id: 69
           options:
             colorMode: none
@@ -2041,7 +2050,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85518.patch2-85619
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: timestamp
@@ -2088,7 +2097,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "search",
@@ -2188,7 +2197,7 @@ spec:
             h: 8
             w: 10
             x: 4
-            "y": 28
+            "y": 30
           id: 73
           options:
             legend:
@@ -2200,7 +2209,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-85518.patch2-85619
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: timestamp
@@ -2256,7 +2265,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "search",
@@ -2351,7 +2360,7 @@ spec:
             h: 8
             w: 10
             x: 14
-            "y": 28
+            "y": 30
           id: 74
           options:
             legend:
@@ -2363,7 +2372,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-85518.patch2-85619
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: timestamp
@@ -2419,7 +2428,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "search",
@@ -2491,7 +2500,7 @@ spec:
             h: 4
             w: 4
             x: 0
-            "y": 32
+            "y": 34
           id: 70
           options:
             colorMode: none
@@ -2554,7 +2563,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "search",
@@ -2609,7 +2618,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 36
+            "y": 38
           id: 41
           panels: []
           title: Utilization (%)
@@ -2722,7 +2731,7 @@ spec:
             h: 9
             w: 12
             x: 0
-            "y": 37
+            "y": 39
           id: 79
           options:
             cellHeight: sm
@@ -2783,7 +2792,7 @@ spec:
               url_options:
                 body_content_type: application/json
                 body_type: raw
-                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${Domain:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\",\n            \"vethernet\",\n            \"vfc\",\n            \"vnic\",\n            \"vhba\",\n            \"eth_uplink_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"doubleMax\",\n        \"name\": \"base_max_utilization\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_transmit_max\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"count\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_transmit_count\"\n      },\n      {\n        \"type\": \"doubleSum\",\n        \"name\": \"hw.network.bandwidth.utilization_transmit-Sum\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_transmit\"\n      }\n    ],\n    \"postAggregations\": [\n      {\n        \"type\": \"expression\",\n        \"name\": \"avg_utilization\",\n        \"expression\": \"(\\\"hw.network.bandwidth.utilization_transmit-Sum\\\" / \\\"count\\\")*100\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"max_utilization\",\n        \"expression\": \"\\\"base_max_utilization\\\"*100\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 100,\n      \"columns\": [{\n        \"dimension\" : \"avg_utilization\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
+                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${DomainName:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\",\n            \"vethernet\",\n            \"vfc\",\n            \"vnic\",\n            \"vhba\",\n            \"eth_uplink_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"doubleMax\",\n        \"name\": \"base_max_utilization\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_transmit_max\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"count\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_transmit_count\"\n      },\n      {\n        \"type\": \"doubleSum\",\n        \"name\": \"hw.network.bandwidth.utilization_transmit-Sum\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_transmit\"\n      }\n    ],\n    \"postAggregations\": [\n      {\n        \"type\": \"expression\",\n        \"name\": \"avg_utilization\",\n        \"expression\": \"(\\\"hw.network.bandwidth.utilization_transmit-Sum\\\" / \\\"count\\\")*100\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"max_utilization\",\n        \"expression\": \"\\\"base_max_utilization\\\"*100\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 100,\n      \"columns\": [{\n        \"dimension\" : \"avg_utilization\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
                 method: POST
           title: Transmit utilization in % per port
           transformations:
@@ -2921,7 +2930,7 @@ spec:
             h: 9
             w: 12
             x: 12
-            "y": 37
+            "y": 39
           id: 80
           options:
             cellHeight: sm
@@ -2936,7 +2945,7 @@ spec:
             sortBy:
                 - desc: true
                   displayName: Avg Utilization
-          pluginVersion: 12.0.0-85518.patch2-85619
+          pluginVersion: 12.0.0-85820.patch2-86140
           targets:
             - columns:
                 - selector: event.domain_name
@@ -2982,7 +2991,7 @@ spec:
               url_options:
                 body_content_type: application/json
                 body_type: raw
-                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${Domain:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\",\n            \"vethernet\",\n            \"vfc\",\n            \"vnic\",\n            \"vhba\",\n            \"eth_uplink_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"doubleMax\",\n        \"name\": \"base_max_utilization\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_receive_max\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"count\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_receive_count\"\n      },\n      {\n        \"type\": \"doubleSum\",\n        \"name\": \"hw.network.bandwidth.utilization_receive-Sum\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_receive\"\n      }\n    ],\n    \"postAggregations\": [\n      {\n        \"type\": \"expression\",\n        \"name\": \"avg_utilization\",\n        \"expression\": \"(\\\"hw.network.bandwidth.utilization_receive-Sum\\\" / \\\"count\\\")*100\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"max_utilization\",\n        \"expression\": \"\\\"base_max_utilization\\\"*100\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 100,\n      \"columns\": [{\n        \"dimension\" : \"avg_utilization\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
+                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${DomainName:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\",\n            \"vethernet\",\n            \"vfc\",\n            \"vnic\",\n            \"vhba\",\n            \"eth_uplink_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"doubleMax\",\n        \"name\": \"base_max_utilization\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_receive_max\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"count\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_receive_count\"\n      },\n      {\n        \"type\": \"doubleSum\",\n        \"name\": \"hw.network.bandwidth.utilization_receive-Sum\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_receive\"\n      }\n    ],\n    \"postAggregations\": [\n      {\n        \"type\": \"expression\",\n        \"name\": \"avg_utilization\",\n        \"expression\": \"(\\\"hw.network.bandwidth.utilization_receive-Sum\\\" / \\\"count\\\")*100\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"max_utilization\",\n        \"expression\": \"\\\"base_max_utilization\\\"*100\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 100,\n      \"columns\": [{\n        \"dimension\" : \"avg_utilization\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
                 method: POST
           title: Receive utilization in % per port
           transformations:
@@ -3017,7 +3026,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 46
+            "y": 48
           id: 43
           panels: []
           title: Utilization (bps)
@@ -3129,7 +3138,7 @@ spec:
             h: 9
             w: 12
             x: 0
-            "y": 47
+            "y": 49
           id: 77
           options:
             cellHeight: sm
@@ -3190,7 +3199,7 @@ spec:
               url_options:
                 body_content_type: application/json
                 body_type: raw
-                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${Domain:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\",\n            \"vethernet\",\n            \"vfc\",\n            \"vnic\",\n            \"vhba\",\n            \"eth_uplink_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"doubleMax\",\n        \"name\": \"base_utilization_max\",\n        \"fieldName\": \"hw.network.io_transmit_max\"\n      },\n      {\n        \"type\": \"doubleSum\",\n        \"name\": \"duration\",\n        \"fieldName\": \"hw.network.io_transmit_duration\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"sum\",\n        \"fieldName\": \"hw.network.io_transmit\"\n      },\n      {\n        \"type\": \"longLast\",\n        \"name\": \"base_link_speed\",\n        \"fieldName\": \"hw.network.bandwidth.limit\"\n      }\n    ],\n    \"postAggregations\": [\n      {\n        \"type\": \"expression\",\n        \"name\": \"max_utilization\",\n        \"expression\": \"(base_utilization_max*8)\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"avg_utilization\",\n        \"expression\": \"(\\\"sum\\\" / \\\"duration\\\")*8\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"link_speed\",\n        \"expression\": \"base_link_speed*8\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 100,\n      \"columns\": [{\n        \"dimension\" : \"avg_utilization\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
+                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${DomainName:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\",\n            \"vethernet\",\n            \"vfc\",\n            \"vnic\",\n            \"vhba\",\n            \"eth_uplink_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"doubleMax\",\n        \"name\": \"base_utilization_max\",\n        \"fieldName\": \"hw.network.io_transmit_max\"\n      },\n      {\n        \"type\": \"doubleSum\",\n        \"name\": \"duration\",\n        \"fieldName\": \"hw.network.io_transmit_duration\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"sum\",\n        \"fieldName\": \"hw.network.io_transmit\"\n      },\n      {\n        \"type\": \"longLast\",\n        \"name\": \"base_link_speed\",\n        \"fieldName\": \"hw.network.bandwidth.limit\"\n      }\n    ],\n    \"postAggregations\": [\n      {\n        \"type\": \"expression\",\n        \"name\": \"max_utilization\",\n        \"expression\": \"(base_utilization_max*8)\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"avg_utilization\",\n        \"expression\": \"(\\\"sum\\\" / \\\"duration\\\")*8\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"link_speed\",\n        \"expression\": \"base_link_speed*8\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 100,\n      \"columns\": [{\n        \"dimension\" : \"avg_utilization\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
                 method: POST
           title: Transmit utilization in bps per port
           transformations:
@@ -3327,7 +3336,7 @@ spec:
             h: 9
             w: 12
             x: 12
-            "y": 47
+            "y": 49
           id: 78
           options:
             cellHeight: sm
@@ -3388,7 +3397,7 @@ spec:
               url_options:
                 body_content_type: application/json
                 body_type: raw
-                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${Domain:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\",\n            \"vethernet\",\n            \"vfc\",\n            \"vnic\",\n            \"vhba\",\n            \"eth_uplink_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"doubleMax\",\n        \"name\": \"base_utilization_max\",\n        \"fieldName\": \"hw.network.io_receive_max\"\n      },\n      {\n        \"type\": \"doubleSum\",\n        \"name\": \"duration\",\n        \"fieldName\": \"hw.network.io_receive_duration\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"sum\",\n        \"fieldName\": \"hw.network.io_receive\"\n      },\n      {\n        \"type\": \"longLast\",\n        \"name\": \"base_link_speed\",\n        \"fieldName\": \"hw.network.bandwidth.limit\"\n      }\n    ],\n    \"postAggregations\": [\n      {\n        \"type\": \"expression\",\n        \"name\": \"max_utilization\",\n        \"expression\": \"(base_utilization_max*8)\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"avg_utilization\",\n        \"expression\": \"(\\\"sum\\\" / \\\"duration\\\")*8\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"link_speed\",\n        \"expression\": \"base_link_speed*8\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 100,\n      \"columns\": [{\n        \"dimension\" : \"avg_utilization\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
+                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${DomainName:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\",\n            \"vethernet\",\n            \"vfc\",\n            \"vnic\",\n            \"vhba\",\n            \"eth_uplink_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"doubleMax\",\n        \"name\": \"base_utilization_max\",\n        \"fieldName\": \"hw.network.io_receive_max\"\n      },\n      {\n        \"type\": \"doubleSum\",\n        \"name\": \"duration\",\n        \"fieldName\": \"hw.network.io_receive_duration\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"sum\",\n        \"fieldName\": \"hw.network.io_receive\"\n      },\n      {\n        \"type\": \"longLast\",\n        \"name\": \"base_link_speed\",\n        \"fieldName\": \"hw.network.bandwidth.limit\"\n      }\n    ],\n    \"postAggregations\": [\n      {\n        \"type\": \"expression\",\n        \"name\": \"max_utilization\",\n        \"expression\": \"(base_utilization_max*8)\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"avg_utilization\",\n        \"expression\": \"(\\\"sum\\\" / \\\"duration\\\")*8\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"link_speed\",\n        \"expression\": \"base_link_speed*8\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 100,\n      \"columns\": [{\n        \"dimension\" : \"avg_utilization\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
                 method: POST
           title: Receive utilization in bps per port
           transformations:
@@ -3423,7 +3432,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 56
+            "y": 58
           id: 42
           panels: []
           title: Congestion
@@ -3528,7 +3537,7 @@ spec:
             h: 9
             w: 12
             x: 0
-            "y": 57
+            "y": 59
           id: 50
           options:
             cellHeight: sm
@@ -3583,7 +3592,7 @@ spec:
               url_options:
                 body_content_type: application/json
                 body_type: raw
-                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${Domain:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"longSum\",\n        \"name\": \"pause\",\n        \"fieldName\": \"hw.errors_network_transmit_pause\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 100,\n      \"columns\": [{\n        \"dimension\" : \"pause\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
+                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${DomainName:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"longSum\",\n        \"name\": \"pause\",\n        \"fieldName\": \"hw.errors_network_transmit_pause\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 100,\n      \"columns\": [{\n        \"dimension\" : \"pause\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
                 method: POST
           title: Transmit pause frames per port (Sum)
           transformations:
@@ -3706,7 +3715,7 @@ spec:
             h: 9
             w: 12
             x: 12
-            "y": 57
+            "y": 59
           id: 51
           options:
             cellHeight: sm
@@ -3761,7 +3770,7 @@ spec:
               url_options:
                 body_content_type: application/json
                 body_type: raw
-                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${Domain:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"longSum\",\n        \"name\": \"pause\",\n        \"fieldName\": \"hw.errors_network_receive_pause\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 100,\n      \"columns\": [{\n        \"dimension\" : \"pause\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
+                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${DomainName:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"longSum\",\n        \"name\": \"pause\",\n        \"fieldName\": \"hw.errors_network_receive_pause\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 100,\n      \"columns\": [{\n        \"dimension\" : \"pause\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
                 method: POST
           title: Receive pause frames per port (Sum)
           transformations:
@@ -3789,7 +3798,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 66
+            "y": 68
           id: 40
           panels: []
           title: Errors
@@ -3879,7 +3888,7 @@ spec:
             h: 8
             w: 24
             x: 0
-            "y": 67
+            "y": 69
           id: 49
           options:
             cellHeight: sm
@@ -3970,7 +3979,7 @@ spec:
               url_options:
                 body_content_type: application/json
                 body_type: raw
-                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"port_role\",\n      \"name\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${Domain:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"vethernet\",\n            \"host_pc\",\n            \"fabric_pc\",\n            \"server_pc\",\n            \"unconfigured\",\n            \"eth_uplink_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"longSum\",\n        \"name\": \"runt\",\n        \"fieldName\": \"hw.errors_network_receive_runt\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"too_long\",\n        \"fieldName\": \"hw.errors_network_receive_too_long\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"crc\",\n        \"fieldName\": \"hw.errors_network_receive_crc\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"no_buffer\",\n        \"fieldName\": \"hw.errors_network_receive_no_buffer\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"too_short\",\n        \"fieldName\": \"hw.errors_network_receive_too_short\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"rx_discard\",\n        \"fieldName\": \"hw.errors_network_receive_discard\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"deferred\",\n        \"fieldName\": \"hw.errors_network_transmit_deferred\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"late_collisions\",\n        \"fieldName\": \"hw.errors_network_late_collisions\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"carrier_sense\",\n        \"fieldName\": \"hw.errors_network_carrier_sense\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"tx_discard\",\n        \"fieldName\": \"hw.errors_network_transmit_discard\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"jabber\",\n        \"fieldName\": \"hw.errors_network_transmit_jabber\"\n      }\n    ],\n    \"postAggregations\": [\n      {\n        \"type\": \"expression\",\n        \"name\": \"rx_sum\",\n        \"expression\": \"\\\"rx_discard\\\" + \\\"too_short\\\" + \\\"no_buffer\\\" + \\\"crc\\\" + \\\"too_long\\\" + \\\"runt\\\"\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"tx_sum\",\n        \"expression\": \"\\\"jabber\\\" + \\\"tx_discard\\\" + \\\"carrier_sense\\\" + \\\"late_collisions\\\" + \\\"deferred\\\"\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"total\",\n        \"expression\": \"\\\"tx_sum\\\" + \\\"rx_sum\\\"\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 100,\n      \"columns\": [{\n        \"dimension\" : \"total\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
+                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"port_role\",\n      \"name\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${DomainName:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"vethernet\",\n            \"host_pc\",\n            \"fabric_pc\",\n            \"server_pc\",\n            \"unconfigured\",\n            \"eth_uplink_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"longSum\",\n        \"name\": \"runt\",\n        \"fieldName\": \"hw.errors_network_receive_runt\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"too_long\",\n        \"fieldName\": \"hw.errors_network_receive_too_long\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"crc\",\n        \"fieldName\": \"hw.errors_network_receive_crc\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"no_buffer\",\n        \"fieldName\": \"hw.errors_network_receive_no_buffer\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"too_short\",\n        \"fieldName\": \"hw.errors_network_receive_too_short\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"rx_discard\",\n        \"fieldName\": \"hw.errors_network_receive_discard\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"deferred\",\n        \"fieldName\": \"hw.errors_network_transmit_deferred\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"late_collisions\",\n        \"fieldName\": \"hw.errors_network_late_collisions\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"carrier_sense\",\n        \"fieldName\": \"hw.errors_network_carrier_sense\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"tx_discard\",\n        \"fieldName\": \"hw.errors_network_transmit_discard\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"jabber\",\n        \"fieldName\": \"hw.errors_network_transmit_jabber\"\n      }\n    ],\n    \"postAggregations\": [\n      {\n        \"type\": \"expression\",\n        \"name\": \"rx_sum\",\n        \"expression\": \"\\\"rx_discard\\\" + \\\"too_short\\\" + \\\"no_buffer\\\" + \\\"crc\\\" + \\\"too_long\\\" + \\\"runt\\\"\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"tx_sum\",\n        \"expression\": \"\\\"jabber\\\" + \\\"tx_discard\\\" + \\\"carrier_sense\\\" + \\\"late_collisions\\\" + \\\"deferred\\\"\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"total\",\n        \"expression\": \"\\\"tx_sum\\\" + \\\"rx_sum\\\"\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 100,\n      \"columns\": [{\n        \"dimension\" : \"total\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
                 method: POST
           title: ""
           transformations:
@@ -4014,7 +4023,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 75
+            "y": 77
           id: 38
           panels: []
           title: Server Utilization
@@ -4056,7 +4065,7 @@ spec:
             h: 9
             w: 12
             x: 0
-            "y": 76
+            "y": 78
           id: 47
           options:
             cellHeight: sm
@@ -4141,7 +4150,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "in",
@@ -4222,7 +4231,7 @@ spec:
             h: 9
             w: 12
             x: 12
-            "y": 76
+            "y": 78
           id: 48
           options:
             cellHeight: sm
@@ -4307,7 +4316,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "in",
@@ -4388,7 +4397,7 @@ spec:
             h: 9
             w: 12
             x: 0
-            "y": 85
+            "y": 87
           id: 81
           options:
             cellHeight: sm
@@ -4473,7 +4482,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "in",
@@ -4554,7 +4563,7 @@ spec:
             h: 9
             w: 12
             x: 12
-            "y": 85
+            "y": 87
           id: 82
           options:
             cellHeight: sm
@@ -4639,7 +4648,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "in",
@@ -4702,15 +4711,17 @@ spec:
             - current:
                 text:
                     - sgaree-sj2-151-b18-6536-1
+                    - B26-6454-Matt
                 value:
                     - sgaree-sj2-151-b18-6536-1
+                    - B26-6454-Matt
               datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
               definition: ""
               label: Domain
               multi: true
-              name: Domain
+              name: DomainName
               options: []
               query:
                 infinityQuery:

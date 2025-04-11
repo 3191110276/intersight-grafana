@@ -1,7 +1,9 @@
 apiVersion: grizzly.grafana.com/v1alpha1
 kind: DashboardFolder
 metadata:
-  name: is_environmental
+    name: is_environmental
 spec:
-  parentUid: intersight
-  title: Environmental
+    orgId: 1
+    parentUid: intersight
+    title: Environmental
+    uid: is_environmental

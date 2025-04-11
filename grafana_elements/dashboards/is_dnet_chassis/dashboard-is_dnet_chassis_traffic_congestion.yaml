@@ -1,8 +1,8 @@
 apiVersion: grizzly.grafana.com/v1alpha1
 kind: Dashboard
 metadata:
-    folder: is_dnet_domain
-    name: is_dnet_domain_traffic_congestion
+    folder: is_dnet_chassis
+    name: is_dnet_chassis_traffic_congestion
 spec:
     annotations:
         list:
@@ -133,7 +133,7 @@ spec:
                 - afterRender
             externalStyles: []
             helpers: |-
-                current_item = ["domain", "Network", "Domain", "Congestion"]
+                current_item = ["domain", "Network", "Chassis", "Congestion"]
 
                 nav = {
                   "overview": [
@@ -262,5 +262,5 @@ spec:
         to: now
     timepicker: {}
     timezone: browser
-    title: 'Domain Traffic Verification: Congestion'
-    uid: is_dnet_domain_traffic_congestion
+    title: 'Chassis Traffic Verification: Congestion'
+    uid: is_dnet_chassis_traffic_congestion
