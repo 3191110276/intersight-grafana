@@ -1584,7 +1584,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns:
                 - selector: timestamp
@@ -1819,7 +1819,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns:
                 - selector: timestamp
@@ -2054,7 +2054,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns:
                 - selector: timestamp
@@ -2289,7 +2289,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns:
                 - selector: timestamp
@@ -2561,7 +2561,7 @@ spec:
             sortBy:
                 - desc: true
                   displayName: Total
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns:
                 - selector: event.domain_name
@@ -2890,7 +2890,7 @@ spec:
             sortBy:
                 - desc: true
                   displayName: Total
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns:
                 - selector: event.domain_name
@@ -3234,7 +3234,7 @@ spec:
             sortBy:
                 - desc: true
                   displayName: Total
-          pluginVersion: 12.0.0-85518.patch2-85619
+          pluginVersion: 12.0.0-86517
           targets:
             - columns:
                 - selector: event.domain_name
@@ -3512,7 +3512,7 @@ spec:
             sortBy:
                 - desc: true
                   displayName: Total
-          pluginVersion: 12.0.0-85518.patch2-85619
+          pluginVersion: 12.0.0-86517
           targets:
             - columns:
                 - selector: event.domain_name
@@ -3810,7 +3810,7 @@ spec:
                         type: color-background
                         wrapText: false
                     - id: custom.width
-                      value: 140
+                      value: 100
                 - matcher:
                     id: byName
                     options: Chassis
@@ -3860,7 +3860,7 @@ spec:
             sortBy:
                 - desc: true
                   displayName: Total
-          pluginVersion: 12.0.0-85518.patch2-85619
+          pluginVersion: 12.0.0-86517
           targets:
             - columns:
                 - selector: event.domain_name
@@ -4098,7 +4098,7 @@ spec:
                 show: false
             showHeader: true
             sortBy: []
-          pluginVersion: 12.0.0-85518.patch2-85619
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               data: |-
@@ -4199,6 +4199,7 @@ spec:
                 queryType: infinity
               refresh: 1
               regex: (.*) FI-A
+              sort: 7
               type: query
     time:
         from: now-7d

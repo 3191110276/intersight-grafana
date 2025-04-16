@@ -433,7 +433,7 @@ spec:
                     }
                   ],
                   "domain": [
-                    { "name": "Overview", "link": "is_overview" },
+                    { "name": "Overview", "link": "is_overview", "children": [] },
                     {
                       "name": "Network", "link": "", "children": [
                         {
@@ -445,7 +445,15 @@ spec:
                             { "name": "Errors", "link": "is_dnet_domain_traffic_errors", "children": [] }
                           ]
                         },
-                        { "name": "Chassis", "link": "", "children": [] },
+                        {
+                          "name": "Chassis", "link": "", "children": [
+                            { "name": "Overview", "link": "is_dnet_chassis_traffic_overview", "children": [] },
+                            { "name": "Utilization %", "link": "is_dnet_chassis_traffic_util_percent", "children": [] },
+                            { "name": "Utilization bps", "link": "is_dnet_chassis_traffic_util_bps", "children": [] },
+                            { "name": "Congestion", "link": "is_dnet_chassis_traffic_congestion", "children": [] },
+                            { "name": "Errors", "link": "is_dnet_chassis_traffic_errors", "children": [] }
+                          ]
+                        },
                         {
                           "name": "Server", "link": "", "children": [
                             { "name": "Overview", "link": "is_dnet_server_traffic_overview", "children": [] },
@@ -1425,7 +1433,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: none
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns:
                 - selector: timestamp
@@ -1647,7 +1655,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: none
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns:
                 - selector: timestamp
@@ -1869,7 +1877,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: none
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns:
                 - selector: timestamp
@@ -2091,7 +2099,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: none
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns:
                 - selector: timestamp
@@ -2323,7 +2331,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: none
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns:
                 - selector: timestamp
@@ -2533,7 +2541,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: none
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns:
                 - selector: timestamp
@@ -4347,6 +4355,7 @@ spec:
                 queryType: infinity
               refresh: 1
               regex: (.*) FI-A
+              sort: 7
               type: query
             - current:
                 text: OCP-VIRT-02
@@ -4379,6 +4388,7 @@ spec:
                 queryType: infinity
               refresh: 1
               regex: ""
+              sort: 7
               type: query
             - current:
                 text: 66793b2277696e320157c878

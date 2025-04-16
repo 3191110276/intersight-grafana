@@ -1088,7 +1088,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns:
                 - selector: timestamp
@@ -1279,7 +1279,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns:
                 - selector: timestamp
@@ -1470,7 +1470,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns:
                 - selector: timestamp
@@ -1661,7 +1661,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns:
                 - selector: timestamp
@@ -2633,7 +2633,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns:
                 - selector: timestamp
@@ -2823,7 +2823,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns:
                 - selector: timestamp
@@ -3013,7 +3013,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns:
                 - selector: timestamp
@@ -3203,7 +3203,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns:
                 - selector: timestamp
@@ -4849,6 +4849,7 @@ spec:
                 queryType: infinity
               refresh: 1
               regex: (.*) FI-A
+              sort: 7
               type: query
     time:
         from: now-7d

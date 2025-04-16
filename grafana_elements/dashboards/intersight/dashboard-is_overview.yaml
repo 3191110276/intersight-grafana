@@ -249,7 +249,7 @@ spec:
                 showMiniMap: false
             content: ""
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -277,7 +277,7 @@ spec:
                      </tr>
                 </table>
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -297,7 +297,7 @@ spec:
                 showMiniMap: false
             content: ""
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -325,7 +325,7 @@ spec:
                      </tr>
                 </table>
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -345,7 +345,7 @@ spec:
                 showMiniMap: false
             content: ""
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -373,7 +373,7 @@ spec:
                      </tr>
                 </table>
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -398,7 +398,7 @@ spec:
                      </tr>
                 </table>
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -437,7 +437,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -551,7 +551,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -665,7 +665,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -760,7 +760,7 @@ spec:
                 showMiniMap: false
             content: ""
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -799,7 +799,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -913,7 +913,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -1027,7 +1027,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -1122,7 +1122,7 @@ spec:
                 showMiniMap: false
             content: ""
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -1161,7 +1161,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -1275,7 +1275,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -1389,7 +1389,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -1489,7 +1489,7 @@ spec:
                      </tr>
                 </table>
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -1528,7 +1528,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -1642,7 +1642,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -1756,7 +1756,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -1851,7 +1851,7 @@ spec:
                 showMiniMap: false
             content: ""
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -1890,7 +1890,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -2004,7 +2004,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -2118,7 +2118,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -2213,7 +2213,7 @@ spec:
                 showMiniMap: false
             content: ""
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -2252,7 +2252,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -2366,7 +2366,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -2480,7 +2480,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -2580,7 +2580,7 @@ spec:
                      </tr>
                 </table>
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -2619,7 +2619,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -2733,7 +2733,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -2847,7 +2847,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -2942,7 +2942,7 @@ spec:
                 showMiniMap: false
             content: ""
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -2981,7 +2981,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -3095,7 +3095,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -3209,7 +3209,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -3304,7 +3304,7 @@ spec:
                 showMiniMap: false
             content: ""
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -3343,7 +3343,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -3457,7 +3457,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -3571,7 +3571,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -3671,7 +3671,7 @@ spec:
                      </tr>
                 </table>
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -3710,7 +3710,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -3805,7 +3805,7 @@ spec:
                 showMiniMap: false
             content: ""
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -3833,7 +3833,7 @@ spec:
                      </tr>
                 </table>
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           type: text
         - fieldConfig:
@@ -3852,7 +3852,7 @@ spec:
                 showMiniMap: false
             content: ""
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -3891,7 +3891,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -3991,7 +3991,7 @@ spec:
                      </tr>
                 </table>
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -4030,7 +4030,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -4144,7 +4144,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -4239,7 +4239,7 @@ spec:
                 showMiniMap: false
             content: ""
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -4278,7 +4278,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -4392,7 +4392,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -4487,7 +4487,7 @@ spec:
                 showMiniMap: false
             content: ""
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -4526,7 +4526,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -4640,7 +4640,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -4740,7 +4740,7 @@ spec:
                      </tr>
                 </table>
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -4768,7 +4768,7 @@ spec:
                      </tr>
                 </table>
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           type: text
         - fieldConfig:
@@ -4787,7 +4787,7 @@ spec:
                 showMiniMap: false
             content: ""
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -4827,7 +4827,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -4947,7 +4947,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -5071,7 +5071,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -5171,7 +5171,7 @@ spec:
                 showMiniMap: false
             content: ""
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -5211,7 +5211,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -5327,7 +5327,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -5447,7 +5447,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -5548,7 +5548,7 @@ spec:
                      </tr>
                 </table>
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -5576,7 +5576,7 @@ spec:
                      </tr>
                 </table>
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           type: text
         - fieldConfig:
@@ -5595,7 +5595,7 @@ spec:
                 showMiniMap: false
             content: ""
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -5635,7 +5635,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -5755,7 +5755,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -5879,7 +5879,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -5979,7 +5979,7 @@ spec:
                 showMiniMap: false
             content: ""
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -6019,7 +6019,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -6135,7 +6135,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -6255,7 +6255,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -6356,7 +6356,7 @@ spec:
                      </tr>
                 </table>
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -6384,7 +6384,7 @@ spec:
                      </tr>
                 </table>
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           type: text
         - fieldConfig:
@@ -6403,7 +6403,7 @@ spec:
                 showMiniMap: false
             content: ""
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -6431,7 +6431,7 @@ spec:
                      </tr>
                 </table>
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           type: text
         - fieldConfig:
@@ -6450,7 +6450,7 @@ spec:
                 showMiniMap: false
             content: ""
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -6490,7 +6490,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -6606,7 +6606,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -6726,7 +6726,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -6827,7 +6827,7 @@ spec:
                      </tr>
                 </table>
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -6855,7 +6855,7 @@ spec:
                      </tr>
                 </table>
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           type: text
         - fieldConfig:
@@ -6874,7 +6874,7 @@ spec:
                 showMiniMap: false
             content: ""
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -6902,7 +6902,7 @@ spec:
                      </tr>
                 </table>
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           type: text
         - fieldConfig:
@@ -6921,7 +6921,7 @@ spec:
                 showMiniMap: false
             content: ""
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -6961,7 +6961,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -7077,7 +7077,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -7197,7 +7197,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -7298,7 +7298,7 @@ spec:
                      </tr>
                 </table>
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -7338,7 +7338,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -7491,7 +7491,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -7648,7 +7648,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -7781,7 +7781,7 @@ spec:
                 showMiniMap: false
             content: ""
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -7809,7 +7809,7 @@ spec:
                      </tr>
                 </table>
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           type: text
         - fieldConfig:
@@ -7828,7 +7828,7 @@ spec:
                 showMiniMap: false
             content: ""
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -7868,7 +7868,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -8018,7 +8018,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -8172,7 +8172,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -8307,7 +8307,7 @@ spec:
                      </tr>
                 </table>
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -8347,7 +8347,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -8457,7 +8457,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -8572,7 +8572,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -8663,7 +8663,7 @@ spec:
                 showMiniMap: false
             content: ""
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -8691,7 +8691,7 @@ spec:
                      </tr>
                 </table>
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           type: text
         - fieldConfig:
@@ -8710,7 +8710,7 @@ spec:
                 showMiniMap: false
             content: ""
             mode: html
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           title: ""
           transparent: true
           type: text
@@ -8750,7 +8750,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -8870,7 +8870,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
@@ -8994,7 +8994,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns: []
               datasource:
