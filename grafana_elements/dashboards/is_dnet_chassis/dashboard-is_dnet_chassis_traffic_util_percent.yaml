@@ -4042,7 +4042,7 @@ spec:
                         ]
                       }
                 method: POST
-          title: 'B: Transmit utilization in % per FI downlink port (Max)'
+          title: 'B: Receive utilization in % per FI downlink port (Max)'
           transformations:
             - id: calculateField
               options:
@@ -5014,6 +5014,38 @@ spec:
               options:
                 regex: (.*)Ethernet(.*)
                 renamePattern: $1$2
+            - id: renameByRegex
+              options:
+                regex: (1/1/[1-4])
+                renamePattern: Slot 1 ($1)
+            - id: renameByRegex
+              options:
+                regex: (1/1/[5-8])
+                renamePattern: Slot 2 ($1)
+            - id: renameByRegex
+              options:
+                regex: (1/1/([9]|1[0-2]))
+                renamePattern: Slot 3 ($1)
+            - id: renameByRegex
+              options:
+                regex: (1/1/1[3-6])
+                renamePattern: Slot 4 ($1)
+            - id: renameByRegex
+              options:
+                regex: (1/1/(1[7-9]|20))
+                renamePattern: Slot 5 ($1)
+            - id: renameByRegex
+              options:
+                regex: (1/1/2[1-4])
+                renamePattern: Slot 6 ($1)
+            - id: renameByRegex
+              options:
+                regex: (1/1/2[5-8])
+                renamePattern: Slot 7 ($1)
+            - id: renameByRegex
+              options:
+                regex: (1/1/(29|3[0-2]))
+                renamePattern: Slot 8 ($1)
           type: timeseries
         - datasource:
             type: yesoreyeram-infinity-datasource
@@ -5197,6 +5229,38 @@ spec:
               options:
                 regex: (.*)Ethernet(.*)
                 renamePattern: $1$2
+            - id: renameByRegex
+              options:
+                regex: (1/1/[1-4])
+                renamePattern: Slot 1 ($1)
+            - id: renameByRegex
+              options:
+                regex: (1/1/[5-8])
+                renamePattern: Slot 2 ($1)
+            - id: renameByRegex
+              options:
+                regex: (1/1/([9]|1[0-2]))
+                renamePattern: Slot 3 ($1)
+            - id: renameByRegex
+              options:
+                regex: (1/1/1[3-6])
+                renamePattern: Slot 4 ($1)
+            - id: renameByRegex
+              options:
+                regex: (1/1/(1[7-9]|20))
+                renamePattern: Slot 5 ($1)
+            - id: renameByRegex
+              options:
+                regex: (1/1/2[1-4])
+                renamePattern: Slot 6 ($1)
+            - id: renameByRegex
+              options:
+                regex: (1/1/2[5-8])
+                renamePattern: Slot 7 ($1)
+            - id: renameByRegex
+              options:
+                regex: (1/1/(29|3[0-2]))
+                renamePattern: Slot 8 ($1)
           type: timeseries
         - datasource:
             type: yesoreyeram-infinity-datasource
@@ -5380,6 +5444,38 @@ spec:
               options:
                 regex: (.*)Ethernet(.*)
                 renamePattern: $1$2
+            - id: renameByRegex
+              options:
+                regex: (1/1/[1-4])
+                renamePattern: Slot 1 ($1)
+            - id: renameByRegex
+              options:
+                regex: (1/1/[5-8])
+                renamePattern: Slot 2 ($1)
+            - id: renameByRegex
+              options:
+                regex: (1/1/([9]|1[0-2]))
+                renamePattern: Slot 3 ($1)
+            - id: renameByRegex
+              options:
+                regex: (1/1/1[3-6])
+                renamePattern: Slot 4 ($1)
+            - id: renameByRegex
+              options:
+                regex: (1/1/(1[7-9]|20))
+                renamePattern: Slot 5 ($1)
+            - id: renameByRegex
+              options:
+                regex: (1/1/2[1-4])
+                renamePattern: Slot 6 ($1)
+            - id: renameByRegex
+              options:
+                regex: (1/1/2[5-8])
+                renamePattern: Slot 7 ($1)
+            - id: renameByRegex
+              options:
+                regex: (1/1/(29|3[0-2]))
+                renamePattern: Slot 8 ($1)
           type: timeseries
         - datasource:
             type: yesoreyeram-infinity-datasource
@@ -5563,6 +5659,38 @@ spec:
               options:
                 regex: (.*)Ethernet(.*)
                 renamePattern: $1$2
+            - id: renameByRegex
+              options:
+                regex: (1/1/[1-4])
+                renamePattern: Slot 1 ($1)
+            - id: renameByRegex
+              options:
+                regex: (1/1/[5-8])
+                renamePattern: Slot 2 ($1)
+            - id: renameByRegex
+              options:
+                regex: (1/1/([9]|1[0-2]))
+                renamePattern: Slot 3 ($1)
+            - id: renameByRegex
+              options:
+                regex: (1/1/1[3-6])
+                renamePattern: Slot 4 ($1)
+            - id: renameByRegex
+              options:
+                regex: (1/1/(1[7-9]|20))
+                renamePattern: Slot 5 ($1)
+            - id: renameByRegex
+              options:
+                regex: (1/1/2[1-4])
+                renamePattern: Slot 6 ($1)
+            - id: renameByRegex
+              options:
+                regex: (1/1/2[5-8])
+                renamePattern: Slot 7 ($1)
+            - id: renameByRegex
+              options:
+                regex: (1/1/(29|3[0-2]))
+                renamePattern: Slot 8 ($1)
           type: timeseries
     preload: false
     refresh: ""
@@ -5581,12 +5709,8 @@ spec:
               regex: ""
               type: datasource
             - current:
-                text:
-                    - sgaree-sj2-151-b18-6536-1
-                    - B26-6454-Matt
-                value:
-                    - sgaree-sj2-151-b18-6536-1
-                    - B26-6454-Matt
+                text: B26-6454-Matt
+                value: B26-6454-Matt
               datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
@@ -5644,7 +5768,7 @@ spec:
                     root_selector: $.Results
                     source: url
                     type: json
-                    url: /api/v1/equipment/Chasses?$filter=contains(Name,'$DomainName')
+                    url: /api/v1/equipment/Chasses?$filter=startswith(Name, '${DomainName}') and not(Model eq 'N20-C6508' or Model eq 'UCSB-5108-AC2')
                     url_options:
                         data: ""
                         method: GET
@@ -5825,7 +5949,7 @@ spec:
               regex: ""
               type: query
     time:
-        from: now-7d
+        from: now-6h
         to: now
     timepicker: {}
     timezone: browser

@@ -378,7 +378,7 @@ spec:
                                 {
                                   "type": "in",
                                   "dimension": "intersight.domain.name",
-                                  "values": [${Domain:doublequote}]
+                                  "values": [${DomainName:doublequote}]
                                 }
                               ]
                             },
@@ -543,7 +543,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "selector",
@@ -711,7 +711,7 @@ spec:
                               {
                                 "type": "in",
                                 "dimension": "intersight.domain.name",
-                                "values": [${Domain:doublequote}]
+                                "values": [${DomainName:doublequote}]
                               },
                               {
                                 "type": "selector",
@@ -870,7 +870,7 @@ spec:
                             {
                                 "type": "in",
                                 "dimension": "intersight.domain.name",
-                                "values": [${Domain:doublequote}]
+                                "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "selector",
@@ -1058,7 +1058,7 @@ spec:
                             {
                                 "type": "in",
                                 "dimension": "intersight.domain.name",
-                                "values": [${Domain:doublequote}]
+                                "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "selector",
@@ -1230,7 +1230,7 @@ spec:
                             {
                               "type": "in",
                               "dimension": "intersight.domain.name",
-                              "values": [${Domain:doublequote}]
+                              "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "selector",
@@ -1387,7 +1387,7 @@ spec:
               url_options:
                 body_content_type: application/json
                 body_type: raw
-                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"PhysicalEntities\",\n    \"granularity\": {\n      \"type\": \"duration\",\n      \"duration\": $__interval_ms,\n      \"timeZone\": \"$__timezone\"\n    },\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\"host_name\"],\n    \"virtualColumns\": [{\n          \"type\": \"nested-field\",\n          \"columnName\": \"host.name\",\n          \"outputName\": \"host_name\",\n          \"expectedType\": \"STRING\",\n          \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n            \"type\": \"in\",\n            \"dimension\": \"intersight.domain.name\",\n            \"values\": [${Domain:doublequote}]\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"host.type\",\n          \"value\": \"network.Element\"\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.temperature\"\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"search\",\n          \"dimension\": \"sensor_location\",\n          \"query\": {\n            \"type\": \"insensitive_contains\",\n            \"value\": \"fi_transceiver\"\n          }\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"name\",\n          \"value\": \"BACK\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"longSum\",\n        \"name\": \"count\",\n        \"fieldName\": \"hw.temperature_count\"\n      },\n      {\n        \"type\": \"doubleSum\",\n        \"name\": \"hw.temperature-Sum\",\n        \"fieldName\": \"hw.temperature\"\n      }\n    ],\n    \"postAggregations\": [\n      {\n        \"type\": \"expression\",\n        \"name\": \"hw-temperature-Avg\",\n        \"expression\": \"(\\\"hw.temperature-Sum\\\" / \\\"count\\\")\"\n      }\n    ]\n  }"
+                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"PhysicalEntities\",\n    \"granularity\": {\n      \"type\": \"duration\",\n      \"duration\": $__interval_ms,\n      \"timeZone\": \"$__timezone\"\n    },\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\"host_name\"],\n    \"virtualColumns\": [{\n          \"type\": \"nested-field\",\n          \"columnName\": \"host.name\",\n          \"outputName\": \"host_name\",\n          \"expectedType\": \"STRING\",\n          \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n            \"type\": \"in\",\n            \"dimension\": \"intersight.domain.name\",\n            \"values\": [${DomainName:doublequote}]\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"host.type\",\n          \"value\": \"network.Element\"\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.temperature\"\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"search\",\n          \"dimension\": \"sensor_location\",\n          \"query\": {\n            \"type\": \"insensitive_contains\",\n            \"value\": \"fi_transceiver\"\n          }\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"name\",\n          \"value\": \"BACK\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"longSum\",\n        \"name\": \"count\",\n        \"fieldName\": \"hw.temperature_count\"\n      },\n      {\n        \"type\": \"doubleSum\",\n        \"name\": \"hw.temperature-Sum\",\n        \"fieldName\": \"hw.temperature\"\n      }\n    ],\n    \"postAggregations\": [\n      {\n        \"type\": \"expression\",\n        \"name\": \"hw-temperature-Avg\",\n        \"expression\": \"(\\\"hw.temperature-Sum\\\" / \\\"count\\\")\"\n      }\n    ]\n  }"
                 method: POST
           title: Intake Temperature (Avg)
           transformations:
@@ -1501,7 +1501,7 @@ spec:
               url_options:
                 body_content_type: application/json
                 body_type: raw
-                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"PhysicalEntities\",\n    \"granularity\": {\n      \"type\": \"duration\",\n      \"duration\": $__interval_ms,\n      \"timeZone\": \"$__timezone\"\n    },\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\"host_name\"],\n    \"virtualColumns\": [{\n          \"type\": \"nested-field\",\n          \"columnName\": \"host.name\",\n          \"outputName\": \"host_name\",\n          \"expectedType\": \"STRING\",\n          \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n            \"type\": \"in\",\n            \"dimension\": \"intersight.domain.name\",\n            \"values\": [${Domain:doublequote}]\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"host.type\",\n          \"value\": \"network.Element\"\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.temperature\"\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"search\",\n          \"dimension\": \"sensor_location\",\n          \"query\": {\n            \"type\": \"insensitive_contains\",\n            \"value\": \"fi_transceiver\"\n          }\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"name\",\n          \"value\": \"FRONT\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"longSum\",\n        \"name\": \"count\",\n        \"fieldName\": \"hw.temperature_count\"\n      },\n      {\n        \"type\": \"doubleSum\",\n        \"name\": \"hw.temperature-Sum\",\n        \"fieldName\": \"hw.temperature\"\n      }\n    ],\n    \"postAggregations\": [\n      {\n        \"type\": \"expression\",\n        \"name\": \"hw-temperature-Avg\",\n        \"expression\": \"(\\\"hw.temperature-Sum\\\" / \\\"count\\\")\"\n      }\n    ]\n  }"
+                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"PhysicalEntities\",\n    \"granularity\": {\n      \"type\": \"duration\",\n      \"duration\": $__interval_ms,\n      \"timeZone\": \"$__timezone\"\n    },\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\"host_name\"],\n    \"virtualColumns\": [{\n          \"type\": \"nested-field\",\n          \"columnName\": \"host.name\",\n          \"outputName\": \"host_name\",\n          \"expectedType\": \"STRING\",\n          \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n            \"type\": \"in\",\n            \"dimension\": \"intersight.domain.name\",\n            \"values\": [${DomainName:doublequote}]\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"host.type\",\n          \"value\": \"network.Element\"\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.temperature\"\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"search\",\n          \"dimension\": \"sensor_location\",\n          \"query\": {\n            \"type\": \"insensitive_contains\",\n            \"value\": \"fi_transceiver\"\n          }\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"name\",\n          \"value\": \"FRONT\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"longSum\",\n        \"name\": \"count\",\n        \"fieldName\": \"hw.temperature_count\"\n      },\n      {\n        \"type\": \"doubleSum\",\n        \"name\": \"hw.temperature-Sum\",\n        \"fieldName\": \"hw.temperature\"\n      }\n    ],\n    \"postAggregations\": [\n      {\n        \"type\": \"expression\",\n        \"name\": \"hw-temperature-Avg\",\n        \"expression\": \"(\\\"hw.temperature-Sum\\\" / \\\"count\\\")\"\n      }\n    ]\n  }"
                 method: POST
           title: Exhaust Temperature (Avg)
           transformations:
@@ -1673,7 +1673,7 @@ spec:
                             {
                                 "type": "in",
                                 "dimension": "intersight.domain.name",
-                                "values": [${Domain:doublequote}]
+                                "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "selector",
@@ -1873,7 +1873,7 @@ spec:
                             {
                                 "type": "in",
                                 "dimension": "intersight.domain.name",
-                                "values": [${Domain:doublequote}]
+                                "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "selector",
@@ -2033,7 +2033,7 @@ spec:
                             {
                                 "type": "in",
                                 "dimension": "intersight.domain.name",
-                                "values": [${Domain:doublequote}]
+                                "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "selector",
@@ -2203,7 +2203,7 @@ spec:
                             {
                                 "type": "in",
                                 "dimension": "intersight.domain.name",
-                                "values": [${Domain:doublequote}]
+                                "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "selector",
@@ -2360,7 +2360,7 @@ spec:
                             {
                                 "type": "in",
                                 "dimension": "intersight.domain.name",
-                                "values": [${Domain:doublequote}]
+                                "values": [${DomainName:doublequote}]
                             },
                             {
                               "type": "selector",
@@ -2439,15 +2439,17 @@ spec:
               regex: ""
               type: datasource
             - current:
-                text: int-tme-ucs-10
-                value: int-tme-ucs-10
+                text:
+                    - int-tme-ucs-10
+                value:
+                    - int-tme-ucs-10
               datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
               definition: ""
               label: Domain
               multi: true
-              name: Domain
+              name: DomainName
               options: []
               query:
                 infinityQuery:
@@ -2474,7 +2476,7 @@ spec:
               sort: 7
               type: query
     time:
-        from: now-30d
+        from: now-6h
         to: now
     timepicker:
         nowDelay: 1m

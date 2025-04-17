@@ -257,7 +257,7 @@ spec:
                 h: 16
                 w: 8
                 x: 0
-                "y": 1
+                "y": 4
               id: 43
               options:
                 afterRender: ""
@@ -281,6 +281,7 @@ spec:
                     | Allocated Budget: sets an input power limit and throttles if exceeded                      | {{{json @root.AllocatedPower}}}        |
                     | Minimum Required Power: very conservative guideline for minimum required power             | {{{json @root.MinRequiredPower}}}      |
                     | Maximum Required Power: very conservative guideline for maximum required power             | {{{json @root.MaxRequiredPower}}}      |
+                contentPartials: []
                 defaultContent: The query didn't return any results.
                 editor:
                     format: auto
@@ -293,7 +294,7 @@ spec:
                 renderMode: everyRow
                 styles: ""
                 wrap: true
-              pluginVersion: 4.3.0
+              pluginVersion: 5.7.0
               targets:
                 - columns: []
                   datasource:
@@ -329,7 +330,7 @@ spec:
                 h: 16
                 w: 8
                 x: 8
-                "y": 1
+                "y": 4
               id: 65
               options:
                 afterRender: ""
@@ -346,6 +347,7 @@ spec:
 
                     #### Configured redundancy mode
                     {{{@root.Redundancy}}}
+                contentPartials: []
                 defaultContent: The query didn't return any results.
                 editor:
                     format: auto
@@ -358,7 +360,7 @@ spec:
                 renderMode: everyRow
                 styles: ""
                 wrap: true
-              pluginVersion: 4.3.0
+              pluginVersion: 5.7.0
               targets:
                 - columns: []
                   datasource:
@@ -430,7 +432,7 @@ spec:
                 h: 3
                 w: 6
                 x: 0
-                "y": 2
+                "y": 54
               id: 74
               options:
                 colorMode: value
@@ -446,7 +448,7 @@ spec:
                 showPercentChange: false
                 textMode: auto
                 wideLayout: true
-              pluginVersion: 12.0.0-85518.patch7-85777
+              pluginVersion: 12.0.0-86517
               targets:
                 - columns:
                     - selector: timestamp
@@ -488,7 +490,7 @@ spec:
                                 {
                                   "type": "selector",
                                   "dimension": "intersight.domain.name",
-                                  "value": "${Domain}"
+                                  "value": "${DomainName}"
                                 },
                                 {
                                   "type": "selector",
@@ -560,7 +562,7 @@ spec:
                 h: 3
                 w: 6
                 x: 6
-                "y": 2
+                "y": 54
               id: 75
               options:
                 colorMode: value
@@ -576,7 +578,7 @@ spec:
                 showPercentChange: false
                 textMode: auto
                 wideLayout: true
-              pluginVersion: 12.0.0-85518.patch7-85777
+              pluginVersion: 12.0.0-86517
               targets:
                 - columns:
                     - selector: timestamp
@@ -618,7 +620,7 @@ spec:
                                 {
                                   "type": "selector",
                                   "dimension": "intersight.domain.name",
-                                  "value": "${Domain}"
+                                  "value": "${DomainName}"
                                 },
                                 {
                                   "type": "selector",
@@ -690,7 +692,7 @@ spec:
                 h: 3
                 w: 6
                 x: 12
-                "y": 2
+                "y": 54
               id: 76
               options:
                 colorMode: value
@@ -706,7 +708,7 @@ spec:
                 showPercentChange: false
                 textMode: auto
                 wideLayout: true
-              pluginVersion: 12.0.0-85518.patch7-85777
+              pluginVersion: 12.0.0-86517
               targets:
                 - columns:
                     - selector: timestamp
@@ -748,7 +750,7 @@ spec:
                                 {
                                   "type": "selector",
                                   "dimension": "intersight.domain.name",
-                                  "value": "${Domain}"
+                                  "value": "${DomainName}"
                                 },
                                 {
                                   "type": "selector",
@@ -820,7 +822,7 @@ spec:
                 h: 3
                 w: 6
                 x: 18
-                "y": 2
+                "y": 54
               id: 77
               options:
                 colorMode: value
@@ -836,7 +838,7 @@ spec:
                 showPercentChange: false
                 textMode: auto
                 wideLayout: true
-              pluginVersion: 12.0.0-85518.patch7-85777
+              pluginVersion: 12.0.0-86517
               targets:
                 - columns:
                     - selector: timestamp
@@ -878,7 +880,7 @@ spec:
                                 {
                                   "type": "selector",
                                   "dimension": "intersight.domain.name",
-                                  "value": "${Domain}"
+                                  "value": "${DomainName}"
                                 },
                                 {
                                   "type": "selector",
@@ -950,7 +952,7 @@ spec:
                 h: 3
                 w: 4
                 x: 0
-                "y": 82
+                "y": 57
               id: 68
               options:
                 colorMode: value
@@ -966,7 +968,7 @@ spec:
                 showPercentChange: false
                 textMode: auto
                 wideLayout: true
-              pluginVersion: 12.0.0-85518.patch7-85777
+              pluginVersion: 12.0.0-86517
               targets:
                 - columns:
                     - selector: timestamp
@@ -1008,7 +1010,7 @@ spec:
                                 {
                                   "type": "selector",
                                   "dimension": "intersight.domain.name",
-                                  "value": "${Domain}"
+                                  "value": "${DomainName}"
                                 },
                                 {
                                   "type": "selector",
@@ -1080,7 +1082,7 @@ spec:
                 h: 3
                 w: 4
                 x: 4
-                "y": 82
+                "y": 57
               id: 69
               options:
                 colorMode: value
@@ -1096,7 +1098,7 @@ spec:
                 showPercentChange: false
                 textMode: auto
                 wideLayout: true
-              pluginVersion: 12.0.0-85518.patch7-85777
+              pluginVersion: 12.0.0-86517
               targets:
                 - columns:
                     - selector: timestamp
@@ -1138,7 +1140,7 @@ spec:
                                 {
                                   "type": "selector",
                                   "dimension": "intersight.domain.name",
-                                  "value": "${Domain}"
+                                  "value": "${DomainName}"
                                 },
                                 {
                                   "type": "selector",
@@ -1210,7 +1212,7 @@ spec:
                 h: 3
                 w: 4
                 x: 8
-                "y": 82
+                "y": 57
               id: 70
               options:
                 colorMode: value
@@ -1226,7 +1228,7 @@ spec:
                 showPercentChange: false
                 textMode: auto
                 wideLayout: true
-              pluginVersion: 12.0.0-85518.patch7-85777
+              pluginVersion: 12.0.0-86517
               targets:
                 - columns:
                     - selector: timestamp
@@ -1268,7 +1270,7 @@ spec:
                                 {
                                   "type": "selector",
                                   "dimension": "intersight.domain.name",
-                                  "value": "${Domain}"
+                                  "value": "${DomainName}"
                                 },
                                 {
                                   "type": "selector",
@@ -1340,7 +1342,7 @@ spec:
                 h: 3
                 w: 4
                 x: 12
-                "y": 82
+                "y": 57
               id: 71
               options:
                 colorMode: value
@@ -1356,7 +1358,7 @@ spec:
                 showPercentChange: false
                 textMode: auto
                 wideLayout: true
-              pluginVersion: 12.0.0-85518.patch7-85777
+              pluginVersion: 12.0.0-86517
               targets:
                 - columns:
                     - selector: timestamp
@@ -1398,7 +1400,7 @@ spec:
                                 {
                                   "type": "selector",
                                   "dimension": "intersight.domain.name",
-                                  "value": "${Domain}"
+                                  "value": "${DomainName}"
                                 },
                                 {
                                   "type": "selector",
@@ -1470,7 +1472,7 @@ spec:
                 h: 3
                 w: 4
                 x: 16
-                "y": 82
+                "y": 57
               id: 72
               options:
                 colorMode: value
@@ -1486,7 +1488,7 @@ spec:
                 showPercentChange: false
                 textMode: auto
                 wideLayout: true
-              pluginVersion: 12.0.0-85518.patch7-85777
+              pluginVersion: 12.0.0-86517
               targets:
                 - columns:
                     - selector: timestamp
@@ -1528,7 +1530,7 @@ spec:
                                 {
                                   "type": "selector",
                                   "dimension": "intersight.domain.name",
-                                  "value": "${Domain}"
+                                  "value": "${DomainName}"
                                 },
                                 {
                                   "type": "selector",
@@ -1600,7 +1602,7 @@ spec:
                 h: 3
                 w: 4
                 x: 20
-                "y": 82
+                "y": 57
               id: 73
               options:
                 colorMode: value
@@ -1616,7 +1618,7 @@ spec:
                 showPercentChange: false
                 textMode: auto
                 wideLayout: true
-              pluginVersion: 12.0.0-85518.patch7-85777
+              pluginVersion: 12.0.0-86517
               targets:
                 - columns:
                     - selector: timestamp
@@ -1658,7 +1660,7 @@ spec:
                                 {
                                   "type": "selector",
                                   "dimension": "intersight.domain.name",
-                                  "value": "${Domain}"
+                                  "value": "${DomainName}"
                                 },
                                 {
                                   "type": "selector",
@@ -1745,7 +1747,7 @@ spec:
                 h: 7
                 w: 24
                 x: 0
-                "y": 3
+                "y": 6
               id: 35
               options:
                 legend:
@@ -1757,7 +1759,7 @@ spec:
                     hideZeros: false
                     mode: multi
                     sort: none
-              pluginVersion: 12.0.0-85820.patch2-86140
+              pluginVersion: 12.0.0-86517
               targets:
                 - columns:
                     - selector: timestamp
@@ -1816,7 +1818,7 @@ spec:
                                 {
                                   "type": "selector",
                                   "dimension": "intersight.domain.name",
-                                  "value": "${Domain}"
+                                  "value": "${DomainName}"
                                 },
                                 {
                                   "type": "selector",
@@ -1889,7 +1891,7 @@ spec:
                 h: 7
                 w: 24
                 x: 0
-                "y": 10
+                "y": 32
               id: 36
               options:
                 legend:
@@ -1901,7 +1903,7 @@ spec:
                     hideZeros: false
                     mode: multi
                     sort: none
-              pluginVersion: 12.0.0-85820.patch2-86140
+              pluginVersion: 12.0.0-86517
               targets:
                 - columns:
                     - selector: timestamp
@@ -1965,7 +1967,7 @@ spec:
                                 {
                                   "type": "selector",
                                   "dimension": "intersight.domain.name",
-                                  "value": "${Domain}"
+                                  "value": "${DomainName}"
                                 },
                                 {
                                   "type": "selector",
@@ -2048,7 +2050,7 @@ spec:
                 h: 7
                 w: 24
                 x: 0
-                "y": 4
+                "y": 361
               id: 34
               options:
                 legend:
@@ -2060,7 +2062,7 @@ spec:
                     hideZeros: false
                     mode: single
                     sort: none
-              pluginVersion: 12.0.0-85820.patch2-86140
+              pluginVersion: 12.0.0-86517
               targets:
                 - columns:
                     - selector: timestamp
@@ -2115,12 +2117,12 @@ spec:
                                   {
                                     "type": "selector",
                                     "dimension": "intersight.domain.name",
-                                    "value": "${Domain}"
+                                    "value": "${DomainName}"
                                   },
                                   {
                                     "type": "selector",
                                     "dimension": "host.name",
-                                    "value": "${ChassisName}"
+                                    "value": "${ChassisName:text}"
                                   },
                                   {
                                     "type": "selector",
@@ -2215,7 +2217,7 @@ spec:
                 h: 7
                 w: 24
                 x: 0
-                "y": 11
+                "y": 368
               id: 33
               options:
                 legend:
@@ -2227,7 +2229,7 @@ spec:
                     hideZeros: false
                     mode: multi
                     sort: none
-              pluginVersion: 12.0.0-85820.patch2-86140
+              pluginVersion: 12.0.0-86517
               targets:
                 - columns:
                     - selector: timestamp
@@ -2279,12 +2281,12 @@ spec:
                                 {
                                   "type": "selector",
                                   "dimension": "intersight.domain.name",
-                                  "value": "${Domain}"
+                                  "value": "${DomainName}"
                                 },
                                 {
                                   "type": "selector",
                                   "dimension": "host.name",
-                                  "value": "${ChassisName}"
+                                  "value": "${ChassisName:text}"
                                 },
                                 {
                                   "type": "selector",
@@ -2379,7 +2381,7 @@ spec:
                 h: 7
                 w: 24
                 x: 0
-                "y": 132
+                "y": 404
               id: 32
               options:
                 legend:
@@ -2391,7 +2393,7 @@ spec:
                     hideZeros: false
                     mode: multi
                     sort: none
-              pluginVersion: 11.6.0-84846
+              pluginVersion: 12.0.0-86517
               targets:
                 - columns:
                     - selector: timestamp
@@ -2450,7 +2452,7 @@ spec:
                                 {
                                   "type": "selector",
                                   "dimension": "intersight.domain.name",
-                                  "value": "${Domain}"
+                                  "value": "${DomainName}"
                                 },
                                 {
                                   "type": "selector",
@@ -2502,13 +2504,14 @@ spec:
                 h: 2
                 w: 24
                 x: 0
-                "y": 140
+                "y": 412
               id: 66
               options:
                 afterRender: ""
                 content: |-
                     #### Fan mode
                     {{{@root.Mode}}}
+                contentPartials: []
                 defaultContent: The query didn't return any results.
                 editor:
                     format: auto
@@ -2521,7 +2524,7 @@ spec:
                 renderMode: everyRow
                 styles: ""
                 wrap: true
-              pluginVersion: 4.3.0
+              pluginVersion: 5.7.0
               targets:
                 - columns: []
                   datasource:
@@ -2586,7 +2589,7 @@ spec:
                 h: 3
                 w: 24
                 x: 0
-                "y": 141
+                "y": 417
               id: 63
               maxPerRow: 8
               options:
@@ -2661,7 +2664,7 @@ spec:
                 h: 3
                 w: 24
                 x: 0
-                "y": 144
+                "y": 420
               id: 78
               maxPerRow: 8
               options:
@@ -2736,7 +2739,7 @@ spec:
                 h: 3
                 w: 24
                 x: 0
-                "y": 147
+                "y": 423
               id: 62
               maxPerRow: 8
               options:
@@ -2833,7 +2836,7 @@ spec:
                 h: 8
                 w: 12
                 x: 0
-                "y": 91
+                "y": 427
               id: 40
               maxDataPoints: 500
               options:
@@ -2846,7 +2849,7 @@ spec:
                     hideZeros: false
                     mode: multi
                     sort: none
-              pluginVersion: 11.6.0-84846
+              pluginVersion: 12.0.0-86517
               targets:
                 - columns:
                     - selector: timestamp
@@ -2896,7 +2899,7 @@ spec:
                                 {
                                   "type": "selector",
                                   "dimension": "intersight.domain.name",
-                                  "value": "${Domain}"
+                                  "value": "${DomainName}"
                                 },
                                 {
                                   "type": "selector",
@@ -2911,7 +2914,7 @@ spec:
                                 {
                                   "type": "selector",
                                   "dimension": "host.name",
-                                  "value": "${Domain} FI-A"
+                                  "value": "${DomainName} FI-A"
                                 }
                               ]
                             },
@@ -2979,7 +2982,7 @@ spec:
                 h: 8
                 w: 12
                 x: 12
-                "y": 91
+                "y": 427
               id: 41
               maxDataPoints: 500
               options:
@@ -2992,7 +2995,7 @@ spec:
                     hideZeros: false
                     mode: multi
                     sort: none
-              pluginVersion: 11.6.0-84846
+              pluginVersion: 12.0.0-86517
               targets:
                 - columns:
                     - selector: timestamp
@@ -3042,7 +3045,7 @@ spec:
                                 {
                                   "type": "selector",
                                   "dimension": "intersight.domain.name",
-                                  "value": "${Domain}"
+                                  "value": "${DomainName}"
                                 },
                                 {
                                   "type": "selector",
@@ -3057,7 +3060,7 @@ spec:
                                 {
                                   "type": "selector",
                                   "dimension": "host.name",
-                                  "value": "${Domain} FI-B"
+                                  "value": "${DomainName} FI-B"
                                 }
                               ]
                             },
@@ -3080,1564 +3083,1564 @@ spec:
               type: timeseries
           title: Fabric Interconnect Fan Speed
           type: row
-        - collapsed: false
+        - collapsed: true
           gridPos:
             h: 1
             w: 24
             x: 0
             "y": 11
           id: 19
-          panels: []
+          panels:
+            - datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              description: One fan module can have more than one fan inside
+              fieldConfig:
+                defaults:
+                    color:
+                        mode: palette-classic
+                    custom:
+                        axisBorderShow: false
+                        axisCenteredZero: false
+                        axisColorMode: text
+                        axisLabel: ""
+                        axisPlacement: auto
+                        axisSoftMin: 0
+                        barAlignment: 0
+                        barWidthFactor: 0.6
+                        drawStyle: line
+                        fillOpacity: 0
+                        gradientMode: none
+                        hideFrom:
+                            legend: false
+                            tooltip: false
+                            viz: false
+                        insertNulls: false
+                        lineInterpolation: linear
+                        lineWidth: 1
+                        pointSize: 5
+                        scaleDistribution:
+                            type: linear
+                        showPoints: auto
+                        spanNulls: false
+                        stacking:
+                            group: A
+                            mode: none
+                        thresholdsStyle:
+                            mode: "off"
+                    mappings: []
+                    thresholds:
+                        mode: absolute
+                        steps:
+                            - color: green
+                    unit: rotrpm
+                overrides: []
+              gridPos:
+                h: 7
+                w: 24
+                x: 0
+                "y": 12
+              id: 31
+              options:
+                legend:
+                    calcs: []
+                    displayMode: list
+                    placement: bottom
+                    showLegend: true
+                tooltip:
+                    hideZeros: false
+                    mode: multi
+                    sort: none
+              pluginVersion: 12.0.0-86517
+              targets:
+                - columns:
+                    - selector: timestamp
+                      text: Time
+                      type: timestamp
+                    - selector: event.name
+                      text: Fan Module
+                      type: string
+                    - selector: event.hw-fan-speed_max-Max
+                      text: Fan Speed
+                      type: number
+                  datasource:
+                    type: yesoreyeram-infinity-datasource
+                    uid: ${DataSource}
+                  filters: []
+                  format: table
+                  global_query_id: ""
+                  parser: backend
+                  refId: A
+                  root_selector: ""
+                  source: url
+                  type: json
+                  uql: |-
+                    parse-json
+                    | project "Timestamp"=todatetime("timestamp"), "Fan Speed"="event.hw-fan-speed_max-Max", "Name"="event.name"
+                  url: /api/v1/telemetry/TimeSeries
+                  url_options:
+                    body_content_type: application/json
+                    body_type: raw
+                    data: |4-
+                          {
+                            "queryType": "groupBy",
+                            "dataSource": "PhysicalEntities",
+                            "granularity": {
+                              "type": "duration",
+                              "duration": $__interval_ms,
+                              "timeZone": "$__timezone"
+                            },
+                            "intervals": ["${__from:date}/${__to:date}"],
+                            "dimensions": ["name"],
+                            "filter": {
+                              "type": "and",
+                              "fields": [
+                                {
+                                  "type": "selector",
+                                  "dimension": "intersight.domain.name",
+                                  "value": "${DomainName}"
+                                },
+                                {
+                                  "type": "selector",
+                                  "dimension": "host.name",
+                                  "value": "${ChassisName:text}"
+                                },
+                                {
+                                  "type": "selector",
+                                  "dimension": "instrument.name",
+                                  "value": "hw.fan"
+                                }
+                              ]
+                            },
+                            "aggregations": [
+                              {
+                                "type": "longMax",
+                                "name": "hw-fan-speed_max-Max",
+                                "fieldName": "hw.fan.speed_max"
+                              }
+                            ]
+                          }
+                    method: POST
+              title: Fan speed per fan (Max)
+              transformations:
+                - id: groupingToMatrix
+                  options:
+                    columnField: Fan Module
+                    rowField: Time
+                    valueField: Fan Speed
+              type: timeseries
           title: Chassis Fan Speed
           type: row
-        - datasource:
-            type: yesoreyeram-infinity-datasource
-            uid: ${DataSource}
-          description: One fan module can have more than one fan inside
-          fieldConfig:
-            defaults:
-                color:
-                    mode: palette-classic
-                custom:
-                    axisBorderShow: false
-                    axisCenteredZero: false
-                    axisColorMode: text
-                    axisLabel: ""
-                    axisPlacement: auto
-                    axisSoftMin: 0
-                    barAlignment: 0
-                    barWidthFactor: 0.6
-                    drawStyle: line
-                    fillOpacity: 0
-                    gradientMode: none
-                    hideFrom:
-                        legend: false
-                        tooltip: false
-                        viz: false
-                    insertNulls: false
-                    lineInterpolation: linear
-                    lineWidth: 1
-                    pointSize: 5
-                    scaleDistribution:
-                        type: linear
-                    showPoints: auto
-                    spanNulls: false
-                    stacking:
-                        group: A
-                        mode: none
-                    thresholdsStyle:
-                        mode: "off"
-                mappings: []
-                thresholds:
-                    mode: absolute
-                    steps:
-                        - color: green
-                unit: rotrpm
-            overrides: []
+        - collapsed: true
           gridPos:
-            h: 7
+            h: 1
             w: 24
             x: 0
             "y": 12
-          id: 31
-          options:
-            legend:
-                calcs: []
-                displayMode: list
-                placement: bottom
-                showLegend: true
-            tooltip:
-                hideZeros: false
-                mode: multi
-                sort: none
-          pluginVersion: 12.0.0-86517
-          targets:
-            - columns:
-                - selector: timestamp
-                  text: Time
-                  type: timestamp
-                - selector: event.name
-                  text: Fan Module
-                  type: string
-                - selector: event.hw-fan-speed_max-Max
-                  text: Fan Speed
-                  type: number
-              datasource:
+          id: 20
+          panels:
+            - datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
-              filters: []
-              format: table
-              global_query_id: ""
-              parser: backend
-              refId: A
-              root_selector: ""
-              source: url
-              type: json
-              uql: |-
-                parse-json
-                | project "Timestamp"=todatetime("timestamp"), "Fan Speed"="event.hw-fan-speed_max-Max", "Name"="event.name"
-              url: /api/v1/telemetry/TimeSeries
-              url_options:
-                body_content_type: application/json
-                body_type: raw
-                data: |4-
-                      {
-                        "queryType": "groupBy",
-                        "dataSource": "PhysicalEntities",
-                        "granularity": {
-                          "type": "duration",
-                          "duration": $__interval_ms,
-                          "timeZone": "$__timezone"
-                        },
-                        "intervals": ["${__from:date}/${__to:date}"],
-                        "dimensions": ["name"],
-                        "filter": {
-                          "type": "and",
-                          "fields": [
-                            {
-                              "type": "selector",
-                              "dimension": "intersight.domain.name",
-                              "value": "${Domain}"
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "host.name",
-                              "value": "${ChassisName}"
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "instrument.name",
-                              "value": "hw.fan"
-                            }
-                          ]
-                        },
-                        "aggregations": [
-                          {
-                            "type": "longMax",
-                            "name": "hw-fan-speed_max-Max",
-                            "fieldName": "hw.fan.speed_max"
-                          }
-                        ]
-                      }
-                method: POST
-          title: Fan speed per fan (Max)
-          transformations:
-            - id: groupingToMatrix
+              fieldConfig:
+                defaults:
+                    color:
+                        mode: palette-classic
+                    custom:
+                        axisBorderShow: false
+                        axisCenteredZero: false
+                        axisColorMode: text
+                        axisLabel: ""
+                        axisPlacement: auto
+                        barAlignment: 0
+                        barWidthFactor: 0.6
+                        drawStyle: line
+                        fillOpacity: 0
+                        gradientMode: none
+                        hideFrom:
+                            legend: false
+                            tooltip: false
+                            viz: false
+                        insertNulls: false
+                        lineInterpolation: linear
+                        lineWidth: 1
+                        pointSize: 5
+                        scaleDistribution:
+                            type: linear
+                        showPoints: auto
+                        spanNulls: false
+                        stacking:
+                            group: A
+                            mode: none
+                        thresholdsStyle:
+                            mode: "off"
+                    mappings: []
+                    thresholds:
+                        mode: absolute
+                        steps:
+                            - color: green
+                    unit: celsius
+                overrides:
+                    - matcher:
+                        id: byName
+                        options: Heavenly
+                      properties:
+                        - id: displayName
+                          value: ASIC
+                    - matcher:
+                        id: byName
+                        options: Homewood
+                      properties:
+                        - id: displayName
+                          value: ASIC
+              gridPos:
+                h: 7
+                w: 12
+                x: 0
+                "y": 418
+              id: 38
+              maxDataPoints: 500
               options:
-                columnField: Fan Module
-                rowField: Time
-                valueField: Fan Speed
-          type: timeseries
-        - collapsed: false
-          gridPos:
-            h: 1
-            w: 24
-            x: 0
-            "y": 19
-          id: 20
-          panels: []
+                legend:
+                    calcs: []
+                    displayMode: list
+                    placement: bottom
+                    showLegend: true
+                tooltip:
+                    hideZeros: false
+                    mode: multi
+                    sort: none
+              pluginVersion: 12.0.0-86517
+              targets:
+                - columns:
+                    - selector: timestamp
+                      text: Time
+                      type: timestamp
+                    - selector: event.temp
+                      text: Temperature
+                      type: number
+                    - selector: event.name
+                      text: Identifier
+                      type: string
+                  datasource:
+                    type: yesoreyeram-infinity-datasource
+                    uid: ${DataSource}
+                  filters: []
+                  format: table
+                  global_query_id: ""
+                  parser: backend
+                  refId: A
+                  root_selector: ""
+                  source: url
+                  summarizeAlias: ""
+                  summarizeBy: ""
+                  summarizeExpression: ""
+                  type: json
+                  uql: |-
+                    parse-json
+                    | project "Timestamp"=todatetime("timestamp"), "Fan Speed"="event.hw-fan-speed_max-Max", "Name"="event.name"
+                  url: /api/v1/telemetry/TimeSeries
+                  url_options:
+                    body_content_type: application/json
+                    body_type: raw
+                    data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"PhysicalEntities\",\n    \"granularity\": {\n      \"type\": \"duration\",\n      \"duration\": $__interval_ms,\n      \"timeZone\": \"$__timezone\"\n    },\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\"name\"],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"intersight.domain.name\",\n          \"value\": \"${DomainName}\"\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"host.type\",\n          \"value\": \"network.Element\"\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.temperature\"\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"host.name\",\n          \"value\": \"${DomainName} FI-A\"\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"search\",\n          \"dimension\": \"sensor_location\",\n          \"query\": {\n            \"type\": \"insensitive_contains\",\n            \"value\": \"fi_transceiver\"\n          }\n        }\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"doubleMax\",\n        \"name\": \"temp\",\n        \"fieldName\": \"hw.temperature_max\"\n      }\n    ]\n  }"
+                    method: POST
+              title: FI-A temperature per sensor (Max)
+              transformations:
+                - id: groupingToMatrix
+                  options:
+                    columnField: Identifier
+                    rowField: Time
+                    valueField: Temperature
+                - id: organize
+                  options:
+                    excludeByName: {}
+                    includeByName: {}
+                    indexByName:
+                        BACK: 1
+                        CPU: 2
+                        FRONT: 4
+                        Homewood: 3
+                        Time\Identifier: 0
+                    renameByName:
+                        BACK: Intake
+                        FRONT: Exhaust
+              type: timeseries
+            - datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              fieldConfig:
+                defaults:
+                    color:
+                        mode: palette-classic
+                    custom:
+                        axisBorderShow: false
+                        axisCenteredZero: false
+                        axisColorMode: text
+                        axisLabel: ""
+                        axisPlacement: auto
+                        barAlignment: 0
+                        barWidthFactor: 0.6
+                        drawStyle: line
+                        fillOpacity: 0
+                        gradientMode: none
+                        hideFrom:
+                            legend: false
+                            tooltip: false
+                            viz: false
+                        insertNulls: false
+                        lineInterpolation: linear
+                        lineWidth: 1
+                        pointSize: 5
+                        scaleDistribution:
+                            type: linear
+                        showPoints: auto
+                        spanNulls: false
+                        stacking:
+                            group: A
+                            mode: none
+                        thresholdsStyle:
+                            mode: "off"
+                    mappings: []
+                    thresholds:
+                        mode: absolute
+                        steps:
+                            - color: green
+                    unit: celsius
+                overrides:
+                    - matcher:
+                        id: byName
+                        options: Heavenly
+                      properties:
+                        - id: displayName
+                          value: ASIC
+                    - matcher:
+                        id: byName
+                        options: Homewood
+                      properties:
+                        - id: displayName
+                          value: ASIC
+              gridPos:
+                h: 7
+                w: 12
+                x: 12
+                "y": 418
+              id: 79
+              maxDataPoints: 500
+              options:
+                legend:
+                    calcs: []
+                    displayMode: list
+                    placement: bottom
+                    showLegend: true
+                tooltip:
+                    hideZeros: false
+                    mode: multi
+                    sort: none
+              pluginVersion: 12.0.0-86517
+              targets:
+                - columns:
+                    - selector: timestamp
+                      text: Time
+                      type: timestamp
+                    - selector: event.temp
+                      text: Temperature
+                      type: number
+                    - selector: event.name
+                      text: Identifier
+                      type: string
+                  datasource:
+                    type: yesoreyeram-infinity-datasource
+                    uid: ${DataSource}
+                  filters: []
+                  format: table
+                  global_query_id: ""
+                  parser: backend
+                  refId: A
+                  root_selector: ""
+                  source: url
+                  summarizeAlias: ""
+                  summarizeBy: ""
+                  summarizeExpression: ""
+                  type: json
+                  uql: |-
+                    parse-json
+                    | project "Timestamp"=todatetime("timestamp"), "Fan Speed"="event.hw-fan-speed_max-Max", "Name"="event.name"
+                  url: /api/v1/telemetry/TimeSeries
+                  url_options:
+                    body_content_type: application/json
+                    body_type: raw
+                    data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"PhysicalEntities\",\n    \"granularity\": {\n      \"type\": \"duration\",\n      \"duration\": $__interval_ms,\n      \"timeZone\": \"$__timezone\"\n    },\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\"name\"],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"intersight.domain.name\",\n          \"value\": \"${DomainName}\"\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"host.type\",\n          \"value\": \"network.Element\"\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.temperature\"\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"host.name\",\n          \"value\": \"${DomainName} FI-B\"\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"search\",\n          \"dimension\": \"sensor_location\",\n          \"query\": {\n            \"type\": \"insensitive_contains\",\n            \"value\": \"fi_transceiver\"\n          }\n        }\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"doubleMax\",\n        \"name\": \"temp\",\n        \"fieldName\": \"hw.temperature_max\"\n      }\n    ]\n  }"
+                    method: POST
+              title: FI-B temperature per sensor (Max)
+              transformations:
+                - id: groupingToMatrix
+                  options:
+                    columnField: Identifier
+                    rowField: Time
+                    valueField: Temperature
+                - id: organize
+                  options:
+                    excludeByName: {}
+                    includeByName: {}
+                    indexByName:
+                        BACK: 1
+                        CPU: 2
+                        FRONT: 4
+                        Homewood: 3
+                        Time\Identifier: 0
+                    renameByName:
+                        BACK: Intake
+                        FRONT: Exhaust
+              type: timeseries
           title: Fabric Interconnect Temperature
           type: row
-        - datasource:
-            type: yesoreyeram-infinity-datasource
-            uid: ${DataSource}
-          fieldConfig:
-            defaults:
-                color:
-                    mode: palette-classic
-                custom:
-                    axisBorderShow: false
-                    axisCenteredZero: false
-                    axisColorMode: text
-                    axisLabel: ""
-                    axisPlacement: auto
-                    barAlignment: 0
-                    barWidthFactor: 0.6
-                    drawStyle: line
-                    fillOpacity: 0
-                    gradientMode: none
-                    hideFrom:
-                        legend: false
-                        tooltip: false
-                        viz: false
-                    insertNulls: false
-                    lineInterpolation: linear
-                    lineWidth: 1
-                    pointSize: 5
-                    scaleDistribution:
-                        type: linear
-                    showPoints: auto
-                    spanNulls: false
-                    stacking:
-                        group: A
-                        mode: none
-                    thresholdsStyle:
-                        mode: "off"
-                mappings: []
-                thresholds:
-                    mode: absolute
-                    steps:
-                        - color: green
-                unit: celsius
-            overrides:
-                - matcher:
-                    id: byName
-                    options: Heavenly
-                  properties:
-                    - id: displayName
-                      value: ASIC
-                - matcher:
-                    id: byName
-                    options: Homewood
-                  properties:
-                    - id: displayName
-                      value: ASIC
-          gridPos:
-            h: 7
-            w: 12
-            x: 0
-            "y": 20
-          id: 38
-          maxDataPoints: 500
-          options:
-            legend:
-                calcs: []
-                displayMode: list
-                placement: bottom
-                showLegend: true
-            tooltip:
-                hideZeros: false
-                mode: multi
-                sort: none
-          pluginVersion: 12.0.0-86517
-          targets:
-            - columns:
-                - selector: timestamp
-                  text: Time
-                  type: timestamp
-                - selector: event.temp
-                  text: Temperature
-                  type: number
-                - selector: event.name
-                  text: Identifier
-                  type: string
-              datasource:
-                type: yesoreyeram-infinity-datasource
-                uid: ${DataSource}
-              filters: []
-              format: table
-              global_query_id: ""
-              parser: backend
-              refId: A
-              root_selector: ""
-              source: url
-              summarizeAlias: ""
-              summarizeBy: ""
-              summarizeExpression: ""
-              type: json
-              uql: |-
-                parse-json
-                | project "Timestamp"=todatetime("timestamp"), "Fan Speed"="event.hw-fan-speed_max-Max", "Name"="event.name"
-              url: /api/v1/telemetry/TimeSeries
-              url_options:
-                body_content_type: application/json
-                body_type: raw
-                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"PhysicalEntities\",\n    \"granularity\": {\n      \"type\": \"duration\",\n      \"duration\": $__interval_ms,\n      \"timeZone\": \"$__timezone\"\n    },\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\"name\"],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"intersight.domain.name\",\n          \"value\": \"${Domain}\"\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"host.type\",\n          \"value\": \"network.Element\"\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.temperature\"\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"host.name\",\n          \"value\": \"${Domain} FI-A\"\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"search\",\n          \"dimension\": \"sensor_location\",\n          \"query\": {\n            \"type\": \"insensitive_contains\",\n            \"value\": \"fi_transceiver\"\n          }\n        }\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"doubleMax\",\n        \"name\": \"temp\",\n        \"fieldName\": \"hw.temperature_max\"\n      }\n    ]\n  }"
-                method: POST
-          title: FI-A temperature per sensor (Max)
-          transformations:
-            - id: groupingToMatrix
-              options:
-                columnField: Identifier
-                rowField: Time
-                valueField: Temperature
-            - id: organize
-              options:
-                excludeByName: {}
-                includeByName: {}
-                indexByName:
-                    BACK: 1
-                    CPU: 2
-                    FRONT: 4
-                    Homewood: 3
-                    Time\Identifier: 0
-                renameByName:
-                    BACK: Intake
-                    FRONT: Exhaust
-          type: timeseries
-        - datasource:
-            type: yesoreyeram-infinity-datasource
-            uid: ${DataSource}
-          fieldConfig:
-            defaults:
-                color:
-                    mode: palette-classic
-                custom:
-                    axisBorderShow: false
-                    axisCenteredZero: false
-                    axisColorMode: text
-                    axisLabel: ""
-                    axisPlacement: auto
-                    barAlignment: 0
-                    barWidthFactor: 0.6
-                    drawStyle: line
-                    fillOpacity: 0
-                    gradientMode: none
-                    hideFrom:
-                        legend: false
-                        tooltip: false
-                        viz: false
-                    insertNulls: false
-                    lineInterpolation: linear
-                    lineWidth: 1
-                    pointSize: 5
-                    scaleDistribution:
-                        type: linear
-                    showPoints: auto
-                    spanNulls: false
-                    stacking:
-                        group: A
-                        mode: none
-                    thresholdsStyle:
-                        mode: "off"
-                mappings: []
-                thresholds:
-                    mode: absolute
-                    steps:
-                        - color: green
-                unit: celsius
-            overrides:
-                - matcher:
-                    id: byName
-                    options: Heavenly
-                  properties:
-                    - id: displayName
-                      value: ASIC
-                - matcher:
-                    id: byName
-                    options: Homewood
-                  properties:
-                    - id: displayName
-                      value: ASIC
-          gridPos:
-            h: 7
-            w: 12
-            x: 12
-            "y": 20
-          id: 79
-          maxDataPoints: 500
-          options:
-            legend:
-                calcs: []
-                displayMode: list
-                placement: bottom
-                showLegend: true
-            tooltip:
-                hideZeros: false
-                mode: multi
-                sort: none
-          pluginVersion: 12.0.0-86517
-          targets:
-            - columns:
-                - selector: timestamp
-                  text: Time
-                  type: timestamp
-                - selector: event.temp
-                  text: Temperature
-                  type: number
-                - selector: event.name
-                  text: Identifier
-                  type: string
-              datasource:
-                type: yesoreyeram-infinity-datasource
-                uid: ${DataSource}
-              filters: []
-              format: table
-              global_query_id: ""
-              parser: backend
-              refId: A
-              root_selector: ""
-              source: url
-              summarizeAlias: ""
-              summarizeBy: ""
-              summarizeExpression: ""
-              type: json
-              uql: |-
-                parse-json
-                | project "Timestamp"=todatetime("timestamp"), "Fan Speed"="event.hw-fan-speed_max-Max", "Name"="event.name"
-              url: /api/v1/telemetry/TimeSeries
-              url_options:
-                body_content_type: application/json
-                body_type: raw
-                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"PhysicalEntities\",\n    \"granularity\": {\n      \"type\": \"duration\",\n      \"duration\": $__interval_ms,\n      \"timeZone\": \"$__timezone\"\n    },\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\"name\"],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"intersight.domain.name\",\n          \"value\": \"${Domain}\"\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"host.type\",\n          \"value\": \"network.Element\"\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.temperature\"\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"host.name\",\n          \"value\": \"${Domain} FI-B\"\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"search\",\n          \"dimension\": \"sensor_location\",\n          \"query\": {\n            \"type\": \"insensitive_contains\",\n            \"value\": \"fi_transceiver\"\n          }\n        }\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"doubleMax\",\n        \"name\": \"temp\",\n        \"fieldName\": \"hw.temperature_max\"\n      }\n    ]\n  }"
-                method: POST
-          title: FI-B temperature per sensor (Max)
-          transformations:
-            - id: groupingToMatrix
-              options:
-                columnField: Identifier
-                rowField: Time
-                valueField: Temperature
-            - id: organize
-              options:
-                excludeByName: {}
-                includeByName: {}
-                indexByName:
-                    BACK: 1
-                    CPU: 2
-                    FRONT: 4
-                    Homewood: 3
-                    Time\Identifier: 0
-                renameByName:
-                    BACK: Intake
-                    FRONT: Exhaust
-          type: timeseries
-        - collapsed: false
+        - collapsed: true
           gridPos:
             h: 1
             w: 24
             x: 0
-            "y": 27
+            "y": 13
           id: 44
-          panels: []
+          panels:
+            - datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              description: The values are calculated as min, avg, and max across all relevant blade temperature sensors in the chassis
+              fieldConfig:
+                defaults:
+                    color:
+                        mode: palette-classic
+                    custom:
+                        axisBorderShow: false
+                        axisCenteredZero: false
+                        axisColorMode: text
+                        axisLabel: ""
+                        axisPlacement: auto
+                        barAlignment: 0
+                        barWidthFactor: 0.6
+                        drawStyle: line
+                        fillOpacity: 0
+                        gradientMode: none
+                        hideFrom:
+                            legend: false
+                            tooltip: false
+                            viz: false
+                        insertNulls: false
+                        lineInterpolation: linear
+                        lineStyle:
+                            fill: solid
+                        lineWidth: 1
+                        pointSize: 5
+                        scaleDistribution:
+                            type: linear
+                        showPoints: auto
+                        spanNulls: false
+                        stacking:
+                            group: A
+                            mode: none
+                        thresholdsStyle:
+                            mode: area
+                    mappings: []
+                    thresholds:
+                        mode: absolute
+                        steps:
+                            - color: transparent
+                            - color: '#EAB839'
+                              value: 50
+                            - color: dark-red
+                              value: 60
+                    unit: celsius
+                overrides:
+                    - matcher:
+                        id: byName
+                        options: Average
+                      properties:
+                        - id: color
+                          value:
+                            fixedColor: purple
+                            mode: fixed
+                    - matcher:
+                        id: byName
+                        options: Minimum
+                      properties:
+                        - id: color
+                          value:
+                            fixedColor: super-light-purple
+                            mode: fixed
+                    - matcher:
+                        id: byName
+                        options: Maximum
+                      properties:
+                        - id: color
+                          value:
+                            fixedColor: dark-purple
+                            mode: fixed
+              gridPos:
+                h: 7
+                w: 12
+                x: 0
+                "y": 419
+              id: 45
+              maxDataPoints: 500
+              options:
+                legend:
+                    calcs: []
+                    displayMode: list
+                    placement: bottom
+                    showLegend: true
+                tooltip:
+                    hideZeros: false
+                    mode: multi
+                    sort: none
+              pluginVersion: 12.0.0-86517
+              targets:
+                - columns:
+                    - selector: timestamp
+                      text: Time
+                      type: timestamp
+                    - selector: event.hw-temperature-Avg
+                      text: Average
+                      type: number
+                    - selector: event.hw-temperature_min-Min
+                      text: Minimum
+                      type: number
+                    - selector: event.hw-temperature_max-Max
+                      text: Maximum
+                      type: number
+                  datasource:
+                    type: yesoreyeram-infinity-datasource
+                    uid: ${DataSource}
+                  filters: []
+                  format: table
+                  global_query_id: ""
+                  parser: backend
+                  refId: A
+                  root_selector: ""
+                  source: url
+                  summarizeAlias: ""
+                  summarizeBy: ""
+                  summarizeExpression: ""
+                  type: json
+                  uql: |-
+                    parse-json
+                    | project "Timestamp"=todatetime("timestamp"), "Fan Speed"="event.hw-fan-speed_max-Max", "Name"="event.name"
+                  url: /api/v1/telemetry/TimeSeries
+                  url_options:
+                    body_content_type: application/json
+                    body_type: raw
+                    data: |4-
+                          {
+                            "queryType": "groupBy",
+                            "dataSource": "PhysicalEntities",
+                            "granularity": {
+                              "type": "duration",
+                              "duration": $__interval_ms,
+                              "timeZone": "$__timezone"
+                            },
+                            "intervals": ["${__from:date}/${__to:date}"],
+                            "dimensions": [],
+                            "filter": {
+                              "type": "and",
+                              "fields": [
+                                {
+                                  "type": "selector",
+                                  "dimension": "intersight.domain.name",
+                                  "value": "${DomainName}"
+                                },
+                                {
+                                  "type": "selector",
+                                  "dimension": "instrument.name",
+                                  "value": "hw.temperature"
+                                },
+                                {
+                                  "type": "selector",
+                                  "dimension": "host.type",
+                                  "value": "compute.Blade"
+                                },
+                                {
+                                  "type": "search",
+                                  "dimension": "host.name",
+                                  "query": {
+                                    "type": "insensitive_contains",
+                                    "value": "${ChassisName:text}-"
+                                  }
+                                },
+                                {
+                                  "type": "selector",
+                                  "dimension": "name",
+                                  "value": "TEMP_FRONT"
+                                }
+                              ]
+                            },
+                            "aggregations": [
+                              {
+                                "type": "doubleMin",
+                                "name": "hw-temperature_min-Min",
+                                "fieldName": "hw.temperature_min"
+                              },
+                              {
+                                "type": "doubleMax",
+                                "name": "hw-temperature_max-Max",
+                                "fieldName": "hw.temperature_max"
+                              },
+                              {
+                                "type": "longSum",
+                                "name": "count",
+                                "fieldName": "hw.temperature_count"
+                              },
+                              {
+                                "type": "doubleSum",
+                                "name": "hw.temperature-Sum",
+                                "fieldName": "hw.temperature"
+                              }
+                            ],
+                            "postAggregations": [
+                              {
+                                "type": "expression",
+                                "name": "hw-temperature-Avg",
+                                "expression": "(\"hw.temperature-Sum\" / \"count\")"
+                              }
+                            ]
+                          }
+                    method: POST
+              title: Intake Temperature
+              type: timeseries
+            - datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              description: The values are calculated as min, avg, and max across all relevant blade temperature sensors in the chassis
+              fieldConfig:
+                defaults:
+                    color:
+                        mode: palette-classic
+                    custom:
+                        axisBorderShow: false
+                        axisCenteredZero: false
+                        axisColorMode: text
+                        axisLabel: ""
+                        axisPlacement: auto
+                        barAlignment: 0
+                        barWidthFactor: 0.6
+                        drawStyle: line
+                        fillOpacity: 0
+                        gradientMode: none
+                        hideFrom:
+                            legend: false
+                            tooltip: false
+                            viz: false
+                        insertNulls: false
+                        lineInterpolation: linear
+                        lineStyle:
+                            fill: solid
+                        lineWidth: 1
+                        pointSize: 5
+                        scaleDistribution:
+                            type: linear
+                        showPoints: auto
+                        spanNulls: false
+                        stacking:
+                            group: A
+                            mode: none
+                        thresholdsStyle:
+                            mode: area
+                    mappings: []
+                    thresholds:
+                        mode: absolute
+                        steps:
+                            - color: transparent
+                            - color: '#EAB839'
+                              value: 90
+                            - color: dark-red
+                              value: 100
+                    unit: celsius
+                overrides:
+                    - matcher:
+                        id: byName
+                        options: Average
+                      properties:
+                        - id: color
+                          value:
+                            fixedColor: purple
+                            mode: fixed
+                    - matcher:
+                        id: byName
+                        options: Minimum
+                      properties:
+                        - id: color
+                          value:
+                            fixedColor: super-light-purple
+                            mode: fixed
+                    - matcher:
+                        id: byName
+                        options: Maximum
+                      properties:
+                        - id: color
+                          value:
+                            fixedColor: dark-purple
+                            mode: fixed
+              gridPos:
+                h: 7
+                w: 12
+                x: 12
+                "y": 419
+              id: 46
+              maxDataPoints: 500
+              options:
+                legend:
+                    calcs: []
+                    displayMode: list
+                    placement: bottom
+                    showLegend: true
+                tooltip:
+                    hideZeros: false
+                    mode: multi
+                    sort: none
+              pluginVersion: 12.0.0-86517
+              targets:
+                - columns:
+                    - selector: timestamp
+                      text: Time
+                      type: timestamp
+                    - selector: event.hw-temperature-Avg
+                      text: Average
+                      type: number
+                    - selector: event.hw-temperature_min-Min
+                      text: Minimum
+                      type: number
+                    - selector: event.hw-temperature_max-Max
+                      text: Maximum
+                      type: number
+                  datasource:
+                    type: yesoreyeram-infinity-datasource
+                    uid: ${DataSource}
+                  filters: []
+                  format: table
+                  global_query_id: ""
+                  parser: backend
+                  refId: A
+                  root_selector: ""
+                  source: url
+                  summarizeAlias: ""
+                  summarizeBy: ""
+                  summarizeExpression: ""
+                  type: json
+                  uql: |-
+                    parse-json
+                    | project "Timestamp"=todatetime("timestamp"), "Fan Speed"="event.hw-fan-speed_max-Max", "Name"="event.name"
+                  url: /api/v1/telemetry/TimeSeries
+                  url_options:
+                    body_content_type: application/json
+                    body_type: raw
+                    data: |4-
+                          {
+                            "queryType": "groupBy",
+                            "dataSource": "PhysicalEntities",
+                            "granularity": {
+                              "type": "duration",
+                              "duration": $__interval_ms,
+                              "timeZone": "$__timezone"
+                            },
+                            "intervals": ["${__from:date}/${__to:date}"],
+                            "dimensions": [],
+                            "filter": {
+                              "type": "and",
+                              "fields": [
+                                {
+                                  "type": "selector",
+                                  "dimension": "intersight.domain.name",
+                                  "value": "${DomainName}"
+                                },
+                                {
+                                  "type": "selector",
+                                  "dimension": "instrument.name",
+                                  "value": "hw.temperature"
+                                },
+                                {
+                                  "type": "selector",
+                                  "dimension": "host.type",
+                                  "value": "compute.Blade"
+                                },
+                                {
+                                  "type": "search",
+                                  "dimension": "host.name",
+                                  "query": {
+                                    "type": "insensitive_contains",
+                                    "value": "${ChassisName:text}-"
+                                  }
+                                },
+                                {
+                                  "type": "in",
+                                  "dimension": "name",
+                                  "values": [
+                                    "TEMP_REAR_BOT",
+                                    "TEMP_REAR_MID",
+                                    "TEMP_REAR_TOP"
+                                  ]
+                                }
+                              ]
+                            },
+                            "aggregations": [
+                              {
+                                "type": "doubleMin",
+                                "name": "hw-temperature_min-Min",
+                                "fieldName": "hw.temperature_min"
+                              },
+                              {
+                                "type": "doubleMax",
+                                "name": "hw-temperature_max-Max",
+                                "fieldName": "hw.temperature_max"
+                              },
+                              {
+                                "type": "longSum",
+                                "name": "count",
+                                "fieldName": "hw.temperature_count"
+                              },
+                              {
+                                "type": "doubleSum",
+                                "name": "hw.temperature-Sum",
+                                "fieldName": "hw.temperature"
+                              }
+                            ],
+                            "postAggregations": [
+                              {
+                                "type": "expression",
+                                "name": "hw-temperature-Avg",
+                                "expression": "(\"hw.temperature-Sum\" / \"count\")"
+                              }
+                            ]
+                          }
+                    method: POST
+              title: Exhaust Temperature
+              type: timeseries
           title: Chassis Temperature
           type: row
-        - datasource:
-            type: yesoreyeram-infinity-datasource
-            uid: ${DataSource}
-          description: The values are calculated as min, avg, and max across all relevant blade temperature sensors in the chassis
-          fieldConfig:
-            defaults:
-                color:
-                    mode: palette-classic
-                custom:
-                    axisBorderShow: false
-                    axisCenteredZero: false
-                    axisColorMode: text
-                    axisLabel: ""
-                    axisPlacement: auto
-                    barAlignment: 0
-                    barWidthFactor: 0.6
-                    drawStyle: line
-                    fillOpacity: 0
-                    gradientMode: none
-                    hideFrom:
-                        legend: false
-                        tooltip: false
-                        viz: false
-                    insertNulls: false
-                    lineInterpolation: linear
-                    lineStyle:
-                        fill: solid
-                    lineWidth: 1
-                    pointSize: 5
-                    scaleDistribution:
-                        type: linear
-                    showPoints: auto
-                    spanNulls: false
-                    stacking:
-                        group: A
-                        mode: none
-                    thresholdsStyle:
-                        mode: area
-                mappings: []
-                thresholds:
-                    mode: absolute
-                    steps:
-                        - color: transparent
-                        - color: '#EAB839'
-                          value: 50
-                        - color: dark-red
-                          value: 60
-                unit: celsius
-            overrides:
-                - matcher:
-                    id: byName
-                    options: Average
-                  properties:
-                    - id: color
-                      value:
-                        fixedColor: purple
-                        mode: fixed
-                - matcher:
-                    id: byName
-                    options: Minimum
-                  properties:
-                    - id: color
-                      value:
-                        fixedColor: super-light-purple
-                        mode: fixed
-                - matcher:
-                    id: byName
-                    options: Maximum
-                  properties:
-                    - id: color
-                      value:
-                        fixedColor: dark-purple
-                        mode: fixed
-          gridPos:
-            h: 7
-            w: 12
-            x: 0
-            "y": 28
-          id: 45
-          maxDataPoints: 500
-          options:
-            legend:
-                calcs: []
-                displayMode: list
-                placement: bottom
-                showLegend: true
-            tooltip:
-                hideZeros: false
-                mode: multi
-                sort: none
-          pluginVersion: 12.0.0-86517
-          targets:
-            - columns:
-                - selector: timestamp
-                  text: Time
-                  type: timestamp
-                - selector: event.hw-temperature-Avg
-                  text: Average
-                  type: number
-                - selector: event.hw-temperature_min-Min
-                  text: Minimum
-                  type: number
-                - selector: event.hw-temperature_max-Max
-                  text: Maximum
-                  type: number
-              datasource:
-                type: yesoreyeram-infinity-datasource
-                uid: ${DataSource}
-              filters: []
-              format: table
-              global_query_id: ""
-              parser: backend
-              refId: A
-              root_selector: ""
-              source: url
-              summarizeAlias: ""
-              summarizeBy: ""
-              summarizeExpression: ""
-              type: json
-              uql: |-
-                parse-json
-                | project "Timestamp"=todatetime("timestamp"), "Fan Speed"="event.hw-fan-speed_max-Max", "Name"="event.name"
-              url: /api/v1/telemetry/TimeSeries
-              url_options:
-                body_content_type: application/json
-                body_type: raw
-                data: |4-
-                      {
-                        "queryType": "groupBy",
-                        "dataSource": "PhysicalEntities",
-                        "granularity": {
-                          "type": "duration",
-                          "duration": $__interval_ms,
-                          "timeZone": "$__timezone"
-                        },
-                        "intervals": ["${__from:date}/${__to:date}"],
-                        "dimensions": [],
-                        "filter": {
-                          "type": "and",
-                          "fields": [
-                            {
-                              "type": "selector",
-                              "dimension": "intersight.domain.name",
-                              "value": "${Domain}"
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "instrument.name",
-                              "value": "hw.temperature"
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "host.type",
-                              "value": "compute.Blade"
-                            },
-                            {
-                              "type": "search",
-                              "dimension": "host.name",
-                              "query": {
-                                "type": "insensitive_contains",
-                                "value": "${ChassisName}-"
-                              }
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "name",
-                              "value": "TEMP_FRONT"
-                            }
-                          ]
-                        },
-                        "aggregations": [
-                          {
-                            "type": "doubleMin",
-                            "name": "hw-temperature_min-Min",
-                            "fieldName": "hw.temperature_min"
-                          },
-                          {
-                            "type": "doubleMax",
-                            "name": "hw-temperature_max-Max",
-                            "fieldName": "hw.temperature_max"
-                          },
-                          {
-                            "type": "longSum",
-                            "name": "count",
-                            "fieldName": "hw.temperature_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.temperature-Sum",
-                            "fieldName": "hw.temperature"
-                          }
-                        ],
-                        "postAggregations": [
-                          {
-                            "type": "expression",
-                            "name": "hw-temperature-Avg",
-                            "expression": "(\"hw.temperature-Sum\" / \"count\")"
-                          }
-                        ]
-                      }
-                method: POST
-          title: Intake Temperature
-          type: timeseries
-        - datasource:
-            type: yesoreyeram-infinity-datasource
-            uid: ${DataSource}
-          description: The values are calculated as min, avg, and max across all relevant blade temperature sensors in the chassis
-          fieldConfig:
-            defaults:
-                color:
-                    mode: palette-classic
-                custom:
-                    axisBorderShow: false
-                    axisCenteredZero: false
-                    axisColorMode: text
-                    axisLabel: ""
-                    axisPlacement: auto
-                    barAlignment: 0
-                    barWidthFactor: 0.6
-                    drawStyle: line
-                    fillOpacity: 0
-                    gradientMode: none
-                    hideFrom:
-                        legend: false
-                        tooltip: false
-                        viz: false
-                    insertNulls: false
-                    lineInterpolation: linear
-                    lineStyle:
-                        fill: solid
-                    lineWidth: 1
-                    pointSize: 5
-                    scaleDistribution:
-                        type: linear
-                    showPoints: auto
-                    spanNulls: false
-                    stacking:
-                        group: A
-                        mode: none
-                    thresholdsStyle:
-                        mode: area
-                mappings: []
-                thresholds:
-                    mode: absolute
-                    steps:
-                        - color: transparent
-                        - color: '#EAB839'
-                          value: 90
-                        - color: dark-red
-                          value: 100
-                unit: celsius
-            overrides:
-                - matcher:
-                    id: byName
-                    options: Average
-                  properties:
-                    - id: color
-                      value:
-                        fixedColor: purple
-                        mode: fixed
-                - matcher:
-                    id: byName
-                    options: Minimum
-                  properties:
-                    - id: color
-                      value:
-                        fixedColor: super-light-purple
-                        mode: fixed
-                - matcher:
-                    id: byName
-                    options: Maximum
-                  properties:
-                    - id: color
-                      value:
-                        fixedColor: dark-purple
-                        mode: fixed
-          gridPos:
-            h: 7
-            w: 12
-            x: 12
-            "y": 28
-          id: 46
-          maxDataPoints: 500
-          options:
-            legend:
-                calcs: []
-                displayMode: list
-                placement: bottom
-                showLegend: true
-            tooltip:
-                hideZeros: false
-                mode: multi
-                sort: none
-          pluginVersion: 12.0.0-86517
-          targets:
-            - columns:
-                - selector: timestamp
-                  text: Time
-                  type: timestamp
-                - selector: event.hw-temperature-Avg
-                  text: Average
-                  type: number
-                - selector: event.hw-temperature_min-Min
-                  text: Minimum
-                  type: number
-                - selector: event.hw-temperature_max-Max
-                  text: Maximum
-                  type: number
-              datasource:
-                type: yesoreyeram-infinity-datasource
-                uid: ${DataSource}
-              filters: []
-              format: table
-              global_query_id: ""
-              parser: backend
-              refId: A
-              root_selector: ""
-              source: url
-              summarizeAlias: ""
-              summarizeBy: ""
-              summarizeExpression: ""
-              type: json
-              uql: |-
-                parse-json
-                | project "Timestamp"=todatetime("timestamp"), "Fan Speed"="event.hw-fan-speed_max-Max", "Name"="event.name"
-              url: /api/v1/telemetry/TimeSeries
-              url_options:
-                body_content_type: application/json
-                body_type: raw
-                data: |4-
-                      {
-                        "queryType": "groupBy",
-                        "dataSource": "PhysicalEntities",
-                        "granularity": {
-                          "type": "duration",
-                          "duration": $__interval_ms,
-                          "timeZone": "$__timezone"
-                        },
-                        "intervals": ["${__from:date}/${__to:date}"],
-                        "dimensions": [],
-                        "filter": {
-                          "type": "and",
-                          "fields": [
-                            {
-                              "type": "selector",
-                              "dimension": "intersight.domain.name",
-                              "value": "${Domain}"
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "instrument.name",
-                              "value": "hw.temperature"
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "host.type",
-                              "value": "compute.Blade"
-                            },
-                            {
-                              "type": "search",
-                              "dimension": "host.name",
-                              "query": {
-                                "type": "insensitive_contains",
-                                "value": "${ChassisName}-"
-                              }
-                            },
-                            {
-                              "type": "in",
-                              "dimension": "name",
-                              "values": [
-                                "TEMP_REAR_BOT",
-                                "TEMP_REAR_MID",
-                                "TEMP_REAR_TOP"
-                              ]
-                            }
-                          ]
-                        },
-                        "aggregations": [
-                          {
-                            "type": "doubleMin",
-                            "name": "hw-temperature_min-Min",
-                            "fieldName": "hw.temperature_min"
-                          },
-                          {
-                            "type": "doubleMax",
-                            "name": "hw-temperature_max-Max",
-                            "fieldName": "hw.temperature_max"
-                          },
-                          {
-                            "type": "longSum",
-                            "name": "count",
-                            "fieldName": "hw.temperature_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.temperature-Sum",
-                            "fieldName": "hw.temperature"
-                          }
-                        ],
-                        "postAggregations": [
-                          {
-                            "type": "expression",
-                            "name": "hw-temperature-Avg",
-                            "expression": "(\"hw.temperature-Sum\" / \"count\")"
-                          }
-                        ]
-                      }
-                method: POST
-          title: Exhaust Temperature
-          type: timeseries
-        - collapsed: false
+        - collapsed: true
           gridPos:
             h: 1
             w: 24
             x: 0
-            "y": 35
+            "y": 14
           id: 21
-          panels: []
+          panels:
+            - datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              fieldConfig:
+                defaults:
+                    color:
+                        mode: palette-classic
+                    custom:
+                        axisBorderShow: false
+                        axisCenteredZero: false
+                        axisColorMode: text
+                        axisLabel: ""
+                        axisPlacement: auto
+                        barAlignment: 0
+                        barWidthFactor: 0.6
+                        drawStyle: line
+                        fillOpacity: 0
+                        gradientMode: none
+                        hideFrom:
+                            legend: false
+                            tooltip: false
+                            viz: false
+                        insertNulls: false
+                        lineInterpolation: linear
+                        lineStyle:
+                            fill: solid
+                        lineWidth: 1
+                        pointSize: 5
+                        scaleDistribution:
+                            type: linear
+                        showPoints: auto
+                        spanNulls: false
+                        stacking:
+                            group: A
+                            mode: none
+                        thresholdsStyle:
+                            mode: area
+                    mappings: []
+                    thresholds:
+                        mode: absolute
+                        steps:
+                            - color: transparent
+                            - color: '#EAB839'
+                              value: 50
+                            - color: dark-red
+                              value: 60
+                    unit: celsius
+                overrides: []
+              gridPos:
+                h: 12
+                w: 8
+                x: 0
+                "y": 15
+              id: 47
+              maxDataPoints: 500
+              options:
+                legend:
+                    calcs: []
+                    displayMode: list
+                    placement: bottom
+                    showLegend: true
+                tooltip:
+                    hideZeros: false
+                    mode: multi
+                    sort: none
+              pluginVersion: 12.0.0-86517
+              targets:
+                - columns:
+                    - selector: timestamp
+                      text: Time
+                      type: timestamp
+                    - selector: event.hw-temperature-Avg
+                      text: Temperature
+                      type: number
+                    - selector: event.hostname
+                      text: Hostname
+                      type: string
+                  datasource:
+                    type: yesoreyeram-infinity-datasource
+                    uid: ${DataSource}
+                  filters: []
+                  format: table
+                  global_query_id: ""
+                  parser: backend
+                  refId: A
+                  root_selector: ""
+                  source: url
+                  summarizeAlias: ""
+                  summarizeBy: ""
+                  summarizeExpression: ""
+                  type: json
+                  uql: |-
+                    parse-json
+                    | project "Timestamp"=todatetime("timestamp"), "Fan Speed"="event.hw-fan-speed_max-Max", "Name"="event.name"
+                  url: /api/v1/telemetry/TimeSeries
+                  url_options:
+                    body_content_type: application/json
+                    body_type: raw
+                    data: |4-
+                          {
+                            "queryType": "groupBy",
+                            "dataSource": "PhysicalEntities",
+                            "granularity": {
+                              "type": "duration",
+                              "duration": $__interval_ms,
+                              "timeZone": "$__timezone"
+                            },
+                            "intervals": ["${__from:date}/${__to:date}"],
+                            "dimensions": ["hostname"],
+                            "virtualColumns": [{
+                              "type": "nested-field",
+                              "columnName": "host.name",
+                              "outputName": "hostname",
+                              "expectedType": "STRING",
+                              "path": "$"
+                            }],
+                            "filter": {
+                              "type": "and",
+                              "fields": [
+                                {
+                                  "type": "selector",
+                                  "dimension": "intersight.domain.name",
+                                  "value": "${DomainName}"
+                                },
+                                {
+                                  "type": "selector",
+                                  "dimension": "instrument.name",
+                                  "value": "hw.temperature"
+                                },
+                                {
+                                  "type": "selector",
+                                  "dimension": "host.type",
+                                  "value": "compute.Blade"
+                                },
+                                {
+                                  "type": "search",
+                                  "dimension": "host.name",
+                                  "query": {
+                                    "type": "insensitive_contains",
+                                    "value": "${ChassisName:text}-"
+                                  }
+                                },
+                                {
+                                  "type": "selector",
+                                  "dimension": "name",
+                                  "value": "TEMP_FRONT"
+                                }
+                              ]
+                            },
+                            "aggregations": [
+                              {
+                                "type": "longSum",
+                                "name": "count",
+                                "fieldName": "hw.temperature_count"
+                              },
+                              {
+                                "type": "doubleSum",
+                                "name": "hw.temperature-Sum",
+                                "fieldName": "hw.temperature"
+                              }
+                            ],
+                            "postAggregations": [
+                              {
+                                "type": "expression",
+                                "name": "hw-temperature-Avg",
+                                "expression": "(\"hw.temperature-Sum\" / \"count\")"
+                              }
+                            ]
+                          }
+                    method: POST
+              title: Intake Temperature (Avg)
+              transformations:
+                - id: groupingToMatrix
+                  options:
+                    columnField: Hostname
+                    rowField: Time
+                    valueField: Temperature
+              type: timeseries
+            - datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              fieldConfig:
+                defaults:
+                    color:
+                        mode: palette-classic
+                    custom:
+                        axisBorderShow: false
+                        axisCenteredZero: false
+                        axisColorMode: text
+                        axisLabel: ""
+                        axisPlacement: auto
+                        barAlignment: 0
+                        barWidthFactor: 0.6
+                        drawStyle: line
+                        fillOpacity: 0
+                        gradientMode: none
+                        hideFrom:
+                            legend: false
+                            tooltip: false
+                            viz: false
+                        insertNulls: false
+                        lineInterpolation: linear
+                        lineStyle:
+                            fill: solid
+                        lineWidth: 1
+                        pointSize: 5
+                        scaleDistribution:
+                            type: linear
+                        showPoints: auto
+                        spanNulls: false
+                        stacking:
+                            group: A
+                            mode: none
+                        thresholdsStyle:
+                            mode: area
+                    mappings: []
+                    thresholds:
+                        mode: absolute
+                        steps:
+                            - color: transparent
+                            - color: '#EAB839'
+                              value: 101
+                    unit: celsius
+                overrides: []
+              gridPos:
+                h: 6
+                w: 8
+                x: 8
+                "y": 15
+              id: 48
+              maxDataPoints: 500
+              options:
+                legend:
+                    calcs: []
+                    displayMode: list
+                    placement: bottom
+                    showLegend: true
+                tooltip:
+                    hideZeros: false
+                    mode: multi
+                    sort: none
+              pluginVersion: 12.0.0-86517
+              targets:
+                - columns:
+                    - selector: timestamp
+                      text: Time
+                      type: timestamp
+                    - selector: event.hw-temperature-Avg
+                      text: Temperature
+                      type: number
+                    - selector: event.hostname
+                      text: Hostname
+                      type: string
+                  datasource:
+                    type: yesoreyeram-infinity-datasource
+                    uid: ${DataSource}
+                  filters: []
+                  format: table
+                  global_query_id: ""
+                  parser: backend
+                  refId: A
+                  root_selector: ""
+                  source: url
+                  summarizeAlias: ""
+                  summarizeBy: ""
+                  summarizeExpression: ""
+                  type: json
+                  uql: |-
+                    parse-json
+                    | project "Timestamp"=todatetime("timestamp"), "Fan Speed"="event.hw-fan-speed_max-Max", "Name"="event.name"
+                  url: /api/v1/telemetry/TimeSeries
+                  url_options:
+                    body_content_type: application/json
+                    body_type: raw
+                    data: |4-
+                          {
+                            "queryType": "groupBy",
+                            "dataSource": "PhysicalEntities",
+                            "granularity": {
+                              "type": "duration",
+                              "duration": $__interval_ms,
+                              "timeZone": "$__timezone"
+                            },
+                            "intervals": ["${__from:date}/${__to:date}"],
+                            "dimensions": ["hostname"],
+                            "virtualColumns": [{
+                              "type": "nested-field",
+                              "columnName": "host.name",
+                              "outputName": "hostname",
+                              "expectedType": "STRING",
+                              "path": "$"
+                            }],
+                            "filter": {
+                              "type": "and",
+                              "fields": [
+                                {
+                                  "type": "selector",
+                                  "dimension": "intersight.domain.name",
+                                  "value": "${DomainName}"
+                                },
+                                {
+                                  "type": "selector",
+                                  "dimension": "instrument.name",
+                                  "value": "hw.temperature"
+                                },
+                                {
+                                  "type": "selector",
+                                  "dimension": "host.type",
+                                  "value": "compute.Blade"
+                                },
+                                {
+                                  "type": "search",
+                                  "dimension": "host.name",
+                                  "query": {
+                                    "type": "insensitive_contains",
+                                    "value": "${ChassisName:text}-"
+                                  }
+                                },
+                                {
+                                  "type": "in",
+                                  "dimension": "name",
+                                  "values": [
+                                    "P1_TEMP_SENS"
+                                  ]
+                                }
+                              ]
+                            },
+                            "aggregations": [
+                              {
+                                "type": "longSum",
+                                "name": "count",
+                                "fieldName": "hw.temperature_count"
+                              },
+                              {
+                                "type": "doubleSum",
+                                "name": "hw.temperature-Sum",
+                                "fieldName": "hw.temperature"
+                              }
+                            ],
+                            "postAggregations": [
+                              {
+                                "type": "expression",
+                                "name": "hw-temperature-Avg",
+                                "expression": "(\"hw.temperature-Sum\" / \"count\")"
+                              }
+                            ]
+                          }
+                    method: POST
+              title: CPU1 Temperature (Avg)
+              transformations:
+                - id: groupingToMatrix
+                  options:
+                    columnField: Hostname
+                    rowField: Time
+                    valueField: Temperature
+              type: timeseries
+            - datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              fieldConfig:
+                defaults:
+                    color:
+                        mode: palette-classic
+                    custom:
+                        axisBorderShow: false
+                        axisCenteredZero: false
+                        axisColorMode: text
+                        axisLabel: ""
+                        axisPlacement: auto
+                        barAlignment: 0
+                        barWidthFactor: 0.6
+                        drawStyle: line
+                        fillOpacity: 0
+                        gradientMode: none
+                        hideFrom:
+                            legend: false
+                            tooltip: false
+                            viz: false
+                        insertNulls: false
+                        lineInterpolation: linear
+                        lineStyle:
+                            fill: solid
+                        lineWidth: 1
+                        pointSize: 5
+                        scaleDistribution:
+                            type: linear
+                        showPoints: auto
+                        spanNulls: false
+                        stacking:
+                            group: A
+                            mode: none
+                        thresholdsStyle:
+                            mode: area
+                    mappings: []
+                    thresholds:
+                        mode: absolute
+                        steps:
+                            - color: transparent
+                            - color: '#EAB839'
+                              value: 90
+                            - color: dark-red
+                              value: 100
+                    unit: celsius
+                overrides: []
+              gridPos:
+                h: 12
+                w: 8
+                x: 16
+                "y": 15
+              id: 49
+              maxDataPoints: 500
+              options:
+                legend:
+                    calcs: []
+                    displayMode: list
+                    placement: bottom
+                    showLegend: true
+                tooltip:
+                    hideZeros: false
+                    mode: multi
+                    sort: none
+              pluginVersion: 12.0.0-86517
+              targets:
+                - columns:
+                    - selector: timestamp
+                      text: Time
+                      type: timestamp
+                    - selector: event.hw-temperature-Avg
+                      text: Temperature
+                      type: number
+                    - selector: event.hostname
+                      text: Hostname
+                      type: string
+                  datasource:
+                    type: yesoreyeram-infinity-datasource
+                    uid: ${DataSource}
+                  filters: []
+                  format: table
+                  global_query_id: ""
+                  parser: backend
+                  refId: A
+                  root_selector: ""
+                  source: url
+                  summarizeAlias: ""
+                  summarizeBy: ""
+                  summarizeExpression: ""
+                  type: json
+                  uql: |-
+                    parse-json
+                    | project "Timestamp"=todatetime("timestamp"), "Fan Speed"="event.hw-fan-speed_max-Max", "Name"="event.name"
+                  url: /api/v1/telemetry/TimeSeries
+                  url_options:
+                    body_content_type: application/json
+                    body_type: raw
+                    data: |4-
+                          {
+                            "queryType": "groupBy",
+                            "dataSource": "PhysicalEntities",
+                            "granularity": {
+                              "type": "duration",
+                              "duration": $__interval_ms,
+                              "timeZone": "$__timezone"
+                            },
+                            "intervals": ["${__from:date}/${__to:date}"],
+                            "dimensions": ["hostname"],
+                            "virtualColumns": [{
+                              "type": "nested-field",
+                              "columnName": "host.name",
+                              "outputName": "hostname",
+                              "expectedType": "STRING",
+                              "path": "$"
+                            }],
+                            "filter": {
+                              "type": "and",
+                              "fields": [
+                                {
+                                  "type": "selector",
+                                  "dimension": "intersight.domain.name",
+                                  "value": "${DomainName}"
+                                },
+                                {
+                                  "type": "selector",
+                                  "dimension": "instrument.name",
+                                  "value": "hw.temperature"
+                                },
+                                {
+                                  "type": "selector",
+                                  "dimension": "host.type",
+                                  "value": "compute.Blade"
+                                },
+                                {
+                                  "type": "search",
+                                  "dimension": "host.name",
+                                  "query": {
+                                    "type": "insensitive_contains",
+                                    "value": "${ChassisName:text}-"
+                                  }
+                                },
+                                {
+                                  "type": "in",
+                                  "dimension": "name",
+                                  "values": [
+                                    "TEMP_REAR_BOT",
+                                    "TEMP_REAR_MID",
+                                    "TEMP_REAR_TOP"
+                                  ]
+                                }
+                              ]
+                            },
+                            "aggregations": [
+                              {
+                                "type": "longSum",
+                                "name": "count",
+                                "fieldName": "hw.temperature_count"
+                              },
+                              {
+                                "type": "doubleSum",
+                                "name": "hw.temperature-Sum",
+                                "fieldName": "hw.temperature"
+                              }
+                            ],
+                            "postAggregations": [
+                              {
+                                "type": "expression",
+                                "name": "hw-temperature-Avg",
+                                "expression": "(\"hw.temperature-Sum\" / \"count\")"
+                              }
+                            ]
+                          }
+                    method: POST
+              title: Exhaust Temperature (Avg)
+              transformations:
+                - id: groupingToMatrix
+                  options:
+                    columnField: Hostname
+                    rowField: Time
+                    valueField: Temperature
+              type: timeseries
+            - datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              fieldConfig:
+                defaults:
+                    color:
+                        mode: palette-classic
+                    custom:
+                        axisBorderShow: false
+                        axisCenteredZero: false
+                        axisColorMode: text
+                        axisLabel: ""
+                        axisPlacement: auto
+                        barAlignment: 0
+                        barWidthFactor: 0.6
+                        drawStyle: line
+                        fillOpacity: 0
+                        gradientMode: none
+                        hideFrom:
+                            legend: false
+                            tooltip: false
+                            viz: false
+                        insertNulls: false
+                        lineInterpolation: linear
+                        lineStyle:
+                            fill: solid
+                        lineWidth: 1
+                        pointSize: 5
+                        scaleDistribution:
+                            type: linear
+                        showPoints: auto
+                        spanNulls: false
+                        stacking:
+                            group: A
+                            mode: none
+                        thresholdsStyle:
+                            mode: area
+                    mappings: []
+                    thresholds:
+                        mode: absolute
+                        steps:
+                            - color: transparent
+                            - color: '#EAB839'
+                              value: 101
+                    unit: celsius
+                overrides: []
+              gridPos:
+                h: 6
+                w: 8
+                x: 8
+                "y": 21
+              id: 67
+              maxDataPoints: 500
+              options:
+                legend:
+                    calcs: []
+                    displayMode: list
+                    placement: bottom
+                    showLegend: true
+                tooltip:
+                    hideZeros: false
+                    mode: multi
+                    sort: none
+              pluginVersion: 12.0.0-86517
+              targets:
+                - columns:
+                    - selector: timestamp
+                      text: Time
+                      type: timestamp
+                    - selector: event.hw-temperature-Avg
+                      text: Temperature
+                      type: number
+                    - selector: event.hostname
+                      text: Hostname
+                      type: string
+                  datasource:
+                    type: yesoreyeram-infinity-datasource
+                    uid: ${DataSource}
+                  filters: []
+                  format: table
+                  global_query_id: ""
+                  parser: backend
+                  refId: A
+                  root_selector: ""
+                  source: url
+                  summarizeAlias: ""
+                  summarizeBy: ""
+                  summarizeExpression: ""
+                  type: json
+                  uql: |-
+                    parse-json
+                    | project "Timestamp"=todatetime("timestamp"), "Fan Speed"="event.hw-fan-speed_max-Max", "Name"="event.name"
+                  url: /api/v1/telemetry/TimeSeries
+                  url_options:
+                    body_content_type: application/json
+                    body_type: raw
+                    data: |4-
+                          {
+                            "queryType": "groupBy",
+                            "dataSource": "PhysicalEntities",
+                            "granularity": {
+                              "type": "duration",
+                              "duration": $__interval_ms,
+                              "timeZone": "$__timezone"
+                            },
+                            "intervals": ["${__from:date}/${__to:date}"],
+                            "dimensions": ["hostname"],
+                            "virtualColumns": [{
+                              "type": "nested-field",
+                              "columnName": "host.name",
+                              "outputName": "hostname",
+                              "expectedType": "STRING",
+                              "path": "$"
+                            }],
+                            "filter": {
+                              "type": "and",
+                              "fields": [
+                                {
+                                  "type": "selector",
+                                  "dimension": "intersight.domain.name",
+                                  "value": "${DomainName}"
+                                },
+                                {
+                                  "type": "selector",
+                                  "dimension": "instrument.name",
+                                  "value": "hw.temperature"
+                                },
+                                {
+                                  "type": "selector",
+                                  "dimension": "host.type",
+                                  "value": "compute.Blade"
+                                },
+                                {
+                                  "type": "search",
+                                  "dimension": "host.name",
+                                  "query": {
+                                    "type": "insensitive_contains",
+                                    "value": "${ChassisName:text}-"
+                                  }
+                                },
+                                {
+                                  "type": "in",
+                                  "dimension": "name",
+                                  "values": [
+                                    "P2_TEMP_SENS"
+                                  ]
+                                }
+                              ]
+                            },
+                            "aggregations": [
+                              {
+                                "type": "longSum",
+                                "name": "count",
+                                "fieldName": "hw.temperature_count"
+                              },
+                              {
+                                "type": "doubleSum",
+                                "name": "hw.temperature-Sum",
+                                "fieldName": "hw.temperature"
+                              }
+                            ],
+                            "postAggregations": [
+                              {
+                                "type": "expression",
+                                "name": "hw-temperature-Avg",
+                                "expression": "(\"hw.temperature-Sum\" / \"count\")"
+                              }
+                            ]
+                          }
+                    method: POST
+              title: CPU2 Temperature (Avg)
+              transformations:
+                - id: groupingToMatrix
+                  options:
+                    columnField: Hostname
+                    rowField: Time
+                    valueField: Temperature
+              type: timeseries
           title: Host Temperature
           type: row
-        - datasource:
-            type: yesoreyeram-infinity-datasource
-            uid: ${DataSource}
-          fieldConfig:
-            defaults:
-                color:
-                    mode: palette-classic
-                custom:
-                    axisBorderShow: false
-                    axisCenteredZero: false
-                    axisColorMode: text
-                    axisLabel: ""
-                    axisPlacement: auto
-                    barAlignment: 0
-                    barWidthFactor: 0.6
-                    drawStyle: line
-                    fillOpacity: 0
-                    gradientMode: none
-                    hideFrom:
-                        legend: false
-                        tooltip: false
-                        viz: false
-                    insertNulls: false
-                    lineInterpolation: linear
-                    lineStyle:
-                        fill: solid
-                    lineWidth: 1
-                    pointSize: 5
-                    scaleDistribution:
-                        type: linear
-                    showPoints: auto
-                    spanNulls: false
-                    stacking:
-                        group: A
-                        mode: none
-                    thresholdsStyle:
-                        mode: area
-                mappings: []
-                thresholds:
-                    mode: absolute
-                    steps:
-                        - color: transparent
-                        - color: '#EAB839'
-                          value: 50
-                        - color: dark-red
-                          value: 60
-                unit: celsius
-            overrides: []
-          gridPos:
-            h: 12
-            w: 8
-            x: 0
-            "y": 36
-          id: 47
-          maxDataPoints: 500
-          options:
-            legend:
-                calcs: []
-                displayMode: list
-                placement: bottom
-                showLegend: true
-            tooltip:
-                hideZeros: false
-                mode: multi
-                sort: none
-          pluginVersion: 12.0.0-86517
-          targets:
-            - columns:
-                - selector: timestamp
-                  text: Time
-                  type: timestamp
-                - selector: event.hw-temperature-Avg
-                  text: Temperature
-                  type: number
-                - selector: event.hostname
-                  text: Hostname
-                  type: string
-              datasource:
-                type: yesoreyeram-infinity-datasource
-                uid: ${DataSource}
-              filters: []
-              format: table
-              global_query_id: ""
-              parser: backend
-              refId: A
-              root_selector: ""
-              source: url
-              summarizeAlias: ""
-              summarizeBy: ""
-              summarizeExpression: ""
-              type: json
-              uql: |-
-                parse-json
-                | project "Timestamp"=todatetime("timestamp"), "Fan Speed"="event.hw-fan-speed_max-Max", "Name"="event.name"
-              url: /api/v1/telemetry/TimeSeries
-              url_options:
-                body_content_type: application/json
-                body_type: raw
-                data: |4-
-                      {
-                        "queryType": "groupBy",
-                        "dataSource": "PhysicalEntities",
-                        "granularity": {
-                          "type": "duration",
-                          "duration": $__interval_ms,
-                          "timeZone": "$__timezone"
-                        },
-                        "intervals": ["${__from:date}/${__to:date}"],
-                        "dimensions": ["hostname"],
-                        "virtualColumns": [{
-                          "type": "nested-field",
-                          "columnName": "host.name",
-                          "outputName": "hostname",
-                          "expectedType": "STRING",
-                          "path": "$"
-                        }],
-                        "filter": {
-                          "type": "and",
-                          "fields": [
-                            {
-                              "type": "selector",
-                              "dimension": "intersight.domain.name",
-                              "value": "${Domain}"
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "instrument.name",
-                              "value": "hw.temperature"
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "host.type",
-                              "value": "compute.Blade"
-                            },
-                            {
-                              "type": "search",
-                              "dimension": "host.name",
-                              "query": {
-                                "type": "insensitive_contains",
-                                "value": "${ChassisName}-"
-                              }
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "name",
-                              "value": "TEMP_FRONT"
-                            }
-                          ]
-                        },
-                        "aggregations": [
-                          {
-                            "type": "longSum",
-                            "name": "count",
-                            "fieldName": "hw.temperature_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.temperature-Sum",
-                            "fieldName": "hw.temperature"
-                          }
-                        ],
-                        "postAggregations": [
-                          {
-                            "type": "expression",
-                            "name": "hw-temperature-Avg",
-                            "expression": "(\"hw.temperature-Sum\" / \"count\")"
-                          }
-                        ]
-                      }
-                method: POST
-          title: Intake Temperature (Avg)
-          transformations:
-            - id: groupingToMatrix
-              options:
-                columnField: Hostname
-                rowField: Time
-                valueField: Temperature
-          type: timeseries
-        - datasource:
-            type: yesoreyeram-infinity-datasource
-            uid: ${DataSource}
-          fieldConfig:
-            defaults:
-                color:
-                    mode: palette-classic
-                custom:
-                    axisBorderShow: false
-                    axisCenteredZero: false
-                    axisColorMode: text
-                    axisLabel: ""
-                    axisPlacement: auto
-                    barAlignment: 0
-                    barWidthFactor: 0.6
-                    drawStyle: line
-                    fillOpacity: 0
-                    gradientMode: none
-                    hideFrom:
-                        legend: false
-                        tooltip: false
-                        viz: false
-                    insertNulls: false
-                    lineInterpolation: linear
-                    lineStyle:
-                        fill: solid
-                    lineWidth: 1
-                    pointSize: 5
-                    scaleDistribution:
-                        type: linear
-                    showPoints: auto
-                    spanNulls: false
-                    stacking:
-                        group: A
-                        mode: none
-                    thresholdsStyle:
-                        mode: area
-                mappings: []
-                thresholds:
-                    mode: absolute
-                    steps:
-                        - color: transparent
-                        - color: '#EAB839'
-                          value: 101
-                unit: celsius
-            overrides: []
-          gridPos:
-            h: 6
-            w: 8
-            x: 8
-            "y": 36
-          id: 48
-          maxDataPoints: 500
-          options:
-            legend:
-                calcs: []
-                displayMode: list
-                placement: bottom
-                showLegend: true
-            tooltip:
-                hideZeros: false
-                mode: multi
-                sort: none
-          pluginVersion: 12.0.0-86517
-          targets:
-            - columns:
-                - selector: timestamp
-                  text: Time
-                  type: timestamp
-                - selector: event.hw-temperature-Avg
-                  text: Temperature
-                  type: number
-                - selector: event.hostname
-                  text: Hostname
-                  type: string
-              datasource:
-                type: yesoreyeram-infinity-datasource
-                uid: ${DataSource}
-              filters: []
-              format: table
-              global_query_id: ""
-              parser: backend
-              refId: A
-              root_selector: ""
-              source: url
-              summarizeAlias: ""
-              summarizeBy: ""
-              summarizeExpression: ""
-              type: json
-              uql: |-
-                parse-json
-                | project "Timestamp"=todatetime("timestamp"), "Fan Speed"="event.hw-fan-speed_max-Max", "Name"="event.name"
-              url: /api/v1/telemetry/TimeSeries
-              url_options:
-                body_content_type: application/json
-                body_type: raw
-                data: |4-
-                      {
-                        "queryType": "groupBy",
-                        "dataSource": "PhysicalEntities",
-                        "granularity": {
-                          "type": "duration",
-                          "duration": $__interval_ms,
-                          "timeZone": "$__timezone"
-                        },
-                        "intervals": ["${__from:date}/${__to:date}"],
-                        "dimensions": ["hostname"],
-                        "virtualColumns": [{
-                          "type": "nested-field",
-                          "columnName": "host.name",
-                          "outputName": "hostname",
-                          "expectedType": "STRING",
-                          "path": "$"
-                        }],
-                        "filter": {
-                          "type": "and",
-                          "fields": [
-                            {
-                              "type": "selector",
-                              "dimension": "intersight.domain.name",
-                              "value": "${Domain}"
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "instrument.name",
-                              "value": "hw.temperature"
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "host.type",
-                              "value": "compute.Blade"
-                            },
-                            {
-                              "type": "search",
-                              "dimension": "host.name",
-                              "query": {
-                                "type": "insensitive_contains",
-                                "value": "${ChassisName}-"
-                              }
-                            },
-                            {
-                              "type": "in",
-                              "dimension": "name",
-                              "values": [
-                                "P1_TEMP_SENS"
-                              ]
-                            }
-                          ]
-                        },
-                        "aggregations": [
-                          {
-                            "type": "longSum",
-                            "name": "count",
-                            "fieldName": "hw.temperature_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.temperature-Sum",
-                            "fieldName": "hw.temperature"
-                          }
-                        ],
-                        "postAggregations": [
-                          {
-                            "type": "expression",
-                            "name": "hw-temperature-Avg",
-                            "expression": "(\"hw.temperature-Sum\" / \"count\")"
-                          }
-                        ]
-                      }
-                method: POST
-          title: CPU1 Temperature (Avg)
-          transformations:
-            - id: groupingToMatrix
-              options:
-                columnField: Hostname
-                rowField: Time
-                valueField: Temperature
-          type: timeseries
-        - datasource:
-            type: yesoreyeram-infinity-datasource
-            uid: ${DataSource}
-          fieldConfig:
-            defaults:
-                color:
-                    mode: palette-classic
-                custom:
-                    axisBorderShow: false
-                    axisCenteredZero: false
-                    axisColorMode: text
-                    axisLabel: ""
-                    axisPlacement: auto
-                    barAlignment: 0
-                    barWidthFactor: 0.6
-                    drawStyle: line
-                    fillOpacity: 0
-                    gradientMode: none
-                    hideFrom:
-                        legend: false
-                        tooltip: false
-                        viz: false
-                    insertNulls: false
-                    lineInterpolation: linear
-                    lineStyle:
-                        fill: solid
-                    lineWidth: 1
-                    pointSize: 5
-                    scaleDistribution:
-                        type: linear
-                    showPoints: auto
-                    spanNulls: false
-                    stacking:
-                        group: A
-                        mode: none
-                    thresholdsStyle:
-                        mode: area
-                mappings: []
-                thresholds:
-                    mode: absolute
-                    steps:
-                        - color: transparent
-                        - color: '#EAB839'
-                          value: 90
-                        - color: dark-red
-                          value: 100
-                unit: celsius
-            overrides: []
-          gridPos:
-            h: 12
-            w: 8
-            x: 16
-            "y": 36
-          id: 49
-          maxDataPoints: 500
-          options:
-            legend:
-                calcs: []
-                displayMode: list
-                placement: bottom
-                showLegend: true
-            tooltip:
-                hideZeros: false
-                mode: multi
-                sort: none
-          pluginVersion: 12.0.0-86517
-          targets:
-            - columns:
-                - selector: timestamp
-                  text: Time
-                  type: timestamp
-                - selector: event.hw-temperature-Avg
-                  text: Temperature
-                  type: number
-                - selector: event.hostname
-                  text: Hostname
-                  type: string
-              datasource:
-                type: yesoreyeram-infinity-datasource
-                uid: ${DataSource}
-              filters: []
-              format: table
-              global_query_id: ""
-              parser: backend
-              refId: A
-              root_selector: ""
-              source: url
-              summarizeAlias: ""
-              summarizeBy: ""
-              summarizeExpression: ""
-              type: json
-              uql: |-
-                parse-json
-                | project "Timestamp"=todatetime("timestamp"), "Fan Speed"="event.hw-fan-speed_max-Max", "Name"="event.name"
-              url: /api/v1/telemetry/TimeSeries
-              url_options:
-                body_content_type: application/json
-                body_type: raw
-                data: |4-
-                      {
-                        "queryType": "groupBy",
-                        "dataSource": "PhysicalEntities",
-                        "granularity": {
-                          "type": "duration",
-                          "duration": $__interval_ms,
-                          "timeZone": "$__timezone"
-                        },
-                        "intervals": ["${__from:date}/${__to:date}"],
-                        "dimensions": ["hostname"],
-                        "virtualColumns": [{
-                          "type": "nested-field",
-                          "columnName": "host.name",
-                          "outputName": "hostname",
-                          "expectedType": "STRING",
-                          "path": "$"
-                        }],
-                        "filter": {
-                          "type": "and",
-                          "fields": [
-                            {
-                              "type": "selector",
-                              "dimension": "intersight.domain.name",
-                              "value": "${Domain}"
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "instrument.name",
-                              "value": "hw.temperature"
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "host.type",
-                              "value": "compute.Blade"
-                            },
-                            {
-                              "type": "search",
-                              "dimension": "host.name",
-                              "query": {
-                                "type": "insensitive_contains",
-                                "value": "${ChassisName}-"
-                              }
-                            },
-                            {
-                              "type": "in",
-                              "dimension": "name",
-                              "values": [
-                                "TEMP_REAR_BOT",
-                                "TEMP_REAR_MID",
-                                "TEMP_REAR_TOP"
-                              ]
-                            }
-                          ]
-                        },
-                        "aggregations": [
-                          {
-                            "type": "longSum",
-                            "name": "count",
-                            "fieldName": "hw.temperature_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.temperature-Sum",
-                            "fieldName": "hw.temperature"
-                          }
-                        ],
-                        "postAggregations": [
-                          {
-                            "type": "expression",
-                            "name": "hw-temperature-Avg",
-                            "expression": "(\"hw.temperature-Sum\" / \"count\")"
-                          }
-                        ]
-                      }
-                method: POST
-          title: Exhaust Temperature (Avg)
-          transformations:
-            - id: groupingToMatrix
-              options:
-                columnField: Hostname
-                rowField: Time
-                valueField: Temperature
-          type: timeseries
-        - datasource:
-            type: yesoreyeram-infinity-datasource
-            uid: ${DataSource}
-          fieldConfig:
-            defaults:
-                color:
-                    mode: palette-classic
-                custom:
-                    axisBorderShow: false
-                    axisCenteredZero: false
-                    axisColorMode: text
-                    axisLabel: ""
-                    axisPlacement: auto
-                    barAlignment: 0
-                    barWidthFactor: 0.6
-                    drawStyle: line
-                    fillOpacity: 0
-                    gradientMode: none
-                    hideFrom:
-                        legend: false
-                        tooltip: false
-                        viz: false
-                    insertNulls: false
-                    lineInterpolation: linear
-                    lineStyle:
-                        fill: solid
-                    lineWidth: 1
-                    pointSize: 5
-                    scaleDistribution:
-                        type: linear
-                    showPoints: auto
-                    spanNulls: false
-                    stacking:
-                        group: A
-                        mode: none
-                    thresholdsStyle:
-                        mode: area
-                mappings: []
-                thresholds:
-                    mode: absolute
-                    steps:
-                        - color: transparent
-                        - color: '#EAB839'
-                          value: 101
-                unit: celsius
-            overrides: []
-          gridPos:
-            h: 6
-            w: 8
-            x: 8
-            "y": 42
-          id: 67
-          maxDataPoints: 500
-          options:
-            legend:
-                calcs: []
-                displayMode: list
-                placement: bottom
-                showLegend: true
-            tooltip:
-                hideZeros: false
-                mode: multi
-                sort: none
-          pluginVersion: 12.0.0-86517
-          targets:
-            - columns:
-                - selector: timestamp
-                  text: Time
-                  type: timestamp
-                - selector: event.hw-temperature-Avg
-                  text: Temperature
-                  type: number
-                - selector: event.hostname
-                  text: Hostname
-                  type: string
-              datasource:
-                type: yesoreyeram-infinity-datasource
-                uid: ${DataSource}
-              filters: []
-              format: table
-              global_query_id: ""
-              parser: backend
-              refId: A
-              root_selector: ""
-              source: url
-              summarizeAlias: ""
-              summarizeBy: ""
-              summarizeExpression: ""
-              type: json
-              uql: |-
-                parse-json
-                | project "Timestamp"=todatetime("timestamp"), "Fan Speed"="event.hw-fan-speed_max-Max", "Name"="event.name"
-              url: /api/v1/telemetry/TimeSeries
-              url_options:
-                body_content_type: application/json
-                body_type: raw
-                data: |4-
-                      {
-                        "queryType": "groupBy",
-                        "dataSource": "PhysicalEntities",
-                        "granularity": {
-                          "type": "duration",
-                          "duration": $__interval_ms,
-                          "timeZone": "$__timezone"
-                        },
-                        "intervals": ["${__from:date}/${__to:date}"],
-                        "dimensions": ["hostname"],
-                        "virtualColumns": [{
-                          "type": "nested-field",
-                          "columnName": "host.name",
-                          "outputName": "hostname",
-                          "expectedType": "STRING",
-                          "path": "$"
-                        }],
-                        "filter": {
-                          "type": "and",
-                          "fields": [
-                            {
-                              "type": "selector",
-                              "dimension": "intersight.domain.name",
-                              "value": "${Domain}"
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "instrument.name",
-                              "value": "hw.temperature"
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "host.type",
-                              "value": "compute.Blade"
-                            },
-                            {
-                              "type": "search",
-                              "dimension": "host.name",
-                              "query": {
-                                "type": "insensitive_contains",
-                                "value": "${ChassisName}-"
-                              }
-                            },
-                            {
-                              "type": "in",
-                              "dimension": "name",
-                              "values": [
-                                "P2_TEMP_SENS"
-                              ]
-                            }
-                          ]
-                        },
-                        "aggregations": [
-                          {
-                            "type": "longSum",
-                            "name": "count",
-                            "fieldName": "hw.temperature_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.temperature-Sum",
-                            "fieldName": "hw.temperature"
-                          }
-                        ],
-                        "postAggregations": [
-                          {
-                            "type": "expression",
-                            "name": "hw-temperature-Avg",
-                            "expression": "(\"hw.temperature-Sum\" / \"count\")"
-                          }
-                        ]
-                      }
-                method: POST
-          title: CPU2 Temperature (Avg)
-          transformations:
-            - id: groupingToMatrix
-              options:
-                columnField: Hostname
-                rowField: Time
-                valueField: Temperature
-          type: timeseries
     preload: false
     refresh: ""
     schemaVersion: 41
@@ -4656,14 +4659,14 @@ spec:
               regex: ""
               type: datasource
             - current:
-                text: B26-6454-Matt
-                value: B26-6454-Matt
+                text: int-tme-ucs-10
+                value: int-tme-ucs-10
               datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
               definition: ""
               label: Domain
-              name: Domain
+              name: DomainName
               options: []
               query:
                 infinityQuery:
@@ -4690,8 +4693,8 @@ spec:
               sort: 7
               type: query
             - current:
-                text: B26-6454-Matt-1
-                value: B26-6454-Matt-1
+                text: int-tme-ucs-10-1
+                value: 65158f4161767535010d895e
               datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
@@ -4701,19 +4704,25 @@ spec:
               options: []
               query:
                 infinityQuery:
-                    columns: []
+                    columns:
+                        - selector: Name
+                          text: __text
+                          type: string
+                        - selector: Moid
+                          text: __value
+                          type: string
                     filters: []
                     format: table
-                    parser: uql
+                    parser: backend
                     refId: variable
-                    root_selector: ""
+                    root_selector: $.Results
                     source: url
                     type: json
                     uql: |-
                         parse-json
                         | scope "Results"
                         | project "Name"
-                    url: /api/v1/equipment/Chasses?$filter=startswith(Name, '${Domain}') and not(Model eq 'N20-C6508' or Model eq 'UCSB-5108-AC2')
+                    url: /api/v1/equipment/Chasses?$filter=startswith(Name, '${DomainName}') and not(Model eq 'N20-C6508' or Model eq 'UCSB-5108-AC2')
                     url_options:
                         data: ""
                         method: GET
@@ -4725,8 +4734,8 @@ spec:
               type: query
             - allowCustomValue: false
               current:
-                text: 6716bc776176753501aefd18
-                value: 6716bc776176753501aefd18
+                text: 65158f4161767535010d895e
+                value: 65158f4161767535010d895e
               datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
@@ -4748,7 +4757,7 @@ spec:
                         parse-json
                         | scope "Results"
                         | project "Moid"
-                    url: /api/v1/equipment/Chasses?$filter=Name eq '${ChassisName}'
+                    url: /api/v1/equipment/Chasses?$filter=Name eq '${ChassisName:text}'
                     url_options:
                         data: ""
                         method: GET
@@ -4758,8 +4767,8 @@ spec:
               regex: ""
               type: query
             - current:
-                text: 662160df6176753501e840b9
-                value: 662160df6176753501e840b9
+                text: 64ecf711617675350199d23c
+                value: 64ecf711617675350199d23c
               datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
@@ -4781,7 +4790,7 @@ spec:
                         parse-json
                         | scope "Results"
                         | project "Moid"
-                    url: /api/v1/network/ElementSummaries?$filter=Name eq '${Domain} FI-A'
+                    url: /api/v1/network/ElementSummaries?$filter=Name eq '${DomainName} FI-A'
                     url_options:
                         data: ""
                         method: GET
@@ -4791,8 +4800,8 @@ spec:
               regex: ""
               type: query
             - current:
-                text: 662160df6176753501e840a9
-                value: 662160df6176753501e840a9
+                text: 64ed016861767535019e4277
+                value: 64ed016861767535019e4277
               datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
@@ -4814,7 +4823,7 @@ spec:
                         parse-json
                         | scope "Results"
                         | project "Moid"
-                    url: /api/v1/network/ElementSummaries?$filter=Name eq '${Domain} FI-B'
+                    url: /api/v1/network/ElementSummaries?$filter=Name eq '${DomainName} FI-B'
                     url_options:
                         data: ""
                         method: GET
@@ -4950,7 +4959,7 @@ spec:
               regex: /.*(?<value>[0-9]+-[0-9]+)/
               type: query
     time:
-        from: now-7d
+        from: now-6h
         to: now
     timepicker:
         nowDelay: 1m

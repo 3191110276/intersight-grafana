@@ -7277,7 +7277,8 @@ spec:
                 reducers:
                     - count
           type: stat
-        - fieldConfig:
+        - description: This represents temperature sensors, not devices. One device will likely have multiple temperature sensors (intake, CPU, exhaust,...)
+          fieldConfig:
             defaults: {}
             overrides: []
           gridPos:
