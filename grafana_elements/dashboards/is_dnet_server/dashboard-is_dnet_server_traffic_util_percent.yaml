@@ -1519,41 +1519,19 @@ spec:
                         },
                         "aggregations": [
                           {
-                            "type": "longSum",
-                            "name": "rx_count",
-                            "fieldName": "hw.network.bandwidth.utilization_receive_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.network.bandwidth.utilization_receive-Sum",
-                            "fieldName": "hw.network.bandwidth.utilization_receive"
-                          },
-                          {
-                            "type": "longSum",
-                            "name": "tx_count",
-                            "fieldName": "hw.network.bandwidth.utilization_transmit_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.network.bandwidth.utilization_transmit-Sum",
-                            "fieldName": "hw.network.bandwidth.utilization_transmit"
-                          }
-                        ],
-                        "postAggregations": [
-                          {
-                            "type": "expression",
-                            "name": "rx",
-                            "expression": "(\"hw.network.bandwidth.utilization_receive-Sum\" / \"rx_count\")"
-                          },
-                          {
-                            "type": "expression",
+                            "type": "doubleMax",
                             "name": "tx",
-                            "expression": "(\"hw.network.bandwidth.utilization_transmit-Sum\" / \"tx_count\")"
+                            "fieldName": "hw.network.bandwidth.utilization_transmit_max"
+                          },
+                          {
+                            "type": "doubleMax",
+                            "name": "rx",
+                            "fieldName": "hw.network.bandwidth.utilization_receive_max"
                           }
                         ]
                       }
                 method: POST
-          title: 'A: Transmit utilization in % per uplink port (Avg)'
+          title: 'A: Transmit utilization in % per uplink port (Max)'
           transformations:
             - id: groupingToMatrix
               options:
@@ -1741,41 +1719,19 @@ spec:
                         },
                         "aggregations": [
                           {
-                            "type": "longSum",
-                            "name": "rx_count",
-                            "fieldName": "hw.network.bandwidth.utilization_receive_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.network.bandwidth.utilization_receive-Sum",
-                            "fieldName": "hw.network.bandwidth.utilization_receive"
-                          },
-                          {
-                            "type": "longSum",
-                            "name": "tx_count",
-                            "fieldName": "hw.network.bandwidth.utilization_transmit_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.network.bandwidth.utilization_transmit-Sum",
-                            "fieldName": "hw.network.bandwidth.utilization_transmit"
-                          }
-                        ],
-                        "postAggregations": [
-                          {
-                            "type": "expression",
-                            "name": "rx",
-                            "expression": "(\"hw.network.bandwidth.utilization_receive-Sum\" / \"rx_count\")"
-                          },
-                          {
-                            "type": "expression",
+                            "type": "doubleMax",
                             "name": "tx",
-                            "expression": "(\"hw.network.bandwidth.utilization_transmit-Sum\" / \"tx_count\")"
+                            "fieldName": "hw.network.bandwidth.utilization_transmit_max"
+                          },
+                          {
+                            "type": "doubleMax",
+                            "name": "rx",
+                            "fieldName": "hw.network.bandwidth.utilization_receive_max"
                           }
                         ]
                       }
                 method: POST
-          title: 'B: Transmit utilization in % per uplink port (Avg)'
+          title: 'B: Transmit utilization in % per uplink port (Max)'
           transformations:
             - id: groupingToMatrix
               options:
@@ -1963,41 +1919,19 @@ spec:
                         },
                         "aggregations": [
                           {
-                            "type": "longSum",
-                            "name": "rx_count",
-                            "fieldName": "hw.network.bandwidth.utilization_receive_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.network.bandwidth.utilization_receive-Sum",
-                            "fieldName": "hw.network.bandwidth.utilization_receive"
-                          },
-                          {
-                            "type": "longSum",
-                            "name": "tx_count",
-                            "fieldName": "hw.network.bandwidth.utilization_transmit_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.network.bandwidth.utilization_transmit-Sum",
-                            "fieldName": "hw.network.bandwidth.utilization_transmit"
-                          }
-                        ],
-                        "postAggregations": [
-                          {
-                            "type": "expression",
-                            "name": "rx",
-                            "expression": "(\"hw.network.bandwidth.utilization_receive-Sum\" / \"rx_count\")"
-                          },
-                          {
-                            "type": "expression",
+                            "type": "doubleMax",
                             "name": "tx",
-                            "expression": "(\"hw.network.bandwidth.utilization_transmit-Sum\" / \"tx_count\")"
+                            "fieldName": "hw.network.bandwidth.utilization_transmit_max"
+                          },
+                          {
+                            "type": "doubleMax",
+                            "name": "rx",
+                            "fieldName": "hw.network.bandwidth.utilization_receive_max"
                           }
                         ]
                       }
                 method: POST
-          title: 'A: Receive utilization in % per uplink port (Avg)'
+          title: 'A: Receive utilization in % per uplink port (Max)'
           transformations:
             - id: groupingToMatrix
               options:
@@ -2185,41 +2119,19 @@ spec:
                         },
                         "aggregations": [
                           {
-                            "type": "longSum",
-                            "name": "rx_count",
-                            "fieldName": "hw.network.bandwidth.utilization_receive_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.network.bandwidth.utilization_receive-Sum",
-                            "fieldName": "hw.network.bandwidth.utilization_receive"
-                          },
-                          {
-                            "type": "longSum",
-                            "name": "tx_count",
-                            "fieldName": "hw.network.bandwidth.utilization_transmit_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.network.bandwidth.utilization_transmit-Sum",
-                            "fieldName": "hw.network.bandwidth.utilization_transmit"
-                          }
-                        ],
-                        "postAggregations": [
-                          {
-                            "type": "expression",
-                            "name": "rx",
-                            "expression": "(\"hw.network.bandwidth.utilization_receive-Sum\" / \"rx_count\")"
-                          },
-                          {
-                            "type": "expression",
+                            "type": "doubleMax",
                             "name": "tx",
-                            "expression": "(\"hw.network.bandwidth.utilization_transmit-Sum\" / \"tx_count\")"
+                            "fieldName": "hw.network.bandwidth.utilization_transmit_max"
+                          },
+                          {
+                            "type": "doubleMax",
+                            "name": "rx",
+                            "fieldName": "hw.network.bandwidth.utilization_receive_max"
                           }
                         ]
                       }
                 method: POST
-          title: 'B: Receive utilization in % per uplink port (Avg)'
+          title: 'B: Receive utilization in % per uplink port (Max)'
           transformations:
             - id: groupingToMatrix
               options:
@@ -2413,41 +2325,19 @@ spec:
                         },
                         "aggregations": [
                           {
-                            "type": "longSum",
-                            "name": "rx_count",
-                            "fieldName": "hw.network.bandwidth.utilization_receive_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.network.bandwidth.utilization_receive-Sum",
-                            "fieldName": "hw.network.bandwidth.utilization_receive"
-                          },
-                          {
-                            "type": "longSum",
-                            "name": "tx_count",
-                            "fieldName": "hw.network.bandwidth.utilization_transmit_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.network.bandwidth.utilization_transmit-Sum",
-                            "fieldName": "hw.network.bandwidth.utilization_transmit"
-                          }
-                        ],
-                        "postAggregations": [
-                          {
-                            "type": "expression",
-                            "name": "rx",
-                            "expression": "(\"hw.network.bandwidth.utilization_receive-Sum\" / \"rx_count\")"
-                          },
-                          {
-                            "type": "expression",
+                            "type": "doubleMax",
                             "name": "tx",
-                            "expression": "(\"hw.network.bandwidth.utilization_transmit-Sum\" / \"tx_count\")"
+                            "fieldName": "hw.network.bandwidth.utilization_transmit_max"
+                          },
+                          {
+                            "type": "doubleMax",
+                            "name": "rx",
+                            "fieldName": "hw.network.bandwidth.utilization_receive_max"
                           }
                         ]
                       }
                 method: POST
-          title: 'A: Transmit utilization in % per uplink port (Avg)'
+          title: 'A: Transmit utilization in % per uplink port (Max)'
           transformations:
             - id: groupingToMatrix
               options:
@@ -2623,41 +2513,19 @@ spec:
                         },
                         "aggregations": [
                           {
-                            "type": "longSum",
-                            "name": "rx_count",
-                            "fieldName": "hw.network.bandwidth.utilization_receive_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.network.bandwidth.utilization_receive-Sum",
-                            "fieldName": "hw.network.bandwidth.utilization_receive"
-                          },
-                          {
-                            "type": "longSum",
-                            "name": "tx_count",
-                            "fieldName": "hw.network.bandwidth.utilization_transmit_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.network.bandwidth.utilization_transmit-Sum",
-                            "fieldName": "hw.network.bandwidth.utilization_transmit"
-                          }
-                        ],
-                        "postAggregations": [
-                          {
-                            "type": "expression",
-                            "name": "rx",
-                            "expression": "(\"hw.network.bandwidth.utilization_receive-Sum\" / \"rx_count\")"
-                          },
-                          {
-                            "type": "expression",
+                            "type": "doubleMax",
                             "name": "tx",
-                            "expression": "(\"hw.network.bandwidth.utilization_transmit-Sum\" / \"tx_count\")"
+                            "fieldName": "hw.network.bandwidth.utilization_transmit_max"
+                          },
+                          {
+                            "type": "doubleMax",
+                            "name": "rx",
+                            "fieldName": "hw.network.bandwidth.utilization_receive_max"
                           }
                         ]
                       }
                 method: POST
-          title: 'B: Transmit utilization in % per uplink port (Avg)'
+          title: 'B: Transmit utilization in % per uplink port (Max)'
           transformations:
             - id: groupingToMatrix
               options:
@@ -2751,7 +2619,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: none
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns:
                 - selector: timestamp
@@ -2833,41 +2701,19 @@ spec:
                         },
                         "aggregations": [
                           {
-                            "type": "longSum",
-                            "name": "rx_count",
-                            "fieldName": "hw.network.bandwidth.utilization_receive_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.network.bandwidth.utilization_receive-Sum",
-                            "fieldName": "hw.network.bandwidth.utilization_receive"
-                          },
-                          {
-                            "type": "longSum",
-                            "name": "tx_count",
-                            "fieldName": "hw.network.bandwidth.utilization_transmit_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.network.bandwidth.utilization_transmit-Sum",
-                            "fieldName": "hw.network.bandwidth.utilization_transmit"
-                          }
-                        ],
-                        "postAggregations": [
-                          {
-                            "type": "expression",
-                            "name": "rx",
-                            "expression": "(\"hw.network.bandwidth.utilization_receive-Sum\" / \"rx_count\")"
-                          },
-                          {
-                            "type": "expression",
+                            "type": "doubleMax",
                             "name": "tx",
-                            "expression": "(\"hw.network.bandwidth.utilization_transmit-Sum\" / \"tx_count\")"
+                            "fieldName": "hw.network.bandwidth.utilization_transmit_max"
+                          },
+                          {
+                            "type": "doubleMax",
+                            "name": "rx",
+                            "fieldName": "hw.network.bandwidth.utilization_receive_max"
                           }
                         ]
                       }
                 method: POST
-          title: 'A: Receive utilization in % per uplink port (Avg)'
+          title: 'A: Receive utilization in % per uplink port (Max)'
           transformations:
             - id: groupingToMatrix
               options:
@@ -2961,7 +2807,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: none
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           targets:
             - columns:
                 - selector: timestamp
@@ -3043,41 +2889,19 @@ spec:
                         },
                         "aggregations": [
                           {
-                            "type": "longSum",
-                            "name": "rx_count",
-                            "fieldName": "hw.network.bandwidth.utilization_receive_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.network.bandwidth.utilization_receive-Sum",
-                            "fieldName": "hw.network.bandwidth.utilization_receive"
-                          },
-                          {
-                            "type": "longSum",
-                            "name": "tx_count",
-                            "fieldName": "hw.network.bandwidth.utilization_transmit_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.network.bandwidth.utilization_transmit-Sum",
-                            "fieldName": "hw.network.bandwidth.utilization_transmit"
-                          }
-                        ],
-                        "postAggregations": [
-                          {
-                            "type": "expression",
-                            "name": "rx",
-                            "expression": "(\"hw.network.bandwidth.utilization_receive-Sum\" / \"rx_count\")"
-                          },
-                          {
-                            "type": "expression",
+                            "type": "doubleMax",
                             "name": "tx",
-                            "expression": "(\"hw.network.bandwidth.utilization_transmit-Sum\" / \"tx_count\")"
+                            "fieldName": "hw.network.bandwidth.utilization_transmit_max"
+                          },
+                          {
+                            "type": "doubleMax",
+                            "name": "rx",
+                            "fieldName": "hw.network.bandwidth.utilization_receive_max"
                           }
                         ]
                       }
                 method: POST
-          title: 'B: Receive utilization in % per uplink port (Avg)'
+          title: 'B: Receive utilization in % per uplink port (Max)'
           transformations:
             - id: groupingToMatrix
               options:
@@ -3181,7 +3005,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: none
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           repeat: ServerPorts_A
           repeatDirection: v
           targets:
@@ -3287,7 +3111,7 @@ spec:
                         ]
                       }
                 method: POST
-          title: 'Utilization in % per FI downlink port (Avg): 1/${ServerPorts_A:text} (A)'
+          title: 'Utilization in % per FI downlink port (Max): 1/${ServerPorts_A:text} (A)'
           transformations:
             - id: configFromData
               options:
@@ -3375,7 +3199,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: none
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           repeat: ServerPorts_B
           repeatDirection: v
           targets:
@@ -3481,7 +3305,7 @@ spec:
                         ]
                       }
                 method: POST
-          title: 'Utilization in % per FI downlink port (Avg): 1/${ServerPorts_B:text} (B)'
+          title: 'Utilization in % per FI downlink port (Max): 1/${ServerPorts_B:text} (B)'
           transformations:
             - id: configFromData
               options:
@@ -3491,420 +3315,376 @@ spec:
                 configRefId: A
                 mappings: []
           type: timeseries
-        - collapsed: false
+        - collapsed: true
           gridPos:
             h: 1
             w: 24
             x: 0
-            "y": 46
+            "y": 61
           id: 51
-          panels: []
+          panels:
+            - datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              fieldConfig:
+                defaults:
+                    color:
+                        mode: palette-classic
+                    custom:
+                        axisBorderShow: false
+                        axisCenteredZero: false
+                        axisColorMode: text
+                        axisLabel: ""
+                        axisPlacement: auto
+                        barAlignment: 0
+                        barWidthFactor: 0.6
+                        drawStyle: line
+                        fillOpacity: 0
+                        gradientMode: none
+                        hideFrom:
+                            legend: false
+                            tooltip: false
+                            viz: false
+                        insertNulls: false
+                        lineInterpolation: linear
+                        lineWidth: 1
+                        pointSize: 5
+                        scaleDistribution:
+                            type: linear
+                        showPoints: auto
+                        spanNulls: false
+                        stacking:
+                            group: A
+                            mode: none
+                        thresholdsStyle:
+                            mode: area
+                    mappings: []
+                    thresholds:
+                        mode: absolute
+                        steps:
+                            - color: transparent
+                            - color: dark-yellow
+                              value: 0.5
+                            - color: dark-red
+                              value: 0.8
+                    unit: percentunit
+                overrides:
+                    - matcher:
+                        id: byName
+                        options: RX
+                      properties:
+                        - id: color
+                          value:
+                            fixedColor: dark-purple
+                            mode: fixed
+                    - matcher:
+                        id: byName
+                        options: TX
+                      properties:
+                        - id: color
+                          value:
+                            fixedColor: blue
+                            mode: fixed
+              gridPos:
+                h: 8
+                w: 12
+                x: 0
+                "y": 63
+              id: 52
+              options:
+                legend:
+                    calcs: []
+                    displayMode: list
+                    placement: bottom
+                    showLegend: true
+                tooltip:
+                    hideZeros: false
+                    mode: multi
+                    sort: none
+              pluginVersion: 12.0.0-86517
+              repeat: NIFPorts_A
+              repeatDirection: v
+              targets:
+                - columns:
+                    - selector: timestamp
+                      text: Time
+                      type: timestamp
+                    - selector: event.rx
+                      text: RX
+                      type: number
+                    - selector: event.tx
+                      text: TX
+                      type: number
+                  datasource:
+                    type: yesoreyeram-infinity-datasource
+                    uid: ${DataSource}
+                  filters: []
+                  format: table
+                  global_query_id: ""
+                  parser: backend
+                  refId: A
+                  root_selector: ""
+                  source: url
+                  type: json
+                  url: /api/v1/telemetry/TimeSeries
+                  url_options:
+                    body_content_type: application/json
+                    body_type: raw
+                    data: |4-
+                          {
+                            "queryType": "groupBy",
+                            "dataSource": "NetworkInterfaces",
+                            "granularity": {
+                              "type": "duration",
+                              "duration": $__interval_ms,
+                              "timeZone": "$__timezone"
+                            },
+                            "intervals": ["${__from:date}/${__to:date}"],
+                            "dimensions": [],
+                            "filter": {
+                              "type": "and",
+                              "fields": [
+                                {
+                                  "type": "selector",
+                                  "dimension": "intersight.domain.name",
+                                  "value": "${DomainName}"
+                                },
+                                {
+                                  "type": "selector",
+                                  "dimension": "host.name",
+                                  "value": "${DomainName} FI-A"
+                                },
+                                {
+                                  "type": "selector",
+                                  "dimension": "hw.chassis.id",
+                                  "value": "/api/v1/equipment/Chasses/${ChassisMoid}"
+                                },
+                                {
+                                  "type": "selector",
+                                  "dimension": "id",
+                                  "value": "/api/v1/ether/NetworkPorts/${NIFPorts_A:value}"
+                                },
+                                {
+                                  "type": "selector",
+                                  "dimension": "hw.network.port.role",
+                                  "value": "iom_uplink"
+                                },
+                                {
+                                  "type": "selector",
+                                  "dimension": "instrument.name",
+                                  "value": "hw.network"
+                                }
+                              ]
+                            },
+                            "aggregations": [
+                              {
+                                "type": "doubleMax",
+                                "name": "tx",
+                                "fieldName": "hw.network.bandwidth.utilization_transmit_max"
+                              },
+                              {
+                                "type": "doubleMax",
+                                "name": "rx",
+                                "fieldName": "hw.network.bandwidth.utilization_receive_max"
+                              }
+                            ]
+                          }
+                    method: POST
+              title: 'Utilization in % per IFM uplink port (Max): ${ChassisId}/${NIFPorts_A:text} (A)'
+              transformations:
+                - id: configFromData
+                  options:
+                    applyTo:
+                        id: byName
+                        options: RX
+                    configRefId: A
+                    mappings: []
+              type: timeseries
+            - datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              fieldConfig:
+                defaults:
+                    color:
+                        mode: palette-classic
+                    custom:
+                        axisBorderShow: false
+                        axisCenteredZero: false
+                        axisColorMode: text
+                        axisLabel: ""
+                        axisPlacement: auto
+                        barAlignment: 0
+                        barWidthFactor: 0.6
+                        drawStyle: line
+                        fillOpacity: 0
+                        gradientMode: none
+                        hideFrom:
+                            legend: false
+                            tooltip: false
+                            viz: false
+                        insertNulls: false
+                        lineInterpolation: linear
+                        lineWidth: 1
+                        pointSize: 5
+                        scaleDistribution:
+                            type: linear
+                        showPoints: auto
+                        spanNulls: false
+                        stacking:
+                            group: A
+                            mode: none
+                        thresholdsStyle:
+                            mode: area
+                    mappings: []
+                    thresholds:
+                        mode: absolute
+                        steps:
+                            - color: transparent
+                            - color: dark-yellow
+                              value: 0.5
+                            - color: dark-red
+                              value: 0.8
+                    unit: percentunit
+                overrides:
+                    - matcher:
+                        id: byName
+                        options: RX
+                      properties:
+                        - id: color
+                          value:
+                            fixedColor: dark-purple
+                            mode: fixed
+                    - matcher:
+                        id: byName
+                        options: TX
+                      properties:
+                        - id: color
+                          value:
+                            fixedColor: blue
+                            mode: fixed
+              gridPos:
+                h: 8
+                w: 12
+                x: 12
+                "y": 63
+              id: 53
+              options:
+                legend:
+                    calcs: []
+                    displayMode: list
+                    placement: bottom
+                    showLegend: true
+                tooltip:
+                    hideZeros: false
+                    mode: multi
+                    sort: none
+              pluginVersion: 12.0.0-86517
+              repeat: NIFPorts_B
+              repeatDirection: v
+              targets:
+                - columns:
+                    - selector: timestamp
+                      text: Time
+                      type: timestamp
+                    - selector: event.rx
+                      text: RX
+                      type: number
+                    - selector: event.tx
+                      text: TX
+                      type: number
+                  datasource:
+                    type: yesoreyeram-infinity-datasource
+                    uid: ${DataSource}
+                  filters: []
+                  format: table
+                  global_query_id: ""
+                  parser: backend
+                  refId: A
+                  root_selector: ""
+                  source: url
+                  type: json
+                  url: /api/v1/telemetry/TimeSeries
+                  url_options:
+                    body_content_type: application/json
+                    body_type: raw
+                    data: |4-
+                          {
+                            "queryType": "groupBy",
+                            "dataSource": "NetworkInterfaces",
+                            "granularity": {
+                              "type": "duration",
+                              "duration": $__interval_ms,
+                              "timeZone": "$__timezone"
+                            },
+                            "intervals": ["${__from:date}/${__to:date}"],
+                            "dimensions": [],
+                            "filter": {
+                              "type": "and",
+                              "fields": [
+                                {
+                                  "type": "selector",
+                                  "dimension": "intersight.domain.name",
+                                  "value": "${DomainName}"
+                                },
+                                {
+                                  "type": "selector",
+                                  "dimension": "host.name",
+                                  "value": "${DomainName} FI-B"
+                                },
+                                {
+                                  "type": "selector",
+                                  "dimension": "hw.chassis.id",
+                                  "value": "/api/v1/equipment/Chasses/${ChassisMoid}"
+                                },
+                                {
+                                  "type": "selector",
+                                  "dimension": "id",
+                                  "value": "/api/v1/ether/NetworkPorts/${NIFPorts_B:value}"
+                                },
+                                {
+                                  "type": "selector",
+                                  "dimension": "hw.network.port.role",
+                                  "value": "iom_uplink"
+                                },
+                                {
+                                  "type": "selector",
+                                  "dimension": "instrument.name",
+                                  "value": "hw.network"
+                                }
+                              ]
+                            },
+                            "aggregations": [
+                              {
+                                "type": "doubleMax",
+                                "name": "tx",
+                                "fieldName": "hw.network.bandwidth.utilization_transmit_max"
+                              },
+                              {
+                                "type": "doubleMax",
+                                "name": "rx",
+                                "fieldName": "hw.network.bandwidth.utilization_receive_max"
+                              }
+                            ]
+                          }
+                    method: POST
+              title: 'Utilization in % per IFM uplink port (Max): ${ChassisId}/${NIFPorts_B:text} (B)'
+              transformations:
+                - id: configFromData
+                  options:
+                    applyTo:
+                        id: byName
+                        options: RX
+                    configRefId: A
+                    mappings: []
+              type: timeseries
           title: IFM Uplink Ports
           type: row
-        - datasource:
-            type: yesoreyeram-infinity-datasource
-            uid: ${DataSource}
-          fieldConfig:
-            defaults:
-                color:
-                    mode: palette-classic
-                custom:
-                    axisBorderShow: false
-                    axisCenteredZero: false
-                    axisColorMode: text
-                    axisLabel: ""
-                    axisPlacement: auto
-                    barAlignment: 0
-                    barWidthFactor: 0.6
-                    drawStyle: line
-                    fillOpacity: 0
-                    gradientMode: none
-                    hideFrom:
-                        legend: false
-                        tooltip: false
-                        viz: false
-                    insertNulls: false
-                    lineInterpolation: linear
-                    lineWidth: 1
-                    pointSize: 5
-                    scaleDistribution:
-                        type: linear
-                    showPoints: auto
-                    spanNulls: false
-                    stacking:
-                        group: A
-                        mode: none
-                    thresholdsStyle:
-                        mode: area
-                mappings: []
-                thresholds:
-                    mode: absolute
-                    steps:
-                        - color: transparent
-                        - color: dark-yellow
-                          value: 0.5
-                        - color: dark-red
-                          value: 0.8
-                unit: percentunit
-            overrides:
-                - matcher:
-                    id: byName
-                    options: RX
-                  properties:
-                    - id: color
-                      value:
-                        fixedColor: dark-purple
-                        mode: fixed
-                - matcher:
-                    id: byName
-                    options: TX
-                  properties:
-                    - id: color
-                      value:
-                        fixedColor: blue
-                        mode: fixed
-          gridPos:
-            h: 8
-            w: 12
-            x: 0
-            "y": 47
-          id: 52
-          options:
-            legend:
-                calcs: []
-                displayMode: list
-                placement: bottom
-                showLegend: true
-            tooltip:
-                hideZeros: false
-                mode: multi
-                sort: none
-          pluginVersion: 12.0.0-85820.patch2-86140
-          repeat: NIFPorts_A
-          repeatDirection: v
-          targets:
-            - columns:
-                - selector: timestamp
-                  text: Time
-                  type: timestamp
-                - selector: event.rx
-                  text: RX
-                  type: number
-                - selector: event.tx
-                  text: TX
-                  type: number
-              datasource:
-                type: yesoreyeram-infinity-datasource
-                uid: ${DataSource}
-              filters: []
-              format: table
-              global_query_id: ""
-              parser: backend
-              refId: A
-              root_selector: ""
-              source: url
-              type: json
-              url: /api/v1/telemetry/TimeSeries
-              url_options:
-                body_content_type: application/json
-                body_type: raw
-                data: |4-
-                      {
-                        "queryType": "groupBy",
-                        "dataSource": "NetworkInterfaces",
-                        "granularity": {
-                          "type": "duration",
-                          "duration": $__interval_ms,
-                          "timeZone": "$__timezone"
-                        },
-                        "intervals": ["${__from:date}/${__to:date}"],
-                        "dimensions": [],
-                        "filter": {
-                          "type": "and",
-                          "fields": [
-                            {
-                              "type": "selector",
-                              "dimension": "intersight.domain.name",
-                              "value": "${DomainName}"
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "host.name",
-                              "value": "${DomainName} FI-A"
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "hw.chassis.id",
-                              "value": "/api/v1/equipment/Chasses/${ChassisMoid}"
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "id",
-                              "value": "/api/v1/ether/NetworkPorts/${NIFPorts_A:value}"
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "hw.network.port.role",
-                              "value": "iom_uplink"
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "instrument.name",
-                              "value": "hw.network"
-                            }
-                          ]
-                        },
-                        "aggregations": [
-                          {
-                            "type": "longSum",
-                            "name": "rx_count",
-                            "fieldName": "hw.network.bandwidth.utilization_receive_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.network.bandwidth.utilization_receive-Sum",
-                            "fieldName": "hw.network.bandwidth.utilization_receive"
-                          },
-                          {
-                            "type": "longSum",
-                            "name": "tx_count",
-                            "fieldName": "hw.network.bandwidth.utilization_transmit_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.network.bandwidth.utilization_transmit-Sum",
-                            "fieldName": "hw.network.bandwidth.utilization_transmit"
-                          }
-                        ],
-                        "postAggregations": [
-                          {
-                            "type": "expression",
-                            "name": "rx",
-                            "expression": "(\"hw.network.bandwidth.utilization_receive-Sum\" / \"rx_count\")"
-                          },
-                          {
-                            "type": "expression",
-                            "name": "tx",
-                            "expression": "(\"hw.network.bandwidth.utilization_transmit-Sum\" / \"tx_count\")"
-                          }
-                        ]
-                      }
-                method: POST
-          title: 'Utilization in % per IFM uplink port (Avg): ${ChassisId}/${NIFPorts_A:text} (A)'
-          transformations:
-            - id: configFromData
-              options:
-                applyTo:
-                    id: byName
-                    options: RX
-                configRefId: A
-                mappings: []
-          type: timeseries
-        - datasource:
-            type: yesoreyeram-infinity-datasource
-            uid: ${DataSource}
-          fieldConfig:
-            defaults:
-                color:
-                    mode: palette-classic
-                custom:
-                    axisBorderShow: false
-                    axisCenteredZero: false
-                    axisColorMode: text
-                    axisLabel: ""
-                    axisPlacement: auto
-                    barAlignment: 0
-                    barWidthFactor: 0.6
-                    drawStyle: line
-                    fillOpacity: 0
-                    gradientMode: none
-                    hideFrom:
-                        legend: false
-                        tooltip: false
-                        viz: false
-                    insertNulls: false
-                    lineInterpolation: linear
-                    lineWidth: 1
-                    pointSize: 5
-                    scaleDistribution:
-                        type: linear
-                    showPoints: auto
-                    spanNulls: false
-                    stacking:
-                        group: A
-                        mode: none
-                    thresholdsStyle:
-                        mode: area
-                mappings: []
-                thresholds:
-                    mode: absolute
-                    steps:
-                        - color: transparent
-                        - color: dark-yellow
-                          value: 0.5
-                        - color: dark-red
-                          value: 0.8
-                unit: percentunit
-            overrides:
-                - matcher:
-                    id: byName
-                    options: RX
-                  properties:
-                    - id: color
-                      value:
-                        fixedColor: dark-purple
-                        mode: fixed
-                - matcher:
-                    id: byName
-                    options: TX
-                  properties:
-                    - id: color
-                      value:
-                        fixedColor: blue
-                        mode: fixed
-          gridPos:
-            h: 8
-            w: 12
-            x: 12
-            "y": 47
-          id: 53
-          options:
-            legend:
-                calcs: []
-                displayMode: list
-                placement: bottom
-                showLegend: true
-            tooltip:
-                hideZeros: false
-                mode: multi
-                sort: none
-          pluginVersion: 12.0.0-85820.patch2-86140
-          repeat: NIFPorts_B
-          repeatDirection: v
-          targets:
-            - columns:
-                - selector: timestamp
-                  text: Time
-                  type: timestamp
-                - selector: event.rx
-                  text: RX
-                  type: number
-                - selector: event.tx
-                  text: TX
-                  type: number
-              datasource:
-                type: yesoreyeram-infinity-datasource
-                uid: ${DataSource}
-              filters: []
-              format: table
-              global_query_id: ""
-              parser: backend
-              refId: A
-              root_selector: ""
-              source: url
-              type: json
-              url: /api/v1/telemetry/TimeSeries
-              url_options:
-                body_content_type: application/json
-                body_type: raw
-                data: |4-
-                      {
-                        "queryType": "groupBy",
-                        "dataSource": "NetworkInterfaces",
-                        "granularity": {
-                          "type": "duration",
-                          "duration": $__interval_ms,
-                          "timeZone": "$__timezone"
-                        },
-                        "intervals": ["${__from:date}/${__to:date}"],
-                        "dimensions": [],
-                        "filter": {
-                          "type": "and",
-                          "fields": [
-                            {
-                              "type": "selector",
-                              "dimension": "intersight.domain.name",
-                              "value": "${DomainName}"
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "host.name",
-                              "value": "${DomainName} FI-B"
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "hw.chassis.id",
-                              "value": "/api/v1/equipment/Chasses/${ChassisMoid}"
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "id",
-                              "value": "/api/v1/ether/NetworkPorts/${NIFPorts_B:value}"
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "hw.network.port.role",
-                              "value": "iom_uplink"
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "instrument.name",
-                              "value": "hw.network"
-                            }
-                          ]
-                        },
-                        "aggregations": [
-                          {
-                            "type": "longSum",
-                            "name": "rx_count",
-                            "fieldName": "hw.network.bandwidth.utilization_receive_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.network.bandwidth.utilization_receive-Sum",
-                            "fieldName": "hw.network.bandwidth.utilization_receive"
-                          },
-                          {
-                            "type": "longSum",
-                            "name": "tx_count",
-                            "fieldName": "hw.network.bandwidth.utilization_transmit_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.network.bandwidth.utilization_transmit-Sum",
-                            "fieldName": "hw.network.bandwidth.utilization_transmit"
-                          }
-                        ],
-                        "postAggregations": [
-                          {
-                            "type": "expression",
-                            "name": "rx",
-                            "expression": "(\"hw.network.bandwidth.utilization_receive-Sum\" / \"rx_count\")"
-                          },
-                          {
-                            "type": "expression",
-                            "name": "tx",
-                            "expression": "(\"hw.network.bandwidth.utilization_transmit-Sum\" / \"tx_count\")"
-                          }
-                        ]
-                      }
-                method: POST
-          title: 'Utilization in % per IFM uplink port (Avg): ${ChassisId}/${NIFPorts_B:text} (B)'
-          transformations:
-            - id: configFromData
-              options:
-                applyTo:
-                    id: byName
-                    options: RX
-                configRefId: A
-                mappings: []
-          type: timeseries
         - collapsed: false
           gridPos:
             h: 1
             w: 24
             x: 0
-            "y": 55
+            "y": 62
           id: 9
           panels: []
           title: IFM Downlink Ports
@@ -3975,7 +3755,7 @@ spec:
             h: 7
             w: 12
             x: 0
-            "y": 56
+            "y": 63
           id: 54
           options:
             legend:
@@ -3987,7 +3767,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: none
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           repeat: HIFPorts_A
           repeatDirection: v
           targets:
@@ -4064,41 +3844,19 @@ spec:
                         },
                         "aggregations": [
                           {
-                            "type": "longSum",
-                            "name": "rx_count",
-                            "fieldName": "hw.network.bandwidth.utilization_receive_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.network.bandwidth.utilization_receive-Sum",
-                            "fieldName": "hw.network.bandwidth.utilization_receive"
-                          },
-                          {
-                            "type": "longSum",
-                            "name": "tx_count",
-                            "fieldName": "hw.network.bandwidth.utilization_transmit_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.network.bandwidth.utilization_transmit-Sum",
-                            "fieldName": "hw.network.bandwidth.utilization_transmit"
-                          }
-                        ],
-                        "postAggregations": [
-                          {
-                            "type": "expression",
-                            "name": "rx",
-                            "expression": "(\"hw.network.bandwidth.utilization_receive-Sum\" / \"rx_count\")"
-                          },
-                          {
-                            "type": "expression",
+                            "type": "doubleMax",
                             "name": "tx",
-                            "expression": "(\"hw.network.bandwidth.utilization_transmit-Sum\" / \"tx_count\")"
+                            "fieldName": "hw.network.bandwidth.utilization_transmit_max"
+                          },
+                          {
+                            "type": "doubleMax",
+                            "name": "rx",
+                            "fieldName": "hw.network.bandwidth.utilization_receive_max"
                           }
                         ]
                       }
                 method: POST
-          title: 'Utilization in % per IFM downlink port (Avg): ${ChassisId}/${HIFPorts_A:text} (A)'
+          title: 'Utilization in % per IFM downlink port (Max): ${ChassisId}/${HIFPorts_A:text} (A)'
           transformations:
             - id: configFromData
               options:
@@ -4174,7 +3932,7 @@ spec:
             h: 7
             w: 12
             x: 12
-            "y": 56
+            "y": 63
           id: 55
           options:
             legend:
@@ -4186,7 +3944,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: none
-          pluginVersion: 12.0.0-85820.patch2-86140
+          pluginVersion: 12.0.0-86517
           repeat: HIFPorts_B
           repeatDirection: v
           targets:
@@ -4263,41 +4021,19 @@ spec:
                         },
                         "aggregations": [
                           {
-                            "type": "longSum",
-                            "name": "rx_count",
-                            "fieldName": "hw.network.bandwidth.utilization_receive_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.network.bandwidth.utilization_receive-Sum",
-                            "fieldName": "hw.network.bandwidth.utilization_receive"
-                          },
-                          {
-                            "type": "longSum",
-                            "name": "tx_count",
-                            "fieldName": "hw.network.bandwidth.utilization_transmit_count"
-                          },
-                          {
-                            "type": "doubleSum",
-                            "name": "hw.network.bandwidth.utilization_transmit-Sum",
-                            "fieldName": "hw.network.bandwidth.utilization_transmit"
-                          }
-                        ],
-                        "postAggregations": [
-                          {
-                            "type": "expression",
-                            "name": "rx",
-                            "expression": "(\"hw.network.bandwidth.utilization_receive-Sum\" / \"rx_count\")"
-                          },
-                          {
-                            "type": "expression",
+                            "type": "doubleMax",
                             "name": "tx",
-                            "expression": "(\"hw.network.bandwidth.utilization_transmit-Sum\" / \"tx_count\")"
+                            "fieldName": "hw.network.bandwidth.utilization_transmit_max"
+                          },
+                          {
+                            "type": "doubleMax",
+                            "name": "rx",
+                            "fieldName": "hw.network.bandwidth.utilization_receive_max"
                           }
                         ]
                       }
                 method: POST
-          title: 'Utilization in % per IFM downlink port (Avg): ${ChassisId}/${HIFPorts_B:text} (B)'
+          title: 'Utilization in % per IFM downlink port (Max): ${ChassisId}/${HIFPorts_B:text} (B)'
           transformations:
             - id: configFromData
               options:

@@ -132,7 +132,7 @@ spec:
                 root_selector: $.Results
                 source: url
                 type: json
-                url: /api/v1/workflow/WorkflowInfos?$filter=WorkflowCtx.TargetCtxList.TargetMoid eq '${ChassisMoid}'
+                url: /api/v1/workflow/WorkflowInfos?$filter=WorkflowCtx.TargetCtxList.TargetMoid eq '${ChassisName:value}'
                 url_options:
                     data: ""
                     method: GET
@@ -676,7 +676,7 @@ spec:
                   root_selector: ""
                   source: url
                   type: json
-                  url: /api/v1/equipment/Chasses?$filter=Moid eq '${ChassisMoid}'
+                  url: /api/v1/equipment/Chasses?$filter=Moid eq '${ChassisName:value}'
                   url_options:
                     data: ""
                     method: GET
@@ -889,7 +889,7 @@ spec:
                 h: 8
                 w: 7
                 x: 0
-                "y": 1336
+                "y": 1352
               id: 65
               options:
                 afterRender: ""
@@ -970,7 +970,7 @@ spec:
                 h: 8
                 w: 6
                 x: 7
-                "y": 1336
+                "y": 1352
               id: 67
               options:
                 afterRender: ""
@@ -1286,7 +1286,7 @@ spec:
                 h: 12
                 w: 24
                 x: 0
-                "y": 997
+                "y": 1013
               id: 83
               options:
                 afterRender: ""
@@ -1519,24 +1519,14 @@ spec:
                         },
                         "aggregations": [
                           {
-                            "type": "longSum",
-                            "name": "rx_count",
-                            "fieldName": "hw.network.io_receive_duration"
-                          },
-                          {
-                            "type": "longSum",
+                            "type": "doubleMax",
                             "name": "base_rx",
-                            "fieldName": "hw.network.io_receive"
+                            "fieldName": "hw.network.io_receive_max"
                           },
                           {
-                            "type": "doubleSum",
-                            "name": "tx_count",
-                            "fieldName": "hw.network.io_transmit_duration"
-                          },
-                          {
-                            "type": "longSum",
+                            "type": "doubleMax",
                             "name": "base_tx",
-                            "fieldName": "hw.network.io_transmit"
+                            "fieldName": "hw.network.io_transmit_max"
                           },
                           {
                             "type": "longLast",
@@ -1548,12 +1538,12 @@ spec:
                           {
                             "type": "expression",
                             "name": "rx",
-                            "expression": "(\"base_rx\" / \"rx_count\" * 8)"
+                            "expression": "(\"base_rx\" * 8)"
                           },
                           {
                             "type": "expression",
                             "name": "tx",
-                            "expression": "(\"base_tx\" / \"tx_count\" * 8)"
+                            "expression": "(\"base_tx\" * 8)"
                           },
                           {
                             "type": "expression",
@@ -1563,7 +1553,7 @@ spec:
                         ]
                       }
                 method: POST
-          title: 'A: Transmit utilization in bps per uplink port (Avg)'
+          title: 'A: Transmit utilization in bps per uplink port (Max)'
           transformations:
             - id: configFromData
               options:
@@ -1757,24 +1747,14 @@ spec:
                         },
                         "aggregations": [
                           {
-                            "type": "longSum",
-                            "name": "rx_count",
-                            "fieldName": "hw.network.io_receive_duration"
-                          },
-                          {
-                            "type": "longSum",
+                            "type": "doubleMax",
                             "name": "base_rx",
-                            "fieldName": "hw.network.io_receive"
+                            "fieldName": "hw.network.io_receive_max"
                           },
                           {
-                            "type": "doubleSum",
-                            "name": "tx_count",
-                            "fieldName": "hw.network.io_transmit_duration"
-                          },
-                          {
-                            "type": "longSum",
+                            "type": "doubleMax",
                             "name": "base_tx",
-                            "fieldName": "hw.network.io_transmit"
+                            "fieldName": "hw.network.io_transmit_max"
                           },
                           {
                             "type": "longLast",
@@ -1786,12 +1766,12 @@ spec:
                           {
                             "type": "expression",
                             "name": "rx",
-                            "expression": "(\"base_rx\" / \"rx_count\" * 8)"
+                            "expression": "(\"base_rx\" * 8)"
                           },
                           {
                             "type": "expression",
                             "name": "tx",
-                            "expression": "(\"base_tx\" / \"tx_count\" * 8)"
+                            "expression": "(\"base_tx\" * 8)"
                           },
                           {
                             "type": "expression",
@@ -1801,7 +1781,7 @@ spec:
                         ]
                       }
                 method: POST
-          title: 'B: Transmit utilization in bps per uplink port (Avg)'
+          title: 'B: Transmit utilization in bps per uplink port (Max)'
           transformations:
             - id: configFromData
               options:
@@ -1995,24 +1975,14 @@ spec:
                         },
                         "aggregations": [
                           {
-                            "type": "longSum",
-                            "name": "rx_count",
-                            "fieldName": "hw.network.io_receive_duration"
-                          },
-                          {
-                            "type": "longSum",
+                            "type": "doubleMax",
                             "name": "base_rx",
-                            "fieldName": "hw.network.io_receive"
+                            "fieldName": "hw.network.io_receive_max"
                           },
                           {
-                            "type": "doubleSum",
-                            "name": "tx_count",
-                            "fieldName": "hw.network.io_transmit_duration"
-                          },
-                          {
-                            "type": "longSum",
+                            "type": "doubleMax",
                             "name": "base_tx",
-                            "fieldName": "hw.network.io_transmit"
+                            "fieldName": "hw.network.io_transmit_max"
                           },
                           {
                             "type": "longLast",
@@ -2024,12 +1994,12 @@ spec:
                           {
                             "type": "expression",
                             "name": "rx",
-                            "expression": "(\"base_rx\" / \"rx_count\" * 8)"
+                            "expression": "(\"base_rx\" * 8)"
                           },
                           {
                             "type": "expression",
                             "name": "tx",
-                            "expression": "(\"base_tx\" / \"tx_count\" * 8)"
+                            "expression": "(\"base_tx\" * 8)"
                           },
                           {
                             "type": "expression",
@@ -2039,7 +2009,7 @@ spec:
                         ]
                       }
                 method: POST
-          title: 'A: Receive utilization in bps per uplink port (Avg)'
+          title: 'A: Receive utilization in bps per uplink port (Max)'
           transformations:
             - id: configFromData
               options:
@@ -2233,24 +2203,14 @@ spec:
                         },
                         "aggregations": [
                           {
-                            "type": "longSum",
-                            "name": "rx_count",
-                            "fieldName": "hw.network.io_receive_duration"
-                          },
-                          {
-                            "type": "longSum",
+                            "type": "doubleMax",
                             "name": "base_rx",
-                            "fieldName": "hw.network.io_receive"
+                            "fieldName": "hw.network.io_receive_max"
                           },
                           {
-                            "type": "doubleSum",
-                            "name": "tx_count",
-                            "fieldName": "hw.network.io_transmit_duration"
-                          },
-                          {
-                            "type": "longSum",
+                            "type": "doubleMax",
                             "name": "base_tx",
-                            "fieldName": "hw.network.io_transmit"
+                            "fieldName": "hw.network.io_transmit_max"
                           },
                           {
                             "type": "longLast",
@@ -2262,12 +2222,12 @@ spec:
                           {
                             "type": "expression",
                             "name": "rx",
-                            "expression": "(\"base_rx\" / \"rx_count\" * 8)"
+                            "expression": "(\"base_rx\" * 8)"
                           },
                           {
                             "type": "expression",
                             "name": "tx",
-                            "expression": "(\"base_tx\" / \"tx_count\" * 8)"
+                            "expression": "(\"base_tx\" * 8)"
                           },
                           {
                             "type": "expression",
@@ -2277,7 +2237,7 @@ spec:
                         ]
                       }
                 method: POST
-          title: 'B: Receive utilization in bps per uplink port (Avg)'
+          title: 'B: Receive utilization in bps per uplink port (Max)'
           transformations:
             - id: configFromData
               options:
@@ -2476,24 +2436,14 @@ spec:
                         },
                         "aggregations": [
                           {
-                            "type": "longSum",
-                            "name": "rx_count",
-                            "fieldName": "hw.network.io_receive_duration"
-                          },
-                          {
-                            "type": "longSum",
+                            "type": "doubleMax",
                             "name": "base_rx",
-                            "fieldName": "hw.network.io_receive"
+                            "fieldName": "hw.network.io_receive_max"
                           },
                           {
-                            "type": "doubleSum",
-                            "name": "tx_count",
-                            "fieldName": "hw.network.io_transmit_duration"
-                          },
-                          {
-                            "type": "longSum",
+                            "type": "doubleMax",
                             "name": "base_tx",
-                            "fieldName": "hw.network.io_transmit"
+                            "fieldName": "hw.network.io_transmit_max"
                           },
                           {
                             "type": "longLast",
@@ -2505,12 +2455,12 @@ spec:
                           {
                             "type": "expression",
                             "name": "rx",
-                            "expression": "(\"base_rx\" / \"rx_count\" * 8)"
+                            "expression": "(\"base_rx\" * 8)"
                           },
                           {
                             "type": "expression",
                             "name": "tx",
-                            "expression": "(\"base_tx\" / \"tx_count\" * 8)"
+                            "expression": "(\"base_tx\" * 8)"
                           },
                           {
                             "type": "expression",
@@ -2520,7 +2470,7 @@ spec:
                         ]
                       }
                 method: POST
-          title: 'A: Transmit utilization in bps per uplink port (Avg)'
+          title: 'A: Transmit utilization in bps per uplink port (Max)'
           transformations:
             - id: configFromData
               options:
@@ -2701,24 +2651,14 @@ spec:
                         },
                         "aggregations": [
                           {
-                            "type": "longSum",
-                            "name": "rx_count",
-                            "fieldName": "hw.network.io_receive_duration"
-                          },
-                          {
-                            "type": "longSum",
+                            "type": "doubleMax",
                             "name": "base_rx",
-                            "fieldName": "hw.network.io_receive"
+                            "fieldName": "hw.network.io_receive_max"
                           },
                           {
-                            "type": "doubleSum",
-                            "name": "tx_count",
-                            "fieldName": "hw.network.io_transmit_duration"
-                          },
-                          {
-                            "type": "longSum",
+                            "type": "doubleMax",
                             "name": "base_tx",
-                            "fieldName": "hw.network.io_transmit"
+                            "fieldName": "hw.network.io_transmit_max"
                           },
                           {
                             "type": "longLast",
@@ -2730,12 +2670,12 @@ spec:
                           {
                             "type": "expression",
                             "name": "rx",
-                            "expression": "(\"base_rx\" / \"rx_count\" * 8)"
+                            "expression": "(\"base_rx\" * 8)"
                           },
                           {
                             "type": "expression",
                             "name": "tx",
-                            "expression": "(\"base_tx\" / \"tx_count\" * 8)"
+                            "expression": "(\"base_tx\" * 8)"
                           },
                           {
                             "type": "expression",
@@ -2745,7 +2685,7 @@ spec:
                         ]
                       }
                 method: POST
-          title: 'B: Transmit utilization in bps per uplink port (Avg)'
+          title: 'B: Transmit utilization in bps per uplink port (Max)'
           transformations:
             - id: configFromData
               options:
@@ -2926,24 +2866,14 @@ spec:
                         },
                         "aggregations": [
                           {
-                            "type": "longSum",
-                            "name": "rx_count",
-                            "fieldName": "hw.network.io_receive_duration"
-                          },
-                          {
-                            "type": "longSum",
+                            "type": "doubleMax",
                             "name": "base_rx",
-                            "fieldName": "hw.network.io_receive"
+                            "fieldName": "hw.network.io_receive_max"
                           },
                           {
-                            "type": "doubleSum",
-                            "name": "tx_count",
-                            "fieldName": "hw.network.io_transmit_duration"
-                          },
-                          {
-                            "type": "longSum",
+                            "type": "doubleMax",
                             "name": "base_tx",
-                            "fieldName": "hw.network.io_transmit"
+                            "fieldName": "hw.network.io_transmit_max"
                           },
                           {
                             "type": "longLast",
@@ -2955,12 +2885,12 @@ spec:
                           {
                             "type": "expression",
                             "name": "rx",
-                            "expression": "(\"base_rx\" / \"rx_count\" * 8)"
+                            "expression": "(\"base_rx\" * 8)"
                           },
                           {
                             "type": "expression",
                             "name": "tx",
-                            "expression": "(\"base_tx\" / \"tx_count\" * 8)"
+                            "expression": "(\"base_tx\" * 8)"
                           },
                           {
                             "type": "expression",
@@ -2970,7 +2900,7 @@ spec:
                         ]
                       }
                 method: POST
-          title: 'A: Receive utilization in bps per uplink port (Avg)'
+          title: 'A: Receive utilization in bps per uplink port (Max)'
           transformations:
             - id: configFromData
               options:
@@ -3151,24 +3081,14 @@ spec:
                         },
                         "aggregations": [
                           {
-                            "type": "longSum",
-                            "name": "rx_count",
-                            "fieldName": "hw.network.io_receive_duration"
-                          },
-                          {
-                            "type": "longSum",
+                            "type": "doubleMax",
                             "name": "base_rx",
-                            "fieldName": "hw.network.io_receive"
+                            "fieldName": "hw.network.io_receive_max"
                           },
                           {
-                            "type": "doubleSum",
-                            "name": "tx_count",
-                            "fieldName": "hw.network.io_transmit_duration"
-                          },
-                          {
-                            "type": "longSum",
+                            "type": "doubleMax",
                             "name": "base_tx",
-                            "fieldName": "hw.network.io_transmit"
+                            "fieldName": "hw.network.io_transmit_max"
                           },
                           {
                             "type": "longLast",
@@ -3180,12 +3100,12 @@ spec:
                           {
                             "type": "expression",
                             "name": "rx",
-                            "expression": "(\"base_rx\" / \"rx_count\" * 8)"
+                            "expression": "(\"base_rx\" * 8)"
                           },
                           {
                             "type": "expression",
                             "name": "tx",
-                            "expression": "(\"base_tx\" / \"tx_count\" * 8)"
+                            "expression": "(\"base_tx\" * 8)"
                           },
                           {
                             "type": "expression",
@@ -3195,7 +3115,7 @@ spec:
                         ]
                       }
                 method: POST
-          title: 'B: Receive utilization in bps per uplink port (Avg)'
+          title: 'B: Receive utilization in bps per uplink port (Max)'
           transformations:
             - id: configFromData
               options:
@@ -3301,7 +3221,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: none
-          pluginVersion: 12.0.0-85518.patch3-85676
+          pluginVersion: 12.0.0-86517
           repeat: ServerPorts_A
           repeatDirection: v
           targets:
@@ -3376,24 +3296,14 @@ spec:
                         },
                         "aggregations": [
                           {
-                            "type": "longSum",
-                            "name": "rx_count",
-                            "fieldName": "hw.network.io_receive_duration"
-                          },
-                          {
-                            "type": "longSum",
+                            "type": "doubleMax",
                             "name": "base_rx",
-                            "fieldName": "hw.network.io_receive"
+                            "fieldName": "hw.network.io_receive_max"
                           },
                           {
-                            "type": "doubleSum",
-                            "name": "tx_count",
-                            "fieldName": "hw.network.io_transmit_duration"
-                          },
-                          {
-                            "type": "longSum",
+                            "type": "doubleMax",
                             "name": "base_tx",
-                            "fieldName": "hw.network.io_transmit"
+                            "fieldName": "hw.network.io_transmit_max"
                           },
                           {
                             "type": "longLast",
@@ -3405,12 +3315,12 @@ spec:
                           {
                             "type": "expression",
                             "name": "rx",
-                            "expression": "(\"base_rx\" / \"rx_count\" * 8)"
+                            "expression": "(\"base_rx\" * 8)"
                           },
                           {
                             "type": "expression",
                             "name": "tx",
-                            "expression": "(\"base_tx\" / \"tx_count\" * 8)"
+                            "expression": "(\"base_tx\" * 8)"
                           },
                           {
                             "type": "expression",
@@ -3420,7 +3330,7 @@ spec:
                         ]
                       }
                 method: POST
-          title: 'Utilization in bps per FI downlink port (Avg): 1/${ServerPorts_A:text} (A)'
+          title: 'Utilization in bps per FI downlink port (Max): 1/${ServerPorts_A:text} (A)'
           transformations:
             - id: configFromData
               options:
@@ -3513,7 +3423,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: none
-          pluginVersion: 12.0.0-85518.patch3-85676
+          pluginVersion: 12.0.0-86517
           repeat: ServerPorts_B
           repeatDirection: v
           targets:
@@ -3588,24 +3498,14 @@ spec:
                         },
                         "aggregations": [
                           {
-                            "type": "longSum",
-                            "name": "rx_count",
-                            "fieldName": "hw.network.io_receive_duration"
-                          },
-                          {
-                            "type": "longSum",
+                            "type": "doubleMax",
                             "name": "base_rx",
-                            "fieldName": "hw.network.io_receive"
+                            "fieldName": "hw.network.io_receive_max"
                           },
                           {
-                            "type": "doubleSum",
-                            "name": "tx_count",
-                            "fieldName": "hw.network.io_transmit_duration"
-                          },
-                          {
-                            "type": "longSum",
+                            "type": "doubleMax",
                             "name": "base_tx",
-                            "fieldName": "hw.network.io_transmit"
+                            "fieldName": "hw.network.io_transmit_max"
                           },
                           {
                             "type": "longLast",
@@ -3617,12 +3517,12 @@ spec:
                           {
                             "type": "expression",
                             "name": "rx",
-                            "expression": "(\"base_rx\" / \"rx_count\" * 8)"
+                            "expression": "(\"base_rx\" * 8)"
                           },
                           {
                             "type": "expression",
                             "name": "tx",
-                            "expression": "(\"base_tx\" / \"tx_count\" * 8)"
+                            "expression": "(\"base_tx\" * 8)"
                           },
                           {
                             "type": "expression",
@@ -3632,7 +3532,7 @@ spec:
                         ]
                       }
                 method: POST
-          title: 'Utilization in bps per FI downlink port (Avg): 1/${ServerPorts_B:text} (B)'
+          title: 'Utilization in bps per FI downlink port (Max): 1/${ServerPorts_B:text} (B)'
           transformations:
             - id: configFromData
               options:
@@ -3656,7 +3556,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 46
+            "y": 51
           id: 51
           panels:
             - datasource:
@@ -3721,7 +3621,7 @@ spec:
                 h: 8
                 w: 12
                 x: 0
-                "y": 641
+                "y": 62
               id: 52
               options:
                 legend:
@@ -3733,7 +3633,7 @@ spec:
                     hideZeros: false
                     mode: multi
                     sort: none
-              pluginVersion: 12.0.0-85518.patch3-85676
+              pluginVersion: 12.0.0-86517
               repeat: NIFPorts_A
               repeatDirection: v
               targets:
@@ -3792,7 +3692,7 @@ spec:
                                 {
                                   "type": "selector",
                                   "dimension": "hw.chassis.id",
-                                  "value": "/api/v1/equipment/Chasses/${ChassisMoid}"
+                                  "value": "/api/v1/equipment/Chasses/${ChassisName:value}"
                                 },
                                 {
                                   "type": "selector",
@@ -3857,7 +3757,7 @@ spec:
                             ]
                           }
                     method: POST
-              title: 'Utilization in bps per IFM uplink port (Avg): ${ChassisId}/${NIFPorts_A:text} (A)'
+              title: 'Utilization in bps per IFM uplink port (Max): ${ChassisId}/${NIFPorts_A:text} (A)'
               transformations:
                 - id: configFromData
                   options:
@@ -3939,10 +3839,10 @@ spec:
                             fixedColor: blue
                             mode: fixed
               gridPos:
-                h: 7
+                h: 8
                 w: 12
                 x: 12
-                "y": 641
+                "y": 62
               id: 91
               options:
                 legend:
@@ -3954,7 +3854,7 @@ spec:
                     hideZeros: false
                     mode: multi
                     sort: none
-              pluginVersion: 12.0.0-85518.patch3-85676
+              pluginVersion: 12.0.0-86517
               repeat: NIFPorts_B
               repeatDirection: v
               targets:
@@ -4013,7 +3913,7 @@ spec:
                                 {
                                   "type": "selector",
                                   "dimension": "hw.chassis.id",
-                                  "value": "/api/v1/equipment/Chasses/${ChassisMoid}"
+                                  "value": "/api/v1/equipment/Chasses/${ChassisName:value}"
                                 },
                                 {
                                   "type": "selector",
@@ -4034,24 +3934,14 @@ spec:
                             },
                             "aggregations": [
                               {
-                                "type": "longSum",
-                                "name": "rx_count",
-                                "fieldName": "hw.network.io_receive_duration"
-                              },
-                              {
-                                "type": "longSum",
+                                "type": "doubleMax",
                                 "name": "base_rx",
-                                "fieldName": "hw.network.io_receive"
+                                "fieldName": "hw.network.io_receive_max"
                               },
                               {
-                                "type": "doubleSum",
-                                "name": "tx_count",
-                                "fieldName": "hw.network.io_transmit_duration"
-                              },
-                              {
-                                "type": "longSum",
+                                "type": "doubleMax",
                                 "name": "base_tx",
-                                "fieldName": "hw.network.io_transmit"
+                                "fieldName": "hw.network.io_transmit_max"
                               },
                               {
                                 "type": "longLast",
@@ -4063,12 +3953,12 @@ spec:
                               {
                                 "type": "expression",
                                 "name": "rx",
-                                "expression": "(\"base_rx\" / \"rx_count\" * 8)"
+                                "expression": "(\"base_rx\" * 8)"
                               },
                               {
                                 "type": "expression",
                                 "name": "tx",
-                                "expression": "(\"base_tx\" / \"tx_count\" * 8)"
+                                "expression": "(\"base_tx\" * 8)"
                               },
                               {
                                 "type": "expression",
@@ -4078,7 +3968,7 @@ spec:
                             ]
                           }
                     method: POST
-              title: 'Utilization in bps per IFM uplink port (Avg): ${ChassisId}/${NIFPorts_B:text} (B)'
+              title: 'Utilization in bps per IFM uplink port (Max): ${ChassisId}/${NIFPorts_B:text} (B)'
               transformations:
                 - id: configFromData
                   options:
@@ -4108,7 +3998,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 47
+            "y": 52
           id: 9
           panels: []
           title: IFM Downlink Ports
@@ -4175,7 +4065,7 @@ spec:
             h: 7
             w: 12
             x: 0
-            "y": 48
+            "y": 53
           id: 54
           options:
             legend:
@@ -4187,7 +4077,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: none
-          pluginVersion: 12.0.0-85518.patch3-85676
+          pluginVersion: 12.0.0-86517
           repeat: HIFPorts_A
           repeatDirection: v
           targets:
@@ -4246,7 +4136,7 @@ spec:
                             {
                               "type": "selector",
                               "dimension": "hw.chassis.id",
-                              "value": "/api/v1/equipment/Chasses/${ChassisMoid}"
+                              "value": "/api/v1/equipment/Chasses/${ChassisName:value}"
                             },
                             {
                               "type": "selector",
@@ -4267,24 +4157,14 @@ spec:
                         },
                         "aggregations": [
                           {
-                            "type": "longSum",
-                            "name": "rx_count",
-                            "fieldName": "hw.network.io_receive_duration"
-                          },
-                          {
-                            "type": "longSum",
+                            "type": "doubleMax",
                             "name": "base_rx",
-                            "fieldName": "hw.network.io_receive"
+                            "fieldName": "hw.network.io_receive_max"
                           },
                           {
-                            "type": "doubleSum",
-                            "name": "tx_count",
-                            "fieldName": "hw.network.io_transmit_duration"
-                          },
-                          {
-                            "type": "longSum",
+                            "type": "doubleMax",
                             "name": "base_tx",
-                            "fieldName": "hw.network.io_transmit"
+                            "fieldName": "hw.network.io_transmit_max"
                           },
                           {
                             "type": "longLast",
@@ -4296,12 +4176,12 @@ spec:
                           {
                             "type": "expression",
                             "name": "rx",
-                            "expression": "(\"base_rx\" / \"rx_count\" * 8)"
+                            "expression": "(\"base_rx\" * 8)"
                           },
                           {
                             "type": "expression",
                             "name": "tx",
-                            "expression": "(\"base_tx\" / \"tx_count\" * 8)"
+                            "expression": "(\"base_tx\" * 8)"
                           },
                           {
                             "type": "expression",
@@ -4311,7 +4191,7 @@ spec:
                         ]
                       }
                 method: POST
-          title: 'Utilization in bps per IFM downlink port (Avg): ${ChassisId}/${HIFPorts_A:text} (A)'
+          title: 'Utilization in bps per IFM downlink port (Max): ${ChassisId}/${HIFPorts_A:text} (A)'
           transformations:
             - id: configFromData
               options:
@@ -4392,7 +4272,7 @@ spec:
             h: 7
             w: 12
             x: 12
-            "y": 48
+            "y": 53
           id: 94
           options:
             legend:
@@ -4404,7 +4284,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: none
-          pluginVersion: 12.0.0-85518.patch3-85676
+          pluginVersion: 12.0.0-86517
           repeat: HIFPorts_B
           repeatDirection: v
           targets:
@@ -4463,7 +4343,7 @@ spec:
                             {
                               "type": "selector",
                               "dimension": "hw.chassis.id",
-                              "value": "/api/v1/equipment/Chasses/${ChassisMoid}"
+                              "value": "/api/v1/equipment/Chasses/${ChassisName:value}"
                             },
                             {
                               "type": "selector",
@@ -4484,24 +4364,14 @@ spec:
                         },
                         "aggregations": [
                           {
-                            "type": "longSum",
-                            "name": "rx_count",
-                            "fieldName": "hw.network.io_receive_duration"
-                          },
-                          {
-                            "type": "longSum",
+                            "type": "doubleMax",
                             "name": "base_rx",
-                            "fieldName": "hw.network.io_receive"
+                            "fieldName": "hw.network.io_receive_max"
                           },
                           {
-                            "type": "doubleSum",
-                            "name": "tx_count",
-                            "fieldName": "hw.network.io_transmit_duration"
-                          },
-                          {
-                            "type": "longSum",
+                            "type": "doubleMax",
                             "name": "base_tx",
-                            "fieldName": "hw.network.io_transmit"
+                            "fieldName": "hw.network.io_transmit_max"
                           },
                           {
                             "type": "longLast",
@@ -4513,12 +4383,12 @@ spec:
                           {
                             "type": "expression",
                             "name": "rx",
-                            "expression": "(\"base_rx\" / \"rx_count\" * 8)"
+                            "expression": "(\"base_rx\" * 8)"
                           },
                           {
                             "type": "expression",
                             "name": "tx",
-                            "expression": "(\"base_tx\" / \"tx_count\" * 8)"
+                            "expression": "(\"base_tx\" * 8)"
                           },
                           {
                             "type": "expression",
@@ -4528,7 +4398,7 @@ spec:
                         ]
                       }
                 method: POST
-          title: 'Utilization in bps per IFM downlink port (Avg): ${ChassisId}/${HIFPorts_B:text} (B)'
+          title: 'Utilization in bps per IFM downlink port (Max): ${ChassisId}/${HIFPorts_B:text} (B)'
           transformations:
             - id: configFromData
               options:
@@ -4552,7 +4422,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 55
+            "y": 60
           id: 93
           panels: []
           title: vNIC Ports
@@ -4619,7 +4489,7 @@ spec:
             h: 7
             w: 24
             x: 0
-            "y": 56
+            "y": 61
           id: 95
           maxPerRow: 2
           options:
@@ -4632,7 +4502,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: none
-          pluginVersion: 12.0.0-85820
+          pluginVersion: 12.0.0-86517
           repeat: HostEthInterfaces
           repeatDirection: h
           targets:
@@ -4708,36 +4578,26 @@ spec:
                         },
                         "aggregations": [
                           {
-                            "type": "longSum",
-                            "name": "rx_count",
-                            "fieldName": "hw.network.io_receive_duration"
-                          },
-                          {
-                            "type": "longSum",
+                            "type": "doubleMax",
                             "name": "base_rx",
-                            "fieldName": "hw.network.io_receive"
+                            "fieldName": "hw.network.io_receive_max"
                           },
                           {
-                            "type": "doubleSum",
-                            "name": "tx_count",
-                            "fieldName": "hw.network.io_transmit_duration"
-                          },
-                          {
-                            "type": "longSum",
+                            "type": "doubleMax",
                             "name": "base_tx",
-                            "fieldName": "hw.network.io_transmit"
+                            "fieldName": "hw.network.io_transmit_max"
                           }
                         ],
                         "postAggregations": [
                           {
                             "type": "expression",
                             "name": "rx",
-                            "expression": "(\"base_rx\" / \"rx_count\" * 8)"
+                            "expression": "(\"base_rx\" * 8)"
                           },
                           {
                             "type": "expression",
                             "name": "tx",
-                            "expression": "(\"base_tx\" / \"tx_count\" * 8)"
+                            "expression": "(\"base_tx\" * 8)"
                           }
                         ]
                       }
@@ -4749,7 +4609,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 63
+            "y": 75
           id: 97
           panels: []
           title: vHBA Ports
@@ -4816,7 +4676,7 @@ spec:
             h: 7
             w: 24
             x: 0
-            "y": 64
+            "y": 76
           id: 98
           maxPerRow: 2
           options:
@@ -4829,7 +4689,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: none
-          pluginVersion: 12.0.0-85820
+          pluginVersion: 12.0.0-86517
           repeat: HostFcInterfaces
           repeatDirection: h
           targets:
@@ -4904,41 +4764,31 @@ spec:
                         },
                         "aggregations": [
                           {
-                            "type": "longSum",
-                            "name": "rx_count",
-                            "fieldName": "hw.network.io_receive_duration"
-                          },
-                          {
-                            "type": "longSum",
+                            "type": "doubleMax",
                             "name": "base_rx",
-                            "fieldName": "hw.network.io_receive"
+                            "fieldName": "hw.network.io_receive_max"
                           },
                           {
-                            "type": "doubleSum",
-                            "name": "tx_count",
-                            "fieldName": "hw.network.io_transmit_duration"
-                          },
-                          {
-                            "type": "longSum",
+                            "type": "doubleMax",
                             "name": "base_tx",
-                            "fieldName": "hw.network.io_transmit"
+                            "fieldName": "hw.network.io_transmit_max"
                           }
                         ],
                         "postAggregations": [
                           {
                             "type": "expression",
                             "name": "rx",
-                            "expression": "(\"base_rx\" / \"rx_count\" * 8)"
+                            "expression": "(\"base_rx\" * 8)"
                           },
                           {
                             "type": "expression",
                             "name": "tx",
-                            "expression": "(\"base_tx\" / \"tx_count\" * 8)"
+                            "expression": "(\"base_tx\" * 8)"
                           }
                         ]
                       }
                 method: POST
-          title: 'Utilization in bps per vHBA port (Avg): ${HostFcInterfaces:text}'
+          title: 'Utilization in bps per vHBA port (Max): ${HostFcInterfaces:text}'
           type: timeseries
     preload: false
     refresh: ""
@@ -4947,8 +4797,8 @@ spec:
     templating:
         list:
             - current:
-                text: customer-bis
-                value: cefpzg3q19fk0c
+                text: tme-dev
+                value: eeca0h99fql1cd
               label: Data Source
               name: DataSource
               options: []
@@ -4957,8 +4807,8 @@ spec:
               regex: ""
               type: datasource
             - current:
-                text: nclb-inf-ucs02
-                value: nclb-inf-ucs02
+                text: sgaree-sj2-151-b18-6536-1
+                value: sgaree-sj2-151-b18-6536-1
               datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
@@ -4991,8 +4841,8 @@ spec:
               sort: 7
               type: query
             - current:
-                text: nclb-inf-esxi15
-                value: nclb-inf-esxi15
+                text: tme-esx-1
+                value: tme-esx-1
               datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
@@ -5024,8 +4874,8 @@ spec:
               sort: 7
               type: query
             - current:
-                text: 6654280577696e3105dcf7f8
-                value: 6654280577696e3105dcf7f8
+                text: 6425e7a277696e32018d5418
+                value: 6425e7a277696e32018d5418
               datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
@@ -5056,8 +4906,8 @@ spec:
               regex: ""
               type: query
             - current:
-                text: 66449de861767531054cf499
-                value: 66449de861767531054cf499
+                text: 67bf574361767535013560db
+                value: 67bf574361767535013560db
               datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
@@ -5088,20 +4938,23 @@ spec:
               regex: ""
               type: query
             - current:
-                text: 66449c0761767531054c4c1d
-                value: 66449c0761767531054c4c1d
+                text: sgaree-sj2-151-b18-6536-1-3
+                value: 67bf569b6176753501349fa3
               datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
               definition: ""
               hide: 2
-              name: ChassisMoid
+              name: ChassisName
               options: []
               query:
                 infinityQuery:
                     columns:
                         - selector: EquipmentChassis.Moid
-                          text: Moid
+                          text: __value
+                          type: string
+                        - selector: EquipmentChassis.Name
+                          text: __text
                           type: string
                     filters: []
                     format: table
@@ -5110,7 +4963,7 @@ spec:
                     root_selector: ""
                     source: url
                     type: json
-                    url: /api/v1/compute/Blades/${ServerMoid}
+                    url: /api/v1/compute/Blades/${ServerMoid}?$expand=EquipmentChassis
                     url_options:
                         data: ""
                         method: GET
@@ -5120,8 +4973,8 @@ spec:
               regex: ""
               type: query
             - current:
-                text: "1"
-                value: "1"
+                text: "3"
+                value: "3"
               datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
@@ -5142,7 +4995,7 @@ spec:
                     root_selector: $.Results
                     source: url
                     type: json
-                    url: /api/v1/equipment/Chasses?$filter=Moid eq '${ChassisMoid}'
+                    url: /api/v1/equipment/Chasses?$filter=Moid eq '${ChassisName:value}'
                     url_options:
                         data: ""
                         method: GET
@@ -5152,8 +5005,8 @@ spec:
               regex: ""
               type: query
             - current:
-                text: 6644ba9c77696e3105c53e72
-                value: 6644ba9c77696e3105c53e72
+                text: ""
+                value: ""
               datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
@@ -5174,7 +5027,7 @@ spec:
                     root_selector: $.Results
                     source: url
                     type: json
-                    url: /api/v1/chassis/Profiles?$filter=AssignedChassis.Moid eq '${ChassisMoid}'
+                    url: /api/v1/chassis/Profiles?$filter=AssignedChassis.Moid eq '${ChassisName:value}'
                     url_options:
                         data: ""
                         method: GET
@@ -5184,8 +5037,8 @@ spec:
               regex: ""
               type: query
             - current:
-                text: FDO280215VU
-                value: FDO280215VU
+                text: FDO272406FG
+                value: FDO272406FG
               datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
@@ -5216,8 +5069,8 @@ spec:
               regex: ""
               type: query
             - current:
-                text: FDO280215VW
-                value: FDO280215VW
+                text: FDO272406ES
+                value: FDO272406ES
               datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
@@ -5248,8 +5101,8 @@ spec:
               regex: ""
               type: query
             - current:
-                text: 66447a7a656e6f3105644332
-                value: 66447a7a656e6f3105644332
+                text: ""
+                value: ""
               datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
@@ -5354,8 +5207,8 @@ spec:
               regex: ""
               type: query
             - current:
-                text: "1281"
-                value: "1281"
+                text: "1333"
+                value: "1333"
               datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
@@ -5389,8 +5242,8 @@ spec:
               regex: ""
               type: query
             - current:
-                text: "1281"
-                value: "1281"
+                text: "1333"
+                value: "1333"
               datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
@@ -5450,7 +5303,7 @@ spec:
                     root_selector: $.Results
                     source: url
                     type: json
-                    url: /api/v1/ether/HostPorts?$filter=Ancestors.Moid eq '${ChassisMoid}' and SwitchId eq 'A' and PortChannelId eq ${HIF_PC_A} and AcknowledgedPeerInterface ne null
+                    url: /api/v1/ether/HostPorts?$filter=Ancestors.Moid eq '${ChassisName:value}' and SwitchId eq 'A' and PortChannelId eq ${HIF_PC_A} and AcknowledgedPeerInterface ne null
                     url_options:
                         data: ""
                         method: GET
@@ -5486,7 +5339,7 @@ spec:
                     root_selector: $.Results
                     source: url
                     type: json
-                    url: /api/v1/ether/HostPorts?$filter=Ancestors.Moid eq '${ChassisMoid}' and SwitchId eq 'B' and PortChannelId eq ${HIF_PC_B} and AcknowledgedPeerInterface ne null
+                    url: /api/v1/ether/HostPorts?$filter=Ancestors.Moid eq '${ChassisName:value}' and SwitchId eq 'B' and PortChannelId eq ${HIF_PC_B} and AcknowledgedPeerInterface ne null
                     url_options:
                         data: ""
                         method: GET
@@ -5496,8 +5349,8 @@ spec:
               regex: ""
               type: query
             - current:
-                text: "2"
-                value: 66449c0961767531054c4cb2
+                text: All
+                value: $__all
               datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
@@ -5522,7 +5375,7 @@ spec:
                     root_selector: $.Results
                     source: url
                     type: json
-                    url: /api/v1/ether/NetworkPorts?$filter=Ancestors.Moid eq '${ChassisMoid}' and SwitchId eq 'A'
+                    url: /api/v1/ether/NetworkPorts?$filter=Ancestors.Moid eq '${ChassisName:value}' and SwitchId eq 'A'
                     url_options:
                         data: ""
                         method: GET
@@ -5533,8 +5386,8 @@ spec:
               sort: 3
               type: query
             - current:
-                text: "2"
-                value: 66449c0b61767531054c4d49
+                text: All
+                value: $__all
               datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
@@ -5559,7 +5412,7 @@ spec:
                     root_selector: $.Results
                     source: url
                     type: json
-                    url: /api/v1/ether/NetworkPorts?$filter=Ancestors.Moid eq '${ChassisMoid}' and SwitchId eq 'B'
+                    url: /api/v1/ether/NetworkPorts?$filter=Ancestors.Moid eq '${ChassisName:value}' and SwitchId eq 'B'
                     url_options:
                         data: ""
                         method: GET
@@ -5596,7 +5449,7 @@ spec:
                     root_selector: $.Results
                     source: url
                     type: json
-                    url: /api/v1/ether/NetworkPorts?$filter=Ancestors.Moid eq '${ChassisMoid}' and SwitchId eq 'A'&$expand=PeerInterface($select=PortId)
+                    url: /api/v1/ether/NetworkPorts?$filter=Ancestors.Moid eq '${ChassisName:value}' and SwitchId eq 'A'&$expand=PeerInterface($select=PortId)
                     url_options:
                         data: ""
                         method: GET
@@ -5633,7 +5486,7 @@ spec:
                     root_selector: $.Results
                     source: url
                     type: json
-                    url: /api/v1/ether/NetworkPorts?$filter=Ancestors.Moid eq '${ChassisMoid}' and SwitchId eq 'B'&$expand=PeerInterface($select=PortId)
+                    url: /api/v1/ether/NetworkPorts?$filter=Ancestors.Moid eq '${ChassisName:value}' and SwitchId eq 'B'&$expand=PeerInterface($select=PortId)
                     url_options:
                         data: ""
                         method: GET
@@ -5685,8 +5538,8 @@ spec:
               sort: 3
               type: query
             - current:
-                text: "664494686176753105493115"
-                value: "664494686176753105493115"
+                text: 654bd2556176753501775211
+                value: 654bd2556176753501775211
               datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
@@ -5717,8 +5570,8 @@ spec:
               regex: ""
               type: query
             - current:
-                text: "664494696176753105493130"
-                value: "664494696176753105493130"
+                text: 654bd25561767535017751ce
+                value: 654bd25561767535017751ce
               datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}

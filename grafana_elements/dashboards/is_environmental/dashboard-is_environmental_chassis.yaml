@@ -239,155 +239,6 @@ spec:
             w: 24
             x: 0
             "y": 3
-          id: 23
-          panels:
-            - datasource:
-                type: yesoreyeram-infinity-datasource
-                uid: ${DataSource}
-              fieldConfig:
-                defaults:
-                    thresholds:
-                        mode: absolute
-                        steps:
-                            - color: green
-                            - color: red
-                              value: 80
-                overrides: []
-              gridPos:
-                h: 16
-                w: 8
-                x: 0
-                "y": 4
-              id: 43
-              options:
-                afterRender: ""
-                content: |-
-                    #### Power configuration options
-                    | Mode              | Maximum available Power               |
-                    |-------------------|---------------------------------------|
-                    | N (Non-redundant) | {{{json @root.NonRedundantMaxPower}}} |
-                    | N+1               | {{{json @root.N1MaxPower}}}           |
-                    | N+2               | {{{json @root.N2MaxPower}}}           |
-                    | N+N (Grid)        | {{{json @root.GridMaxPower}}}         |
-
-                    ----
-
-                    #### Current power configuration
-                    | Setting                                                                                    | State                                  |
-                    |--------------------------------------------------------------------------------------------|----------------------------------------|
-                    | Power Save Mode: disables unneeded PSU                                                     | {{{@root.PowerSaveMode}}}         |
-                    | Extended Power Capacity: can increase capacity by up to 15% if redundancy is intact        | {{{@root.ExtendedPowerCapacity}}} |
-                    | Dynamic Power Rebalancing: allows for server power re-allocation when power is constrained | {{{@root.PowerRebalancing}}}      |
-                    | Allocated Budget: sets an input power limit and throttles if exceeded                      | {{{json @root.AllocatedPower}}}        |
-                    | Minimum Required Power: very conservative guideline for minimum required power             | {{{json @root.MinRequiredPower}}}      |
-                    | Maximum Required Power: very conservative guideline for maximum required power             | {{{json @root.MaxRequiredPower}}}      |
-                contentPartials: []
-                defaultContent: The query didn't return any results.
-                editor:
-                    format: auto
-                    height: 200
-                    language: markdown
-                editors: []
-                externalScripts: []
-                externalStyles: []
-                helpers: ""
-                renderMode: everyRow
-                styles: ""
-                wrap: true
-              pluginVersion: 5.7.0
-              targets:
-                - columns: []
-                  datasource:
-                    type: yesoreyeram-infinity-datasource
-                    uid: ${DataSource}
-                  filters: []
-                  format: table
-                  global_query_id: ""
-                  parser: backend
-                  refId: A
-                  root_selector: $.Results
-                  source: url
-                  type: json
-                  url: /api/v1/power/ControlStates?$expand=Parent&$filter=(EquipmentChassis.Moid eq '${ChassisMoid}')
-                  url_options:
-                    data: ""
-                    method: GET
-              title: ""
-              type: marcusolsson-dynamictext-panel
-            - datasource:
-                type: yesoreyeram-infinity-datasource
-                uid: ${DataSource}
-              fieldConfig:
-                defaults:
-                    thresholds:
-                        mode: absolute
-                        steps:
-                            - color: green
-                            - color: red
-                              value: 80
-                overrides: []
-              gridPos:
-                h: 16
-                w: 8
-                x: 8
-                "y": 4
-              id: 65
-              options:
-                afterRender: ""
-                content: |-
-                    #### Power state overview
-
-                    Operational state: {{{@root.OperState}}}
-
-                    Input power state: {{{@root.InputPowerState}}}
-
-                    Output power state: {{{@root.OutputPowerState}}}
-
-                    ----
-
-                    #### Configured redundancy mode
-                    {{{@root.Redundancy}}}
-                contentPartials: []
-                defaultContent: The query didn't return any results.
-                editor:
-                    format: auto
-                    height: 200
-                    language: markdown
-                editors: []
-                externalScripts: []
-                externalStyles: []
-                helpers: ""
-                renderMode: everyRow
-                styles: ""
-                wrap: true
-              pluginVersion: 5.7.0
-              targets:
-                - columns: []
-                  datasource:
-                    type: yesoreyeram-infinity-datasource
-                    uid: ${DataSource}
-                  filters: []
-                  format: table
-                  global_query_id: ""
-                  parser: backend
-                  refId: A
-                  root_selector: $.Results
-                  source: url
-                  type: json
-                  url: /api/v1/equipment/PsuControls?&$filter=(Ancestors.Moid eq '${ChassisMoid}')
-                  url_options:
-                    data: ""
-                    method: GET
-              title: ""
-              type: marcusolsson-dynamictext-panel
-          title: Chassis Power Configuration
-          type: row
-        - collapsed: true
-          gridPos:
-            h: 1
-            w: 24
-            x: 0
-            "y": 4
           id: 50
           panels:
             - datasource:
@@ -432,7 +283,7 @@ spec:
                 h: 3
                 w: 6
                 x: 0
-                "y": 54
+                "y": 116
               id: 74
               options:
                 colorMode: value
@@ -562,7 +413,7 @@ spec:
                 h: 3
                 w: 6
                 x: 6
-                "y": 54
+                "y": 116
               id: 75
               options:
                 colorMode: value
@@ -692,7 +543,7 @@ spec:
                 h: 3
                 w: 6
                 x: 12
-                "y": 54
+                "y": 116
               id: 76
               options:
                 colorMode: value
@@ -822,7 +673,7 @@ spec:
                 h: 3
                 w: 6
                 x: 18
-                "y": 54
+                "y": 116
               id: 77
               options:
                 colorMode: value
@@ -952,7 +803,7 @@ spec:
                 h: 3
                 w: 4
                 x: 0
-                "y": 57
+                "y": 119
               id: 68
               options:
                 colorMode: value
@@ -1015,7 +866,7 @@ spec:
                                 {
                                   "type": "selector",
                                   "dimension": "host.id",
-                                  "value": "/api/v1/equipment/Chasses/${ChassisMoid}"
+                                  "value": "/api/v1/equipment/Chasses/${ChassisName:value}"
                                 },
                                 {
                                   "type": "selector",
@@ -1082,7 +933,7 @@ spec:
                 h: 3
                 w: 4
                 x: 4
-                "y": 57
+                "y": 119
               id: 69
               options:
                 colorMode: value
@@ -1145,7 +996,7 @@ spec:
                                 {
                                   "type": "selector",
                                   "dimension": "host.id",
-                                  "value": "/api/v1/equipment/Chasses/${ChassisMoid}"
+                                  "value": "/api/v1/equipment/Chasses/${ChassisName:value}"
                                 },
                                 {
                                   "type": "selector",
@@ -1212,7 +1063,7 @@ spec:
                 h: 3
                 w: 4
                 x: 8
-                "y": 57
+                "y": 119
               id: 70
               options:
                 colorMode: value
@@ -1275,7 +1126,7 @@ spec:
                                 {
                                   "type": "selector",
                                   "dimension": "host.id",
-                                  "value": "/api/v1/equipment/Chasses/${ChassisMoid}"
+                                  "value": "/api/v1/equipment/Chasses/${ChassisName:value}"
                                 },
                                 {
                                   "type": "selector",
@@ -1342,7 +1193,7 @@ spec:
                 h: 3
                 w: 4
                 x: 12
-                "y": 57
+                "y": 119
               id: 71
               options:
                 colorMode: value
@@ -1405,7 +1256,7 @@ spec:
                                 {
                                   "type": "selector",
                                   "dimension": "host.id",
-                                  "value": "/api/v1/equipment/Chasses/${ChassisMoid}"
+                                  "value": "/api/v1/equipment/Chasses/${ChassisName:value}"
                                 },
                                 {
                                   "type": "selector",
@@ -1472,7 +1323,7 @@ spec:
                 h: 3
                 w: 4
                 x: 16
-                "y": 57
+                "y": 119
               id: 72
               options:
                 colorMode: value
@@ -1535,7 +1386,7 @@ spec:
                                 {
                                   "type": "selector",
                                   "dimension": "host.id",
-                                  "value": "/api/v1/equipment/Chasses/${ChassisMoid}"
+                                  "value": "/api/v1/equipment/Chasses/${ChassisName:value}"
                                 },
                                 {
                                   "type": "selector",
@@ -1602,7 +1453,7 @@ spec:
                 h: 3
                 w: 4
                 x: 20
-                "y": 57
+                "y": 119
               id: 73
               options:
                 colorMode: value
@@ -1665,7 +1516,7 @@ spec:
                                 {
                                   "type": "selector",
                                   "dimension": "host.id",
-                                  "value": "/api/v1/equipment/Chasses/${ChassisMoid}"
+                                  "value": "/api/v1/equipment/Chasses/${ChassisName:value}"
                                 },
                                 {
                                   "type": "selector",
@@ -1697,7 +1548,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 5
+            "y": 4
           id: 10
           panels:
             - datasource:
@@ -1747,7 +1598,7 @@ spec:
                 h: 7
                 w: 24
                 x: 0
-                "y": 6
+                "y": 4
               id: 35
               options:
                 legend:
@@ -1891,7 +1742,7 @@ spec:
                 h: 7
                 w: 24
                 x: 0
-                "y": 32
+                "y": 143
               id: 36
               options:
                 legend:
@@ -2000,6 +1851,155 @@ spec:
             h: 1
             w: 24
             x: 0
+            "y": 5
+          id: 23
+          panels:
+            - datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              fieldConfig:
+                defaults:
+                    thresholds:
+                        mode: absolute
+                        steps:
+                            - color: green
+                            - color: red
+                              value: 80
+                overrides: []
+              gridPos:
+                h: 16
+                w: 8
+                x: 0
+                "y": 6
+              id: 43
+              options:
+                afterRender: ""
+                content: |-
+                    #### Power configuration options
+                    | Mode              | Maximum available Power               |
+                    |-------------------|---------------------------------------|
+                    | N (Non-redundant) | {{{json @root.NonRedundantMaxPower}}} |
+                    | N+1               | {{{json @root.N1MaxPower}}}           |
+                    | N+2               | {{{json @root.N2MaxPower}}}           |
+                    | N+N (Grid)        | {{{json @root.GridMaxPower}}}         |
+
+                    ----
+
+                    #### Current power configuration
+                    | Setting                                                                                    | State                                  |
+                    |--------------------------------------------------------------------------------------------|----------------------------------------|
+                    | Power Save Mode: disables unneeded PSU                                                     | {{{@root.PowerSaveMode}}}         |
+                    | Extended Power Capacity: can increase capacity by up to 15% if redundancy is intact        | {{{@root.ExtendedPowerCapacity}}} |
+                    | Dynamic Power Rebalancing: allows for server power re-allocation when power is constrained | {{{@root.PowerRebalancing}}}      |
+                    | Allocated Budget: sets an input power limit and throttles if exceeded                      | {{{json @root.AllocatedPower}}}        |
+                    | Minimum Required Power: very conservative guideline for minimum required power             | {{{json @root.MinRequiredPower}}}      |
+                    | Maximum Required Power: very conservative guideline for maximum required power             | {{{json @root.MaxRequiredPower}}}      |
+                contentPartials: []
+                defaultContent: The query didn't return any results.
+                editor:
+                    format: auto
+                    height: 200
+                    language: markdown
+                editors: []
+                externalScripts: []
+                externalStyles: []
+                helpers: ""
+                renderMode: everyRow
+                styles: ""
+                wrap: true
+              pluginVersion: 5.7.0
+              targets:
+                - columns: []
+                  datasource:
+                    type: yesoreyeram-infinity-datasource
+                    uid: ${DataSource}
+                  filters: []
+                  format: table
+                  global_query_id: ""
+                  parser: backend
+                  refId: A
+                  root_selector: $.Results
+                  source: url
+                  type: json
+                  url: /api/v1/power/ControlStates?$expand=Parent&$filter=(EquipmentChassis.Moid eq '${ChassisName:value}')
+                  url_options:
+                    data: ""
+                    method: GET
+              title: ""
+              type: marcusolsson-dynamictext-panel
+            - datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              fieldConfig:
+                defaults:
+                    thresholds:
+                        mode: absolute
+                        steps:
+                            - color: green
+                            - color: red
+                              value: 80
+                overrides: []
+              gridPos:
+                h: 16
+                w: 8
+                x: 8
+                "y": 6
+              id: 65
+              options:
+                afterRender: ""
+                content: |-
+                    #### Power state overview
+
+                    Operational state: {{{@root.OperState}}}
+
+                    Input power state: {{{@root.InputPowerState}}}
+
+                    Output power state: {{{@root.OutputPowerState}}}
+
+                    ----
+
+                    #### Configured redundancy mode
+                    {{{@root.Redundancy}}}
+                contentPartials: []
+                defaultContent: The query didn't return any results.
+                editor:
+                    format: auto
+                    height: 200
+                    language: markdown
+                editors: []
+                externalScripts: []
+                externalStyles: []
+                helpers: ""
+                renderMode: everyRow
+                styles: ""
+                wrap: true
+              pluginVersion: 5.7.0
+              targets:
+                - columns: []
+                  datasource:
+                    type: yesoreyeram-infinity-datasource
+                    uid: ${DataSource}
+                  filters: []
+                  format: table
+                  global_query_id: ""
+                  parser: backend
+                  refId: A
+                  root_selector: $.Results
+                  source: url
+                  type: json
+                  url: /api/v1/equipment/PsuControls?&$filter=(Ancestors.Moid eq '${ChassisName:value}')
+                  url_options:
+                    data: ""
+                    method: GET
+              title: ""
+              type: marcusolsson-dynamictext-panel
+          title: Chassis Power Configuration
+          type: row
+        - collapsed: true
+          gridPos:
+            h: 1
+            w: 24
+            x: 0
             "y": 6
           id: 9
           panels:
@@ -2050,7 +2050,7 @@ spec:
                 h: 7
                 w: 24
                 x: 0
-                "y": 361
+                "y": 7
               id: 34
               options:
                 legend:
@@ -2217,7 +2217,7 @@ spec:
                 h: 7
                 w: 24
                 x: 0
-                "y": 368
+                "y": 14
               id: 33
               options:
                 legend:
@@ -2381,7 +2381,7 @@ spec:
                 h: 7
                 w: 24
                 x: 0
-                "y": 404
+                "y": 36
               id: 32
               options:
                 legend:
@@ -2504,7 +2504,7 @@ spec:
                 h: 2
                 w: 24
                 x: 0
-                "y": 412
+                "y": 37
               id: 66
               options:
                 afterRender: ""
@@ -2538,7 +2538,7 @@ spec:
                   root_selector: $.Results
                   source: url
                   type: json
-                  url: /api/v1/equipment/FanControls?&$filter=(Ancestors.Moid eq '${ChassisMoid}')
+                  url: /api/v1/equipment/FanControls?&$filter=(Ancestors.Moid eq '${ChassisName:value}')
                   url_options:
                     data: ""
                     method: GET
@@ -2589,7 +2589,7 @@ spec:
                 h: 3
                 w: 24
                 x: 0
-                "y": 417
+                "y": 38
               id: 63
               maxPerRow: 8
               options:
@@ -2664,7 +2664,7 @@ spec:
                 h: 3
                 w: 24
                 x: 0
-                "y": 420
+                "y": 89
               id: 78
               maxPerRow: 8
               options:
@@ -2739,7 +2739,7 @@ spec:
                 h: 3
                 w: 24
                 x: 0
-                "y": 423
+                "y": 92
               id: 62
               maxPerRow: 8
               options:
@@ -2773,7 +2773,7 @@ spec:
                   root_selector: $.Count
                   source: url
                   type: json
-                  url: /api/v1/equipment/FanModules?$inlinecount=allpages&$filter=(Ancestors.Moid eq '${ChassisMoid}') and contains(Dn, '${ChassisFanModules}') and OperState eq 'OK'
+                  url: /api/v1/equipment/FanModules?$inlinecount=allpages&$filter=(Ancestors.Moid eq '${ChassisName:value}') and contains(Dn, '${ChassisFanModules}') and OperState eq 'OK'
                   url_options:
                     data: ""
                     method: GET
@@ -2836,7 +2836,7 @@ spec:
                 h: 8
                 w: 12
                 x: 0
-                "y": 427
+                "y": 39
               id: 40
               maxDataPoints: 500
               options:
@@ -2982,7 +2982,7 @@ spec:
                 h: 8
                 w: 12
                 x: 12
-                "y": 427
+                "y": 39
               id: 41
               maxDataPoints: 500
               options:
@@ -3139,7 +3139,7 @@ spec:
                 h: 7
                 w: 24
                 x: 0
-                "y": 12
+                "y": 40
               id: 31
               options:
                 legend:
@@ -3297,7 +3297,7 @@ spec:
                 h: 7
                 w: 12
                 x: 0
-                "y": 418
+                "y": 41
               id: 38
               maxDataPoints: 500
               options:
@@ -3424,7 +3424,7 @@ spec:
                 h: 7
                 w: 12
                 x: 12
-                "y": 418
+                "y": 41
               id: 79
               maxDataPoints: 500
               options:
@@ -3580,7 +3580,7 @@ spec:
                 h: 7
                 w: 12
                 x: 0
-                "y": 419
+                "y": 42
               id: 45
               maxDataPoints: 500
               options:
@@ -3783,7 +3783,7 @@ spec:
                 h: 7
                 w: 12
                 x: 12
-                "y": 419
+                "y": 42
               id: 46
               maxDataPoints: 500
               options:
@@ -3975,7 +3975,7 @@ spec:
                 h: 12
                 w: 8
                 x: 0
-                "y": 15
+                "y": 43
               id: 47
               maxDataPoints: 500
               options:
@@ -3994,7 +3994,7 @@ spec:
                     - selector: timestamp
                       text: Time
                       type: timestamp
-                    - selector: event.hw-temperature-Avg
+                    - selector: event.temperature
                       text: Temperature
                       type: number
                     - selector: event.hostname
@@ -4074,26 +4074,14 @@ spec:
                             },
                             "aggregations": [
                               {
-                                "type": "longSum",
-                                "name": "count",
-                                "fieldName": "hw.temperature_count"
-                              },
-                              {
-                                "type": "doubleSum",
-                                "name": "hw.temperature-Sum",
-                                "fieldName": "hw.temperature"
-                              }
-                            ],
-                            "postAggregations": [
-                              {
-                                "type": "expression",
-                                "name": "hw-temperature-Avg",
-                                "expression": "(\"hw.temperature-Sum\" / \"count\")"
+                                "type": "doubleMax",
+                                "name": "temperature",
+                                "fieldName": "hw.temperature_max"
                               }
                             ]
                           }
                     method: POST
-              title: Intake Temperature (Avg)
+              title: Intake Temperature (Max)
               transformations:
                 - id: groupingToMatrix
                   options:
@@ -4151,7 +4139,7 @@ spec:
                 h: 6
                 w: 8
                 x: 8
-                "y": 15
+                "y": 43
               id: 48
               maxDataPoints: 500
               options:
@@ -4170,7 +4158,7 @@ spec:
                     - selector: timestamp
                       text: Time
                       type: timestamp
-                    - selector: event.hw-temperature-Avg
+                    - selector: event.temperature
                       text: Temperature
                       type: number
                     - selector: event.hostname
@@ -4252,26 +4240,14 @@ spec:
                             },
                             "aggregations": [
                               {
-                                "type": "longSum",
-                                "name": "count",
-                                "fieldName": "hw.temperature_count"
-                              },
-                              {
-                                "type": "doubleSum",
-                                "name": "hw.temperature-Sum",
-                                "fieldName": "hw.temperature"
-                              }
-                            ],
-                            "postAggregations": [
-                              {
-                                "type": "expression",
-                                "name": "hw-temperature-Avg",
-                                "expression": "(\"hw.temperature-Sum\" / \"count\")"
+                                "type": "doubleMax",
+                                "name": "temperature",
+                                "fieldName": "hw.temperature_max"
                               }
                             ]
                           }
                     method: POST
-              title: CPU1 Temperature (Avg)
+              title: CPU1 Temperature (Max)
               transformations:
                 - id: groupingToMatrix
                   options:
@@ -4331,7 +4307,7 @@ spec:
                 h: 12
                 w: 8
                 x: 16
-                "y": 15
+                "y": 43
               id: 49
               maxDataPoints: 500
               options:
@@ -4350,7 +4326,7 @@ spec:
                     - selector: timestamp
                       text: Time
                       type: timestamp
-                    - selector: event.hw-temperature-Avg
+                    - selector: event.temperature
                       text: Temperature
                       type: number
                     - selector: event.hostname
@@ -4434,26 +4410,14 @@ spec:
                             },
                             "aggregations": [
                               {
-                                "type": "longSum",
-                                "name": "count",
-                                "fieldName": "hw.temperature_count"
-                              },
-                              {
-                                "type": "doubleSum",
-                                "name": "hw.temperature-Sum",
-                                "fieldName": "hw.temperature"
-                              }
-                            ],
-                            "postAggregations": [
-                              {
-                                "type": "expression",
-                                "name": "hw-temperature-Avg",
-                                "expression": "(\"hw.temperature-Sum\" / \"count\")"
+                                "type": "doubleMax",
+                                "name": "temperature",
+                                "fieldName": "hw.temperature_max"
                               }
                             ]
                           }
                     method: POST
-              title: Exhaust Temperature (Avg)
+              title: Exhaust Temperature (Max)
               transformations:
                 - id: groupingToMatrix
                   options:
@@ -4511,7 +4475,7 @@ spec:
                 h: 6
                 w: 8
                 x: 8
-                "y": 21
+                "y": 49
               id: 67
               maxDataPoints: 500
               options:
@@ -4530,7 +4494,7 @@ spec:
                     - selector: timestamp
                       text: Time
                       type: timestamp
-                    - selector: event.hw-temperature-Avg
+                    - selector: event.temperature
                       text: Temperature
                       type: number
                     - selector: event.hostname
@@ -4612,26 +4576,14 @@ spec:
                             },
                             "aggregations": [
                               {
-                                "type": "longSum",
-                                "name": "count",
-                                "fieldName": "hw.temperature_count"
-                              },
-                              {
-                                "type": "doubleSum",
-                                "name": "hw.temperature-Sum",
-                                "fieldName": "hw.temperature"
-                              }
-                            ],
-                            "postAggregations": [
-                              {
-                                "type": "expression",
-                                "name": "hw-temperature-Avg",
-                                "expression": "(\"hw.temperature-Sum\" / \"count\")"
+                                "type": "doubleMax",
+                                "name": "temperature",
+                                "fieldName": "hw.temperature_max"
                               }
                             ]
                           }
                     method: POST
-              title: CPU2 Temperature (Avg)
+              title: CPU2 Temperature (Max)
               transformations:
                 - id: groupingToMatrix
                   options:
@@ -4649,8 +4601,8 @@ spec:
     templating:
         list:
             - current:
-                text: tme-dev
-                value: eeca0h99fql1cd
+                text: netcloud
+                value: cefpzg3q19fk0c
               label: Data Source
               name: DataSource
               options: []
@@ -4659,8 +4611,8 @@ spec:
               regex: ""
               type: datasource
             - current:
-                text: int-tme-ucs-10
-                value: int-tme-ucs-10
+                text: nclb-inf-ucs02
+                value: nclb-inf-ucs02
               datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
@@ -4693,8 +4645,8 @@ spec:
               sort: 7
               type: query
             - current:
-                text: int-tme-ucs-10-1
-                value: 65158f4161767535010d895e
+                text: nclb-inf-ucs02-1
+                value: 66449c0761767531054c4c1d
               datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
@@ -4732,43 +4684,9 @@ spec:
               regex: ""
               sort: 7
               type: query
-            - allowCustomValue: false
-              current:
-                text: 65158f4161767535010d895e
-                value: 65158f4161767535010d895e
-              datasource:
-                type: yesoreyeram-infinity-datasource
-                uid: ${DataSource}
-              definition: ""
-              hide: 2
-              name: ChassisMoid
-              options: []
-              query:
-                infinityQuery:
-                    columns: []
-                    filters: []
-                    format: table
-                    parser: uql
-                    refId: ""
-                    root_selector: $.Results
-                    source: url
-                    type: json
-                    uql: |-
-                        parse-json
-                        | scope "Results"
-                        | project "Moid"
-                    url: /api/v1/equipment/Chasses?$filter=Name eq '${ChassisName:text}'
-                    url_options:
-                        data: ""
-                        method: GET
-                query: ""
-                queryType: infinity
-              refresh: 1
-              regex: ""
-              type: query
             - current:
-                text: 64ecf711617675350199d23c
-                value: 64ecf711617675350199d23c
+                text: "664494686176753105493115"
+                value: "664494686176753105493115"
               datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
@@ -4800,8 +4718,8 @@ spec:
               regex: ""
               type: query
             - current:
-                text: 64ed016861767535019e4277
-                value: 64ed016861767535019e4277
+                text: "664494696176753105493130"
+                value: "664494696176753105493130"
               datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
@@ -4865,7 +4783,7 @@ spec:
                         parse-json
                         | scope "Results"
                         | project "Dn"
-                    url: /api/v1/equipment/FanModules?$filter=(Ancestors.Moid eq '${ChassisMoid}')
+                    url: /api/v1/equipment/FanModules?$filter=(Ancestors.Moid eq '${ChassisName:value}')
                     url_options:
                         data: ""
                         method: GET
@@ -4959,7 +4877,7 @@ spec:
               regex: /.*(?<value>[0-9]+-[0-9]+)/
               type: query
     time:
-        from: now-6h
+        from: now-30d
         to: now
     timepicker:
         nowDelay: 1m
