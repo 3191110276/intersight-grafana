@@ -5911,6 +5911,572 @@ spec:
                 regex: (1/1/(29|3[0-2]))
                 renamePattern: Slot 8 ($1)
           type: timeseries
+        - collapsed: false
+          gridPos:
+            h: 1
+            w: 24
+            x: 0
+            "y": 63
+          id: 88
+          panels: []
+          title: Top vNIC/vHBA Ports
+          type: row
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          fieldConfig:
+            defaults:
+                color:
+                    mode: thresholds
+                custom:
+                    align: auto
+                    cellOptions:
+                        type: auto
+                        wrapText: false
+                    filterable: true
+                    inspect: false
+                mappings:
+                    - options:
+                        pattern: ^.*FI-([A-B]).*$
+                        result:
+                            index: 0
+                            text: $1
+                      type: regex
+                min: 0
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: blue
+                unit: bps
+            overrides:
+                - matcher:
+                    id: byName
+                    options: Utilization (Avg)
+                  properties:
+                    - id: custom.cellOptions
+                      value:
+                        mode: gradient
+                        type: gauge
+                        valueDisplayMode: text
+                - matcher:
+                    id: byName
+                    options: Utilization (Max)
+                  properties:
+                    - id: custom.cellOptions
+                      value:
+                        mode: gradient
+                        type: gauge
+                        valueDisplayMode: text
+                - matcher:
+                    id: byName
+                    options: Port
+                  properties:
+                    - id: custom.align
+                      value: center
+                - matcher:
+                    id: byName
+                    options: E
+                  properties:
+                    - id: displayName
+                      value: Chassis
+                    - id: unit
+                      value: string
+                    - id: custom.width
+                      value: 90
+                    - id: custom.align
+                      value: center
+                - matcher:
+                    id: byName
+                    options: F
+                  properties:
+                    - id: displayName
+                      value: Server
+                    - id: custom.align
+                      value: center
+          gridPos:
+            h: 14
+            w: 12
+            x: 0
+            "y": 64
+          id: 89
+          options:
+            cellHeight: sm
+            footer:
+                countRows: false
+                enablePagination: true
+                fields: ""
+                reducer:
+                    - sum
+                show: false
+            showHeader: true
+            sortBy:
+                - desc: true
+                  displayName: Utilization (Avg)
+          pluginVersion: 12.0.0-86517
+          targets:
+            - columns:
+                - selector: event.max_utilization
+                  text: Utilization (Max)
+                  type: number
+                - selector: event.avg_utilization
+                  text: Utilization (Avg)
+                  type: number
+                - selector: event.domain_name
+                  text: Domain
+                  type: string
+                - selector: event.host_name
+                  text: F
+                  type: string
+                - selector: event.chassis_number
+                  text: E
+                  type: string
+                - selector: event.name
+                  text: Port
+                  type: string
+                - selector: event.link_speed
+                  text: Link Speed
+                  type: string
+              computed_columns: []
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: |4-
+                      {
+                        "queryType": "groupBy",
+                        "dataSource": "NetworkInterfaces",
+                        "granularity": "all",
+                        "intervals": ["${__from:date}/${__to:date}"],
+                        "dimensions": [
+                          "domain_name",
+                          "host_name",
+                          "chassis_number",
+                          "name"
+                        ],
+                        "virtualColumns": [{
+                          "type": "nested-field",
+                          "columnName": "intersight.domain.name",
+                          "outputName": "domain_name",
+                          "expectedType": "STRING",
+                          "path": "$"
+                        },{
+                          "type": "nested-field",
+                          "columnName": "host.name",
+                          "outputName": "host_name",
+                          "expectedType": "STRING",
+                          "path": "$"
+                        },{
+                          "type": "nested-field",
+                          "columnName": "hw.chassis.number",
+                          "outputName": "chassis_number",
+                          "expectedType": "STRING",
+                          "path": "$"
+                        }],
+                        "filter": {
+                          "type": "and",
+                          "fields": [
+                            {
+                              "type": "in",
+                              "dimension": "intersight.domain.name",
+                              "values": [${DomainName:doublequote}]
+                            },
+                            {
+                              "type": "in",
+                              "dimension": "hw.network.port.role",
+                              "values": [
+                                "vnic",
+                                "vhba"
+                              ]
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "hw.chassis.number",
+                              "value": "${ChassisId}"
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "instrument.name",
+                              "value": "hw.network"
+                            }
+                          ]
+                        },
+                        "aggregations": [
+                          {
+                            "type": "doubleMax",
+                            "name": "base_utilization_max",
+                            "fieldName": "hw.network.io_transmit_max"
+                          },
+                          {
+                            "type": "doubleSum",
+                            "name": "duration",
+                            "fieldName": "hw.network.io_transmit_duration"
+                          },
+                          {
+                            "type": "longSum",
+                            "name": "sum",
+                            "fieldName": "hw.network.io_transmit"
+                          },
+                          {
+                            "type": "longLast",
+                            "name": "base_link_speed",
+                            "fieldName": "hw.network.bandwidth.limit"
+                          }
+                        ],
+                        "postAggregations": [
+                          {
+                            "type": "expression",
+                            "name": "max_utilization",
+                            "expression": "(base_utilization_max*8)"
+                          },
+                          {
+                            "type": "expression",
+                            "name": "avg_utilization",
+                            "expression": "(\"sum\" / \"duration\")*8"
+                          },
+                          {
+                            "type": "expression",
+                            "name": "link_speed",
+                            "expression": "base_link_speed*8"
+                          }
+                        ]
+                      }
+                method: POST
+          title: Transmit utilization in bps per vNIC/vHBA
+          transformations:
+            - id: filterByValue
+              options:
+                filters:
+                    - config:
+                        id: isNull
+                        options: {}
+                      fieldName: Utilization (Avg)
+                    - config:
+                        id: isNull
+                        options: {}
+                      fieldName: Utilization (Max)
+                match: all
+                type: exclude
+            - id: configFromData
+              options:
+                applyTo:
+                    id: byName
+                    options: Utilization (Avg)
+                configRefId: A
+                mappings:
+                    - fieldName: Link Speed
+                      handlerKey: max
+            - id: configFromData
+              options:
+                applyTo:
+                    id: byName
+                    options: Utilization (Max)
+                configRefId: A
+                mappings:
+                    - fieldName: Link Speed
+                      handlerKey: max
+            - id: organize
+              options:
+                excludeByName:
+                    Domain: true
+                    E: true
+                    Link Speed: true
+                includeByName: {}
+                indexByName: {}
+                renameByName:
+                    E: ""
+          type: table
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          fieldConfig:
+            defaults:
+                color:
+                    mode: thresholds
+                custom:
+                    align: auto
+                    cellOptions:
+                        type: auto
+                        wrapText: false
+                    filterable: true
+                    inspect: false
+                mappings:
+                    - options:
+                        pattern: ^.*FI-([A-B]).*$
+                        result:
+                            index: 0
+                            text: $1
+                      type: regex
+                min: 0
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: blue
+                unit: bps
+            overrides:
+                - matcher:
+                    id: byName
+                    options: Utilization (Avg)
+                  properties:
+                    - id: custom.cellOptions
+                      value:
+                        mode: gradient
+                        type: gauge
+                        valueDisplayMode: text
+                - matcher:
+                    id: byName
+                    options: Utilization (Max)
+                  properties:
+                    - id: custom.cellOptions
+                      value:
+                        mode: gradient
+                        type: gauge
+                        valueDisplayMode: text
+                - matcher:
+                    id: byName
+                    options: Port
+                  properties:
+                    - id: custom.align
+                      value: center
+                - matcher:
+                    id: byName
+                    options: E
+                  properties:
+                    - id: displayName
+                      value: Chassis
+                    - id: unit
+                      value: string
+                    - id: custom.width
+                      value: 90
+                    - id: custom.align
+                      value: center
+                - matcher:
+                    id: byName
+                    options: F
+                  properties:
+                    - id: displayName
+                      value: Server
+                    - id: custom.align
+                      value: center
+          gridPos:
+            h: 14
+            w: 12
+            x: 12
+            "y": 64
+          id: 90
+          options:
+            cellHeight: sm
+            footer:
+                countRows: false
+                enablePagination: true
+                fields: ""
+                reducer:
+                    - sum
+                show: false
+            showHeader: true
+            sortBy:
+                - desc: true
+                  displayName: Utilization (Avg)
+          pluginVersion: 12.0.0-86517
+          targets:
+            - columns:
+                - selector: event.max_utilization
+                  text: Utilization (Max)
+                  type: number
+                - selector: event.avg_utilization
+                  text: Utilization (Avg)
+                  type: number
+                - selector: event.domain_name
+                  text: Domain
+                  type: string
+                - selector: event.host_name
+                  text: F
+                  type: string
+                - selector: event.chassis_number
+                  text: E
+                  type: string
+                - selector: event.name
+                  text: Port
+                  type: string
+                - selector: event.link_speed
+                  text: Link Speed
+                  type: string
+              computed_columns: []
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: |4-
+                      {
+                        "queryType": "groupBy",
+                        "dataSource": "NetworkInterfaces",
+                        "granularity": "all",
+                        "intervals": ["${__from:date}/${__to:date}"],
+                        "dimensions": [
+                          "domain_name",
+                          "host_name",
+                          "chassis_number",
+                          "name"
+                        ],
+                        "virtualColumns": [{
+                          "type": "nested-field",
+                          "columnName": "intersight.domain.name",
+                          "outputName": "domain_name",
+                          "expectedType": "STRING",
+                          "path": "$"
+                        },{
+                          "type": "nested-field",
+                          "columnName": "host.name",
+                          "outputName": "host_name",
+                          "expectedType": "STRING",
+                          "path": "$"
+                        },{
+                          "type": "nested-field",
+                          "columnName": "hw.chassis.number",
+                          "outputName": "chassis_number",
+                          "expectedType": "STRING",
+                          "path": "$"
+                        }],
+                        "filter": {
+                          "type": "and",
+                          "fields": [
+                            {
+                              "type": "in",
+                              "dimension": "intersight.domain.name",
+                              "values": [${DomainName:doublequote}]
+                            },
+                            {
+                              "type": "in",
+                              "dimension": "hw.network.port.role",
+                              "values": [
+                                "vnic",
+                                "vhba"
+                              ]
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "hw.chassis.number",
+                              "value": "${ChassisId}"
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "instrument.name",
+                              "value": "hw.network"
+                            }
+                          ]
+                        },
+                        "aggregations": [
+                          {
+                            "type": "doubleMax",
+                            "name": "base_utilization_max",
+                            "fieldName": "hw.network.io_receive_max"
+                          },
+                          {
+                            "type": "doubleSum",
+                            "name": "duration",
+                            "fieldName": "hw.network.io_receive_duration"
+                          },
+                          {
+                            "type": "longSum",
+                            "name": "sum",
+                            "fieldName": "hw.network.io_receive"
+                          },
+                          {
+                            "type": "longLast",
+                            "name": "base_link_speed",
+                            "fieldName": "hw.network.bandwidth.limit"
+                          }
+                        ],
+                        "postAggregations": [
+                          {
+                            "type": "expression",
+                            "name": "max_utilization",
+                            "expression": "(base_utilization_max*8)"
+                          },
+                          {
+                            "type": "expression",
+                            "name": "avg_utilization",
+                            "expression": "(\"sum\" / \"duration\")*8"
+                          },
+                          {
+                            "type": "expression",
+                            "name": "link_speed",
+                            "expression": "base_link_speed*8"
+                          }
+                        ]
+                      }
+                method: POST
+          title: Receive utilization in bps per vNIC/vHBA
+          transformations:
+            - id: filterByValue
+              options:
+                filters:
+                    - config:
+                        id: isNull
+                        options: {}
+                      fieldName: Utilization (Avg)
+                    - config:
+                        id: isNull
+                        options: {}
+                      fieldName: Utilization (Max)
+                match: all
+                type: exclude
+            - id: configFromData
+              options:
+                applyTo:
+                    id: byName
+                    options: Utilization (Avg)
+                configRefId: A
+                mappings:
+                    - fieldName: Link Speed
+                      handlerKey: max
+            - id: configFromData
+              options:
+                applyTo:
+                    id: byName
+                    options: Utilization (Max)
+                configRefId: A
+                mappings:
+                    - fieldName: Link Speed
+                      handlerKey: max
+            - id: organize
+              options:
+                excludeByName:
+                    Domain: true
+                    E: true
+                    Link Speed: true
+                includeByName: {}
+                indexByName: {}
+                renameByName:
+                    E: ""
+          type: table
     preload: false
     refresh: ""
     schemaVersion: 41
