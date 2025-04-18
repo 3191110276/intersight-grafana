@@ -3821,10 +3821,8 @@ spec:
                       value: center
                 - matcher:
                     id: byName
-                    options: Port
+                    options: vNIC/vHBA
                   properties:
-                    - id: custom.width
-                      value: 80
                     - id: custom.align
                       value: center
                     - id: mappings
@@ -4007,7 +4005,7 @@ spec:
                     FX: Server
                     G1: Chassis
                     G2: Server
-                    G3: Port
+                    G3: vNIC/vHBA
                     H: Total
                     I: Total RX
                     J: Runt
