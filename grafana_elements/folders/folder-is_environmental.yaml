@@ -4,6 +4,6 @@ metadata:
     name: is_environmental
 spec:
     orgId: 1
-    parentUid: intersight
+    parentUid: is_domain
     title: Environmental
     uid: is_environmental

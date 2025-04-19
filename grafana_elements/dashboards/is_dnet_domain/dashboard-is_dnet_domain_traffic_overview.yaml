@@ -2679,33 +2679,81 @@ spec:
                     options: Port
                   properties:
                     - id: custom.width
-                      value: 80
+                      value: 105
                     - id: custom.align
                       value: center
                     - id: mappings
                       value:
                         - options:
-                            pattern: ^.*Ethernet([0-9]+/[0-9]+/[0-9]+).*$
+                            pattern: '^host_port # Ethernet([0-9]+/1/[1-4])$'
                             result:
                                 index: 0
+                                text: Slot 1 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/[5-8])$'
+                            result:
+                                index: 1
+                                text: Slot 2 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/([9]|1[0-2]))$'
+                            result:
+                                index: 2
+                                text: Slot 3 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/1[3-6])$'
+                            result:
+                                index: 3
+                                text: Slot 4 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/(1[7-9]|20))$'
+                            result:
+                                index: 4
+                                text: Slot 5 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/2[1-4])$'
+                            result:
+                                index: 5
+                                text: Slot 6 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/2[5-8])$'
+                            result:
+                                index: 6
+                                text: Slot 7 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/(29|3[0-2]))$'
+                            result:
+                                index: 7
+                                text: Slot 8 ($1)
+                          type: regex
+                        - options:
+                            pattern: ^.*Ethernet([0-9]+/[0-9]+/[0-9]+).*$
+                            result:
+                                index: 8
                                 text: $1
                           type: regex
                         - options:
                             pattern: ^.*Ethernet([0-9]+/[0-9]+).*$
                             result:
-                                index: 1
+                                index: 9
                                 text: $1
                           type: regex
                         - options:
                             pattern: ^.*Nif([0-9]+/[0-9]+/[0-9]+).*$
                             result:
-                                index: 2
+                                index: 10
                                 text: $1
                           type: regex
                         - options:
                             pattern: ^.*port-channel([0-9]*).*$
                             result:
-                                index: 3
+                                index: 11
                                 text: PC$1
                           type: regex
                 - matcher:
@@ -2758,9 +2806,6 @@ spec:
                 - selector: event.chassis_number
                   text: G
                   type: string
-                - selector: event.name
-                  text: H
-                  type: string
                 - selector: event.port_role
                   text: I
                   type: string
@@ -2773,6 +2818,9 @@ spec:
                 - selector: event.link_speed
                   text: Link Speed
                   type: number
+                - selector: event.port_spec
+                  text: H
+                  type: string
               computed_columns: []
               datasource:
                 type: yesoreyeram-infinity-datasource
@@ -2792,7 +2840,7 @@ spec:
               url_options:
                 body_content_type: application/json
                 body_type: raw
-                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${DomainName:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\",\n            \"vethernet\",\n            \"vfc\",\n            \"vnic\",\n            \"vhba\",\n            \"eth_uplink_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"doubleMax\",\n        \"name\": \"base_max_utilization\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_transmit_max\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"count\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_transmit_count\"\n      },\n      {\n        \"type\": \"doubleSum\",\n        \"name\": \"hw.network.bandwidth.utilization_transmit-Sum\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_transmit\"\n      }\n    ],\n    \"postAggregations\": [\n      {\n        \"type\": \"expression\",\n        \"name\": \"avg_utilization\",\n        \"expression\": \"(\\\"hw.network.bandwidth.utilization_transmit-Sum\\\" / \\\"count\\\")*100\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"max_utilization\",\n        \"expression\": \"\\\"base_max_utilization\\\"*100\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 250,\n      \"columns\": [{\n        \"dimension\" : \"avg_utilization\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
+                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\",\n      \"port_spec\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"expression\",\n      \"name\": \"port_spec\",\n      \"expression\": \"concat(port_role + ' # ' + name)\",\n      \"outputType\": \"STRING\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${DomainName:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\",\n            \"vethernet\",\n            \"vfc\",\n            \"vnic\",\n            \"vhba\",\n            \"eth_uplink_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"doubleMax\",\n        \"name\": \"base_max_utilization\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_transmit_max\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"count\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_transmit_count\"\n      },\n      {\n        \"type\": \"doubleSum\",\n        \"name\": \"hw.network.bandwidth.utilization_transmit-Sum\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_transmit\"\n      }\n    ],\n    \"postAggregations\": [\n      {\n        \"type\": \"expression\",\n        \"name\": \"avg_utilization\",\n        \"expression\": \"(\\\"hw.network.bandwidth.utilization_transmit-Sum\\\" / \\\"count\\\")*100\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"max_utilization\",\n        \"expression\": \"\\\"base_max_utilization\\\"*100\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 250,\n      \"columns\": [{\n        \"dimension\" : \"avg_utilization\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
                 method: POST
           title: Transmit utilization in % per port
           transformations:
@@ -2878,33 +2926,81 @@ spec:
                     options: Port
                   properties:
                     - id: custom.width
-                      value: 80
+                      value: 105
                     - id: custom.align
                       value: center
                     - id: mappings
                       value:
                         - options:
-                            pattern: ^.*Ethernet([0-9]+/[0-9]+/[0-9]+).*$
+                            pattern: '^host_port # Ethernet([0-9]+/1/[1-4])$'
                             result:
                                 index: 0
+                                text: Slot 1 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/[5-8])$'
+                            result:
+                                index: 1
+                                text: Slot 2 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/([9]|1[0-2]))$'
+                            result:
+                                index: 2
+                                text: Slot 3 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/1[3-6])$'
+                            result:
+                                index: 3
+                                text: Slot 4 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/(1[7-9]|20))$'
+                            result:
+                                index: 4
+                                text: Slot 5 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/2[1-4])$'
+                            result:
+                                index: 5
+                                text: Slot 6 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/2[5-8])$'
+                            result:
+                                index: 6
+                                text: Slot 7 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/(29|3[0-2]))$'
+                            result:
+                                index: 7
+                                text: Slot 8 ($1)
+                          type: regex
+                        - options:
+                            pattern: ^.*Ethernet([0-9]+/[0-9]+/[0-9]+).*$
+                            result:
+                                index: 8
                                 text: $1
                           type: regex
                         - options:
                             pattern: ^.*Ethernet([0-9]+/[0-9]+).*$
                             result:
-                                index: 1
+                                index: 9
                                 text: $1
                           type: regex
                         - options:
                             pattern: ^.*Nif([0-9]+/[0-9]+/[0-9]+).*$
                             result:
-                                index: 2
+                                index: 10
                                 text: $1
                           type: regex
                         - options:
                             pattern: ^.*port-channel([0-9]*).*$
                             result:
-                                index: 3
+                                index: 11
                                 text: PC$1
                           type: regex
                 - matcher:
@@ -2957,7 +3053,7 @@ spec:
                 - selector: event.chassis_number
                   text: G
                   type: string
-                - selector: event.name
+                - selector: event.port_spec
                   text: H
                   type: string
                 - selector: event.port_role
@@ -2991,7 +3087,7 @@ spec:
               url_options:
                 body_content_type: application/json
                 body_type: raw
-                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${DomainName:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\",\n            \"vethernet\",\n            \"vfc\",\n            \"vnic\",\n            \"vhba\",\n            \"eth_uplink_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"doubleMax\",\n        \"name\": \"base_max_utilization\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_receive_max\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"count\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_receive_count\"\n      },\n      {\n        \"type\": \"doubleSum\",\n        \"name\": \"hw.network.bandwidth.utilization_receive-Sum\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_receive\"\n      }\n    ],\n    \"postAggregations\": [\n      {\n        \"type\": \"expression\",\n        \"name\": \"avg_utilization\",\n        \"expression\": \"(\\\"hw.network.bandwidth.utilization_receive-Sum\\\" / \\\"count\\\")*100\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"max_utilization\",\n        \"expression\": \"\\\"base_max_utilization\\\"*100\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 250,\n      \"columns\": [{\n        \"dimension\" : \"avg_utilization\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
+                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\",\n      \"port_spec\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"expression\",\n      \"name\": \"port_spec\",\n      \"expression\": \"concat(port_role + ' # ' + name)\",\n      \"outputType\": \"STRING\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${DomainName:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\",\n            \"vethernet\",\n            \"vfc\",\n            \"vnic\",\n            \"vhba\",\n            \"eth_uplink_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"doubleMax\",\n        \"name\": \"base_max_utilization\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_receive_max\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"count\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_receive_count\"\n      },\n      {\n        \"type\": \"doubleSum\",\n        \"name\": \"hw.network.bandwidth.utilization_receive-Sum\",\n        \"fieldName\": \"hw.network.bandwidth.utilization_receive\"\n      }\n    ],\n    \"postAggregations\": [\n      {\n        \"type\": \"expression\",\n        \"name\": \"avg_utilization\",\n        \"expression\": \"(\\\"hw.network.bandwidth.utilization_receive-Sum\\\" / \\\"count\\\")*100\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"max_utilization\",\n        \"expression\": \"\\\"base_max_utilization\\\"*100\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 250,\n      \"columns\": [{\n        \"dimension\" : \"avg_utilization\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
                 method: POST
           title: Receive utilization in % per port
           transformations:
@@ -3011,6 +3107,7 @@ spec:
             - id: organize
               options:
                 excludeByName:
+                    H: false
                     Link Speed: true
                 includeByName: {}
                 indexByName: {}
@@ -3057,7 +3154,11 @@ spec:
                 thresholds:
                     mode: percentage
                     steps:
-                        - color: blue
+                        - color: green
+                        - color: dark-yellow
+                          value: 70
+                        - color: dark-red
+                          value: 90
                 unit: bps
             overrides:
                 - matcher:
@@ -3084,33 +3185,81 @@ spec:
                     options: Port
                   properties:
                     - id: custom.width
-                      value: 80
+                      value: 105
                     - id: custom.align
                       value: center
                     - id: mappings
                       value:
                         - options:
-                            pattern: ^.*Ethernet([0-9]+/[0-9]+/[0-9]+).*$
+                            pattern: '^host_port # Ethernet([0-9]+/1/[1-4])$'
                             result:
                                 index: 0
+                                text: Slot 1 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/[5-8])$'
+                            result:
+                                index: 1
+                                text: Slot 2 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/([9]|1[0-2]))$'
+                            result:
+                                index: 2
+                                text: Slot 3 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/1[3-6])$'
+                            result:
+                                index: 3
+                                text: Slot 4 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/(1[7-9]|20))$'
+                            result:
+                                index: 4
+                                text: Slot 5 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/2[1-4])$'
+                            result:
+                                index: 5
+                                text: Slot 6 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/2[5-8])$'
+                            result:
+                                index: 6
+                                text: Slot 7 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/(29|3[0-2]))$'
+                            result:
+                                index: 7
+                                text: Slot 8 ($1)
+                          type: regex
+                        - options:
+                            pattern: ^.*Ethernet([0-9]+/[0-9]+/[0-9]+).*$
+                            result:
+                                index: 8
                                 text: $1
                           type: regex
                         - options:
                             pattern: ^.*Ethernet([0-9]+/[0-9]+).*$
                             result:
-                                index: 1
+                                index: 9
                                 text: $1
                           type: regex
                         - options:
                             pattern: ^.*Nif([0-9]+/[0-9]+/[0-9]+).*$
                             result:
-                                index: 2
+                                index: 10
                                 text: $1
                           type: regex
                         - options:
                             pattern: ^.*port-channel([0-9]*).*$
                             result:
-                                index: 3
+                                index: 11
                                 text: PC$1
                           type: regex
                 - matcher:
@@ -3152,7 +3301,7 @@ spec:
             showHeader: true
             sortBy:
                 - desc: true
-                  displayName: Avg Utilization
+                  displayName: Max Utilization
           pluginVersion: 12.0.0-86517
           targets:
             - columns:
@@ -3165,7 +3314,7 @@ spec:
                 - selector: event.chassis_number
                   text: G
                   type: string
-                - selector: event.name
+                - selector: event.port_spec
                   text: H
                   type: string
                 - selector: event.port_role
@@ -3199,7 +3348,7 @@ spec:
               url_options:
                 body_content_type: application/json
                 body_type: raw
-                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${DomainName:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\",\n            \"vethernet\",\n            \"vfc\",\n            \"vnic\",\n            \"vhba\",\n            \"eth_uplink_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"doubleMax\",\n        \"name\": \"base_utilization_max\",\n        \"fieldName\": \"hw.network.io_transmit_max\"\n      },\n      {\n        \"type\": \"doubleSum\",\n        \"name\": \"duration\",\n        \"fieldName\": \"hw.network.io_transmit_duration\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"sum\",\n        \"fieldName\": \"hw.network.io_transmit\"\n      },\n      {\n        \"type\": \"longLast\",\n        \"name\": \"base_link_speed\",\n        \"fieldName\": \"hw.network.bandwidth.limit\"\n      }\n    ],\n    \"postAggregations\": [\n      {\n        \"type\": \"expression\",\n        \"name\": \"max_utilization\",\n        \"expression\": \"(base_utilization_max*8)\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"avg_utilization\",\n        \"expression\": \"(\\\"sum\\\" / \\\"duration\\\")*8\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"link_speed\",\n        \"expression\": \"base_link_speed*8\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 250,\n      \"columns\": [{\n        \"dimension\" : \"avg_utilization\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
+                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\",\n      \"port_spec\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"expression\",\n      \"name\": \"port_spec\",\n      \"expression\": \"concat(port_role + ' # ' + name)\",\n      \"outputType\": \"STRING\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${DomainName:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\",\n            \"vethernet\",\n            \"vfc\",\n            \"vnic\",\n            \"vhba\",\n            \"eth_uplink_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"doubleMax\",\n        \"name\": \"base_utilization_max\",\n        \"fieldName\": \"hw.network.io_transmit_max\"\n      },\n      {\n        \"type\": \"doubleSum\",\n        \"name\": \"duration\",\n        \"fieldName\": \"hw.network.io_transmit_duration\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"sum\",\n        \"fieldName\": \"hw.network.io_transmit\"\n      },\n      {\n        \"type\": \"longLast\",\n        \"name\": \"base_link_speed\",\n        \"fieldName\": \"hw.network.bandwidth.limit\"\n      }\n    ],\n    \"postAggregations\": [\n      {\n        \"type\": \"expression\",\n        \"name\": \"max_utilization\",\n        \"expression\": \"(base_utilization_max*8)\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"avg_utilization\",\n        \"expression\": \"(\\\"sum\\\" / \\\"duration\\\")*8\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"link_speed\",\n        \"expression\": \"base_link_speed*8\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 250,\n      \"columns\": [{\n        \"dimension\" : \"avg_utilization\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
                 method: POST
           title: Transmit utilization in bps per port
           transformations:
@@ -3216,6 +3365,12 @@ spec:
                       fieldName: K
                 match: any
                 type: exclude
+            - id: configFromData
+              options:
+                configRefId: A
+                mappings:
+                    - fieldName: Link Speed
+                      handlerKey: max
             - id: organize
               options:
                 excludeByName:
@@ -3255,7 +3410,11 @@ spec:
                 thresholds:
                     mode: percentage
                     steps:
-                        - color: blue
+                        - color: green
+                        - color: dark-yellow
+                          value: 70
+                        - color: dark-red
+                          value: 90
                 unit: bps
             overrides:
                 - matcher:
@@ -3282,33 +3441,81 @@ spec:
                     options: Port
                   properties:
                     - id: custom.width
-                      value: 80
+                      value: 105
                     - id: custom.align
                       value: center
                     - id: mappings
                       value:
                         - options:
-                            pattern: ^.*Ethernet([0-9]+/[0-9]+/[0-9]+).*$
+                            pattern: '^host_port # Ethernet([0-9]+/1/[1-4])$'
                             result:
                                 index: 0
+                                text: Slot 1 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/[5-8])$'
+                            result:
+                                index: 1
+                                text: Slot 2 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/([9]|1[0-2]))$'
+                            result:
+                                index: 2
+                                text: Slot 3 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/1[3-6])$'
+                            result:
+                                index: 3
+                                text: Slot 4 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/(1[7-9]|20))$'
+                            result:
+                                index: 4
+                                text: Slot 5 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/2[1-4])$'
+                            result:
+                                index: 5
+                                text: Slot 6 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/2[5-8])$'
+                            result:
+                                index: 6
+                                text: Slot 7 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/(29|3[0-2]))$'
+                            result:
+                                index: 7
+                                text: Slot 8 ($1)
+                          type: regex
+                        - options:
+                            pattern: ^.*Ethernet([0-9]+/[0-9]+/[0-9]+).*$
+                            result:
+                                index: 8
                                 text: $1
                           type: regex
                         - options:
                             pattern: ^.*Ethernet([0-9]+/[0-9]+).*$
                             result:
-                                index: 1
+                                index: 9
                                 text: $1
                           type: regex
                         - options:
                             pattern: ^.*Nif([0-9]+/[0-9]+/[0-9]+).*$
                             result:
-                                index: 2
+                                index: 10
                                 text: $1
                           type: regex
                         - options:
                             pattern: ^.*port-channel([0-9]*).*$
                             result:
-                                index: 3
+                                index: 11
                                 text: PC$1
                           type: regex
                 - matcher:
@@ -3363,7 +3570,7 @@ spec:
                 - selector: event.chassis_number
                   text: G
                   type: string
-                - selector: event.name
+                - selector: event.port_spec
                   text: H
                   type: string
                 - selector: event.port_role
@@ -3397,7 +3604,7 @@ spec:
               url_options:
                 body_content_type: application/json
                 body_type: raw
-                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${DomainName:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\",\n            \"vethernet\",\n            \"vfc\",\n            \"vnic\",\n            \"vhba\",\n            \"eth_uplink_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"doubleMax\",\n        \"name\": \"base_utilization_max\",\n        \"fieldName\": \"hw.network.io_receive_max\"\n      },\n      {\n        \"type\": \"doubleSum\",\n        \"name\": \"duration\",\n        \"fieldName\": \"hw.network.io_receive_duration\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"sum\",\n        \"fieldName\": \"hw.network.io_receive\"\n      },\n      {\n        \"type\": \"longLast\",\n        \"name\": \"base_link_speed\",\n        \"fieldName\": \"hw.network.bandwidth.limit\"\n      }\n    ],\n    \"postAggregations\": [\n      {\n        \"type\": \"expression\",\n        \"name\": \"max_utilization\",\n        \"expression\": \"(base_utilization_max*8)\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"avg_utilization\",\n        \"expression\": \"(\\\"sum\\\" / \\\"duration\\\")*8\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"link_speed\",\n        \"expression\": \"base_link_speed*8\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 250,\n      \"columns\": [{\n        \"dimension\" : \"avg_utilization\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
+                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\",\n      \"port_spec\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"expression\",\n      \"name\": \"port_spec\",\n      \"expression\": \"concat(port_role + ' # ' + name)\",\n      \"outputType\": \"STRING\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${DomainName:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\",\n            \"vethernet\",\n            \"vfc\",\n            \"vnic\",\n            \"vhba\",\n            \"eth_uplink_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"doubleMax\",\n        \"name\": \"base_utilization_max\",\n        \"fieldName\": \"hw.network.io_receive_max\"\n      },\n      {\n        \"type\": \"doubleSum\",\n        \"name\": \"duration\",\n        \"fieldName\": \"hw.network.io_receive_duration\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"sum\",\n        \"fieldName\": \"hw.network.io_receive\"\n      },\n      {\n        \"type\": \"longLast\",\n        \"name\": \"base_link_speed\",\n        \"fieldName\": \"hw.network.bandwidth.limit\"\n      }\n    ],\n    \"postAggregations\": [\n      {\n        \"type\": \"expression\",\n        \"name\": \"max_utilization\",\n        \"expression\": \"(base_utilization_max*8)\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"avg_utilization\",\n        \"expression\": \"(\\\"sum\\\" / \\\"duration\\\")*8\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"link_speed\",\n        \"expression\": \"base_link_speed*8\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 250,\n      \"columns\": [{\n        \"dimension\" : \"avg_utilization\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
                 method: POST
           title: Receive utilization in bps per port
           transformations:
@@ -3414,6 +3621,12 @@ spec:
                       fieldName: Max Utilization
                 match: any
                 type: exclude
+            - id: configFromData
+              options:
+                configRefId: A
+                mappings:
+                    - fieldName: Link Speed
+                      handlerKey: max
             - id: organize
               options:
                 excludeByName:
@@ -3488,33 +3701,81 @@ spec:
                     options: Port
                   properties:
                     - id: custom.width
-                      value: 80
+                      value: 105
                     - id: custom.align
                       value: center
                     - id: mappings
                       value:
                         - options:
-                            pattern: ^.*Ethernet([0-9]+/[0-9]+/[0-9]+).*$
+                            pattern: '^host_port # Ethernet([0-9]+/1/[1-4])$'
                             result:
                                 index: 0
+                                text: Slot 1 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/[5-8])$'
+                            result:
+                                index: 1
+                                text: Slot 2 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/([9]|1[0-2]))$'
+                            result:
+                                index: 2
+                                text: Slot 3 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/1[3-6])$'
+                            result:
+                                index: 3
+                                text: Slot 4 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/(1[7-9]|20))$'
+                            result:
+                                index: 4
+                                text: Slot 5 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/2[1-4])$'
+                            result:
+                                index: 5
+                                text: Slot 6 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/2[5-8])$'
+                            result:
+                                index: 6
+                                text: Slot 7 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/(29|3[0-2]))$'
+                            result:
+                                index: 7
+                                text: Slot 8 ($1)
+                          type: regex
+                        - options:
+                            pattern: ^.*Ethernet([0-9]+/[0-9]+/[0-9]+).*$
+                            result:
+                                index: 8
                                 text: $1
                           type: regex
                         - options:
                             pattern: ^.*Ethernet([0-9]+/[0-9]+).*$
                             result:
-                                index: 1
+                                index: 9
                                 text: $1
                           type: regex
                         - options:
                             pattern: ^.*Nif([0-9]+/[0-9]+/[0-9]+).*$
                             result:
-                                index: 2
+                                index: 10
                                 text: $1
                           type: regex
                         - options:
                             pattern: ^.*port-channel([0-9]*).*$
                             result:
-                                index: 3
+                                index: 11
                                 text: PC$1
                           type: regex
                 - matcher:
@@ -3564,7 +3825,7 @@ spec:
                 - selector: event.chassis_number
                   text: G
                   type: string
-                - selector: event.name
+                - selector: event.port_spec
                   text: H
                   type: string
                 - selector: event.pause
@@ -3592,7 +3853,7 @@ spec:
               url_options:
                 body_content_type: application/json
                 body_type: raw
-                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${DomainName:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"longSum\",\n        \"name\": \"pause\",\n        \"fieldName\": \"hw.errors_network_transmit_pause\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 250,\n      \"columns\": [{\n        \"dimension\" : \"pause\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
+                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\",\n      \"port_spec\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"expression\",\n      \"name\": \"port_spec\",\n      \"expression\": \"concat(port_role + ' # ' + name)\",\n      \"outputType\": \"STRING\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${DomainName:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"longSum\",\n        \"name\": \"pause\",\n        \"fieldName\": \"hw.errors_network_transmit_pause\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 250,\n      \"columns\": [{\n        \"dimension\" : \"pause\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
                 method: POST
           title: Transmit pause frames per port (Sum)
           transformations:
@@ -3666,33 +3927,81 @@ spec:
                     options: Port
                   properties:
                     - id: custom.width
-                      value: 80
+                      value: 105
                     - id: custom.align
                       value: center
                     - id: mappings
                       value:
                         - options:
-                            pattern: ^.*Ethernet([0-9]+/[0-9]+/[0-9]+).*$
+                            pattern: '^host_port # Ethernet([0-9]+/1/[1-4])$'
                             result:
                                 index: 0
+                                text: Slot 1 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/[5-8])$'
+                            result:
+                                index: 1
+                                text: Slot 2 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/([9]|1[0-2]))$'
+                            result:
+                                index: 2
+                                text: Slot 3 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/1[3-6])$'
+                            result:
+                                index: 3
+                                text: Slot 4 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/(1[7-9]|20))$'
+                            result:
+                                index: 4
+                                text: Slot 5 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/2[1-4])$'
+                            result:
+                                index: 5
+                                text: Slot 6 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/2[5-8])$'
+                            result:
+                                index: 6
+                                text: Slot 7 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/(29|3[0-2]))$'
+                            result:
+                                index: 7
+                                text: Slot 8 ($1)
+                          type: regex
+                        - options:
+                            pattern: ^.*Ethernet([0-9]+/[0-9]+/[0-9]+).*$
+                            result:
+                                index: 8
                                 text: $1
                           type: regex
                         - options:
                             pattern: ^.*Ethernet([0-9]+/[0-9]+).*$
                             result:
-                                index: 1
+                                index: 9
                                 text: $1
                           type: regex
                         - options:
                             pattern: ^.*Nif([0-9]+/[0-9]+/[0-9]+).*$
                             result:
-                                index: 2
+                                index: 10
                                 text: $1
                           type: regex
                         - options:
                             pattern: ^.*port-channel([0-9]*).*$
                             result:
-                                index: 3
+                                index: 11
                                 text: PC$1
                           type: regex
                 - matcher:
@@ -3742,7 +4051,7 @@ spec:
                 - selector: event.chassis_number
                   text: G
                   type: string
-                - selector: event.name
+                - selector: event.port_spec
                   text: H
                   type: string
                 - selector: event.pause
@@ -3770,7 +4079,7 @@ spec:
               url_options:
                 body_content_type: application/json
                 body_type: raw
-                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${DomainName:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"longSum\",\n        \"name\": \"pause\",\n        \"fieldName\": \"hw.errors_network_receive_pause\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 250,\n      \"columns\": [{\n        \"dimension\" : \"pause\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
+                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\",\n      \"port_spec\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"expression\",\n      \"name\": \"port_spec\",\n      \"expression\": \"concat(port_role + ' # ' + name)\",\n      \"outputType\": \"STRING\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${DomainName:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"unconfigured\",\n            \"server_pc\",\n            \"fabric_pc\",\n            \"host_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"longSum\",\n        \"name\": \"pause\",\n        \"fieldName\": \"hw.errors_network_receive_pause\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 250,\n      \"columns\": [{\n        \"dimension\" : \"pause\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
                 method: POST
           title: Receive pause frames per port (Sum)
           transformations:
@@ -3857,31 +4166,79 @@ spec:
                     - id: mappings
                       value:
                         - options:
-                            pattern: ^.*Ethernet([0-9]+/[0-9]+/[0-9]+).*$
+                            pattern: '^host_port # Ethernet([0-9]+/1/[1-4])$'
                             result:
                                 index: 0
+                                text: Slot 1 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/[5-8])$'
+                            result:
+                                index: 1
+                                text: Slot 2 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/([9]|1[0-2]))$'
+                            result:
+                                index: 2
+                                text: Slot 3 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/1[3-6])$'
+                            result:
+                                index: 3
+                                text: Slot 4 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/(1[7-9]|20))$'
+                            result:
+                                index: 4
+                                text: Slot 5 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/2[1-4])$'
+                            result:
+                                index: 5
+                                text: Slot 6 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/2[5-8])$'
+                            result:
+                                index: 6
+                                text: Slot 7 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/(29|3[0-2]))$'
+                            result:
+                                index: 7
+                                text: Slot 8 ($1)
+                          type: regex
+                        - options:
+                            pattern: ^.*Ethernet([0-9]+/[0-9]+/[0-9]+).*$
+                            result:
+                                index: 8
                                 text: $1
                           type: regex
                         - options:
                             pattern: ^.*Ethernet([0-9]+/[0-9]+).*$
                             result:
-                                index: 1
+                                index: 9
                                 text: $1
                           type: regex
                         - options:
                             pattern: ^.*Nif([0-9]+/[0-9]+/[0-9]+).*$
                             result:
-                                index: 2
+                                index: 10
                                 text: $1
                           type: regex
                         - options:
                             pattern: ^.*port-channel([0-9]*).*$
                             result:
-                                index: 3
+                                index: 11
                                 text: PC$1
                           type: regex
                     - id: custom.width
-                      value: 100
+                      value: 105
                     - id: custom.align
                       value: center
           gridPos:
@@ -3912,7 +4269,7 @@ spec:
                 - selector: event.host_name
                   text: A2
                   type: string
-                - selector: event.name
+                - selector: event.port_spec
                   text: A3
                   type: string
                 - selector: event.total
@@ -3979,7 +4336,7 @@ spec:
               url_options:
                 body_content_type: application/json
                 body_type: raw
-                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"port_role\",\n      \"name\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${DomainName:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"vethernet\",\n            \"host_pc\",\n            \"fabric_pc\",\n            \"server_pc\",\n            \"unconfigured\",\n            \"eth_uplink_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"longSum\",\n        \"name\": \"runt\",\n        \"fieldName\": \"hw.errors_network_receive_runt\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"too_long\",\n        \"fieldName\": \"hw.errors_network_receive_too_long\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"crc\",\n        \"fieldName\": \"hw.errors_network_receive_crc\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"no_buffer\",\n        \"fieldName\": \"hw.errors_network_receive_no_buffer\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"too_short\",\n        \"fieldName\": \"hw.errors_network_receive_too_short\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"rx_discard\",\n        \"fieldName\": \"hw.errors_network_receive_discard\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"deferred\",\n        \"fieldName\": \"hw.errors_network_transmit_deferred\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"late_collisions\",\n        \"fieldName\": \"hw.errors_network_late_collisions\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"carrier_sense\",\n        \"fieldName\": \"hw.errors_network_carrier_sense\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"tx_discard\",\n        \"fieldName\": \"hw.errors_network_transmit_discard\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"jabber\",\n        \"fieldName\": \"hw.errors_network_transmit_jabber\"\n      }\n    ],\n    \"postAggregations\": [\n      {\n        \"type\": \"expression\",\n        \"name\": \"rx_sum\",\n        \"expression\": \"\\\"rx_discard\\\" + \\\"too_short\\\" + \\\"no_buffer\\\" + \\\"crc\\\" + \\\"too_long\\\" + \\\"runt\\\"\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"tx_sum\",\n        \"expression\": \"\\\"jabber\\\" + \\\"tx_discard\\\" + \\\"carrier_sense\\\" + \\\"late_collisions\\\" + \\\"deferred\\\"\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"total\",\n        \"expression\": \"\\\"tx_sum\\\" + \\\"rx_sum\\\"\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 250,\n      \"columns\": [{\n        \"dimension\" : \"total\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
+                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"port_role\",\n      \"name\",\n      \"port_spec\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"expression\",\n      \"name\": \"port_spec\",\n      \"expression\": \"concat(port_role + ' # ' + name)\",\n      \"outputType\": \"STRING\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${DomainName:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n        {\n          \"type\": \"in\",\n          \"dimension\": \"hw.network.port.role\",\n          \"values\": [\n            \"vethernet\",\n            \"host_pc\",\n            \"fabric_pc\",\n            \"server_pc\",\n            \"unconfigured\",\n            \"eth_uplink_pc\"\n          ]\n        }\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"longSum\",\n        \"name\": \"runt\",\n        \"fieldName\": \"hw.errors_network_receive_runt\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"too_long\",\n        \"fieldName\": \"hw.errors_network_receive_too_long\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"crc\",\n        \"fieldName\": \"hw.errors_network_receive_crc\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"no_buffer\",\n        \"fieldName\": \"hw.errors_network_receive_no_buffer\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"too_short\",\n        \"fieldName\": \"hw.errors_network_receive_too_short\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"rx_discard\",\n        \"fieldName\": \"hw.errors_network_receive_discard\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"deferred\",\n        \"fieldName\": \"hw.errors_network_transmit_deferred\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"late_collisions\",\n        \"fieldName\": \"hw.errors_network_late_collisions\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"carrier_sense\",\n        \"fieldName\": \"hw.errors_network_carrier_sense\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"tx_discard\",\n        \"fieldName\": \"hw.errors_network_transmit_discard\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"jabber\",\n        \"fieldName\": \"hw.errors_network_transmit_jabber\"\n      }\n    ],\n    \"postAggregations\": [\n      {\n        \"type\": \"expression\",\n        \"name\": \"rx_sum\",\n        \"expression\": \"\\\"rx_discard\\\" + \\\"too_short\\\" + \\\"no_buffer\\\" + \\\"crc\\\" + \\\"too_long\\\" + \\\"runt\\\"\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"tx_sum\",\n        \"expression\": \"\\\"jabber\\\" + \\\"tx_discard\\\" + \\\"carrier_sense\\\" + \\\"late_collisions\\\" + \\\"deferred\\\"\"\n      },\n      {\n        \"type\": \"expression\",\n        \"name\": \"total\",\n        \"expression\": \"\\\"tx_sum\\\" + \\\"rx_sum\\\"\"\n      }\n    ],\n    \"limitSpec\": {\n      \"type\": \"default\",\n      \"limit\": 250,\n      \"columns\": [{\n        \"dimension\" : \"total\",\n        \"direction\" : \"descending\",\n        \"dimensionOrder\" : \"numeric\"\n        }]\n    }\n  }"
                 method: POST
           title: ""
           transformations:
@@ -4061,6 +4418,14 @@ spec:
                         valueDisplayMode: text
                     - id: unit
                       value: decbytes
+                - matcher:
+                    id: byName
+                    options: Chassis
+                  properties:
+                    - id: custom.align
+                      value: center
+                    - id: custom.width
+                      value: 90
           gridPos:
             h: 9
             w: 12
@@ -4227,6 +4592,14 @@ spec:
                         valueDisplayMode: text
                     - id: unit
                       value: decbytes
+                - matcher:
+                    id: byName
+                    options: Chassis
+                  properties:
+                    - id: custom.width
+                      value: 90
+                    - id: custom.align
+                      value: center
           gridPos:
             h: 9
             w: 12

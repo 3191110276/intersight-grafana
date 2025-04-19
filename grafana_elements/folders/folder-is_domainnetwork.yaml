@@ -4,6 +4,6 @@ metadata:
     name: is_domainnetwork
 spec:
     orgId: 1
-    parentUid: intersight
-    title: IMM Domain Network
+    parentUid: is_domain
+    title: Network
     uid: is_domainnetwork

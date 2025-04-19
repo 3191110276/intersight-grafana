@@ -5211,35 +5211,35 @@ spec:
                 renamePattern: $1$2
             - id: renameByRegex
               options:
-                regex: (1/1/[1-4])
+                regex: ([0-9]+/1/[1-4])
                 renamePattern: Slot 1 ($1)
             - id: renameByRegex
               options:
-                regex: (1/1/[5-8])
+                regex: ([0-9]+/1/[5-8])
                 renamePattern: Slot 2 ($1)
             - id: renameByRegex
               options:
-                regex: (1/1/([9]|1[0-2]))
+                regex: ([0-9]+/1/([9]|1[0-2]))
                 renamePattern: Slot 3 ($1)
             - id: renameByRegex
               options:
-                regex: (1/1/1[3-6])
+                regex: ([0-9]+/1/1[3-6])
                 renamePattern: Slot 4 ($1)
             - id: renameByRegex
               options:
-                regex: (1/1/(1[7-9]|20))
+                regex: ([0-9]+/1/(1[7-9]|20))
                 renamePattern: Slot 5 ($1)
             - id: renameByRegex
               options:
-                regex: (1/1/2[1-4])
+                regex: ([0-9]+/1/2[1-4])
                 renamePattern: Slot 6 ($1)
             - id: renameByRegex
               options:
-                regex: (1/1/2[5-8])
+                regex: ([0-9]+/1/2[5-8])
                 renamePattern: Slot 7 ($1)
             - id: renameByRegex
               options:
-                regex: (1/1/(29|3[0-2]))
+                regex: ([0-9]+/1/(29|3[0-2]))
                 renamePattern: Slot 8 ($1)
           type: timeseries
         - datasource:
@@ -5434,35 +5434,35 @@ spec:
                 renamePattern: $1$2
             - id: renameByRegex
               options:
-                regex: (1/1/[1-4])
+                regex: ([0-9]+/1/[1-4])
                 renamePattern: Slot 1 ($1)
             - id: renameByRegex
               options:
-                regex: (1/1/[5-8])
+                regex: ([0-9]+/1/[5-8])
                 renamePattern: Slot 2 ($1)
             - id: renameByRegex
               options:
-                regex: (1/1/([9]|1[0-2]))
+                regex: ([0-9]+/1/([9]|1[0-2]))
                 renamePattern: Slot 3 ($1)
             - id: renameByRegex
               options:
-                regex: (1/1/1[3-6])
+                regex: ([0-9]+/1/1[3-6])
                 renamePattern: Slot 4 ($1)
             - id: renameByRegex
               options:
-                regex: (1/1/(1[7-9]|20))
+                regex: ([0-9]+/1/(1[7-9]|20))
                 renamePattern: Slot 5 ($1)
             - id: renameByRegex
               options:
-                regex: (1/1/2[1-4])
+                regex: ([0-9]+/1/2[1-4])
                 renamePattern: Slot 6 ($1)
             - id: renameByRegex
               options:
-                regex: (1/1/2[5-8])
+                regex: ([0-9]+/1/2[5-8])
                 renamePattern: Slot 7 ($1)
             - id: renameByRegex
               options:
-                regex: (1/1/(29|3[0-2]))
+                regex: ([0-9]+/1/(29|3[0-2]))
                 renamePattern: Slot 8 ($1)
           type: timeseries
         - datasource:
@@ -5657,35 +5657,35 @@ spec:
                 renamePattern: $1$2
             - id: renameByRegex
               options:
-                regex: (1/1/[1-4])
+                regex: ([0-9]+/1/[1-4])
                 renamePattern: Slot 1 ($1)
             - id: renameByRegex
               options:
-                regex: (1/1/[5-8])
+                regex: ([0-9]+/1/[5-8])
                 renamePattern: Slot 2 ($1)
             - id: renameByRegex
               options:
-                regex: (1/1/([9]|1[0-2]))
+                regex: ([0-9]+/1/([9]|1[0-2]))
                 renamePattern: Slot 3 ($1)
             - id: renameByRegex
               options:
-                regex: (1/1/1[3-6])
+                regex: ([0-9]+/1/1[3-6])
                 renamePattern: Slot 4 ($1)
             - id: renameByRegex
               options:
-                regex: (1/1/(1[7-9]|20))
+                regex: ([0-9]+/1/(1[7-9]|20))
                 renamePattern: Slot 5 ($1)
             - id: renameByRegex
               options:
-                regex: (1/1/2[1-4])
+                regex: ([0-9]+/1/2[1-4])
                 renamePattern: Slot 6 ($1)
             - id: renameByRegex
               options:
-                regex: (1/1/2[5-8])
+                regex: ([0-9]+/1/2[5-8])
                 renamePattern: Slot 7 ($1)
             - id: renameByRegex
               options:
-                regex: (1/1/(29|3[0-2]))
+                regex: ([0-9]+/1/(29|3[0-2]))
                 renamePattern: Slot 8 ($1)
           type: timeseries
         - datasource:
@@ -5880,35 +5880,35 @@ spec:
                 renamePattern: $1$2
             - id: renameByRegex
               options:
-                regex: (1/1/[1-4])
+                regex: ([0-9]+/1/[1-4])
                 renamePattern: Slot 1 ($1)
             - id: renameByRegex
               options:
-                regex: (1/1/[5-8])
+                regex: ([0-9]+/1/[5-8])
                 renamePattern: Slot 2 ($1)
             - id: renameByRegex
               options:
-                regex: (1/1/([9]|1[0-2]))
+                regex: ([0-9]+/1/([9]|1[0-2]))
                 renamePattern: Slot 3 ($1)
             - id: renameByRegex
               options:
-                regex: (1/1/1[3-6])
+                regex: ([0-9]+/1/1[3-6])
                 renamePattern: Slot 4 ($1)
             - id: renameByRegex
               options:
-                regex: (1/1/(1[7-9]|20))
+                regex: ([0-9]+/1/(1[7-9]|20))
                 renamePattern: Slot 5 ($1)
             - id: renameByRegex
               options:
-                regex: (1/1/2[1-4])
+                regex: ([0-9]+/1/2[1-4])
                 renamePattern: Slot 6 ($1)
             - id: renameByRegex
               options:
-                regex: (1/1/2[5-8])
+                regex: ([0-9]+/1/2[5-8])
                 renamePattern: Slot 7 ($1)
             - id: renameByRegex
               options:
-                regex: (1/1/(29|3[0-2]))
+                regex: ([0-9]+/1/(29|3[0-2]))
                 renamePattern: Slot 8 ($1)
           type: timeseries
         - collapsed: false

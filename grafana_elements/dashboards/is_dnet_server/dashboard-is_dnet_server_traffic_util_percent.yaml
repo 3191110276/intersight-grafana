@@ -3320,7 +3320,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 61
+            "y": 51
           id: 51
           panels:
             - datasource:
@@ -3684,7 +3684,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 62
+            "y": 52
           id: 9
           panels: []
           title: IFM Downlink Ports
@@ -3755,7 +3755,7 @@ spec:
             h: 7
             w: 12
             x: 0
-            "y": 63
+            "y": 53
           id: 54
           options:
             legend:
@@ -3932,7 +3932,7 @@ spec:
             h: 7
             w: 12
             x: 12
-            "y": 63
+            "y": 53
           id: 55
           options:
             legend:

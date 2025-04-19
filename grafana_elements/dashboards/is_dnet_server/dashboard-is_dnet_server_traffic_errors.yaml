@@ -5583,6 +5583,11 @@ spec:
                             },
                             {
                               "type": "selector",
+                              "dimension": "hw.network.port.port_channel",
+                              "value": "${HIF_PC_A}"
+                            },
+                            {
+                              "type": "selector",
                               "dimension": "instrument.name",
                               "value": "hw.network"
                             }
@@ -5816,6 +5821,11 @@ spec:
                               "type": "selector",
                               "dimension": "hw.chassis.number",
                               "value": "${ChassisId}"
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "hw.network.port.port_channel",
+                              "value": "${HIF_PC_B}"
                             },
                             {
                               "type": "selector",
@@ -6055,6 +6065,11 @@ spec:
                             },
                             {
                               "type": "selector",
+                              "dimension": "hw.network.port.port_channel",
+                              "value": "${HIF_PC_A}"
+                            },
+                            {
+                              "type": "selector",
                               "dimension": "instrument.name",
                               "value": "hw.network"
                             }
@@ -6291,6 +6306,11 @@ spec:
                             },
                             {
                               "type": "selector",
+                              "dimension": "hw.network.port.port_channel",
+                              "value": "${HIF_PC_B}"
+                            },
+                            {
+                              "type": "selector",
                               "dimension": "instrument.name",
                               "value": "hw.network"
                             }
@@ -6462,7 +6482,7 @@ spec:
                                 text: $1
                           type: regex
           gridPos:
-            h: 13
+            h: 7
             w: 24
             x: 0
             "y": 66
@@ -6611,6 +6631,14 @@ spec:
                               "value": "${ChassisId}"
                             },
                             {
+                              "type": "in",
+                              "dimension": "hw.network.port.port_channel",
+                              "values": [
+                                "${HIF_PC_A}",
+                                "${HIF_PC_B}"
+                              ]
+                            },
+                            {
                               "type": "selector",
                               "dimension": "instrument.name",
                               "value": "hw.network"
@@ -6736,7 +6764,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 79
+            "y": 73
           id: 68
           panels: []
           title: vNIC/vHBA Ports
@@ -6788,7 +6816,7 @@ spec:
             h: 8
             w: 24
             x: 0
-            "y": 80
+            "y": 74
           id: 97
           options:
             legend:
@@ -7007,7 +7035,7 @@ spec:
             h: 11
             w: 24
             x: 0
-            "y": 88
+            "y": 82
           id: 75
           options:
             cellHeight: sm
@@ -7215,7 +7243,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 99
+            "y": 93
           id: 69
           panels: []
           title: Error Descriptions
@@ -7264,7 +7292,7 @@ spec:
             h: 11
             w: 24
             x: 0
-            "y": 100
+            "y": 94
           id: 70
           options:
             cellHeight: sm
