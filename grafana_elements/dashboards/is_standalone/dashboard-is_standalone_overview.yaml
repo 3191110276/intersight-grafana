@@ -1,0 +1,286 @@
+apiVersion: grizzly.grafana.com/v1alpha1
+kind: Dashboard
+metadata:
+    folder: is_standalone
+    name: is_standalone_overview
+spec:
+    annotations:
+        list:
+            - builtIn: 1
+              datasource:
+                type: grafana
+                uid: -- Grafana --
+              enable: true
+              hide: true
+              iconColor: rgba(0, 211, 255, 1)
+              name: Annotations & Alerts
+              type: dashboard
+    editable: true
+    fiscalYearStartMonth: 0
+    graphTooltip: 0
+    links: []
+    panels:
+        - datasource:
+            type: datasource
+            uid: grafana
+          fieldConfig:
+            defaults:
+                thresholds:
+                    mode: absolute
+                    steps:
+                        - color: transparent
+            overrides: []
+          gridPos:
+            h: 2
+            w: 24
+            x: 0
+            "y": 0
+          id: 1
+          options:
+            afterRender: |-
+                // START OF JAVASCRIPT FUNCTIONS
+                function row_iteration(structure, current) {
+                  const row = add_row();
+                  structure.forEach(function (item) {
+                    selected = false;
+                    if (item['name'] == current[0]) {
+                      selected = true;
+                    }
+                    new_button = add_button(item["name"], item["link"], selected, item["children"])
+                    row.append(new_button)
+                    if (selected) {
+                      if (item['children'].length > 0) {
+                        row_iteration(item['children'], current.slice(1))
+                      }
+                    }
+                  });
+                }
+
+                function add_row() {
+                  const container = document.getElementById("container");
+                  const newDiv = document.createElement('div');
+                  newDiv.classList.add('row');
+                  container.appendChild(newDiv);
+
+                  return newDiv
+                }
+
+                function redirect(path) {
+                  const url = new URL(window.location.href);
+                  const params = new URLSearchParams(url.search);
+                  window.location.href = './d/' + path + '?' + params.toString();
+                }
+
+                function button_navigate(link, children) {
+                  if (link == "") {
+                    children.forEach(function (item) {
+                      if (item["name"] == current_item[current_item.length - 1]) {
+                        link = item["link"]
+                      }
+                    });
+                  }
+
+                  if (link == "") {
+                    if (children[0]["link"] == "") {
+                      link = children[0]["children"][0]["link"]
+                    } else {
+                      link = children[0]["link"]
+                    }
+                  }
+                  redirect(link)
+                }
+
+                const platform_type_selector = document.getElementById('platform_type_selector');
+                platform_type_selector.onchange = function () {
+                  const selectedValue = platform_type_selector.value;
+                  const category = nav[selectedValue][0];
+                  const link = nav[selectedValue][0]['link'];
+                  const children = nav[selectedValue][0]['children'];
+                  while ((children.length) > 0) {
+                    const link = children[0]['link'];
+                    const children = children[0]['children'];
+                  }
+                  redirect(link)
+                };
+
+                function add_button(name, link, selected, children) {
+                  const newDiv = document.createElement('div');
+                  newDiv.classList.add('button');
+                  if (selected) { newDiv.classList.add('button-active'); }
+                  newDiv.textContent = name;
+                  newDiv.onclick = function () {
+                    button_navigate(link, children)
+                  };
+
+                  return newDiv
+                }
+
+                container = document.getElementById("container");
+                if (container) {
+                  container.innerHTML = '';
+                } else {
+                  const newDiv = document.createElement('div');
+                  newDiv.id = 'container'
+                  document.body.append(newDiv)
+                }
+
+                structure = nav[current_item[0]]
+                row_iteration(structure, current_item.slice(1))
+                // END OF JAVASCRIPT FUNCTIONS
+            content: |-
+                <div id="container"></div>
+                <div id="platform_type">
+                  Platform Type:
+                  <select name="platform_type_selector" id="platform_type_selector">
+                        <option value="overview">Overview</option>
+                        <option value="domain">Domain</option>
+                        <option value="standalone" selected>Standalone</option>
+                        <option value="edge">Unified Edge</option>
+                      </select>
+                </div>
+            contentPartials: []
+            defaultContent: The query didn't return any results.
+            editor:
+                format: auto
+                language: html
+            editors:
+                - styles
+                - helpers
+                - afterRender
+            externalStyles: []
+            helpers: |-
+                current_item = ["standalone", "Overview"]
+
+                // START OF NAVIGATION STRUCTURE
+                nav = {
+                  "overview": [
+                    { "name": "Overview", "link": "is_overview_overview", "children": [] },
+                  ],
+                  "domain": [
+                    { "name": "Overview", "link": "is_domain_overview", "children": [] },
+                    {
+                      "name": "Network", "link": "", "children": [
+                        {
+                          "name": "Domain", "link": "", "children": [
+                            { "name": "Overview", "link": "is_domain_net_domain_overview", "children": [] },
+                            { "name": "Utilization %", "link": "is_domain_net_domain_util-percent", "children": [] },
+                            { "name": "Utilization bps", "link": "is_domain_net_domain_util-bps", "children": [] },
+                            { "name": "Congestion", "link": "is_domain_net_domain_congestion", "children": [] },
+                            { "name": "Errors", "link": "is_domain_net_domain_errors", "children": [] }
+                          ]
+                        },
+                        {
+                          "name": "Chassis", "link": "", "children": [
+                            { "name": "Overview", "link": "is_domain_net_chassis_overview", "children": [] },
+                            { "name": "Utilization %", "link": "is_domain_net_chassis_util-percent", "children": [] },
+                            { "name": "Utilization bps", "link": "is_domain_net_chassis_util-bps", "children": [] },
+                            { "name": "Congestion", "link": "is_domain_net_chassis_congestion", "children": [] },
+                            { "name": "Errors", "link": "is_domain_net_chassis_errors", "children": [] }
+                          ]
+                        },
+                        {
+                          "name": "Server", "link": "", "children": [
+                            { "name": "Overview", "link": "is_domain_net_server_overview", "children": [] },
+                            { "name": "Utilization %", "link": "is_domain_net_server_util-percent", "children": [] },
+                            { "name": "Utilization bps", "link": "is_domain_net_server_util-bps", "children": [] },
+                            { "name": "Congestion", "link": "is_domain_net_server_congestion", "children": [] },
+                            { "name": "Errors", "link": "is_domain_net_server_errors", "children": [] }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Environmental", "link": "", "children": [
+                        { "name": "Domain", "link": "is_domain_environ_domain", "children": [] },
+                        { "name": "Chassis", "link": "is_domain_environ_chassis", "children": [] }
+                      ]
+                    }
+                  ],
+                  "standalone": [
+                    { "name": "Overview", "link": "is_standalone_overview", "children": [] }
+                  ],
+                  "edge": [
+                    { "name": "Overview", "link": "is_edge_overview", "children": [] }
+                  ]
+                }
+                // END OF NAVIGATION STRUCTURE
+            renderMode: data
+            styles: |-
+                /* START OF CSS STYLES */
+                .row {
+                  display: flex;
+                  gap: max(4vw, 10px);
+                  border-bottom: 1px solid white;
+                  margin: 0 0 5px 8px;
+                  padding: 0 0 5px 0;
+                }
+
+                #platform_type {
+                  position: absolute;
+                  right: 8px;
+                  top: 8px;
+                }
+
+                #platform_type select {
+                  height: 28px;
+                  width: 120px;
+                  border: 1px solid white;
+                }
+
+                .button {
+                  padding: 4px 10px;
+                  background-color: #1e60c4;
+                  width: 128px;
+                  height: 29px;
+                  border-radius: 10px;
+                  text-align: center;
+                  vertical-align: middle;
+                  cursor: pointer;
+                }
+
+                .button-active {
+                  background-color: #8f3bb8;
+                }
+                /* END OF CSS STYLES */
+            wrap: false
+          pluginVersion: 5.7.0
+          targets:
+            - datasource:
+                type: datasource
+                uid: grafana
+              queryType: randomWalk
+              refId: A
+          title: ""
+          transparent: true
+          type: marcusolsson-dynamictext-panel
+        - fieldConfig:
+            defaults: {}
+            overrides: []
+          gridPos:
+            h: 2
+            w: 24
+            x: 0
+            "y": 2
+          id: 2
+          options:
+            code:
+                language: plaintext
+                showLineNumbers: false
+                showMiniMap: false
+            content: '# TO IMPLEMENT'
+            mode: markdown
+          pluginVersion: 12.0.0-86517
+          title: ""
+          type: text
+    preload: false
+    schemaVersion: 41
+    tags: []
+    templating:
+        list: []
+    time:
+        from: now-12h
+        to: now
+    timepicker: {}
+    timezone: browser
+    title: Overview
+    uid: is_standalone_overview
