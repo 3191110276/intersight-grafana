@@ -1,9 +1,0 @@
-apiVersion: grizzly.grafana.com/v1alpha1
-kind: DashboardFolder
-metadata:
-    name: is_unifiededge
-spec:
-    orgId: 1
-    parentUid: intersight
-    title: Unified Edge
-    uid: is_unifiededge

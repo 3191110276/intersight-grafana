@@ -1,8 +1,0 @@
-apiVersion: grizzly.grafana.com/v1alpha1
-kind: DashboardFolder
-metadata:
-    name: intersight
-spec:
-    orgId: 1
-    title: Intersight
-    uid: intersight
