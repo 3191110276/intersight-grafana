@@ -253,6 +253,84 @@ spec:
           title: ""
           transparent: true
           type: marcusolsson-dynamictext-panel
+        - datasource:
+            type: datasource
+            uid: grafana
+          fieldConfig:
+            defaults:
+                thresholds:
+                    mode: absolute
+                    steps:
+                        - color: green
+                        - color: red
+                          value: 80
+            overrides: []
+          gridPos:
+            h: 2
+            w: 24
+            x: 0
+            "y": 2
+          id: 221
+          options:
+            afterRender: |-
+                document.getElementById('feedback_btn').onclick = function () { window.open('https://forms.office.com/r/Df2AHsVXh9', '_blank').focus(); };
+                document.getElementById('webex_btn').onclick = function () { window.open('https://eurl.io/#XpSGnOuwR', '_blank').focus(); };
+            content: |-
+                <div id="container">
+                  <div class="message">
+                    This dashboard is currently in <span class="beta_highlight">BETA</span>!
+                  </div>
+                  <div class="btn" id="feedback_btn">
+                      Provide Feedback or Report Bug
+                  </div>
+                  <div class="btn" id="webex_btn" onclick="redirect('www.test.com');">
+                    Webex Q&A Space
+                  </div>
+                </div>
+            contentPartials: []
+            defaultContent: The query didn't return any results.
+            editor:
+                format: auto
+                language: markdown
+            editors:
+                - styles
+                - afterRender
+            externalStyles: []
+            helpers: ""
+            renderMode: data
+            styles: |-
+                #container {
+                    margin-top: 5px;
+                    height: 40px;
+                    line-height: 40px;
+                }
+
+                .message {
+                  font-size: 22px;
+                  float: left;
+                }
+
+                .beta_highlight {
+                  color: rgb(255, 29, 13);
+                  font-weight: 800;
+                }
+
+                .btn {
+                  background-color: rgb(0, 124, 158);
+                  color: #FFF;
+                  margin-left: 28px;
+                }
+            wrap: false
+          pluginVersion: 5.7.0
+          targets:
+            - datasource:
+                type: datasource
+                uid: grafana
+              queryType: randomWalk
+              refId: A
+          title: ""
+          transparent: true
+          type: marcusolsson-dynamictext-panel
         - fieldConfig:
             defaults: {}
             overrides: []
@@ -260,7 +338,7 @@ spec:
             h: 2
             w: 4
             x: 0
-            "y": 2
+            "y": 4
           id: 48
           options:
             code:
@@ -280,7 +358,7 @@ spec:
             h: 2
             w: 6
             x: 4
-            "y": 2
+            "y": 4
           id: 60
           options:
             code:
@@ -308,7 +386,7 @@ spec:
             h: 2
             w: 1
             x: 10
-            "y": 2
+            "y": 4
           id: 49
           options:
             code:
@@ -328,7 +406,7 @@ spec:
             h: 2
             w: 6
             x: 11
-            "y": 2
+            "y": 4
           id: 62
           options:
             code:
@@ -356,7 +434,7 @@ spec:
             h: 2
             w: 1
             x: 17
-            "y": 2
+            "y": 4
           id: 50
           options:
             code:
@@ -376,7 +454,7 @@ spec:
             h: 2
             w: 6
             x: 18
-            "y": 2
+            "y": 4
           id: 63
           options:
             code:
@@ -404,7 +482,7 @@ spec:
             h: 2
             w: 4
             x: 0
-            "y": 4
+            "y": 6
           id: 59
           options:
             code:
@@ -441,7 +519,7 @@ spec:
             h: 2
             w: 2
             x: 4
-            "y": 4
+            "y": 6
           id: 47
           options:
             colorMode: value
@@ -555,7 +633,7 @@ spec:
             h: 2
             w: 2
             x: 6
-            "y": 4
+            "y": 6
           id: 51
           options:
             colorMode: value
@@ -669,7 +747,7 @@ spec:
             h: 2
             w: 2
             x: 8
-            "y": 4
+            "y": 6
           id: 52
           options:
             colorMode: value
@@ -771,7 +849,7 @@ spec:
             h: 2
             w: 1
             x: 10
-            "y": 4
+            "y": 6
           id: 61
           options:
             code:
@@ -803,7 +881,7 @@ spec:
             h: 2
             w: 2
             x: 11
-            "y": 4
+            "y": 6
           id: 53
           options:
             colorMode: value
@@ -917,7 +995,7 @@ spec:
             h: 2
             w: 2
             x: 13
-            "y": 4
+            "y": 6
           id: 54
           options:
             colorMode: value
@@ -1031,7 +1109,7 @@ spec:
             h: 2
             w: 2
             x: 15
-            "y": 4
+            "y": 6
           id: 55
           options:
             colorMode: value
@@ -1133,7 +1211,7 @@ spec:
             h: 2
             w: 1
             x: 17
-            "y": 4
+            "y": 6
           id: 64
           options:
             code:
@@ -1165,7 +1243,7 @@ spec:
             h: 2
             w: 2
             x: 18
-            "y": 4
+            "y": 6
           id: 56
           options:
             colorMode: value
@@ -1279,7 +1357,7 @@ spec:
             h: 2
             w: 2
             x: 20
-            "y": 4
+            "y": 6
           id: 57
           options:
             colorMode: value
@@ -1393,7 +1471,7 @@ spec:
             h: 2
             w: 2
             x: 22
-            "y": 4
+            "y": 6
           id: 58
           options:
             colorMode: value
@@ -1495,7 +1573,7 @@ spec:
             h: 2
             w: 4
             x: 0
-            "y": 6
+            "y": 8
           id: 65
           options:
             code:
@@ -1532,7 +1610,7 @@ spec:
             h: 2
             w: 2
             x: 4
-            "y": 6
+            "y": 8
           id: 75
           options:
             colorMode: value
@@ -1646,7 +1724,7 @@ spec:
             h: 2
             w: 2
             x: 6
-            "y": 6
+            "y": 8
           id: 85
           options:
             colorMode: value
@@ -1761,7 +1839,7 @@ spec:
             h: 2
             w: 2
             x: 8
-            "y": 6
+            "y": 8
           id: 95
           options:
             colorMode: value
@@ -1863,7 +1941,7 @@ spec:
             h: 2
             w: 1
             x: 10
-            "y": 6
+            "y": 8
           id: 105
           options:
             code:
@@ -1895,7 +1973,7 @@ spec:
             h: 2
             w: 2
             x: 11
-            "y": 6
+            "y": 8
           id: 115
           options:
             colorMode: value
@@ -2009,7 +2087,7 @@ spec:
             h: 2
             w: 2
             x: 13
-            "y": 6
+            "y": 8
           id: 126
           options:
             colorMode: value
@@ -2123,7 +2201,7 @@ spec:
             h: 2
             w: 2
             x: 15
-            "y": 6
+            "y": 8
           id: 135
           options:
             colorMode: value
@@ -2225,7 +2303,7 @@ spec:
             h: 2
             w: 1
             x: 17
-            "y": 6
+            "y": 8
           id: 144
           options:
             code:
@@ -2257,7 +2335,7 @@ spec:
             h: 2
             w: 2
             x: 18
-            "y": 6
+            "y": 8
           id: 154
           options:
             colorMode: value
@@ -2371,7 +2449,7 @@ spec:
             h: 2
             w: 2
             x: 20
-            "y": 6
+            "y": 8
           id: 159
           options:
             colorMode: value
@@ -2485,7 +2563,7 @@ spec:
             h: 2
             w: 2
             x: 22
-            "y": 6
+            "y": 8
           id: 162
           options:
             colorMode: value
@@ -2587,7 +2665,7 @@ spec:
             h: 2
             w: 4
             x: 0
-            "y": 8
+            "y": 10
           id: 66
           options:
             code:
@@ -2624,7 +2702,7 @@ spec:
             h: 2
             w: 2
             x: 4
-            "y": 8
+            "y": 10
           id: 76
           options:
             colorMode: value
@@ -2738,7 +2816,7 @@ spec:
             h: 2
             w: 2
             x: 6
-            "y": 8
+            "y": 10
           id: 86
           options:
             colorMode: value
@@ -2852,7 +2930,7 @@ spec:
             h: 2
             w: 2
             x: 8
-            "y": 8
+            "y": 10
           id: 96
           options:
             colorMode: value
@@ -2954,7 +3032,7 @@ spec:
             h: 2
             w: 1
             x: 10
-            "y": 8
+            "y": 10
           id: 106
           options:
             code:
@@ -2986,7 +3064,7 @@ spec:
             h: 2
             w: 2
             x: 11
-            "y": 8
+            "y": 10
           id: 116
           options:
             colorMode: value
@@ -3100,7 +3178,7 @@ spec:
             h: 2
             w: 2
             x: 13
-            "y": 8
+            "y": 10
           id: 127
           options:
             colorMode: value
@@ -3214,7 +3292,7 @@ spec:
             h: 2
             w: 2
             x: 15
-            "y": 8
+            "y": 10
           id: 136
           options:
             colorMode: value
@@ -3316,7 +3394,7 @@ spec:
             h: 2
             w: 1
             x: 17
-            "y": 8
+            "y": 10
           id: 145
           options:
             code:
@@ -3348,7 +3426,7 @@ spec:
             h: 2
             w: 2
             x: 18
-            "y": 8
+            "y": 10
           id: 155
           options:
             colorMode: value
@@ -3462,7 +3540,7 @@ spec:
             h: 2
             w: 2
             x: 20
-            "y": 8
+            "y": 10
           id: 160
           options:
             colorMode: value
@@ -3576,7 +3654,7 @@ spec:
             h: 2
             w: 2
             x: 22
-            "y": 8
+            "y": 10
           id: 163
           options:
             colorMode: value
@@ -3678,7 +3756,7 @@ spec:
             h: 2
             w: 4
             x: 0
-            "y": 10
+            "y": 12
           id: 67
           options:
             code:
@@ -3715,7 +3793,7 @@ spec:
             h: 2
             w: 6
             x: 4
-            "y": 10
+            "y": 12
           id: 77
           options:
             colorMode: value
@@ -3817,7 +3895,7 @@ spec:
             h: 2
             w: 1
             x: 10
-            "y": 10
+            "y": 12
           id: 107
           options:
             code:
@@ -3837,7 +3915,7 @@ spec:
             h: 2
             w: 6
             x: 11
-            "y": 10
+            "y": 12
           id: 125
           options:
             code:
@@ -3864,7 +3942,7 @@ spec:
             h: 2
             w: 1
             x: 17
-            "y": 10
+            "y": 12
           id: 146
           options:
             code:
@@ -3896,7 +3974,7 @@ spec:
             h: 2
             w: 6
             x: 18
-            "y": 10
+            "y": 12
           id: 156
           options:
             colorMode: value
@@ -3998,7 +4076,7 @@ spec:
             h: 2
             w: 4
             x: 0
-            "y": 12
+            "y": 14
           id: 68
           options:
             code:
@@ -4035,7 +4113,7 @@ spec:
             h: 2
             w: 3
             x: 4
-            "y": 12
+            "y": 14
           id: 78
           options:
             colorMode: value
@@ -4149,7 +4227,7 @@ spec:
             h: 2
             w: 3
             x: 7
-            "y": 12
+            "y": 14
           id: 98
           options:
             colorMode: value
@@ -4251,7 +4329,7 @@ spec:
             h: 2
             w: 1
             x: 10
-            "y": 12
+            "y": 14
           id: 108
           options:
             code:
@@ -4283,7 +4361,7 @@ spec:
             h: 2
             w: 3
             x: 11
-            "y": 12
+            "y": 14
           id: 118
           options:
             colorMode: value
@@ -4397,7 +4475,7 @@ spec:
             h: 2
             w: 3
             x: 14
-            "y": 12
+            "y": 14
           id: 137
           options:
             colorMode: value
@@ -4499,7 +4577,7 @@ spec:
             h: 2
             w: 1
             x: 17
-            "y": 12
+            "y": 14
           id: 147
           options:
             code:
@@ -4531,7 +4609,7 @@ spec:
             h: 2
             w: 3
             x: 18
-            "y": 12
+            "y": 14
           id: 157
           options:
             colorMode: value
@@ -4645,7 +4723,7 @@ spec:
             h: 2
             w: 3
             x: 21
-            "y": 12
+            "y": 14
           id: 164
           options:
             colorMode: value
@@ -4747,7 +4825,7 @@ spec:
             h: 2
             w: 4
             x: 0
-            "y": 14
+            "y": 16
           id: 69
           options:
             code:
@@ -4772,7 +4850,7 @@ spec:
             h: 2
             w: 6
             x: 4
-            "y": 14
+            "y": 16
           id: 182
           options:
             code:
@@ -4799,7 +4877,7 @@ spec:
             h: 2
             w: 1
             x: 10
-            "y": 14
+            "y": 16
           id: 109
           options:
             code:
@@ -4832,7 +4910,7 @@ spec:
             h: 2
             w: 2
             x: 11
-            "y": 14
+            "y": 16
           id: 209
           options:
             colorMode: value
@@ -4952,7 +5030,7 @@ spec:
             h: 2
             w: 2
             x: 13
-            "y": 14
+            "y": 16
           id: 210
           options:
             colorMode: value
@@ -5076,7 +5154,7 @@ spec:
             h: 2
             w: 2
             x: 15
-            "y": 14
+            "y": 16
           id: 211
           options:
             colorMode: value
@@ -5183,7 +5261,7 @@ spec:
             h: 2
             w: 1
             x: 17
-            "y": 14
+            "y": 16
           id: 148
           options:
             code:
@@ -5216,7 +5294,7 @@ spec:
             h: 2
             w: 2
             x: 18
-            "y": 14
+            "y": 16
           id: 158
           options:
             colorMode: value
@@ -5332,7 +5410,7 @@ spec:
             h: 2
             w: 2
             x: 20
-            "y": 14
+            "y": 16
           id: 161
           options:
             colorMode: value
@@ -5452,7 +5530,7 @@ spec:
             h: 2
             w: 2
             x: 22
-            "y": 14
+            "y": 16
           id: 165
           options:
             colorMode: value
@@ -5555,7 +5633,7 @@ spec:
             h: 2
             w: 4
             x: 0
-            "y": 16
+            "y": 18
           id: 70
           options:
             code:
@@ -5580,7 +5658,7 @@ spec:
             h: 2
             w: 6
             x: 4
-            "y": 16
+            "y": 18
           id: 183
           options:
             code:
@@ -5607,7 +5685,7 @@ spec:
             h: 2
             w: 1
             x: 10
-            "y": 16
+            "y": 18
           id: 110
           options:
             code:
@@ -5640,7 +5718,7 @@ spec:
             h: 2
             w: 2
             x: 11
-            "y": 16
+            "y": 18
           id: 212
           options:
             colorMode: value
@@ -5760,7 +5838,7 @@ spec:
             h: 2
             w: 2
             x: 13
-            "y": 16
+            "y": 18
           id: 213
           options:
             colorMode: value
@@ -5884,7 +5962,7 @@ spec:
             h: 2
             w: 2
             x: 15
-            "y": 16
+            "y": 18
           id: 214
           options:
             colorMode: value
@@ -5991,7 +6069,7 @@ spec:
             h: 2
             w: 1
             x: 17
-            "y": 16
+            "y": 18
           id: 149
           options:
             code:
@@ -6024,7 +6102,7 @@ spec:
             h: 2
             w: 2
             x: 18
-            "y": 16
+            "y": 18
           id: 200
           options:
             colorMode: value
@@ -6140,7 +6218,7 @@ spec:
             h: 2
             w: 2
             x: 20
-            "y": 16
+            "y": 18
           id: 201
           options:
             colorMode: value
@@ -6260,7 +6338,7 @@ spec:
             h: 2
             w: 2
             x: 22
-            "y": 16
+            "y": 18
           id: 202
           options:
             colorMode: value
@@ -6363,7 +6441,7 @@ spec:
             h: 2
             w: 4
             x: 0
-            "y": 18
+            "y": 20
           id: 71
           options:
             code:
@@ -6388,7 +6466,7 @@ spec:
             h: 2
             w: 6
             x: 4
-            "y": 18
+            "y": 20
           id: 184
           options:
             code:
@@ -6415,7 +6493,7 @@ spec:
             h: 2
             w: 1
             x: 10
-            "y": 18
+            "y": 20
           id: 111
           options:
             code:
@@ -6435,7 +6513,7 @@ spec:
             h: 2
             w: 6
             x: 11
-            "y": 18
+            "y": 20
           id: 198
           options:
             code:
@@ -6462,7 +6540,7 @@ spec:
             h: 2
             w: 1
             x: 17
-            "y": 18
+            "y": 20
           id: 150
           options:
             code:
@@ -6495,7 +6573,7 @@ spec:
             h: 2
             w: 2
             x: 18
-            "y": 18
+            "y": 20
           id: 203
           options:
             colorMode: value
@@ -6611,7 +6689,7 @@ spec:
             h: 2
             w: 2
             x: 20
-            "y": 18
+            "y": 20
           id: 204
           options:
             colorMode: value
@@ -6731,7 +6809,7 @@ spec:
             h: 2
             w: 2
             x: 22
-            "y": 18
+            "y": 20
           id: 205
           options:
             colorMode: value
@@ -6834,7 +6912,7 @@ spec:
             h: 2
             w: 4
             x: 0
-            "y": 20
+            "y": 22
           id: 72
           options:
             code:
@@ -6859,7 +6937,7 @@ spec:
             h: 2
             w: 6
             x: 4
-            "y": 20
+            "y": 22
           id: 185
           options:
             code:
@@ -6886,7 +6964,7 @@ spec:
             h: 2
             w: 1
             x: 10
-            "y": 20
+            "y": 22
           id: 112
           options:
             code:
@@ -6906,7 +6984,7 @@ spec:
             h: 2
             w: 6
             x: 11
-            "y": 20
+            "y": 22
           id: 199
           options:
             code:
@@ -6933,7 +7011,7 @@ spec:
             h: 2
             w: 1
             x: 17
-            "y": 20
+            "y": 22
           id: 151
           options:
             code:
@@ -6966,7 +7044,7 @@ spec:
             h: 2
             w: 2
             x: 18
-            "y": 20
+            "y": 22
           id: 206
           options:
             colorMode: value
@@ -7082,7 +7160,7 @@ spec:
             h: 2
             w: 2
             x: 20
-            "y": 20
+            "y": 22
           id: 207
           options:
             colorMode: value
@@ -7202,7 +7280,7 @@ spec:
             h: 2
             w: 2
             x: 22
-            "y": 20
+            "y": 22
           id: 208
           options:
             colorMode: value
@@ -7306,7 +7384,7 @@ spec:
             h: 2
             w: 4
             x: 0
-            "y": 22
+            "y": 24
           id: 73
           options:
             code:
@@ -7344,7 +7422,7 @@ spec:
             h: 2
             w: 2
             x: 4
-            "y": 22
+            "y": 24
           id: 215
           options:
             colorMode: value
@@ -7497,7 +7575,7 @@ spec:
             h: 2
             w: 2
             x: 6
-            "y": 22
+            "y": 24
           id: 216
           options:
             colorMode: value
@@ -7654,7 +7732,7 @@ spec:
             h: 2
             w: 2
             x: 8
-            "y": 22
+            "y": 24
           id: 217
           options:
             colorMode: value
@@ -7794,7 +7872,7 @@ spec:
             h: 2
             w: 1
             x: 10
-            "y": 22
+            "y": 24
           id: 113
           options:
             code:
@@ -7814,7 +7892,7 @@ spec:
             h: 2
             w: 6
             x: 11
-            "y": 22
+            "y": 24
           id: 181
           options:
             code:
@@ -7841,7 +7919,7 @@ spec:
             h: 2
             w: 1
             x: 17
-            "y": 22
+            "y": 24
           id: 152
           options:
             code:
@@ -7874,7 +7952,7 @@ spec:
             h: 2
             w: 2
             x: 18
-            "y": 22
+            "y": 24
           id: 169
           options:
             colorMode: value
@@ -8024,7 +8102,7 @@ spec:
             h: 2
             w: 2
             x: 20
-            "y": 22
+            "y": 24
           id: 174
           options:
             colorMode: value
@@ -8178,7 +8256,7 @@ spec:
             h: 2
             w: 2
             x: 22
-            "y": 22
+            "y": 24
           id: 179
           options:
             colorMode: value
@@ -8315,7 +8393,7 @@ spec:
             h: 2
             w: 4
             x: 0
-            "y": 24
+            "y": 26
           id: 186
           options:
             code:
@@ -8353,7 +8431,7 @@ spec:
             h: 2
             w: 2
             x: 4
-            "y": 24
+            "y": 26
           id: 188
           options:
             colorMode: value
@@ -8463,7 +8541,7 @@ spec:
             h: 2
             w: 2
             x: 6
-            "y": 24
+            "y": 26
           id: 189
           options:
             colorMode: value
@@ -8578,7 +8656,7 @@ spec:
             h: 2
             w: 2
             x: 8
-            "y": 24
+            "y": 26
           id: 190
           options:
             colorMode: value
@@ -8676,7 +8754,7 @@ spec:
             h: 2
             w: 1
             x: 10
-            "y": 24
+            "y": 26
           id: 191
           options:
             code:
@@ -8696,7 +8774,7 @@ spec:
             h: 2
             w: 6
             x: 11
-            "y": 24
+            "y": 26
           id: 187
           options:
             code:
@@ -8723,7 +8801,7 @@ spec:
             h: 2
             w: 1
             x: 17
-            "y": 24
+            "y": 26
           id: 153
           options:
             code:
@@ -8756,7 +8834,7 @@ spec:
             h: 2
             w: 2
             x: 18
-            "y": 24
+            "y": 26
           id: 193
           options:
             colorMode: value
@@ -8876,7 +8954,7 @@ spec:
             h: 2
             w: 2
             x: 20
-            "y": 24
+            "y": 26
           id: 194
           options:
             colorMode: value
@@ -9000,7 +9078,7 @@ spec:
             h: 2
             w: 2
             x: 22
-            "y": 24
+            "y": 26
           id: 195
           options:
             colorMode: value

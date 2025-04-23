@@ -542,12 +542,90 @@ spec:
           title: ""
           transparent: true
           type: marcusolsson-dynamictext-panel
+        - datasource:
+            type: datasource
+            uid: grafana
+          fieldConfig:
+            defaults:
+                thresholds:
+                    mode: absolute
+                    steps:
+                        - color: green
+                        - color: red
+                          value: 80
+            overrides: []
+          gridPos:
+            h: 2
+            w: 24
+            x: 0
+            "y": 4
+          id: 87
+          options:
+            afterRender: |-
+                document.getElementById('feedback_btn').onclick = function () { window.open('https://forms.office.com/r/Df2AHsVXh9', '_blank').focus(); };
+                document.getElementById('webex_btn').onclick = function () { window.open('https://eurl.io/#XpSGnOuwR', '_blank').focus(); };
+            content: |-
+                <div id="container">
+                  <div class="message">
+                    This dashboard is currently in <span class="beta_highlight">BETA</span>!
+                  </div>
+                  <div class="btn" id="feedback_btn">
+                      Provide Feedback or Report Bug
+                  </div>
+                  <div class="btn" id="webex_btn" onclick="redirect('www.test.com');">
+                    Webex Q&A Space
+                  </div>
+                </div>
+            contentPartials: []
+            defaultContent: The query didn't return any results.
+            editor:
+                format: auto
+                language: markdown
+            editors:
+                - styles
+                - afterRender
+            externalStyles: []
+            helpers: ""
+            renderMode: data
+            styles: |-
+                #container {
+                    margin-top: 5px;
+                    height: 40px;
+                    line-height: 40px;
+                }
+
+                .message {
+                  font-size: 22px;
+                  float: left;
+                }
+
+                .beta_highlight {
+                  color: rgb(255, 29, 13);
+                  font-weight: 800;
+                }
+
+                .btn {
+                  background-color: rgb(0, 124, 158);
+                  color: #FFF;
+                  margin-left: 28px;
+                }
+            wrap: false
+          pluginVersion: 5.7.0
+          targets:
+            - datasource:
+                type: datasource
+                uid: grafana
+              queryType: randomWalk
+              refId: A
+          title: ""
+          transparent: true
+          type: marcusolsson-dynamictext-panel
         - collapsed: true
           gridPos:
             h: 1
             w: 24
             x: 0
-            "y": 4
+            "y": 6
           id: 63
           panels:
             - datasource:
@@ -1064,7 +1142,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 5
+            "y": 7
           id: 36
           panels:
             - datasource:
@@ -1370,7 +1448,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 6
+            "y": 8
           id: 76
           panels: []
           title: FI Storage Uplink Ports
@@ -1441,7 +1519,7 @@ spec:
             h: 8
             w: 12
             x: 0
-            "y": 7
+            "y": 9
           id: 77
           options:
             legend:
@@ -1453,7 +1531,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: none
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -1641,7 +1719,7 @@ spec:
             h: 8
             w: 12
             x: 12
-            "y": 7
+            "y": 9
           id: 80
           options:
             legend:
@@ -1653,7 +1731,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: none
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -1841,7 +1919,7 @@ spec:
             h: 8
             w: 12
             x: 0
-            "y": 15
+            "y": 17
           id: 81
           options:
             legend:
@@ -1853,7 +1931,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: none
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -2041,7 +2119,7 @@ spec:
             h: 8
             w: 12
             x: 12
-            "y": 15
+            "y": 17
           id: 82
           options:
             legend:
@@ -2053,7 +2131,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: none
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -2180,7 +2258,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 23
+            "y": 25
           id: 2
           panels: []
           title: FI Ethernet Uplink Ports
@@ -2251,7 +2329,7 @@ spec:
             h: 8
             w: 12
             x: 0
-            "y": 24
+            "y": 26
           id: 70
           options:
             legend:
@@ -2263,7 +2341,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: none
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -2439,7 +2517,7 @@ spec:
             h: 8
             w: 12
             x: 12
-            "y": 24
+            "y": 26
           id: 73
           options:
             legend:
@@ -2451,7 +2529,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: none
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -2627,7 +2705,7 @@ spec:
             h: 8
             w: 12
             x: 0
-            "y": 32
+            "y": 34
           id: 72
           options:
             legend:
@@ -2639,7 +2717,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: none
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -2815,7 +2893,7 @@ spec:
             h: 8
             w: 12
             x: 12
-            "y": 32
+            "y": 34
           id: 79
           options:
             legend:
@@ -2827,7 +2905,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: none
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -2942,7 +3020,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 40
+            "y": 42
           id: 7
           panels: []
           title: Fabric Interconnect Downlink Ports
@@ -3013,7 +3091,7 @@ spec:
             h: 5
             w: 12
             x: 0
-            "y": 41
+            "y": 43
           id: 56
           options:
             legend:
@@ -3207,7 +3285,7 @@ spec:
             h: 5
             w: 12
             x: 12
-            "y": 41
+            "y": 43
           id: 57
           options:
             legend:
@@ -3340,7 +3418,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 46
+            "y": 48
           id: 51
           panels:
             - datasource:
@@ -3704,7 +3782,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 47
+            "y": 49
           id: 9
           panels: []
           title: IFM Downlink Ports
@@ -3775,7 +3853,7 @@ spec:
             h: 7
             w: 12
             x: 0
-            "y": 48
+            "y": 50
           id: 54
           options:
             legend:
@@ -3952,7 +4030,7 @@ spec:
             h: 7
             w: 12
             x: 12
-            "y": 48
+            "y": 50
           id: 55
           options:
             legend:

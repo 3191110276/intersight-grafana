@@ -253,12 +253,90 @@ spec:
           title: ""
           transparent: true
           type: marcusolsson-dynamictext-panel
+        - datasource:
+            type: datasource
+            uid: grafana
+          fieldConfig:
+            defaults:
+                thresholds:
+                    mode: absolute
+                    steps:
+                        - color: green
+                        - color: red
+                          value: 80
+            overrides: []
+          gridPos:
+            h: 2
+            w: 24
+            x: 0
+            "y": 4
+          id: 94
+          options:
+            afterRender: |-
+                document.getElementById('feedback_btn').onclick = function () { window.open('https://forms.office.com/r/Df2AHsVXh9', '_blank').focus(); };
+                document.getElementById('webex_btn').onclick = function () { window.open('https://eurl.io/#XpSGnOuwR', '_blank').focus(); };
+            content: |-
+                <div id="container">
+                  <div class="message">
+                    This dashboard is currently in <span class="beta_highlight">BETA</span>!
+                  </div>
+                  <div class="btn" id="feedback_btn">
+                      Provide Feedback or Report Bug
+                  </div>
+                  <div class="btn" id="webex_btn" onclick="redirect('www.test.com');">
+                    Webex Q&A Space
+                  </div>
+                </div>
+            contentPartials: []
+            defaultContent: The query didn't return any results.
+            editor:
+                format: auto
+                language: markdown
+            editors:
+                - styles
+                - afterRender
+            externalStyles: []
+            helpers: ""
+            renderMode: data
+            styles: |-
+                #container {
+                    margin-top: 5px;
+                    height: 40px;
+                    line-height: 40px;
+                }
+
+                .message {
+                  font-size: 22px;
+                  float: left;
+                }
+
+                .beta_highlight {
+                  color: rgb(255, 29, 13);
+                  font-weight: 800;
+                }
+
+                .btn {
+                  background-color: rgb(0, 124, 158);
+                  color: #FFF;
+                  margin-left: 28px;
+                }
+            wrap: false
+          pluginVersion: 5.7.0
+          targets:
+            - datasource:
+                type: datasource
+                uid: grafana
+              queryType: randomWalk
+              refId: A
+          title: ""
+          transparent: true
+          type: marcusolsson-dynamictext-panel
         - collapsed: true
           gridPos:
             h: 1
             w: 24
             x: 0
-            "y": 4
+            "y": 6
           id: 39
           panels:
             - datasource:
@@ -1416,7 +1494,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 5
+            "y": 7
           id: 37
           panels:
             - datasource:
@@ -2638,7 +2716,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 6
+            "y": 8
           id: 86
           panels: []
           title: Chassis Traffic Overview
@@ -2662,7 +2740,7 @@ spec:
             h: 4
             w: 6
             x: 0
-            "y": 7
+            "y": 9
           id: 87
           options:
             colorMode: none
@@ -2678,7 +2756,7 @@ spec:
             showPercentChange: false
             textMode: auto
             wideLayout: true
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -2795,7 +2873,7 @@ spec:
             h: 4
             w: 6
             x: 6
-            "y": 7
+            "y": 9
           id: 89
           options:
             colorMode: none
@@ -2811,7 +2889,7 @@ spec:
             showPercentChange: false
             textMode: auto
             wideLayout: true
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -2928,7 +3006,7 @@ spec:
             h: 4
             w: 6
             x: 12
-            "y": 7
+            "y": 9
           id: 90
           options:
             colorMode: none
@@ -2944,7 +3022,7 @@ spec:
             showPercentChange: false
             textMode: auto
             wideLayout: true
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -3061,7 +3139,7 @@ spec:
             h: 4
             w: 6
             x: 18
-            "y": 7
+            "y": 9
           id: 91
           options:
             colorMode: none
@@ -3077,7 +3155,7 @@ spec:
             showPercentChange: false
             textMode: auto
             wideLayout: true
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -3182,7 +3260,7 @@ spec:
             h: 3
             w: 24
             x: 0
-            "y": 11
+            "y": 13
           id: 88
           options:
             code:
@@ -3191,7 +3269,7 @@ spec:
                 showMiniMap: false
             content: '# TODO: Congestion check on both sides'
             mode: markdown
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           title: ""
           type: text
         - datasource:
@@ -3213,7 +3291,7 @@ spec:
             h: 4
             w: 12
             x: 0
-            "y": 14
+            "y": 16
           id: 92
           options:
             colorMode: none
@@ -3229,7 +3307,7 @@ spec:
             showPercentChange: false
             textMode: auto
             wideLayout: true
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -3300,7 +3378,7 @@ spec:
             h: 4
             w: 12
             x: 12
-            "y": 14
+            "y": 16
           id: 93
           options:
             colorMode: none
@@ -3316,7 +3394,7 @@ spec:
             showPercentChange: false
             textMode: auto
             wideLayout: true
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -3373,7 +3451,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 18
+            "y": 20
           id: 41
           panels: []
           title: Utilization (%)
@@ -3534,7 +3612,7 @@ spec:
             h: 9
             w: 12
             x: 0
-            "y": 19
+            "y": 21
           id: 79
           options:
             cellHeight: sm
@@ -3549,7 +3627,7 @@ spec:
             sortBy:
                 - desc: true
                   displayName: Avg Utilization
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: event.domain_name
@@ -3783,7 +3861,7 @@ spec:
             h: 9
             w: 12
             x: 12
-            "y": 19
+            "y": 21
           id: 80
           options:
             cellHeight: sm
@@ -3798,7 +3876,7 @@ spec:
             sortBy:
                 - desc: true
                   displayName: Avg Utilization
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: event.domain_name
@@ -3880,7 +3958,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 28
+            "y": 30
           id: 43
           panels: []
           title: Utilization (bps)
@@ -4034,7 +4112,7 @@ spec:
             h: 9
             w: 12
             x: 0
-            "y": 29
+            "y": 31
           id: 77
           options:
             cellHeight: sm
@@ -4292,7 +4370,7 @@ spec:
             h: 9
             w: 12
             x: 12
-            "y": 29
+            "y": 31
           id: 78
           options:
             cellHeight: sm
@@ -4396,7 +4474,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 38
+            "y": 40
           id: 42
           panels: []
           title: Congestion
@@ -4408,7 +4486,7 @@ spec:
             h: 2
             w: 24
             x: 0
-            "y": 39
+            "y": 41
           id: 84
           options:
             code:
@@ -4425,7 +4503,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 41
+            "y": 43
           id: 40
           panels: []
           title: Errors
@@ -4579,7 +4657,7 @@ spec:
             h: 8
             w: 24
             x: 0
-            "y": 42
+            "y": 44
           id: 49
           options:
             cellHeight: sm
@@ -4715,7 +4793,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 50
+            "y": 52
           id: 38
           panels: []
           title: Server Utilization
@@ -4765,7 +4843,7 @@ spec:
             h: 9
             w: 12
             x: 0
-            "y": 51
+            "y": 53
           id: 47
           options:
             cellHeight: sm
@@ -4951,7 +5029,7 @@ spec:
             h: 9
             w: 12
             x: 12
-            "y": 51
+            "y": 53
           id: 48
           options:
             cellHeight: sm
@@ -5129,7 +5207,7 @@ spec:
             h: 9
             w: 12
             x: 0
-            "y": 60
+            "y": 62
           id: 81
           options:
             cellHeight: sm
@@ -5307,7 +5385,7 @@ spec:
             h: 9
             w: 12
             x: 12
-            "y": 60
+            "y": 62
           id: 82
           options:
             cellHeight: sm

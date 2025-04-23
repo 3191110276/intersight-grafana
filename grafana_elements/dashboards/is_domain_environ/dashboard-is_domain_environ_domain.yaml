@@ -253,12 +253,90 @@ spec:
           title: ""
           transparent: true
           type: marcusolsson-dynamictext-panel
+        - datasource:
+            type: datasource
+            uid: grafana
+          fieldConfig:
+            defaults:
+                thresholds:
+                    mode: absolute
+                    steps:
+                        - color: green
+                        - color: red
+                          value: 80
+            overrides: []
+          gridPos:
+            h: 2
+            w: 24
+            x: 0
+            "y": 3
+          id: 85
+          options:
+            afterRender: |-
+                document.getElementById('feedback_btn').onclick = function () { window.open('https://forms.office.com/r/Df2AHsVXh9', '_blank').focus(); };
+                document.getElementById('webex_btn').onclick = function () { window.open('https://eurl.io/#XpSGnOuwR', '_blank').focus(); };
+            content: |-
+                <div id="container">
+                  <div class="message">
+                    This dashboard is currently in <span class="beta_highlight">BETA</span>!
+                  </div>
+                  <div class="btn" id="feedback_btn">
+                      Provide Feedback or Report Bug
+                  </div>
+                  <div class="btn" id="webex_btn" onclick="redirect('www.test.com');">
+                    Webex Q&A Space
+                  </div>
+                </div>
+            contentPartials: []
+            defaultContent: The query didn't return any results.
+            editor:
+                format: auto
+                language: markdown
+            editors:
+                - styles
+                - afterRender
+            externalStyles: []
+            helpers: ""
+            renderMode: data
+            styles: |-
+                #container {
+                    margin-top: 5px;
+                    height: 40px;
+                    line-height: 40px;
+                }
+
+                .message {
+                  font-size: 22px;
+                  float: left;
+                }
+
+                .beta_highlight {
+                  color: rgb(255, 29, 13);
+                  font-weight: 800;
+                }
+
+                .btn {
+                  background-color: rgb(0, 124, 158);
+                  color: #FFF;
+                  margin-left: 28px;
+                }
+            wrap: false
+          pluginVersion: 5.7.0
+          targets:
+            - datasource:
+                type: datasource
+                uid: grafana
+              queryType: randomWalk
+              refId: A
+          title: ""
+          transparent: true
+          type: marcusolsson-dynamictext-panel
         - collapsed: false
           gridPos:
             h: 1
             w: 24
             x: 0
-            "y": 3
+            "y": 5
           id: 50
           panels: []
           title: Power Supply Status
@@ -313,7 +391,7 @@ spec:
             h: 9
             w: 24
             x: 0
-            "y": 4
+            "y": 6
           id: 80
           options:
             legend:
@@ -325,7 +403,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: none
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -440,7 +518,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 13
+            "y": 15
           id: 10
           panels: []
           title: Fabric Interconnect Power Consumption
@@ -492,7 +570,7 @@ spec:
             h: 7
             w: 24
             x: 0
-            "y": 14
+            "y": 16
           id: 35
           options:
             legend:
@@ -504,7 +582,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: none
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -594,7 +672,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 21
+            "y": 23
           id: 9
           panels: []
           title: Chassis Power Consumption
@@ -646,7 +724,7 @@ spec:
             h: 7
             w: 24
             x: 0
-            "y": 22
+            "y": 24
           id: 34
           options:
             legend:
@@ -658,7 +736,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: none
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -790,7 +868,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 29
+            "y": 31
           id: 17
           panels: []
           title: Host Power Consumption
@@ -818,7 +896,7 @@ spec:
             h: 7
             w: 24
             x: 0
-            "y": 30
+            "y": 32
           id: 32
           options:
             cellHeight: sm
@@ -948,7 +1026,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 37
+            "y": 39
           id: 18
           panels: []
           title: Fabric Interconnect Fan Speed
@@ -999,7 +1077,7 @@ spec:
             h: 8
             w: 24
             x: 0
-            "y": 38
+            "y": 40
           id: 40
           maxDataPoints: 500
           options:
@@ -1126,7 +1204,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 46
+            "y": 48
           id: 19
           panels: []
           title: Chassis Fan Speed
@@ -1178,7 +1256,7 @@ spec:
             h: 7
             w: 24
             x: 0
-            "y": 47
+            "y": 49
           id: 31
           options:
             legend:
@@ -1298,7 +1376,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 54
+            "y": 56
           id: 20
           panels: []
           title: Fabric Interconnect Temperature
@@ -1361,7 +1439,7 @@ spec:
             h: 7
             w: 12
             x: 0
-            "y": 55
+            "y": 57
           id: 38
           maxDataPoints: 500
           options:
@@ -1475,7 +1553,7 @@ spec:
             h: 7
             w: 12
             x: 12
-            "y": 55
+            "y": 57
           id: 81
           maxDataPoints: 500
           options:
@@ -1536,7 +1614,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 62
+            "y": 64
           id: 44
           panels: []
           title: Chassis Temperature
@@ -1618,7 +1696,7 @@ spec:
             h: 7
             w: 12
             x: 0
-            "y": 63
+            "y": 65
           id: 45
           maxDataPoints: 500
           options:
@@ -1818,7 +1896,7 @@ spec:
             h: 7
             w: 12
             x: 12
-            "y": 63
+            "y": 65
           id: 46
           maxDataPoints: 500
           options:
@@ -1950,7 +2028,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 70
+            "y": 72
           id: 21
           panels: []
           title: Host Temperature
@@ -1985,7 +2063,7 @@ spec:
             h: 12
             w: 8
             x: 0
-            "y": 71
+            "y": 73
           id: 47
           maxDataPoints: 500
           options:
@@ -2152,7 +2230,7 @@ spec:
             h: 12
             w: 8
             x: 8
-            "y": 71
+            "y": 73
           id: 82
           maxDataPoints: 500
           options:
@@ -2312,7 +2390,7 @@ spec:
             h: 12
             w: 8
             x: 16
-            "y": 71
+            "y": 73
           id: 83
           maxDataPoints: 500
           options:

@@ -253,12 +253,90 @@ spec:
           title: ""
           transparent: true
           type: marcusolsson-dynamictext-panel
+        - datasource:
+            type: datasource
+            uid: grafana
+          fieldConfig:
+            defaults:
+                thresholds:
+                    mode: absolute
+                    steps:
+                        - color: green
+                        - color: red
+                          value: 80
+            overrides: []
+          gridPos:
+            h: 2
+            w: 24
+            x: 0
+            "y": 4
+          id: 85
+          options:
+            afterRender: |-
+                document.getElementById('feedback_btn').onclick = function () { window.open('https://forms.office.com/r/Df2AHsVXh9', '_blank').focus(); };
+                document.getElementById('webex_btn').onclick = function () { window.open('https://eurl.io/#XpSGnOuwR', '_blank').focus(); };
+            content: |-
+                <div id="container">
+                  <div class="message">
+                    This dashboard is currently in <span class="beta_highlight">BETA</span>!
+                  </div>
+                  <div class="btn" id="feedback_btn">
+                      Provide Feedback or Report Bug
+                  </div>
+                  <div class="btn" id="webex_btn" onclick="redirect('www.test.com');">
+                    Webex Q&A Space
+                  </div>
+                </div>
+            contentPartials: []
+            defaultContent: The query didn't return any results.
+            editor:
+                format: auto
+                language: markdown
+            editors:
+                - styles
+                - afterRender
+            externalStyles: []
+            helpers: ""
+            renderMode: data
+            styles: |-
+                #container {
+                    margin-top: 5px;
+                    height: 40px;
+                    line-height: 40px;
+                }
+
+                .message {
+                  font-size: 22px;
+                  float: left;
+                }
+
+                .beta_highlight {
+                  color: rgb(255, 29, 13);
+                  font-weight: 800;
+                }
+
+                .btn {
+                  background-color: rgb(0, 124, 158);
+                  color: #FFF;
+                  margin-left: 28px;
+                }
+            wrap: false
+          pluginVersion: 5.7.0
+          targets:
+            - datasource:
+                type: datasource
+                uid: grafana
+              queryType: randomWalk
+              refId: A
+          title: ""
+          transparent: true
+          type: marcusolsson-dynamictext-panel
         - collapsed: false
           gridPos:
             h: 1
             w: 24
             x: 0
-            "y": 4
+            "y": 6
           id: 39
           panels: []
           title: 'Traffic Distribution: Ethernet Uplinks'
@@ -282,7 +360,7 @@ spec:
             h: 4
             w: 4
             x: 0
-            "y": 5
+            "y": 7
           id: 65
           options:
             colorMode: none
@@ -298,7 +376,7 @@ spec:
             showPercentChange: false
             textMode: auto
             wideLayout: true
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -437,7 +515,7 @@ spec:
             h: 8
             w: 10
             x: 4
-            "y": 5
+            "y": 7
           id: 67
           options:
             legend:
@@ -449,7 +527,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -597,7 +675,7 @@ spec:
             h: 8
             w: 10
             x: 14
-            "y": 5
+            "y": 7
           id: 68
           options:
             legend:
@@ -609,7 +687,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -728,7 +806,7 @@ spec:
             h: 4
             w: 4
             x: 0
-            "y": 9
+            "y": 11
           id: 66
           options:
             colorMode: none
@@ -744,7 +822,7 @@ spec:
             showPercentChange: false
             textMode: auto
             wideLayout: true
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -856,7 +934,7 @@ spec:
             h: 4
             w: 4
             x: 0
-            "y": 13
+            "y": 15
           id: 62
           options:
             colorMode: none
@@ -872,7 +950,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -1013,7 +1091,7 @@ spec:
             h: 8
             w: 10
             x: 4
-            "y": 13
+            "y": 15
           id: 60
           options:
             legend:
@@ -1025,7 +1103,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -1173,7 +1251,7 @@ spec:
             h: 8
             w: 10
             x: 14
-            "y": 13
+            "y": 15
           id: 61
           options:
             legend:
@@ -1185,7 +1263,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -1304,7 +1382,7 @@ spec:
             h: 4
             w: 4
             x: 0
-            "y": 17
+            "y": 19
           id: 63
           options:
             colorMode: none
@@ -1320,7 +1398,7 @@ spec:
             showPercentChange: false
             textMode: auto
             wideLayout: true
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -1416,7 +1494,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 21
+            "y": 23
           id: 37
           panels: []
           title: 'Traffic Distribution: Fibre Channel Uplinks'
@@ -1448,7 +1526,7 @@ spec:
             h: 4
             w: 4
             x: 0
-            "y": 22
+            "y": 24
           id: 71
           options:
             colorMode: none
@@ -1464,7 +1542,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -1611,7 +1689,7 @@ spec:
             h: 8
             w: 10
             x: 4
-            "y": 22
+            "y": 24
           id: 75
           options:
             legend:
@@ -1623,7 +1701,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -1774,7 +1852,7 @@ spec:
             h: 8
             w: 10
             x: 14
-            "y": 22
+            "y": 24
           id: 76
           options:
             legend:
@@ -1786,7 +1864,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -1914,7 +1992,7 @@ spec:
             h: 4
             w: 4
             x: 0
-            "y": 26
+            "y": 28
           id: 72
           options:
             colorMode: none
@@ -1930,7 +2008,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -2054,7 +2132,7 @@ spec:
             h: 4
             w: 4
             x: 0
-            "y": 30
+            "y": 32
           id: 69
           options:
             colorMode: none
@@ -2217,7 +2295,7 @@ spec:
             h: 8
             w: 10
             x: 4
-            "y": 30
+            "y": 32
           id: 73
           options:
             legend:
@@ -2380,7 +2458,7 @@ spec:
             h: 8
             w: 10
             x: 14
-            "y": 30
+            "y": 32
           id: 74
           options:
             legend:
@@ -2520,7 +2598,7 @@ spec:
             h: 4
             w: 4
             x: 0
-            "y": 34
+            "y": 36
           id: 70
           options:
             colorMode: none
@@ -2638,7 +2716,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 38
+            "y": 40
           id: 41
           panels: []
           title: Utilization (%)
@@ -2799,7 +2877,7 @@ spec:
             h: 9
             w: 12
             x: 0
-            "y": 39
+            "y": 41
           id: 79
           options:
             cellHeight: sm
@@ -3046,7 +3124,7 @@ spec:
             h: 9
             w: 12
             x: 12
-            "y": 39
+            "y": 41
           id: 80
           options:
             cellHeight: sm
@@ -3143,7 +3221,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 48
+            "y": 50
           id: 43
           panels: []
           title: Utilization (bps)
@@ -3307,7 +3385,7 @@ spec:
             h: 9
             w: 12
             x: 0
-            "y": 49
+            "y": 51
           id: 77
           options:
             cellHeight: sm
@@ -3563,7 +3641,7 @@ spec:
             h: 9
             w: 12
             x: 12
-            "y": 49
+            "y": 51
           id: 78
           options:
             cellHeight: sm
@@ -3665,7 +3743,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 58
+            "y": 60
           id: 42
           panels: []
           title: Congestion
@@ -3677,7 +3755,7 @@ spec:
             h: 2
             w: 24
             x: 0
-            "y": 59
+            "y": 61
           id: 84
           options:
             code:
@@ -3837,7 +3915,7 @@ spec:
             h: 9
             w: 12
             x: 0
-            "y": 61
+            "y": 63
           id: 50
           options:
             cellHeight: sm
@@ -4063,7 +4141,7 @@ spec:
             h: 9
             w: 12
             x: 12
-            "y": 61
+            "y": 63
           id: 51
           options:
             cellHeight: sm
@@ -4146,7 +4224,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 70
+            "y": 72
           id: 40
           panels: []
           title: Errors
@@ -4300,7 +4378,7 @@ spec:
             h: 8
             w: 24
             x: 0
-            "y": 71
+            "y": 73
           id: 49
           options:
             cellHeight: sm
@@ -4435,7 +4513,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 79
+            "y": 81
           id: 38
           panels: []
           title: Server Utilization
@@ -4485,7 +4563,7 @@ spec:
             h: 9
             w: 12
             x: 0
-            "y": 80
+            "y": 82
           id: 47
           options:
             cellHeight: sm
@@ -4659,7 +4737,7 @@ spec:
             h: 9
             w: 12
             x: 12
-            "y": 80
+            "y": 82
           id: 48
           options:
             cellHeight: sm
@@ -4825,7 +4903,7 @@ spec:
             h: 9
             w: 12
             x: 0
-            "y": 89
+            "y": 91
           id: 81
           options:
             cellHeight: sm
@@ -4991,7 +5069,7 @@ spec:
             h: 9
             w: 12
             x: 12
-            "y": 89
+            "y": 91
           id: 82
           options:
             cellHeight: sm

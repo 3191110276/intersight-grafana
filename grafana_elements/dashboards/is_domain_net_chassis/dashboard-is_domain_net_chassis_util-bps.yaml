@@ -253,12 +253,90 @@ spec:
           title: ""
           transparent: true
           type: marcusolsson-dynamictext-panel
+        - datasource:
+            type: datasource
+            uid: grafana
+          fieldConfig:
+            defaults:
+                thresholds:
+                    mode: absolute
+                    steps:
+                        - color: green
+                        - color: red
+                          value: 80
+            overrides: []
+          gridPos:
+            h: 2
+            w: 24
+            x: 0
+            "y": 4
+          id: 91
+          options:
+            afterRender: |-
+                document.getElementById('feedback_btn').onclick = function () { window.open('https://forms.office.com/r/Df2AHsVXh9', '_blank').focus(); };
+                document.getElementById('webex_btn').onclick = function () { window.open('https://eurl.io/#XpSGnOuwR', '_blank').focus(); };
+            content: |-
+                <div id="container">
+                  <div class="message">
+                    This dashboard is currently in <span class="beta_highlight">BETA</span>!
+                  </div>
+                  <div class="btn" id="feedback_btn">
+                      Provide Feedback or Report Bug
+                  </div>
+                  <div class="btn" id="webex_btn" onclick="redirect('www.test.com');">
+                    Webex Q&A Space
+                  </div>
+                </div>
+            contentPartials: []
+            defaultContent: The query didn't return any results.
+            editor:
+                format: auto
+                language: markdown
+            editors:
+                - styles
+                - afterRender
+            externalStyles: []
+            helpers: ""
+            renderMode: data
+            styles: |-
+                #container {
+                    margin-top: 5px;
+                    height: 40px;
+                    line-height: 40px;
+                }
+
+                .message {
+                  font-size: 22px;
+                  float: left;
+                }
+
+                .beta_highlight {
+                  color: rgb(255, 29, 13);
+                  font-weight: 800;
+                }
+
+                .btn {
+                  background-color: rgb(0, 124, 158);
+                  color: #FFF;
+                  margin-left: 28px;
+                }
+            wrap: false
+          pluginVersion: 5.7.0
+          targets:
+            - datasource:
+                type: datasource
+                uid: grafana
+              queryType: randomWalk
+              refId: A
+          title: ""
+          transparent: true
+          type: marcusolsson-dynamictext-panel
         - collapsed: true
           gridPos:
             h: 1
             w: 24
             x: 0
-            "y": 4
+            "y": 6
           id: 61
           panels:
             - datasource:
@@ -1064,7 +1142,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 5
+            "y": 7
           id: 60
           panels: []
           title: Fabric Interconnect Storage Uplink Ports
@@ -1117,7 +1195,7 @@ spec:
             h: 6
             w: 12
             x: 0
-            "y": 6
+            "y": 8
           id: 63
           options:
             legend:
@@ -1129,7 +1207,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -1316,7 +1394,7 @@ spec:
             h: 6
             w: 12
             x: 12
-            "y": 6
+            "y": 8
           id: 67
           options:
             legend:
@@ -1328,7 +1406,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -1515,7 +1593,7 @@ spec:
             h: 6
             w: 12
             x: 0
-            "y": 12
+            "y": 14
           id: 68
           options:
             legend:
@@ -1527,7 +1605,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -1714,7 +1792,7 @@ spec:
             h: 6
             w: 12
             x: 12
-            "y": 12
+            "y": 14
           id: 69
           options:
             legend:
@@ -1726,7 +1804,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -1870,7 +1948,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 18
+            "y": 20
           id: 36
           panels:
             - datasource:
@@ -2672,7 +2750,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 19
+            "y": 21
           id: 2
           panels: []
           title: Fabric Interconnect Ethernet Uplink Ports
@@ -2725,7 +2803,7 @@ spec:
             h: 6
             w: 12
             x: 0
-            "y": 20
+            "y": 22
           id: 44
           options:
             legend:
@@ -2737,7 +2815,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -2923,7 +3001,7 @@ spec:
             h: 6
             w: 12
             x: 12
-            "y": 20
+            "y": 22
           id: 45
           options:
             legend:
@@ -2935,7 +3013,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -3121,7 +3199,7 @@ spec:
             h: 6
             w: 12
             x: 0
-            "y": 26
+            "y": 28
           id: 46
           options:
             legend:
@@ -3133,7 +3211,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -3319,7 +3397,7 @@ spec:
             h: 6
             w: 12
             x: 12
-            "y": 26
+            "y": 28
           id: 47
           options:
             legend:
@@ -3331,7 +3409,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86782
           targets:
             - columns:
                 - selector: timestamp
@@ -3474,7 +3552,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 32
+            "y": 34
           id: 7
           panels: []
           title: Fabric Interconnect Downlink Ports
@@ -3527,7 +3605,7 @@ spec:
             h: 7
             w: 12
             x: 0
-            "y": 33
+            "y": 35
           id: 83
           options:
             legend:
@@ -3718,7 +3796,7 @@ spec:
             h: 7
             w: 12
             x: 12
-            "y": 33
+            "y": 35
           id: 85
           options:
             legend:
@@ -3909,7 +3987,7 @@ spec:
             h: 7
             w: 12
             x: 0
-            "y": 40
+            "y": 42
           id: 84
           options:
             legend:
@@ -4100,7 +4178,7 @@ spec:
             h: 7
             w: 12
             x: 12
-            "y": 40
+            "y": 42
           id: 86
           options:
             legend:
@@ -4248,7 +4326,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 47
+            "y": 49
           id: 51
           panels:
             - datasource:
@@ -5034,7 +5112,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 48
+            "y": 50
           id: 9
           panels: []
           title: IFM Downlink Ports
@@ -5087,7 +5165,7 @@ spec:
             h: 7
             w: 12
             x: 0
-            "y": 49
+            "y": 51
           id: 73
           options:
             legend:
@@ -5310,7 +5388,7 @@ spec:
             h: 7
             w: 12
             x: 12
-            "y": 49
+            "y": 51
           id: 74
           options:
             legend:
@@ -5533,7 +5611,7 @@ spec:
             h: 7
             w: 12
             x: 0
-            "y": 56
+            "y": 58
           id: 75
           options:
             legend:
@@ -5756,7 +5834,7 @@ spec:
             h: 7
             w: 12
             x: 12
-            "y": 56
+            "y": 58
           id: 76
           options:
             legend:
@@ -5936,7 +6014,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 63
+            "y": 65
           id: 88
           panels: []
           title: Top vNIC/vHBA Ports
@@ -6017,7 +6095,7 @@ spec:
             h: 14
             w: 12
             x: 0
-            "y": 64
+            "y": 66
           id: 89
           options:
             cellHeight: sm
@@ -6295,7 +6373,7 @@ spec:
             h: 14
             w: 12
             x: 12
-            "y": 64
+            "y": 66
           id: 90
           options:
             cellHeight: sm
