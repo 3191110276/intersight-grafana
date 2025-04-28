@@ -2756,7 +2756,7 @@ spec:
             showPercentChange: false
             textMode: auto
             wideLayout: true
-          pluginVersion: 12.0.0-86782
+          pluginVersion: 12.0.0-86898
           targets:
             - columns:
                 - selector: timestamp
@@ -2866,13 +2866,146 @@ spec:
                 thresholds:
                     mode: percentage
                     steps:
-                        - color: purple
+                        - color: blue
                 unit: decbytes
             overrides: []
           gridPos:
             h: 4
             w: 6
             x: 6
+            "y": 9
+          id: 90
+          options:
+            colorMode: none
+            graphMode: area
+            justifyMode: auto
+            orientation: auto
+            percentChangeColorMode: standard
+            reduceOptions:
+                calcs:
+                    - sum
+                fields: ""
+                values: false
+            showPercentChange: false
+            textMode: auto
+            wideLayout: true
+          pluginVersion: 12.0.0-86898
+          targets:
+            - columns:
+                - selector: timestamp
+                  text: Time
+                  type: timestamp
+                - selector: event.domain_name
+                  text: Domain Name
+                  type: string
+                - selector: event.sum
+                  text: Utilization
+                  type: number
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: |4-
+                      {
+                        "queryType": "groupBy",
+                        "dataSource": "NetworkInterfaces",
+                        "granularity": {
+                           "type": "duration",
+                           "duration": $__interval_ms,
+                           "timeZone": "$__timezone"
+                        },
+                        "intervals": ["${__from:date}/${__to:date}"],
+                        "dimensions": [
+                          "name"
+                        ],
+                        "filter": {
+                          "type": "and",
+                          "fields": [
+                            {
+                              "type": "in",
+                              "dimension": "intersight.domain.name",
+                              "values": [${DomainName:doublequote}]
+                            },
+                            {
+                              "type": "search",
+                              "dimension": "host.name",
+                              "query": {
+                                "type": "insensitive_contains",
+                                "value": " FI-A"
+                              }
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "hw.network.port.type",
+                              "value": "ethernet"
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "hw.network.port.role",
+                              "value": "server"
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "hw.network.port.port_channel",
+                              "value": "${PC_A}"
+                            },
+                            {
+                              "type": "selector",
+                              "dimension": "instrument.name",
+                              "value": "hw.network"
+                            }
+                          ]
+                        },
+                        "aggregations": [
+                          {
+                            "type": "doubleSum",
+                            "name": "sum",
+                            "fieldName": "hw.network.io_receive"
+                          }
+                        ]
+                      }
+                method: POST
+          title: 'A: Traffic Chassis > FI (Sum)'
+          transformations:
+            - id: groupingToMatrix
+              options:
+                columnField: Domain Name
+                rowField: Time
+                valueField: Utilization
+          type: stat
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          description: Traffic flowing from the Chassis to the FI
+          fieldConfig:
+            defaults:
+                color:
+                    mode: thresholds
+                mappings: []
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: purple
+                unit: decbytes
+            overrides: []
+          gridPos:
+            h: 4
+            w: 6
+            x: 12
             "y": 9
           id: 89
           options:
@@ -2889,7 +3022,7 @@ spec:
             showPercentChange: false
             textMode: auto
             wideLayout: true
-          pluginVersion: 12.0.0-86782
+          pluginVersion: 12.0.0-86898
           targets:
             - columns:
                 - selector: timestamp
@@ -3005,139 +3138,6 @@ spec:
           gridPos:
             h: 4
             w: 6
-            x: 12
-            "y": 9
-          id: 90
-          options:
-            colorMode: none
-            graphMode: area
-            justifyMode: auto
-            orientation: auto
-            percentChangeColorMode: standard
-            reduceOptions:
-                calcs:
-                    - sum
-                fields: ""
-                values: false
-            showPercentChange: false
-            textMode: auto
-            wideLayout: true
-          pluginVersion: 12.0.0-86782
-          targets:
-            - columns:
-                - selector: timestamp
-                  text: Time
-                  type: timestamp
-                - selector: event.domain_name
-                  text: Domain Name
-                  type: string
-                - selector: event.sum
-                  text: Utilization
-                  type: number
-              datasource:
-                type: yesoreyeram-infinity-datasource
-                uid: ${DataSource}
-              filters: []
-              format: table
-              global_query_id: ""
-              parser: backend
-              refId: A
-              root_selector: ""
-              source: url
-              type: json
-              uql: |-
-                parse-json
-                | project "Timestamp"=todatetime("timestamp"), "event"
-              url: /api/v1/telemetry/TimeSeries
-              url_options:
-                body_content_type: application/json
-                body_type: raw
-                data: |4-
-                      {
-                        "queryType": "groupBy",
-                        "dataSource": "NetworkInterfaces",
-                        "granularity": {
-                           "type": "duration",
-                           "duration": $__interval_ms,
-                           "timeZone": "$__timezone"
-                        },
-                        "intervals": ["${__from:date}/${__to:date}"],
-                        "dimensions": [
-                          "name"
-                        ],
-                        "filter": {
-                          "type": "and",
-                          "fields": [
-                            {
-                              "type": "in",
-                              "dimension": "intersight.domain.name",
-                              "values": [${DomainName:doublequote}]
-                            },
-                            {
-                              "type": "search",
-                              "dimension": "host.name",
-                              "query": {
-                                "type": "insensitive_contains",
-                                "value": " FI-A"
-                              }
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "hw.network.port.type",
-                              "value": "ethernet"
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "hw.network.port.role",
-                              "value": "server"
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "hw.network.port.port_channel",
-                              "value": "${PC_A}"
-                            },
-                            {
-                              "type": "selector",
-                              "dimension": "instrument.name",
-                              "value": "hw.network"
-                            }
-                          ]
-                        },
-                        "aggregations": [
-                          {
-                            "type": "doubleSum",
-                            "name": "sum",
-                            "fieldName": "hw.network.io_receive"
-                          }
-                        ]
-                      }
-                method: POST
-          title: 'A: Traffic Chassis > FI (Sum)'
-          transformations:
-            - id: groupingToMatrix
-              options:
-                columnField: Domain Name
-                rowField: Time
-                valueField: Utilization
-          type: stat
-        - datasource:
-            type: yesoreyeram-infinity-datasource
-            uid: ${DataSource}
-          description: Traffic flowing from the Chassis to the FI
-          fieldConfig:
-            defaults:
-                color:
-                    mode: thresholds
-                mappings: []
-                thresholds:
-                    mode: percentage
-                    steps:
-                        - color: blue
-                unit: decbytes
-            overrides: []
-          gridPos:
-            h: 4
-            w: 6
             x: 18
             "y": 9
           id: 91
@@ -3155,7 +3155,7 @@ spec:
             showPercentChange: false
             textMode: auto
             wideLayout: true
-          pluginVersion: 12.0.0-86782
+          pluginVersion: 12.0.0-86898
           targets:
             - columns:
                 - selector: timestamp
@@ -3253,25 +3253,314 @@ spec:
                 rowField: Time
                 valueField: Utilization
           type: stat
-        - fieldConfig:
-            defaults: {}
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          description: Pause Frames for Ethernet traffic in Fabric A
+          fieldConfig:
+            defaults:
+                color:
+                    mode: thresholds
+                mappings: []
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: purple
             overrides: []
           gridPos:
-            h: 3
-            w: 24
+            h: 4
+            w: 6
             x: 0
             "y": 13
-          id: 88
+          id: 97
           options:
-            code:
-                language: plaintext
-                showLineNumbers: false
-                showMiniMap: false
-            content: '# TODO: Congestion check on both sides'
-            mode: markdown
-          pluginVersion: 12.0.0-86782
-          title: ""
-          type: text
+            colorMode: none
+            graphMode: area
+            justifyMode: auto
+            orientation: auto
+            percentChangeColorMode: standard
+            reduceOptions:
+                calcs:
+                    - sum
+                fields: ""
+                values: false
+            showPercentChange: false
+            textMode: auto
+            wideLayout: true
+          pluginVersion: 12.0.0-86898
+          targets:
+            - columns:
+                - selector: timestamp
+                  text: Time
+                  type: timestamp
+                - selector: event.domain_name
+                  text: Domain Name
+                  type: string
+                - selector: event.eth_pause
+                  text: eth_pause
+                  type: number
+                - selector: event.fc_pause
+                  text: fc_pause
+                  type: number
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": {\n       \"type\": \"duration\",\n       \"duration\": $__interval_ms,\n       \"timeZone\": \"$__timezone\"\n    },\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\",\n      \"port_spec\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"expression\",\n      \"name\": \"port_spec\",\n      \"expression\": \"concat(port_role + ' # ' + name)\",\n      \"outputType\": \"STRING\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${DomainName:doublequote}]\n        },\n        {\n          \"type\": \"search\",\n          \"dimension\": \"host.name\",\n          \"query\": {\n            \"type\": \"insensitive_contains\",\n            \"value\": \" FI-A\"\n          }\n        },\n        { \"type\": \"not\", \"field\": \n          {\n            \"type\": \"in\",\n            \"dimension\": \"hw.network.port.role\",\n            \"values\": [\n              \"eth_uplink_pc\",\n              \"host_pc\",\n              \"server_pc\",\n              \"fabric_pc\",\n              \"fc_uplink\",\n              \"fc_storage\",\n              \"iom_uplink\",\n              \"vnic\",\n              \"vhba\",\n              \"vethernet\",\n              \"vfc\",\n              \"unconfigured\"\n            ]\n          }\n        },\n        {\n          \"type\": \"or\",\n          \"fields\": [\n            {\n              \"type\": \"and\",\n              \"fields\": [\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.type\",\n                  \"value\": \"ethernet\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.role\",\n                  \"value\": \"eth_uplink\"\n                }\n              ]\n            },\n            {\n              \"type\": \"and\",\n              \"fields\": [\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.type\",\n                  \"value\": \"ethernet\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.role\",\n                  \"value\": \"server\"\n                },\n                {\n                  \"type\": \"in\",\n                  \"dimension\": \"hw.network.port.port_channel\",\n                  \"values\": [\n                    \"${PC_A}\"\n                  ]\n                }\n              ]\n            },\n            {\n              \"type\": \"and\",\n              \"fields\": [\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.role\",\n                  \"value\": \"iom_uplink\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.type\",\n                  \"value\": \"ethernet\"\n                },\n                {\n                  \"type\": \"search\",\n                  \"dimension\": \"name\",\n                  \"query\": {\n                    \"type\": \"insensitive_contains\",\n                    \"value\": \"Nif${ChassisId}/\"\n                  }\n                }\n              ]\n            },\n            {\n              \"type\": \"and\",\n              \"fields\": [\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.type\",\n                  \"value\": \"backplane_port\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.role\",\n                  \"value\": \"host_port\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.chassis.number\",\n                  \"value\": \"${ChassisId}\"\n                }\n              ]\n            }\n          ]\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"longSum\",\n        \"name\": \"eth_pause\",\n        \"fieldName\": \"hw.errors_network_transmit_pause\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"fc_pause\",\n        \"fieldName\": \"hw.network.packets_transmit_ppp\"\n      }\n    ]\n  }"
+                method: POST
+          title: 'A: Ethernet Congestion (Sum)'
+          transformations:
+            - id: groupingToMatrix
+              options:
+                columnField: Domain Name
+                rowField: Time
+                valueField: eth_pause
+          type: stat
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          description: Pause Frames for FC traffic in Fabric A
+          fieldConfig:
+            defaults:
+                color:
+                    mode: thresholds
+                mappings: []
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: blue
+            overrides: []
+          gridPos:
+            h: 4
+            w: 6
+            x: 6
+            "y": 13
+          id: 98
+          options:
+            colorMode: none
+            graphMode: area
+            justifyMode: auto
+            orientation: auto
+            percentChangeColorMode: standard
+            reduceOptions:
+                calcs:
+                    - sum
+                fields: ""
+                values: false
+            showPercentChange: false
+            textMode: auto
+            wideLayout: true
+          pluginVersion: 12.0.0-86898
+          targets:
+            - columns:
+                - selector: timestamp
+                  text: Time
+                  type: timestamp
+                - selector: event.domain_name
+                  text: Domain Name
+                  type: string
+                - selector: event.eth_pause
+                  text: eth_pause
+                  type: number
+                - selector: event.fc_pause
+                  text: fc_pause
+                  type: number
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": {\n       \"type\": \"duration\",\n       \"duration\": $__interval_ms,\n       \"timeZone\": \"$__timezone\"\n    },\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\",\n      \"port_spec\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"expression\",\n      \"name\": \"port_spec\",\n      \"expression\": \"concat(port_role + ' # ' + name)\",\n      \"outputType\": \"STRING\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${DomainName:doublequote}]\n        },\n        {\n          \"type\": \"search\",\n          \"dimension\": \"host.name\",\n          \"query\": {\n            \"type\": \"insensitive_contains\",\n            \"value\": \" FI-A\"\n          }\n        },\n        { \"type\": \"not\", \"field\": \n          {\n            \"type\": \"in\",\n            \"dimension\": \"hw.network.port.role\",\n            \"values\": [\n              \"eth_uplink_pc\",\n              \"host_pc\",\n              \"server_pc\",\n              \"fabric_pc\",\n              \"fc_uplink\",\n              \"fc_storage\",\n              \"iom_uplink\",\n              \"vnic\",\n              \"vhba\",\n              \"vethernet\",\n              \"vfc\",\n              \"unconfigured\"\n            ]\n          }\n        },\n        {\n          \"type\": \"or\",\n          \"fields\": [\n            {\n              \"type\": \"and\",\n              \"fields\": [\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.type\",\n                  \"value\": \"ethernet\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.role\",\n                  \"value\": \"eth_uplink\"\n                }\n              ]\n            },\n            {\n              \"type\": \"and\",\n              \"fields\": [\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.type\",\n                  \"value\": \"ethernet\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.role\",\n                  \"value\": \"server\"\n                },\n                {\n                  \"type\": \"in\",\n                  \"dimension\": \"hw.network.port.port_channel\",\n                  \"values\": [\n                    \"${PC_A}\"\n                  ]\n                }\n              ]\n            },\n            {\n              \"type\": \"and\",\n              \"fields\": [\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.role\",\n                  \"value\": \"iom_uplink\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.type\",\n                  \"value\": \"ethernet\"\n                },\n                {\n                  \"type\": \"search\",\n                  \"dimension\": \"name\",\n                  \"query\": {\n                    \"type\": \"insensitive_contains\",\n                    \"value\": \"Nif${ChassisId}/\"\n                  }\n                }\n              ]\n            },\n            {\n              \"type\": \"and\",\n              \"fields\": [\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.type\",\n                  \"value\": \"backplane_port\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.role\",\n                  \"value\": \"host_port\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.chassis.number\",\n                  \"value\": \"${ChassisId}\"\n                }\n              ]\n            }\n          ]\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"longSum\",\n        \"name\": \"eth_pause\",\n        \"fieldName\": \"hw.errors_network_transmit_pause\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"fc_pause\",\n        \"fieldName\": \"hw.network.packets_transmit_ppp\"\n      }\n    ]\n  }"
+                method: POST
+          title: 'A: FC Congestion (Sum)'
+          transformations:
+            - id: groupingToMatrix
+              options:
+                columnField: Domain Name
+                rowField: Time
+                valueField: fc_pause
+          type: stat
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          description: Pause Frames for Ethernet traffic in Fabric B
+          fieldConfig:
+            defaults:
+                color:
+                    mode: thresholds
+                mappings: []
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: purple
+            overrides: []
+          gridPos:
+            h: 4
+            w: 6
+            x: 12
+            "y": 13
+          id: 99
+          options:
+            colorMode: none
+            graphMode: area
+            justifyMode: auto
+            orientation: auto
+            percentChangeColorMode: standard
+            reduceOptions:
+                calcs:
+                    - sum
+                fields: ""
+                values: false
+            showPercentChange: false
+            textMode: auto
+            wideLayout: true
+          pluginVersion: 12.0.0-86898
+          targets:
+            - columns:
+                - selector: timestamp
+                  text: Time
+                  type: timestamp
+                - selector: event.domain_name
+                  text: Domain Name
+                  type: string
+                - selector: event.eth_pause
+                  text: eth_pause
+                  type: number
+                - selector: event.fc_pause
+                  text: fc_pause
+                  type: number
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": {\n       \"type\": \"duration\",\n       \"duration\": $__interval_ms,\n       \"timeZone\": \"$__timezone\"\n    },\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\",\n      \"port_spec\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"expression\",\n      \"name\": \"port_spec\",\n      \"expression\": \"concat(port_role + ' # ' + name)\",\n      \"outputType\": \"STRING\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${DomainName:doublequote}]\n        },\n        {\n          \"type\": \"search\",\n          \"dimension\": \"host.name\",\n          \"query\": {\n            \"type\": \"insensitive_contains\",\n            \"value\": \" FI-B\"\n          }\n        },\n        { \"type\": \"not\", \"field\": \n          {\n            \"type\": \"in\",\n            \"dimension\": \"hw.network.port.role\",\n            \"values\": [\n              \"eth_uplink_pc\",\n              \"host_pc\",\n              \"server_pc\",\n              \"fabric_pc\",\n              \"fc_uplink\",\n              \"fc_storage\",\n              \"iom_uplink\",\n              \"vnic\",\n              \"vhba\",\n              \"vethernet\",\n              \"vfc\",\n              \"unconfigured\"\n            ]\n          }\n        },\n        {\n          \"type\": \"or\",\n          \"fields\": [\n            {\n              \"type\": \"and\",\n              \"fields\": [\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.type\",\n                  \"value\": \"ethernet\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.role\",\n                  \"value\": \"eth_uplink\"\n                }\n              ]\n            },\n            {\n              \"type\": \"and\",\n              \"fields\": [\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.type\",\n                  \"value\": \"ethernet\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.role\",\n                  \"value\": \"server\"\n                },\n                {\n                  \"type\": \"in\",\n                  \"dimension\": \"hw.network.port.port_channel\",\n                  \"values\": [\n                    \"${PC_B}\"\n                  ]\n                }\n              ]\n            },\n            {\n              \"type\": \"and\",\n              \"fields\": [\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.role\",\n                  \"value\": \"iom_uplink\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.type\",\n                  \"value\": \"ethernet\"\n                },\n                {\n                  \"type\": \"search\",\n                  \"dimension\": \"name\",\n                  \"query\": {\n                    \"type\": \"insensitive_contains\",\n                    \"value\": \"Nif${ChassisId}/\"\n                  }\n                }\n              ]\n            },\n            {\n              \"type\": \"and\",\n              \"fields\": [\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.type\",\n                  \"value\": \"backplane_port\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.role\",\n                  \"value\": \"host_port\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.chassis.number\",\n                  \"value\": \"${ChassisId}\"\n                }\n              ]\n            }\n          ]\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"longSum\",\n        \"name\": \"eth_pause\",\n        \"fieldName\": \"hw.errors_network_transmit_pause\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"fc_pause\",\n        \"fieldName\": \"hw.network.packets_transmit_ppp\"\n      }\n    ]\n  }"
+                method: POST
+          title: 'B: Ethernet Congestion (Sum)'
+          transformations:
+            - id: groupingToMatrix
+              options:
+                columnField: Domain Name
+                rowField: Time
+                valueField: eth_pause
+          type: stat
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          description: Pause Frames for FC traffic in Fabric B
+          fieldConfig:
+            defaults:
+                color:
+                    mode: thresholds
+                mappings: []
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: blue
+            overrides: []
+          gridPos:
+            h: 4
+            w: 6
+            x: 18
+            "y": 13
+          id: 100
+          options:
+            colorMode: none
+            graphMode: area
+            justifyMode: auto
+            orientation: auto
+            percentChangeColorMode: standard
+            reduceOptions:
+                calcs:
+                    - sum
+                fields: ""
+                values: false
+            showPercentChange: false
+            textMode: auto
+            wideLayout: true
+          pluginVersion: 12.0.0-86898
+          targets:
+            - columns:
+                - selector: timestamp
+                  text: Time
+                  type: timestamp
+                - selector: event.domain_name
+                  text: Domain Name
+                  type: string
+                - selector: event.eth_pause
+                  text: eth_pause
+                  type: number
+                - selector: event.fc_pause
+                  text: fc_pause
+                  type: number
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": {\n       \"type\": \"duration\",\n       \"duration\": $__interval_ms,\n       \"timeZone\": \"$__timezone\"\n    },\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\",\n      \"port_spec\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"expression\",\n      \"name\": \"port_spec\",\n      \"expression\": \"concat(port_role + ' # ' + name)\",\n      \"outputType\": \"STRING\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${DomainName:doublequote}]\n        },\n        {\n          \"type\": \"search\",\n          \"dimension\": \"host.name\",\n          \"query\": {\n            \"type\": \"insensitive_contains\",\n            \"value\": \" FI-B\"\n          }\n        },\n        { \"type\": \"not\", \"field\": \n          {\n            \"type\": \"in\",\n            \"dimension\": \"hw.network.port.role\",\n            \"values\": [\n              \"eth_uplink_pc\",\n              \"host_pc\",\n              \"server_pc\",\n              \"fabric_pc\",\n              \"fc_uplink\",\n              \"fc_storage\",\n              \"iom_uplink\",\n              \"vnic\",\n              \"vhba\",\n              \"vethernet\",\n              \"vfc\",\n              \"unconfigured\"\n            ]\n          }\n        },\n        {\n          \"type\": \"or\",\n          \"fields\": [\n            {\n              \"type\": \"and\",\n              \"fields\": [\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.type\",\n                  \"value\": \"ethernet\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.role\",\n                  \"value\": \"eth_uplink\"\n                }\n              ]\n            },\n            {\n              \"type\": \"and\",\n              \"fields\": [\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.type\",\n                  \"value\": \"ethernet\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.role\",\n                  \"value\": \"server\"\n                },\n                {\n                  \"type\": \"in\",\n                  \"dimension\": \"hw.network.port.port_channel\",\n                  \"values\": [\n                    \"${PC_B}\"\n                  ]\n                }\n              ]\n            },\n            {\n              \"type\": \"and\",\n              \"fields\": [\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.role\",\n                  \"value\": \"iom_uplink\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.type\",\n                  \"value\": \"ethernet\"\n                },\n                {\n                  \"type\": \"search\",\n                  \"dimension\": \"name\",\n                  \"query\": {\n                    \"type\": \"insensitive_contains\",\n                    \"value\": \"Nif${ChassisId}/\"\n                  }\n                }\n              ]\n            },\n            {\n              \"type\": \"and\",\n              \"fields\": [\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.type\",\n                  \"value\": \"backplane_port\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.role\",\n                  \"value\": \"host_port\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.chassis.number\",\n                  \"value\": \"${ChassisId}\"\n                }\n              ]\n            }\n          ]\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"longSum\",\n        \"name\": \"eth_pause\",\n        \"fieldName\": \"hw.errors_network_transmit_pause\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"fc_pause\",\n        \"fieldName\": \"hw.network.packets_transmit_ppp\"\n      }\n    ]\n  }"
+                method: POST
+          title: 'B: FC Congestion (Sum)'
+          transformations:
+            - id: groupingToMatrix
+              options:
+                columnField: Domain Name
+                rowField: Time
+                valueField: fc_pause
+          type: stat
         - datasource:
             type: yesoreyeram-infinity-datasource
             uid: ${DataSource}
@@ -3291,7 +3580,7 @@ spec:
             h: 4
             w: 12
             x: 0
-            "y": 16
+            "y": 17
           id: 92
           options:
             colorMode: none
@@ -3307,7 +3596,7 @@ spec:
             showPercentChange: false
             textMode: auto
             wideLayout: true
-          pluginVersion: 12.0.0-86782
+          pluginVersion: 12.0.0-86898
           targets:
             - columns:
                 - selector: timestamp
@@ -3378,7 +3667,7 @@ spec:
             h: 4
             w: 12
             x: 12
-            "y": 16
+            "y": 17
           id: 93
           options:
             colorMode: none
@@ -3394,7 +3683,7 @@ spec:
             showPercentChange: false
             textMode: auto
             wideLayout: true
-          pluginVersion: 12.0.0-86782
+          pluginVersion: 12.0.0-86898
           targets:
             - columns:
                 - selector: timestamp
@@ -3451,7 +3740,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 20
+            "y": 21
           id: 41
           panels: []
           title: Utilization (%)
@@ -3612,7 +3901,7 @@ spec:
             h: 9
             w: 12
             x: 0
-            "y": 21
+            "y": 22
           id: 79
           options:
             cellHeight: sm
@@ -3627,7 +3916,7 @@ spec:
             sortBy:
                 - desc: true
                   displayName: Avg Utilization
-          pluginVersion: 12.0.0-86782
+          pluginVersion: 12.0.0-86898
           targets:
             - columns:
                 - selector: event.domain_name
@@ -3861,7 +4150,7 @@ spec:
             h: 9
             w: 12
             x: 12
-            "y": 21
+            "y": 22
           id: 80
           options:
             cellHeight: sm
@@ -3876,7 +4165,7 @@ spec:
             sortBy:
                 - desc: true
                   displayName: Avg Utilization
-          pluginVersion: 12.0.0-86782
+          pluginVersion: 12.0.0-86898
           targets:
             - columns:
                 - selector: event.domain_name
@@ -3958,7 +4247,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 30
+            "y": 31
           id: 43
           panels: []
           title: Utilization (bps)
@@ -4112,7 +4401,7 @@ spec:
             h: 9
             w: 12
             x: 0
-            "y": 31
+            "y": 32
           id: 77
           options:
             cellHeight: sm
@@ -4126,8 +4415,8 @@ spec:
             showHeader: true
             sortBy:
                 - desc: true
-                  displayName: Max Utilization
-          pluginVersion: 12.0.0-86517
+                  displayName: Avg Utilization
+          pluginVersion: 12.0.0-86898
           targets:
             - columns:
                 - selector: event.domain_name
@@ -4370,7 +4659,7 @@ spec:
             h: 9
             w: 12
             x: 12
-            "y": 31
+            "y": 32
           id: 78
           options:
             cellHeight: sm
@@ -4385,7 +4674,7 @@ spec:
             sortBy:
                 - desc: true
                   displayName: Avg Utilization
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86898
           targets:
             - columns:
                 - selector: event.domain_name
@@ -4474,36 +4763,535 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 40
+            "y": 41
           id: 42
           panels: []
           title: Congestion
           type: row
-        - fieldConfig:
-            defaults: {}
-            overrides: []
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          fieldConfig:
+            defaults:
+                color:
+                    mode: thresholds
+                custom:
+                    align: auto
+                    cellOptions:
+                        type: auto
+                    filterable: true
+                    inspect: false
+                fieldMinMax: true
+                mappings: []
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: blue
+            overrides:
+                - matcher:
+                    id: byType
+                    options: number
+                  properties:
+                    - id: custom.cellOptions
+                      value:
+                        mode: gradient
+                        type: gauge
+                        valueDisplayMode: text
+                    - id: custom.align
+                      value: left
+                - matcher:
+                    id: byName
+                    options: Fabric
+                  properties:
+                    - id: custom.align
+                      value: center
+                    - id: custom.width
+                      value: 75
+                    - id: mappings
+                      value:
+                        - options:
+                            pattern: .*(A|B)
+                            result:
+                                index: 0
+                                text: $1
+                          type: regex
+                - matcher:
+                    id: byName
+                    options: Chassis
+                  properties:
+                    - id: custom.width
+                      value: 90
+                    - id: custom.align
+                      value: center
+                - matcher:
+                    id: byName
+                    options: Role
+                  properties:
+                    - id: custom.width
+                      value: 90
+                - matcher:
+                    id: byName
+                    options: Port
+                  properties:
+                    - id: mappings
+                      value:
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/[1-4])$'
+                            result:
+                                index: 0
+                                text: Slot 1 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/[5-8])$'
+                            result:
+                                index: 1
+                                text: Slot 2 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/([9]|1[0-2]))$'
+                            result:
+                                index: 2
+                                text: Slot 3 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/1[3-6])$'
+                            result:
+                                index: 3
+                                text: Slot 4 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/(1[7-9]|20))$'
+                            result:
+                                index: 4
+                                text: Slot 5 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/2[1-4])$'
+                            result:
+                                index: 5
+                                text: Slot 6 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/2[5-8])$'
+                            result:
+                                index: 6
+                                text: Slot 7 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/(29|3[0-2]))$'
+                            result:
+                                index: 7
+                                text: Slot 8 ($1)
+                          type: regex
+                        - options:
+                            pattern: ^.*Ethernet([0-9]+/[0-9]+/[0-9]+).*$
+                            result:
+                                index: 8
+                                text: $1
+                          type: regex
+                        - options:
+                            pattern: ^.*Ethernet([0-9]+/[0-9]+).*$
+                            result:
+                                index: 9
+                                text: $1
+                          type: regex
+                        - options:
+                            pattern: ^.*Nif([0-9]+/[0-9]+/[0-9]+).*$
+                            result:
+                                index: 10
+                                text: $1
+                          type: regex
+                        - options:
+                            pattern: ^.*port-channel([0-9]*).*$
+                            result:
+                                index: 11
+                                text: PC$1
+                          type: regex
+                    - id: custom.width
+                      value: 102
+                    - id: custom.align
+                      value: center
           gridPos:
-            h: 2
-            w: 24
+            h: 9
+            w: 12
             x: 0
-            "y": 41
-          id: 84
+            "y": 42
+          id: 95
           options:
-            code:
-                language: plaintext
-                showLineNumbers: false
-                showMiniMap: false
-            content: '# TO BE IMPLEMENTED'
-            mode: markdown
-          pluginVersion: 12.0.0-86517
-          title: ""
-          type: text
+            cellHeight: sm
+            footer:
+                countRows: false
+                enablePagination: true
+                fields: ""
+                reducer:
+                    - sum
+                show: false
+            showHeader: true
+            sortBy:
+                - desc: true
+                  displayName: Total
+          pluginVersion: 12.0.0-86898
+          targets:
+            - columns:
+                - selector: timestamp
+                  text: Time
+                  type: timestamp
+                - selector: event.port_role
+                  text: Role
+                  type: string
+                - selector: event.eth_pause
+                  text: Ethernet
+                  type: number
+                - selector: event.fc_pause
+                  text: FC
+                  type: number
+                - selector: event.domain_name
+                  text: Domain
+                  type: string
+                - selector: event.host_name
+                  text: Fabric
+                  type: string
+                - selector: event.chassis_number
+                  text: Chassis
+                  type: string
+                - selector: event.port_spec
+                  text: Port
+                  type: string
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\",\n      \"port_spec\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"expression\",\n      \"name\": \"port_spec\",\n      \"expression\": \"concat(port_role + ' # ' + name)\",\n      \"outputType\": \"STRING\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${DomainName:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n          {\n            \"type\": \"in\",\n            \"dimension\": \"hw.network.port.role\",\n            \"values\": [\n              \"eth_uplink_pc\",\n              \"host_pc\",\n              \"server_pc\",\n              \"fabric_pc\",\n              \"fc_uplink\",\n              \"fc_storage\",\n              \"iom_uplink\",\n              \"vnic\",\n              \"vhba\",\n              \"vethernet\",\n              \"vfc\",\n              \"unconfigured\"\n            ]\n          }\n        },\n        {\n          \"type\": \"or\",\n          \"fields\": [\n            {\n              \"type\": \"and\",\n              \"fields\": [\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.type\",\n                  \"value\": \"ethernet\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.role\",\n                  \"value\": \"eth_uplink\"\n                }\n              ]\n            },\n            {\n              \"type\": \"and\",\n              \"fields\": [\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.type\",\n                  \"value\": \"ethernet\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.role\",\n                  \"value\": \"server\"\n                },\n                {\n                  \"type\": \"in\",\n                  \"dimension\": \"hw.network.port.port_channel\",\n                  \"values\": [\n                    \"${PC_A}\",\n                    \"${PC_B}\"\n                  ]\n                }\n              ]\n            },\n            {\n              \"type\": \"and\",\n              \"fields\": [\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.role\",\n                  \"value\": \"iom_uplink\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.type\",\n                  \"value\": \"ethernet\"\n                },\n                {\n                  \"type\": \"search\",\n                  \"dimension\": \"name\",\n                  \"query\": {\n                    \"type\": \"insensitive_contains\",\n                    \"value\": \"Nif${ChassisId}/\"\n                  }\n                }\n              ]\n            },\n            {\n              \"type\": \"and\",\n              \"fields\": [\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.type\",\n                  \"value\": \"backplane_port\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.role\",\n                  \"value\": \"host_port\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.chassis.number\",\n                  \"value\": \"${ChassisId}\"\n                }\n              ]\n            }\n          ]\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"longSum\",\n        \"name\": \"eth_pause\",\n        \"fieldName\": \"hw.errors_network_transmit_pause\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"fc_pause\",\n        \"fieldName\": \"hw.network.packets_transmit_ppp\"\n      }\n    ]\n  }"
+                method: POST
+          title: Transmit pause frames per port (Sum)
+          transformations:
+            - id: calculateField
+              options:
+                alias: Total
+                binary:
+                    left:
+                        matcher:
+                            id: byName
+                            options: Ethernet
+                    right:
+                        matcher:
+                            id: byName
+                            options: FC
+                mode: binary
+                reduce:
+                    reducer: sum
+            - id: organize
+              options:
+                excludeByName:
+                    Time: true
+                includeByName: {}
+                indexByName:
+                    Chassis: 2
+                    Domain: 0
+                    Ethernet Congestion: 7
+                    FC Congestion: 8
+                    Fabric: 1
+                    Port: 3
+                    Role: 4
+                    Time: 5
+                    Total: 6
+                renameByName:
+                    Eth Pause: ""
+                    FC: ""
+            - id: filterByValue
+              options:
+                filters:
+                    - config:
+                        id: isNull
+                        options: {}
+                      fieldName: Total
+                    - config:
+                        id: lowerOrEqual
+                        options:
+                            value: 0
+                      fieldName: Total
+                match: any
+                type: exclude
+          type: table
+        - datasource:
+            type: yesoreyeram-infinity-datasource
+            uid: ${DataSource}
+          fieldConfig:
+            defaults:
+                color:
+                    mode: thresholds
+                custom:
+                    align: auto
+                    cellOptions:
+                        type: auto
+                    filterable: true
+                    inspect: false
+                fieldMinMax: true
+                mappings: []
+                thresholds:
+                    mode: percentage
+                    steps:
+                        - color: blue
+            overrides:
+                - matcher:
+                    id: byType
+                    options: number
+                  properties:
+                    - id: custom.cellOptions
+                      value:
+                        mode: gradient
+                        type: gauge
+                        valueDisplayMode: text
+                    - id: custom.align
+                      value: left
+                - matcher:
+                    id: byName
+                    options: Fabric
+                  properties:
+                    - id: custom.align
+                      value: center
+                    - id: custom.width
+                      value: 75
+                    - id: mappings
+                      value:
+                        - options:
+                            pattern: .*(A|B)
+                            result:
+                                index: 0
+                                text: $1
+                          type: regex
+                - matcher:
+                    id: byName
+                    options: Chassis
+                  properties:
+                    - id: custom.width
+                      value: 90
+                    - id: custom.align
+                      value: center
+                - matcher:
+                    id: byName
+                    options: Role
+                  properties:
+                    - id: custom.width
+                      value: 90
+                - matcher:
+                    id: byName
+                    options: Port
+                  properties:
+                    - id: mappings
+                      value:
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/[1-4])$'
+                            result:
+                                index: 0
+                                text: Slot 1 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/[5-8])$'
+                            result:
+                                index: 1
+                                text: Slot 2 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/([9]|1[0-2]))$'
+                            result:
+                                index: 2
+                                text: Slot 3 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/1[3-6])$'
+                            result:
+                                index: 3
+                                text: Slot 4 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/(1[7-9]|20))$'
+                            result:
+                                index: 4
+                                text: Slot 5 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/2[1-4])$'
+                            result:
+                                index: 5
+                                text: Slot 6 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/2[5-8])$'
+                            result:
+                                index: 6
+                                text: Slot 7 ($1)
+                          type: regex
+                        - options:
+                            pattern: '^host_port # Ethernet([0-9]+/1/(29|3[0-2]))$'
+                            result:
+                                index: 7
+                                text: Slot 8 ($1)
+                          type: regex
+                        - options:
+                            pattern: ^.*Ethernet([0-9]+/[0-9]+/[0-9]+).*$
+                            result:
+                                index: 8
+                                text: $1
+                          type: regex
+                        - options:
+                            pattern: ^.*Ethernet([0-9]+/[0-9]+).*$
+                            result:
+                                index: 9
+                                text: $1
+                          type: regex
+                        - options:
+                            pattern: ^.*Nif([0-9]+/[0-9]+/[0-9]+).*$
+                            result:
+                                index: 10
+                                text: $1
+                          type: regex
+                        - options:
+                            pattern: ^.*port-channel([0-9]*).*$
+                            result:
+                                index: 11
+                                text: PC$1
+                          type: regex
+                    - id: custom.width
+                      value: 102
+                    - id: custom.align
+                      value: center
+          gridPos:
+            h: 9
+            w: 12
+            x: 12
+            "y": 42
+          id: 96
+          options:
+            cellHeight: sm
+            footer:
+                countRows: false
+                enablePagination: true
+                fields: ""
+                reducer:
+                    - sum
+                show: false
+            showHeader: true
+            sortBy:
+                - desc: true
+                  displayName: Total
+          pluginVersion: 12.0.0-86898
+          targets:
+            - columns:
+                - selector: timestamp
+                  text: Time
+                  type: timestamp
+                - selector: event.port_role
+                  text: Role
+                  type: string
+                - selector: event.eth_pause
+                  text: Ethernet
+                  type: number
+                - selector: event.fc_pause
+                  text: FC
+                  type: number
+                - selector: event.domain_name
+                  text: Domain
+                  type: string
+                - selector: event.host_name
+                  text: Fabric
+                  type: string
+                - selector: event.chassis_number
+                  text: Chassis
+                  type: string
+                - selector: event.port_spec
+                  text: Port
+                  type: string
+              datasource:
+                type: yesoreyeram-infinity-datasource
+                uid: ${DataSource}
+              filters: []
+              format: table
+              global_query_id: ""
+              parser: backend
+              refId: A
+              root_selector: ""
+              source: url
+              type: json
+              uql: |-
+                parse-json
+                | project "Timestamp"=todatetime("timestamp"), "event"
+              url: /api/v1/telemetry/TimeSeries
+              url_options:
+                body_content_type: application/json
+                body_type: raw
+                data: "  {\n    \"queryType\": \"groupBy\",\n    \"dataSource\": \"NetworkInterfaces\",\n    \"granularity\": \"all\",\n    \"intervals\": [\"${__from:date}/${__to:date}\"],\n    \"dimensions\": [\n      \"domain_name\",\n      \"host_name\",\n      \"chassis_number\",\n      \"port_role\",\n      \"name\",\n      \"port_spec\"\n    ],\n    \"virtualColumns\": [{\n      \"type\": \"nested-field\",\n      \"columnName\": \"intersight.domain.name\",\n      \"outputName\": \"domain_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"host.name\",\n      \"outputName\": \"host_name\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.chassis.number\",\n      \"outputName\": \"chassis_number\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"nested-field\",\n      \"columnName\": \"hw.network.port.role\",\n      \"outputName\": \"port_role\",\n      \"expectedType\": \"STRING\",\n      \"path\": \"$\"\n    },{\n      \"type\": \"expression\",\n      \"name\": \"port_spec\",\n      \"expression\": \"concat(port_role + ' # ' + name)\",\n      \"outputType\": \"STRING\"\n    }],\n    \"filter\": {\n      \"type\": \"and\",\n      \"fields\": [\n        {\n          \"type\": \"in\",\n          \"dimension\": \"intersight.domain.name\",\n          \"values\": [${DomainName:doublequote}]\n        },\n        { \"type\": \"not\", \"field\": \n          {\n            \"type\": \"in\",\n            \"dimension\": \"hw.network.port.role\",\n            \"values\": [\n              \"eth_uplink_pc\",\n              \"host_pc\",\n              \"server_pc\",\n              \"fabric_pc\",\n              \"fc_uplink\",\n              \"fc_storage\",\n              \"iom_uplink\",\n              \"vnic\",\n              \"vhba\",\n              \"vethernet\",\n              \"vfc\",\n              \"unconfigured\"\n            ]\n          }\n        },\n        {\n          \"type\": \"or\",\n          \"fields\": [\n            {\n              \"type\": \"and\",\n              \"fields\": [\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.type\",\n                  \"value\": \"ethernet\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.role\",\n                  \"value\": \"eth_uplink\"\n                }\n              ]\n            },\n            {\n              \"type\": \"and\",\n              \"fields\": [\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.type\",\n                  \"value\": \"ethernet\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.role\",\n                  \"value\": \"server\"\n                },\n                {\n                  \"type\": \"in\",\n                  \"dimension\": \"hw.network.port.port_channel\",\n                  \"values\": [\n                    \"${PC_A}\",\n                    \"${PC_B}\"\n                  ]\n                }\n              ]\n            },\n            {\n              \"type\": \"and\",\n              \"fields\": [\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.role\",\n                  \"value\": \"iom_uplink\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.type\",\n                  \"value\": \"ethernet\"\n                },\n                {\n                  \"type\": \"search\",\n                  \"dimension\": \"name\",\n                  \"query\": {\n                    \"type\": \"insensitive_contains\",\n                    \"value\": \"Nif${ChassisId}/\"\n                  }\n                }\n              ]\n            },\n            {\n              \"type\": \"and\",\n              \"fields\": [\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.type\",\n                  \"value\": \"backplane_port\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.network.port.role\",\n                  \"value\": \"host_port\"\n                },\n                {\n                  \"type\": \"selector\",\n                  \"dimension\": \"hw.chassis.number\",\n                  \"value\": \"${ChassisId}\"\n                }\n              ]\n            }\n          ]\n        },\n        {\n          \"type\": \"selector\",\n          \"dimension\": \"instrument.name\",\n          \"value\": \"hw.network\"\n        }\n      ]\n    },\n    \"aggregations\": [\n      {\n        \"type\": \"longSum\",\n        \"name\": \"eth_pause\",\n        \"fieldName\": \"hw.errors_network_receive_pause\"\n      },\n      {\n        \"type\": \"longSum\",\n        \"name\": \"fc_pause\",\n        \"fieldName\": \"hw.network.packets_receive_ppp\"\n      }\n    ]\n  }"
+                method: POST
+          title: Receive pause frames per port (Sum)
+          transformations:
+            - id: calculateField
+              options:
+                alias: Total
+                binary:
+                    left:
+                        matcher:
+                            id: byName
+                            options: Ethernet
+                    right:
+                        matcher:
+                            id: byName
+                            options: FC
+                mode: binary
+                reduce:
+                    reducer: sum
+            - id: organize
+              options:
+                excludeByName:
+                    Time: true
+                includeByName: {}
+                indexByName:
+                    Chassis: 2
+                    Domain: 0
+                    Ethernet Congestion: 7
+                    FC Congestion: 8
+                    Fabric: 1
+                    Port: 3
+                    Role: 4
+                    Time: 5
+                    Total: 6
+                renameByName:
+                    Eth Pause: ""
+                    FC: ""
+            - id: filterByValue
+              options:
+                filters:
+                    - config:
+                        id: isNull
+                        options: {}
+                      fieldName: Total
+                    - config:
+                        id: lowerOrEqual
+                        options:
+                            value: 0
+                      fieldName: Total
+                match: any
+                type: exclude
+          type: table
         - collapsed: false
           gridPos:
             h: 1
             w: 24
             x: 0
-            "y": 43
+            "y": 51
           id: 40
           panels: []
           title: Errors
@@ -4657,7 +5445,7 @@ spec:
             h: 8
             w: 24
             x: 0
-            "y": 44
+            "y": 52
           id: 49
           options:
             cellHeight: sm
@@ -4672,7 +5460,7 @@ spec:
             sortBy:
                 - desc: true
                   displayName: Total
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86898
           targets:
             - columns:
                 - selector: event.domain_name
@@ -4793,7 +5581,7 @@ spec:
             h: 1
             w: 24
             x: 0
-            "y": 52
+            "y": 60
           id: 38
           panels: []
           title: Server Utilization
@@ -4843,7 +5631,7 @@ spec:
             h: 9
             w: 12
             x: 0
-            "y": 53
+            "y": 61
           id: 47
           options:
             cellHeight: sm
@@ -4858,7 +5646,7 @@ spec:
             sortBy:
                 - desc: true
                   displayName: Utilization
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86898
           targets:
             - columns:
                 - selector: event.domain_name
@@ -5029,7 +5817,7 @@ spec:
             h: 9
             w: 12
             x: 12
-            "y": 53
+            "y": 61
           id: 48
           options:
             cellHeight: sm
@@ -5044,7 +5832,7 @@ spec:
             sortBy:
                 - desc: true
                   displayName: Utilization
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86898
           targets:
             - columns:
                 - selector: event.domain_name
@@ -5207,7 +5995,7 @@ spec:
             h: 9
             w: 12
             x: 0
-            "y": 62
+            "y": 70
           id: 81
           options:
             cellHeight: sm
@@ -5222,7 +6010,7 @@ spec:
             sortBy:
                 - desc: true
                   displayName: Utilization
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86898
           targets:
             - columns:
                 - selector: event.domain_name
@@ -5385,7 +6173,7 @@ spec:
             h: 9
             w: 12
             x: 12
-            "y": 62
+            "y": 70
           id: 82
           options:
             cellHeight: sm
@@ -5400,7 +6188,7 @@ spec:
             sortBy:
                 - desc: true
                   displayName: Utilization
-          pluginVersion: 12.0.0-86517
+          pluginVersion: 12.0.0-86898
           targets:
             - columns:
                 - selector: event.domain_name
