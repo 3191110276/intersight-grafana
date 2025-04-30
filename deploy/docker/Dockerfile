@@ -1,4 +1,4 @@
-FROM grafana/grafana:latest
+FROM grafana/grafana:11.6.1
 
 USER root
 
@@ -6,7 +6,7 @@ RUN grafana-cli plugins install yesoreyeram-infinity-datasource
 
 RUN grafana-cli plugins install marcusolsson-dynamictext-panel
 
-RUN apk update && apk add git
+RUN apk add git --no-cache
 
 RUN wget https://github.com/grafana/grizzly/releases/latest/download/grr-linux-amd64
 
