@@ -376,7 +376,7 @@ spec:
             showPercentChange: false
             textMode: auto
             wideLayout: true
-          pluginVersion: 12.0.0-86898
+          pluginVersion: 12.0.0
           targets:
             - columns:
                 - selector: timestamp
@@ -527,7 +527,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86898
+          pluginVersion: 12.0.0
           targets:
             - columns:
                 - selector: timestamp
@@ -687,7 +687,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86898
+          pluginVersion: 12.0.0
           targets:
             - columns:
                 - selector: timestamp
@@ -822,7 +822,7 @@ spec:
             showPercentChange: false
             textMode: auto
             wideLayout: true
-          pluginVersion: 12.0.0-86898
+          pluginVersion: 12.0.0
           targets:
             - columns:
                 - selector: timestamp
@@ -950,7 +950,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-86898
+          pluginVersion: 12.0.0
           targets:
             - columns:
                 - selector: timestamp
@@ -1103,7 +1103,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86898
+          pluginVersion: 12.0.0
           targets:
             - columns:
                 - selector: timestamp
@@ -1263,7 +1263,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86898
+          pluginVersion: 12.0.0
           targets:
             - columns:
                 - selector: timestamp
@@ -1355,7 +1355,7 @@ spec:
                         ]
                       }
                 method: POST
-          title: 'B: Eth transmit utilization per domain (Sum)'
+          title: 'B: Eth receive utilization per domain (Sum)'
           transformations:
             - id: groupingToMatrix
               options:
@@ -1398,7 +1398,7 @@ spec:
             showPercentChange: false
             textMode: auto
             wideLayout: true
-          pluginVersion: 12.0.0-86898
+          pluginVersion: 12.0.0
           targets:
             - columns:
                 - selector: timestamp
@@ -1542,7 +1542,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-86898
+          pluginVersion: 12.0.0
           targets:
             - columns:
                 - selector: timestamp
@@ -1701,7 +1701,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86898
+          pluginVersion: 12.0.0
           targets:
             - columns:
                 - selector: timestamp
@@ -1864,7 +1864,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86898
+          pluginVersion: 12.0.0
           targets:
             - columns:
                 - selector: timestamp
@@ -2008,7 +2008,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-86898
+          pluginVersion: 12.0.0
           targets:
             - columns:
                 - selector: timestamp
@@ -2148,7 +2148,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-86898
+          pluginVersion: 12.0.0
           targets:
             - columns:
                 - selector: timestamp
@@ -2307,7 +2307,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86898
+          pluginVersion: 12.0.0
           targets:
             - columns:
                 - selector: timestamp
@@ -2470,7 +2470,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86898
+          pluginVersion: 12.0.0
           targets:
             - columns:
                 - selector: timestamp
@@ -2614,7 +2614,7 @@ spec:
             showPercentChange: false
             textMode: value
             wideLayout: true
-          pluginVersion: 12.0.0-86898
+          pluginVersion: 12.0.0
           targets:
             - columns:
                 - selector: timestamp
