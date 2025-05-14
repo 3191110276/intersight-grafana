@@ -41,7 +41,9 @@ Step 6: Fill in the Intersight URL in the "Allowed Hosts" field:
 
 Step 7: Switch to the "URL, Headers & Params" section. Populate the "Base URL" field. The value should be identical to the one you provided in Step 6.
 
-Step 8: Save the Data Source. You should now be able to us this account/appliance in Grafana, including the imported dashboards.
+Step 8: Toggle "Encode query parameters with %20" to ensure that the setting is active.
+
+Step 9: Save the Data Source. You should now be able to us this account/appliance in Grafana, including the imported dashboards.
 
 ## Import and Export of Grafana elements
 
