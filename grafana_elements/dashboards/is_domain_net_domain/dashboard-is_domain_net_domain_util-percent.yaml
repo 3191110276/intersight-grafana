@@ -378,7 +378,7 @@ spec:
                             mode: "off"
                     decimals: 1
                     mappings: []
-                    max: 100
+                    max: 1
                     min: 0
                     thresholds:
                         mode: percentage
@@ -388,13 +388,13 @@ spec:
                               value: 70
                             - color: red
                               value: 90
-                    unit: percent
+                    unit: percentunit
                 overrides: []
               gridPos:
                 h: 6
                 w: 12
                 x: 0
-                "y": 5
+                "y": 7
               id: 62
               options:
                 legend:
@@ -406,7 +406,7 @@ spec:
                     hideZeros: false
                     mode: multi
                     sort: desc
-              pluginVersion: 12.0.0-86517
+              pluginVersion: 12.0.0
               targets:
                 - columns:
                     - selector: timestamp
@@ -506,26 +506,11 @@ spec:
                     method: POST
               title: 'A: Transmit utilization in % per uplink PC (Max)'
               transformations:
-                - id: calculateField
-                  options:
-                    alias: NewUtilization
-                    binary:
-                        left:
-                            matcher:
-                                id: byName
-                                options: Utilization
-                        operator: '*'
-                        right:
-                            fixed: "100"
-                    mode: binary
-                    reduce:
-                        reducer: sum
-                    replaceFields: false
                 - id: groupingToMatrix
                   options:
                     columnField: Name
                     rowField: Time
-                    valueField: NewUtilization
+                    valueField: Utilization
                 - id: renameByRegex
                   options:
                     regex: (.*)port-channel(.*)
@@ -570,7 +555,7 @@ spec:
                             mode: "off"
                     decimals: 1
                     mappings: []
-                    max: 100
+                    max: 1
                     min: 0
                     thresholds:
                         mode: percentage
@@ -580,13 +565,13 @@ spec:
                               value: 70
                             - color: red
                               value: 90
-                    unit: percent
+                    unit: percentunit
                 overrides: []
               gridPos:
                 h: 6
                 w: 12
                 x: 12
-                "y": 5
+                "y": 7
               id: 64
               options:
                 legend:
@@ -598,7 +583,7 @@ spec:
                     hideZeros: false
                     mode: multi
                     sort: desc
-              pluginVersion: 12.0.0-86517
+              pluginVersion: 12.0.0
               targets:
                 - columns:
                     - selector: timestamp
@@ -698,26 +683,11 @@ spec:
                     method: POST
               title: 'B: Transmit utilization in % per uplink PC (Max)'
               transformations:
-                - id: calculateField
-                  options:
-                    alias: NewUtilization
-                    binary:
-                        left:
-                            matcher:
-                                id: byName
-                                options: Utilization
-                        operator: '*'
-                        right:
-                            fixed: "100"
-                    mode: binary
-                    reduce:
-                        reducer: sum
-                    replaceFields: false
                 - id: groupingToMatrix
                   options:
                     columnField: Name
                     rowField: Time
-                    valueField: NewUtilization
+                    valueField: Utilization
                 - id: renameByRegex
                   options:
                     regex: (.*)port-channel(.*)
@@ -762,7 +732,7 @@ spec:
                             mode: "off"
                     decimals: 1
                     mappings: []
-                    max: 100
+                    max: 1
                     min: 0
                     thresholds:
                         mode: percentage
@@ -772,13 +742,13 @@ spec:
                               value: 70
                             - color: red
                               value: 90
-                    unit: percent
+                    unit: percentunit
                 overrides: []
               gridPos:
                 h: 6
                 w: 12
                 x: 0
-                "y": 11
+                "y": 13
               id: 65
               options:
                 legend:
@@ -790,7 +760,7 @@ spec:
                     hideZeros: false
                     mode: multi
                     sort: desc
-              pluginVersion: 12.0.0-86517
+              pluginVersion: 12.0.0
               targets:
                 - columns:
                     - selector: timestamp
@@ -890,26 +860,11 @@ spec:
                     method: POST
               title: 'A: Receive utilization in % per uplink PC (Max)'
               transformations:
-                - id: calculateField
-                  options:
-                    alias: NewUtilization
-                    binary:
-                        left:
-                            matcher:
-                                id: byName
-                                options: Utilization
-                        operator: '*'
-                        right:
-                            fixed: "100"
-                    mode: binary
-                    reduce:
-                        reducer: sum
-                    replaceFields: false
                 - id: groupingToMatrix
                   options:
                     columnField: Name
                     rowField: Time
-                    valueField: NewUtilization
+                    valueField: Utilization
                 - id: renameByRegex
                   options:
                     regex: (.*)port-channel(.*)
@@ -954,7 +909,7 @@ spec:
                             mode: "off"
                     decimals: 1
                     mappings: []
-                    max: 100
+                    max: 1
                     min: 0
                     thresholds:
                         mode: percentage
@@ -964,13 +919,13 @@ spec:
                               value: 70
                             - color: red
                               value: 90
-                    unit: percent
+                    unit: percentunit
                 overrides: []
               gridPos:
                 h: 6
                 w: 12
                 x: 12
-                "y": 11
+                "y": 13
               id: 66
               options:
                 legend:
@@ -982,7 +937,7 @@ spec:
                     hideZeros: false
                     mode: multi
                     sort: desc
-              pluginVersion: 12.0.0-86517
+              pluginVersion: 12.0.0
               targets:
                 - columns:
                     - selector: timestamp
@@ -1082,26 +1037,11 @@ spec:
                     method: POST
               title: 'B: Receive utilization in % per uplink PC (Max)'
               transformations:
-                - id: calculateField
-                  options:
-                    alias: NewUtilization
-                    binary:
-                        left:
-                            matcher:
-                                id: byName
-                                options: Utilization
-                        operator: '*'
-                        right:
-                            fixed: "100"
-                    mode: binary
-                    reduce:
-                        reducer: sum
-                    replaceFields: false
                 - id: groupingToMatrix
                   options:
                     columnField: Name
                     rowField: Time
-                    valueField: NewUtilization
+                    valueField: Utilization
                 - id: renameByRegex
                   options:
                     regex: (.*)port-channel(.*)
@@ -1158,7 +1098,7 @@ spec:
                         mode: "off"
                 decimals: 1
                 mappings: []
-                max: 100
+                max: 1
                 min: 0
                 thresholds:
                     mode: percentage
@@ -1168,7 +1108,7 @@ spec:
                           value: 70
                         - color: red
                           value: 90
-                unit: percent
+                unit: percentunit
             overrides: []
           gridPos:
             h: 6
@@ -1186,7 +1126,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86782
+          pluginVersion: 12.0.0
           targets:
             - columns:
                 - selector: timestamp
@@ -1286,25 +1226,11 @@ spec:
                 method: POST
           title: 'A: Transmit utilization in % per uplink port (Max)'
           transformations:
-            - id: calculateField
-              options:
-                alias: NewUtilization
-                binary:
-                    left:
-                        matcher:
-                            id: byName
-                            options: Utilization
-                    operator: '*'
-                    right:
-                        fixed: "100"
-                mode: binary
-                reduce:
-                    reducer: sum
             - id: groupingToMatrix
               options:
                 columnField: Name
                 rowField: Time
-                valueField: NewUtilization
+                valueField: Utilization
             - id: renameByRegex
               options:
                 regex: (.*)Ethernet(.*)
@@ -1349,7 +1275,7 @@ spec:
                         mode: "off"
                 decimals: 1
                 mappings: []
-                max: 100
+                max: 1
                 min: 0
                 thresholds:
                     mode: percentage
@@ -1359,7 +1285,7 @@ spec:
                           value: 70
                         - color: red
                           value: 90
-                unit: percent
+                unit: percentunit
             overrides: []
           gridPos:
             h: 6
@@ -1377,7 +1303,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86782
+          pluginVersion: 12.0.0
           targets:
             - columns:
                 - selector: timestamp
@@ -1477,25 +1403,11 @@ spec:
                 method: POST
           title: 'B: Transmit utilization in % per uplink port (Max)'
           transformations:
-            - id: calculateField
-              options:
-                alias: NewUtilization
-                binary:
-                    left:
-                        matcher:
-                            id: byName
-                            options: Utilization
-                    operator: '*'
-                    right:
-                        fixed: "100"
-                mode: binary
-                reduce:
-                    reducer: sum
             - id: groupingToMatrix
               options:
                 columnField: Name
                 rowField: Time
-                valueField: NewUtilization
+                valueField: Utilization
             - id: renameByRegex
               options:
                 regex: (.*)Ethernet(.*)
@@ -1540,7 +1452,7 @@ spec:
                         mode: "off"
                 decimals: 1
                 mappings: []
-                max: 100
+                max: 1
                 min: 0
                 thresholds:
                     mode: percentage
@@ -1550,7 +1462,7 @@ spec:
                           value: 70
                         - color: red
                           value: 90
-                unit: percent
+                unit: percentunit
             overrides: []
           gridPos:
             h: 6
@@ -1568,7 +1480,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86782
+          pluginVersion: 12.0.0
           targets:
             - columns:
                 - selector: timestamp
@@ -1668,25 +1580,11 @@ spec:
                 method: POST
           title: 'A: Receive utilization in % per uplink port (Max)'
           transformations:
-            - id: calculateField
-              options:
-                alias: NewUtilization
-                binary:
-                    left:
-                        matcher:
-                            id: byName
-                            options: Utilization
-                    operator: '*'
-                    right:
-                        fixed: "100"
-                mode: binary
-                reduce:
-                    reducer: sum
             - id: groupingToMatrix
               options:
                 columnField: Name
                 rowField: Time
-                valueField: NewUtilization
+                valueField: Utilization
             - id: renameByRegex
               options:
                 regex: (.*)Ethernet(.*)
@@ -1731,7 +1629,7 @@ spec:
                         mode: "off"
                 decimals: 1
                 mappings: []
-                max: 100
+                max: 1
                 min: 0
                 thresholds:
                     mode: percentage
@@ -1741,7 +1639,7 @@ spec:
                           value: 70
                         - color: red
                           value: 90
-                unit: percent
+                unit: percentunit
             overrides: []
           gridPos:
             h: 6
@@ -1759,7 +1657,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86782
+          pluginVersion: 12.0.0
           targets:
             - columns:
                 - selector: timestamp
@@ -1859,25 +1757,11 @@ spec:
                 method: POST
           title: 'B: Receive utilization in % per uplink port (Max)'
           transformations:
-            - id: calculateField
-              options:
-                alias: NewUtilization
-                binary:
-                    left:
-                        matcher:
-                            id: byName
-                            options: Utilization
-                    operator: '*'
-                    right:
-                        fixed: "100"
-                mode: binary
-                reduce:
-                    reducer: sum
             - id: groupingToMatrix
               options:
                 columnField: Name
                 rowField: Time
-                valueField: NewUtilization
+                valueField: Utilization
             - id: renameByRegex
               options:
                 regex: (.*)Ethernet(.*)
@@ -1930,7 +1814,7 @@ spec:
                             mode: "off"
                     decimals: 1
                     mappings: []
-                    max: 100
+                    max: 1
                     min: 0
                     thresholds:
                         mode: percentage
@@ -1940,13 +1824,13 @@ spec:
                               value: 70
                             - color: red
                               value: 90
-                    unit: percent
+                    unit: percentunit
                 overrides: []
               gridPos:
                 h: 6
                 w: 12
                 x: 0
-                "y": 19
+                "y": 33
               id: 37
               options:
                 legend:
@@ -1958,7 +1842,7 @@ spec:
                     hideZeros: false
                     mode: multi
                     sort: desc
-              pluginVersion: 12.0.0-86517
+              pluginVersion: 12.0.0
               targets:
                 - columns:
                     - selector: timestamp
@@ -2057,26 +1941,11 @@ spec:
                     method: POST
               title: 'A: Transmit utilization in % per uplink PC (Max)'
               transformations:
-                - id: calculateField
-                  options:
-                    alias: NewUtilization
-                    binary:
-                        left:
-                            matcher:
-                                id: byName
-                                options: Utilization
-                        operator: '*'
-                        right:
-                            fixed: "100"
-                    mode: binary
-                    reduce:
-                        reducer: sum
-                    replaceFields: false
                 - id: groupingToMatrix
                   options:
                     columnField: Name
                     rowField: Time
-                    valueField: NewUtilization
+                    valueField: Utilization
                 - id: renameByRegex
                   options:
                     regex: (.*)port-channel(.*)
@@ -2121,7 +1990,7 @@ spec:
                             mode: "off"
                     decimals: 1
                     mappings: []
-                    max: 100
+                    max: 1
                     min: 0
                     thresholds:
                         mode: percentage
@@ -2131,13 +2000,13 @@ spec:
                               value: 70
                             - color: red
                               value: 90
-                    unit: percent
+                    unit: percentunit
                 overrides: []
               gridPos:
                 h: 6
                 w: 12
                 x: 12
-                "y": 19
+                "y": 33
               id: 41
               options:
                 legend:
@@ -2149,7 +2018,7 @@ spec:
                     hideZeros: false
                     mode: multi
                     sort: desc
-              pluginVersion: 12.0.0-86517
+              pluginVersion: 12.0.0
               targets:
                 - columns:
                     - selector: timestamp
@@ -2248,25 +2117,11 @@ spec:
                     method: POST
               title: 'B: Transmit utilization in % per uplink PC (Max)'
               transformations:
-                - id: calculateField
-                  options:
-                    alias: NewUtilization
-                    binary:
-                        left:
-                            matcher:
-                                id: byName
-                                options: Utilization
-                        operator: '*'
-                        right:
-                            fixed: "100"
-                    mode: binary
-                    reduce:
-                        reducer: sum
                 - id: groupingToMatrix
                   options:
                     columnField: Name
                     rowField: Time
-                    valueField: NewUtilization
+                    valueField: Utilization
                 - id: renameByRegex
                   options:
                     regex: (.*)port-channel(.*)
@@ -2311,7 +2166,7 @@ spec:
                             mode: "off"
                     decimals: 1
                     mappings: []
-                    max: 100
+                    max: 1
                     min: 0
                     thresholds:
                         mode: percentage
@@ -2321,13 +2176,13 @@ spec:
                               value: 70
                             - color: red
                               value: 90
-                    unit: percent
+                    unit: percentunit
                 overrides: []
               gridPos:
                 h: 6
                 w: 12
                 x: 0
-                "y": 25
+                "y": 39
               id: 42
               options:
                 legend:
@@ -2339,7 +2194,7 @@ spec:
                     hideZeros: false
                     mode: multi
                     sort: desc
-              pluginVersion: 12.0.0-86517
+              pluginVersion: 12.0.0
               targets:
                 - columns:
                     - selector: timestamp
@@ -2438,25 +2293,11 @@ spec:
                     method: POST
               title: 'A: Receive utilization in % per uplink PC (Max)'
               transformations:
-                - id: calculateField
-                  options:
-                    alias: NewUtilization
-                    binary:
-                        left:
-                            matcher:
-                                id: byName
-                                options: Utilization
-                        operator: '*'
-                        right:
-                            fixed: "100"
-                    mode: binary
-                    reduce:
-                        reducer: sum
                 - id: groupingToMatrix
                   options:
                     columnField: Name
                     rowField: Time
-                    valueField: NewUtilization
+                    valueField: Utilization
                 - id: renameByRegex
                   options:
                     regex: (.*)port-channel(.*)
@@ -2501,7 +2342,7 @@ spec:
                             mode: "off"
                     decimals: 1
                     mappings: []
-                    max: 100
+                    max: 1
                     min: 0
                     thresholds:
                         mode: percentage
@@ -2511,13 +2352,13 @@ spec:
                               value: 70
                             - color: red
                               value: 90
-                    unit: percent
+                    unit: percentunit
                 overrides: []
               gridPos:
                 h: 6
                 w: 12
                 x: 12
-                "y": 25
+                "y": 39
               id: 43
               options:
                 legend:
@@ -2529,7 +2370,7 @@ spec:
                     hideZeros: false
                     mode: multi
                     sort: desc
-              pluginVersion: 12.0.0-86517
+              pluginVersion: 12.0.0
               targets:
                 - columns:
                     - selector: timestamp
@@ -2628,25 +2469,11 @@ spec:
                     method: POST
               title: 'A: Transmit utilization in % per uplink PC (Max)'
               transformations:
-                - id: calculateField
-                  options:
-                    alias: NewUtilization
-                    binary:
-                        left:
-                            matcher:
-                                id: byName
-                                options: Utilization
-                        operator: '*'
-                        right:
-                            fixed: "100"
-                    mode: binary
-                    reduce:
-                        reducer: sum
                 - id: groupingToMatrix
                   options:
                     columnField: Name
                     rowField: Time
-                    valueField: NewUtilization
+                    valueField: Utilization
                 - id: renameByRegex
                   options:
                     regex: (.*)port-channel(.*)
@@ -2703,7 +2530,7 @@ spec:
                         mode: "off"
                 decimals: 1
                 mappings: []
-                max: 100
+                max: 1
                 min: 0
                 thresholds:
                     mode: percentage
@@ -2713,7 +2540,7 @@ spec:
                           value: 70
                         - color: red
                           value: 90
-                unit: percent
+                unit: percentunit
             overrides: []
           gridPos:
             h: 6
@@ -2731,7 +2558,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86782
+          pluginVersion: 12.0.0
           targets:
             - columns:
                 - selector: timestamp
@@ -2830,25 +2657,11 @@ spec:
                 method: POST
           title: 'A: Transmit utilization in % per uplink port (Max)'
           transformations:
-            - id: calculateField
-              options:
-                alias: NewUtilization
-                binary:
-                    left:
-                        matcher:
-                            id: byName
-                            options: Utilization
-                    operator: '*'
-                    right:
-                        fixed: "100"
-                mode: binary
-                reduce:
-                    reducer: sum
             - id: groupingToMatrix
               options:
                 columnField: Name
                 rowField: Time
-                valueField: NewUtilization
+                valueField: Utilization
             - id: renameByRegex
               options:
                 regex: (.*)Ethernet(.*)
@@ -2893,7 +2706,7 @@ spec:
                         mode: "off"
                 decimals: 1
                 mappings: []
-                max: 100
+                max: 1
                 min: 0
                 thresholds:
                     mode: percentage
@@ -2903,7 +2716,7 @@ spec:
                           value: 70
                         - color: red
                           value: 90
-                unit: percent
+                unit: percentunit
             overrides: []
           gridPos:
             h: 6
@@ -2921,7 +2734,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86782
+          pluginVersion: 12.0.0
           targets:
             - columns:
                 - selector: timestamp
@@ -3020,25 +2833,11 @@ spec:
                 method: POST
           title: 'B: Transmit utilization in % per uplink port (Max)'
           transformations:
-            - id: calculateField
-              options:
-                alias: NewUtilization
-                binary:
-                    left:
-                        matcher:
-                            id: byName
-                            options: Utilization
-                    operator: '*'
-                    right:
-                        fixed: "100"
-                mode: binary
-                reduce:
-                    reducer: sum
             - id: groupingToMatrix
               options:
                 columnField: Name
                 rowField: Time
-                valueField: NewUtilization
+                valueField: Utilization
             - id: renameByRegex
               options:
                 regex: (.*)Ethernet(.*)
@@ -3083,7 +2882,7 @@ spec:
                         mode: "off"
                 decimals: 1
                 mappings: []
-                max: 100
+                max: 1
                 min: 0
                 thresholds:
                     mode: percentage
@@ -3093,7 +2892,7 @@ spec:
                           value: 70
                         - color: red
                           value: 90
-                unit: percent
+                unit: percentunit
             overrides: []
           gridPos:
             h: 6
@@ -3111,7 +2910,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86782
+          pluginVersion: 12.0.0
           targets:
             - columns:
                 - selector: timestamp
@@ -3210,25 +3009,11 @@ spec:
                 method: POST
           title: 'A: Receive utilization in % per uplink port (Max)'
           transformations:
-            - id: calculateField
-              options:
-                alias: NewUtilization
-                binary:
-                    left:
-                        matcher:
-                            id: byName
-                            options: Utilization
-                    operator: '*'
-                    right:
-                        fixed: "100"
-                mode: binary
-                reduce:
-                    reducer: sum
             - id: groupingToMatrix
               options:
                 columnField: Name
                 rowField: Time
-                valueField: NewUtilization
+                valueField: Utilization
             - id: renameByRegex
               options:
                 regex: (.*)Ethernet(.*)
@@ -3273,7 +3058,7 @@ spec:
                         mode: "off"
                 decimals: 1
                 mappings: []
-                max: 100
+                max: 1
                 min: 0
                 thresholds:
                     mode: percentage
@@ -3283,7 +3068,7 @@ spec:
                           value: 70
                         - color: red
                           value: 90
-                unit: percent
+                unit: percentunit
             overrides: []
           gridPos:
             h: 6
@@ -3301,7 +3086,7 @@ spec:
                 hideZeros: false
                 mode: multi
                 sort: desc
-          pluginVersion: 12.0.0-86782
+          pluginVersion: 12.0.0
           targets:
             - columns:
                 - selector: timestamp
@@ -3400,25 +3185,11 @@ spec:
                 method: POST
           title: 'B: Receive utilization in % per uplink port (Max)'
           transformations:
-            - id: calculateField
-              options:
-                alias: NewUtilization
-                binary:
-                    left:
-                        matcher:
-                            id: byName
-                            options: Utilization
-                    operator: '*'
-                    right:
-                        fixed: "100"
-                mode: binary
-                reduce:
-                    reducer: sum
             - id: groupingToMatrix
               options:
                 columnField: Name
                 rowField: Time
-                valueField: NewUtilization
+                valueField: Utilization
             - id: renameByRegex
               options:
                 regex: (.*)Ethernet(.*)
@@ -3510,7 +3281,7 @@ spec:
                 h: 14
                 w: 12
                 x: 0
-                "y": 35
+                "y": 95
               id: 48
               options:
                 cellHeight: sm
@@ -3731,7 +3502,7 @@ spec:
                 h: 14
                 w: 12
                 x: 12
-                "y": 35
+                "y": 95
               id: 56
               options:
                 cellHeight: sm
@@ -3999,7 +3770,7 @@ spec:
             sortBy:
                 - desc: true
                   displayName: Utilization (Avg)
-          pluginVersion: 12.0.0-86782
+          pluginVersion: 12.0.0
           targets:
             - columns:
                 - selector: event.max_utilization
@@ -4248,7 +4019,7 @@ spec:
             sortBy:
                 - desc: true
                   displayName: Utilization (Avg)
-          pluginVersion: 12.0.0-86782
+          pluginVersion: 12.0.0
           targets:
             - columns:
                 - selector: event.max_utilization
@@ -4543,7 +4314,7 @@ spec:
             sortBy:
                 - desc: true
                   displayName: Utilization (Avg)
-          pluginVersion: 12.0.0-86782
+          pluginVersion: 12.0.0
           targets:
             - columns:
                 - selector: event.max_utilization
@@ -4835,7 +4606,7 @@ spec:
             sortBy:
                 - desc: true
                   displayName: Utilization (Avg)
-          pluginVersion: 12.0.0-86782
+          pluginVersion: 12.0.0
           targets:
             - columns:
                 - selector: event.max_utilization
@@ -4985,8 +4756,8 @@ spec:
     templating:
         list:
             - current:
-                text: tme-dev
-                value: eeca0h99fql1cd
+                text: nc
+                value: cem6ao77b1szka
               label: Data Source
               name: DataSource
               options: []
@@ -4996,11 +4767,9 @@ spec:
               type: datasource
             - current:
                 text:
-                    - sgaree-sj2-151-b18-6536-1
-                    - B26-6454-Matt
+                    - nclb-inf-ucs02
                 value:
-                    - sgaree-sj2-151-b18-6536-1
-                    - B26-6454-Matt
+                    - nclb-inf-ucs02
               datasource:
                 type: yesoreyeram-infinity-datasource
                 uid: ${DataSource}
