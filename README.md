@@ -1,6 +1,6 @@
 # Grafana Dashboards for Cisco Intersight
 
-This is a collection of dashboards for Cisco Intersight that can be imported into your own Grafana instance. The dashboards should help with various operational and troubleshooting tasks in Intersight.
+This is a collection of dashboards for Cisco Intersight that can be imported into your own Grafana instance. The dashboards should help with various operational and troubleshooting tasks in Intersight. The data for all of the dashboards is pulled directly from Intersight, without any external datasource. You can follow the steps below to [import the dashboards]() and [add a datasource]().
 
 > [!CAUTION]
 > The dashboards are in early development. Please apply new versions periodically to fix known issues.
