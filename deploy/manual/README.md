@@ -12,6 +12,9 @@ Your Grafana needs to have the following two plugins installed:
 
 Pleae follow the official guides to install them in your environment.
 
+## Adding a Datasource
+
+
 ## Import and Export of Grafana elements
 
 ### Preparation
