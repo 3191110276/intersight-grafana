@@ -7,8 +7,8 @@ This is a collection of dashboards for Cisco Intersight that can be imported int
 
 ## Importing the dashboards
 You can install these dashboards in your environment using:
-- [Docker-based installation](/deploy/manual/)
-- [Manual import of dashboards in an existing Grafana instance](/deploy/docker/)
+- [Docker-based installation](/deploy/docker/)
+- [Manual import of dashboards in an existing Grafana instance](/deploy/manual/)
 
 ## Adding a Data Source
 Data can be queried directly from your Intersight instance by setting up the Data Source correctly. Follow the steps below to create one Data Source per Intersight account/appliance you want to monitor from Grafana:
