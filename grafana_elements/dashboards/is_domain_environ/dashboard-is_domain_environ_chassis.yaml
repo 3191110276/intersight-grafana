@@ -3305,6 +3305,11 @@ spec:
                                 },
                                 {
                                   "type": "selector",
+                                  "dimension": "parent.type",
+                                  "value": "equipment.Chassis"
+                                }, 
+                                {
+                                  "type": "selector",
                                   "dimension": "instrument.name",
                                   "value": "hw.fan"
                                 }
