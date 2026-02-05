@@ -6,6 +6,10 @@ To build the container:
 ```
 docker build -t intersight-grafana .
 ```
+or
+```
+podman build -t intersight-grafana .
+```
 
 To run the container:
 ```
