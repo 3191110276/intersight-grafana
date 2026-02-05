@@ -95,18 +95,7 @@ spec:
                   redirect(link)
                 }
 
-                const platform_type_selector = document.getElementById('platform_type_selector');
-                platform_type_selector.onchange = function () {
-                  const selectedValue = platform_type_selector.value;
-                  const category = nav[selectedValue][0];
-                  const link = nav[selectedValue][0]['link'];
-                  const children = nav[selectedValue][0]['children'];
-                  while ((children.length) > 0) {
-                    const link = children[0]['link'];
-                    const children = children[0]['children'];
-                  }
-                  redirect(link)
-                };
+                const selectedValue = 'domain';
 
                 function add_button(name, link, selected, children) {
                   const newDiv = document.createElement('div');
@@ -134,15 +123,6 @@ spec:
                 // END OF JAVASCRIPT FUNCTIONS
             content: |-
                 <div id="container"></div>
-                <div id="platform_type">
-                  Platform Type:
-                  <select name="platform_type_selector" id="platform_type_selector">
-                        <option value="overview">Overview</option>
-                        <option value="domain" selected>Domain</option>
-                        <option value="standalone">Standalone</option>
-                        <option value="edge">Unified Edge</option>
-                      </select>
-                </div>
             contentPartials: []
             defaultContent: The query didn't return any results.
             editor:
