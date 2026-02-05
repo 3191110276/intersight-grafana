@@ -1,7 +1,7 @@
 apiVersion: grizzly.grafana.com/v1alpha1
 kind: Dashboard
 metadata:
-    folder: is_domain
+    folder: intersight
     name: is_domain_overview
 spec:
     annotations:
