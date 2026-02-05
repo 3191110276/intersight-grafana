@@ -15,6 +15,11 @@ To run the container:
 ```
 docker run -d -p 3000:3000 intersight-grafana 
 ```
+or
+```
+podman run -d -p 3000:3000 intersight-grafana
+```
+
 The login information for the first time:<br />
 Username: admin<br />
 Password: admin
