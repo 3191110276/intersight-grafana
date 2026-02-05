@@ -15,5 +15,8 @@ To run the container:
 ```
 docker run -d -p 3000:3000 intersight-grafana 
 ```
+The login information for the first time:
+Username: admin
+Password: admin
 
 After starting the container for the first time, [configure the datasource for your Intersight environment](../..//README.md?tab=readme-ov-file#adding-a-data-source)
