@@ -3,7 +3,7 @@
 This example Dockerfile can be used to quickly spin up an instance with the latest dashboards for testing purposes.
 
 > [!NOTE]  
-> When running on a Mac with Apple Silicon, you may have to change "grr-linux-amd64" to "grr-linux-arm64" in the Dockerfile
+> When running on a Mac with Apple Silicon, you can use the Mac-specific Dockerfile which replaces "grr-linux-amd64" to "grr-linux-arm64" in the Dockerfile
 
 To build the container:
 ```
